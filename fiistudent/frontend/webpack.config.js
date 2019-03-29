@@ -13,11 +13,8 @@ module.exports = {
 		rules: [
 			{
 				test: /\.js$/,
-				loader: 'babel-loader',
-				exclude: /(node_modules)/,
-				options: {
-					compact: true
-				}
+				exclude: /node_modules/,
+				use: ["babel-loader", "eslint-loader"]
 			},
 			{
 				test: /\.css$/,
