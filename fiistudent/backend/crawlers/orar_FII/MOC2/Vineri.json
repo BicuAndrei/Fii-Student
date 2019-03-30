@@ -1,0 +1,184 @@
+[
+    {
+        "MD5": "f9ef379b4f37d2769e9ab94255dd0a34",
+        "frecventa": " ",
+        "materie": "Analiza bazelor mari de date",
+        "ora": "08:00-10:00",
+        "pachet": " ",
+        "profesori": [
+            "Conf. dr. Breaban Mihaela"
+        ],
+        "sala": [
+            "C411"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "c06422a9a350a610174860e2d05cf25b",
+        "frecventa": " ",
+        "materie": "Analiza bazelor mari de date",
+        "ora": "10:00-12:00",
+        "pachet": " ",
+        "profesori": [
+            "Conf. dr. Breaban Mihaela"
+        ],
+        "sala": [
+            "C112"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "05fd4b63428d8667e70d0f22ae5551a3",
+        "frecventa": " ",
+        "materie": "Capitole speciale de invatare automata",
+        "ora": "12:00-14:00",
+        "pachet": " ",
+        "profesori": [
+            "Conf.dr. Ciortuz Liviu"
+        ],
+        "sala": [
+            "C413"
+        ],
+        "tip": "Seminar"
+    },
+    {
+        "MD5": "6ac3c238097d832c03af7ef61a88b783",
+        "frecventa": " ",
+        "materie": "Managementul proiectelor",
+        "ora": "16:00-20:00",
+        "pachet": " ",
+        "profesori": [
+            "Prof. Dr. Oprea Dumitru"
+        ],
+        "sala": [
+            "B5"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "ff00d19dd338bec6f79ebc8577468241",
+        "frecventa": " ",
+        "materie": "Sisteme bazate pe evenimente",
+        "ora": "16:00-18:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect. dr. Onica Emanuel"
+        ],
+        "sala": [
+            "C210"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "c767add836d0fefeae5a06edd08debae",
+        "frecventa": " ",
+        "materie": "Sisteme bazate pe evenimente",
+        "ora": "18:00-20:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect. dr. Onica Emanuel"
+        ],
+        "sala": [
+            "C210"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "f9ef379b4f37d2769e9ab94255dd0a34",
+        "frecventa": " ",
+        "materie": "Analiza bazelor mari de date",
+        "ora": "08:00-10:00",
+        "pachet": " ",
+        "profesori": [
+            "Conf. dr. Breaban Mihaela"
+        ],
+        "sala": [
+            "C411"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "c06422a9a350a610174860e2d05cf25b",
+        "frecventa": " ",
+        "materie": "Analiza bazelor mari de date",
+        "ora": "10:00-12:00",
+        "pachet": " ",
+        "profesori": [
+            "Conf. dr. Breaban Mihaela"
+        ],
+        "sala": [
+            "C112"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "6ac3c238097d832c03af7ef61a88b783",
+        "frecventa": " ",
+        "materie": "Managementul proiectelor",
+        "ora": "16:00-20:00",
+        "pachet": " ",
+        "profesori": [
+            "Prof. Dr. Oprea Dumitru"
+        ],
+        "sala": [
+            "B5"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "ff00d19dd338bec6f79ebc8577468241",
+        "frecventa": " ",
+        "materie": "Sisteme bazate pe evenimente",
+        "ora": "16:00-18:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect. dr. Onica Emanuel"
+        ],
+        "sala": [
+            "C210"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "c767add836d0fefeae5a06edd08debae",
+        "frecventa": " ",
+        "materie": "Sisteme bazate pe evenimente",
+        "ora": "18:00-20:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect. dr. Onica Emanuel"
+        ],
+        "sala": [
+            "C210"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "ff00d19dd338bec6f79ebc8577468241",
+        "frecventa": " ",
+        "materie": "Sisteme bazate pe evenimente",
+        "ora": "16:00-18:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect. dr. Onica Emanuel"
+        ],
+        "sala": [
+            "C210"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "c767add836d0fefeae5a06edd08debae",
+        "frecventa": " ",
+        "materie": "Sisteme bazate pe evenimente",
+        "ora": "18:00-20:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect. dr. Onica Emanuel"
+        ],
+        "sala": [
+            "C210"
+        ],
+        "tip": "Laborator"
+    }
+]

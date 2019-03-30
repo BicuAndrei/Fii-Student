@@ -1,0 +1,58 @@
+[
+    {
+        "MD5": "a8e3ca8253d1a9a8a50849d4537147b5",
+        "frecventa": " ",
+        "materie": "Programare bazata pe reguli",
+        "ora": "08:00-12:00",
+        "pachet": "5",
+        "profesori": [
+            "Prof.dr. Cristea Dan"
+        ],
+        "sala": [
+            "C309"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "5f541bdabc5f3b1973f06f819870dbe5",
+        "frecventa": " ",
+        "materie": "Calcul numeric",
+        "ora": "12:00-14:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect.dr. Ignat Anca"
+        ],
+        "sala": [
+            "C112"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "a7e297c556e2c2967d934f92e85b0c01",
+        "frecventa": " ",
+        "materie": "Topici speciale de programare .NET",
+        "ora": "14:00-16:00",
+        "pachet": "7",
+        "profesori": [
+            "Lect. Asiminoaei Ioan"
+        ],
+        "sala": [
+            "C409"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "0192c7ded1374f5c6a0b2b0541f29391",
+        "frecventa": " ",
+        "materie": "Topici speciale de programare .NET",
+        "ora": "16:00-18:00",
+        "pachet": "7",
+        "profesori": [
+            "Lect. Asiminoaei Ioan"
+        ],
+        "sala": [
+            "C309"
+        ],
+        "tip": "Curs"
+    }
+]

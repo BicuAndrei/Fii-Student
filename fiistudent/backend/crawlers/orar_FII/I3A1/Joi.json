@@ -1,0 +1,73 @@
+[
+    {
+        "MD5": "a8e3ca8253d1a9a8a50849d4537147b5",
+        "frecventa": " ",
+        "materie": "Programare bazata pe reguli",
+        "ora": "08:00-12:00",
+        "pachet": "5",
+        "profesori": [
+            "Prof.dr. Cristea Dan"
+        ],
+        "sala": [
+            "C309"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "3727df85e076eeefe4398276d833f884",
+        "frecventa": " ",
+        "materie": "Smart Card-uri si Aplicatii",
+        "ora": "10:00-12:00",
+        "pachet": "7",
+        "profesori": [
+            "Lect.dr. Birjoveanu Catalin"
+        ],
+        "sala": [
+            "C405",
+            "laptop"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "5f541bdabc5f3b1973f06f819870dbe5",
+        "frecventa": " ",
+        "materie": "Calcul numeric",
+        "ora": "12:00-14:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect.dr. Ignat Anca"
+        ],
+        "sala": [
+            "C112"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "0192c7ded1374f5c6a0b2b0541f29391",
+        "frecventa": " ",
+        "materie": "Topici speciale de programare .NET",
+        "ora": "16:00-18:00",
+        "pachet": "7",
+        "profesori": [
+            "Lect. Asiminoaei Ioan"
+        ],
+        "sala": [
+            "C309"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "302098253048daa0c62d618b1b3aadd3",
+        "frecventa": " ",
+        "materie": "Grafica pe calculator",
+        "ora": "18:00-20:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect.dr. Ghirvu Lucian"
+        ],
+        "sala": [
+            "C413"
+        ],
+        "tip": "Laborator"
+    }
+]

@@ -1,0 +1,58 @@
+[
+    {
+        "MD5": "983fe5409421c01f6a9b9a8f7d2712f6",
+        "frecventa": " ",
+        "materie": "Data Mining",
+        "ora": "08:00-10:00",
+        "pachet": " ",
+        "profesori": [
+            "Simion Alin Ciprian"
+        ],
+        "sala": [
+            "C412"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "6ff32f28f535acec1f879d940a4ad147",
+        "frecventa": " ",
+        "materie": "Prelucrarea statistica a limbajului natural",
+        "ora": "10:00-12:00",
+        "pachet": " ",
+        "profesori": [
+            "Conf. dr. Trandabat Diana"
+        ],
+        "sala": [
+            "C413"
+        ],
+        "tip": "Seminar"
+    },
+    {
+        "MD5": "e7a6e16a9a5a9ed4a0103edcc47506fa",
+        "frecventa": " ",
+        "materie": "Prelucrarea statistica a limbajului natural",
+        "ora": "12:00-14:00",
+        "pachet": " ",
+        "profesori": [
+            "Conf. dr. Trandabat Diana"
+        ],
+        "sala": [
+            "Acvariu"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "983fe5409421c01f6a9b9a8f7d2712f6",
+        "frecventa": " ",
+        "materie": "Data Mining",
+        "ora": "08:00-10:00",
+        "pachet": " ",
+        "profesori": [
+            "Simion Alin Ciprian"
+        ],
+        "sala": [
+            "C412"
+        ],
+        "tip": "Laborator"
+    }
+]

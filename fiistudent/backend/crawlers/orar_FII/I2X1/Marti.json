@@ -1,0 +1,31 @@
+[
+    {
+        "MD5": "938477c16871a9723bec42a3cb5d47c7",
+        "frecventa": " ",
+        "materie": "Programare competitiva II, facultativ, pregatire olimpiada",
+        "ora": "16:00-20:00",
+        "pachet": " ",
+        "profesori": [
+            "drd. Diac Paul",
+            "Colab. Ionita Alexandru"
+        ],
+        "sala": [
+            "C412"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "0aa2629b6ea11560f24b1542496c06b0",
+        "frecventa": " ",
+        "materie": "Programare avansata",
+        "ora": "18:00-20:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect.dr. Frasinaru Cristian"
+        ],
+        "sala": [
+            "C401"
+        ],
+        "tip": "Laborator"
+    }
+]

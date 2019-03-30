@@ -1,0 +1,58 @@
+[
+    {
+        "MD5": "957046d5dab2f77d3908374beaf6089a",
+        "frecventa": " ",
+        "materie": "Practica SGBD",
+        "ora": "08:00-10:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect. dr. Varlan Cosmin"
+        ],
+        "sala": [
+            "C405"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "c30e066701cc267cca6e9eabfb722ef6",
+        "frecventa": " ",
+        "materie": "Antreprenoriat si inovare in IT",
+        "ora": "12:00-14:00",
+        "pachet": "1",
+        "profesori": [
+            "Conf.dr. Forascu Corina"
+        ],
+        "sala": [
+            "C309"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "48202add520a7cb50f57343abe21dae8",
+        "frecventa": " ",
+        "materie": "Modele continue si Matlab",
+        "ora": "14:00-16:00",
+        "pachet": "1",
+        "profesori": [
+            "Lect.dr. Iacob Florin"
+        ],
+        "sala": [
+            "C2"
+        ],
+        "tip": "Consultatii"
+    },
+    {
+        "MD5": "4ce662ab58dbdd76bb7a3fd45defe92e",
+        "frecventa": " ",
+        "materie": "Programare functionala",
+        "ora": "14:00-16:00",
+        "pachet": "1",
+        "profesori": [
+            "Conf. dr. Ciobaca Stefan"
+        ],
+        "sala": [
+            "C112"
+        ],
+        "tip": "Curs"
+    }
+]

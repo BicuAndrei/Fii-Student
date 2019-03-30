@@ -1,0 +1,100 @@
+[
+    {
+        "MD5": "dd790b590737fd9db46c336845a46df3",
+        "frecventa": " ",
+        "materie": "Programare bazata pe reguli",
+        "ora": "10:00-12:00",
+        "pachet": "5",
+        "profesori": [
+            "Lect. dr. Pistol Ionut"
+        ],
+        "sala": [
+            "C401"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "823a5a98b94f184b27d233f1b65881f6",
+        "frecventa": " ",
+        "materie": "Retele Petri si aplicatii",
+        "ora": "12:00-14:00",
+        "pachet": "7",
+        "profesori": [
+            "Lect. dr. Captarencu Oana"
+        ],
+        "sala": [
+            "C413"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "6cc88600ac06bcb7758e19a1fc16e393",
+        "frecventa": " ",
+        "materie": "Metodologii de lucru in mediul Open Source",
+        "ora": "14:00-16:00",
+        "pachet": "6",
+        "profesori": [
+            "Yonder"
+        ],
+        "sala": [
+            "C405"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "5976faf2b639a6631d7bc9b3601402cc",
+        "frecventa": "Pare",
+        "materie": "Managementul clasei de elevi",
+        "ora": "14:00-16:00",
+        "pachet": " ",
+        "profesori": [
+            "Dr. Carasievici Laura"
+        ],
+        "sala": [
+            "C905"
+        ],
+        "tip": "Seminar"
+    },
+    {
+        "MD5": "0d38d2eb145aa0c63c900459c067cc0b",
+        "frecventa": " ",
+        "materie": "Analiza retelelor media sociale",
+        "ora": "16:00-18:00",
+        "pachet": "5",
+        "profesori": [
+            "Conf. dr. Vitcu Anca"
+        ],
+        "sala": [
+            "C409"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "964673be8fc4657f5c8a8e8b4ff8a844",
+        "frecventa": " ",
+        "materie": "Matematica pentru concursuri",
+        "ora": "18:00-20:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect.dr. Iacob Florin"
+        ],
+        "sala": [
+            "C2"
+        ],
+        "tip": "Alte activitati"
+    },
+    {
+        "MD5": "e9453ebad50594894c9d52356e5baa7c",
+        "frecventa": " ",
+        "materie": "Tehnici de programare e platforma Android",
+        "ora": "18:00-20:00",
+        "pachet": "5",
+        "profesori": [
+            "Conf. dr. Gavrilut Dragos"
+        ],
+        "sala": [
+            "C309"
+        ],
+        "tip": "Curs"
+    }
+]

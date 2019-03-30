@@ -1,0 +1,114 @@
+[
+    {
+        "MD5": "45cf0fd776a393e17796049db04b90c1",
+        "frecventa": " ",
+        "materie": "Practica pedagogica in invatamantul preuniversitar obligatoriu (2), facultativ",
+        "ora": "08:00-11:00",
+        "pachet": " ",
+        "profesori": [
+            "Asist.dr. Croitoru Eugen"
+        ],
+        "sala": [
+            "Cabinet"
+        ],
+        "tip": "Alte activitati"
+    },
+    {
+        "MD5": "d6ba4612d1a0f929c177ff5a4849a492",
+        "frecventa": " ",
+        "materie": "Retele Petri si aplicatii",
+        "ora": "08:00-10:00",
+        "pachet": "7",
+        "profesori": [
+            "Lect. dr. Captarencu Oana"
+        ],
+        "sala": [
+            "C413"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "8eb01859cfe44af5154ad92d52101aae",
+        "frecventa": " ",
+        "materie": "Retele Petri si aplicatii",
+        "ora": "10:00-12:00",
+        "pachet": "7",
+        "profesori": [
+            "Lect. dr. Captarencu Oana"
+        ],
+        "sala": [
+            "C112"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "5a0841d2d61acdd535295143c6687889",
+        "frecventa": " ",
+        "materie": "Topici speciale de programare .NET",
+        "ora": "12:00-14:00",
+        "pachet": "7",
+        "profesori": [
+            "Lect. Asiminoaei Ioan"
+        ],
+        "sala": [
+            "C412"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "b1fc222c08a1e4047c5c66bff4ba3b44",
+        "frecventa": " ",
+        "materie": "Tehnici de ingineria limbajului natural",
+        "ora": "14:00-16:00",
+        "pachet": "7",
+        "profesori": [
+            "Prof.dr. Cristea Dan"
+        ],
+        "sala": [
+            "C309"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "fa55a7e062bca67c9ecdb7bad8421346",
+        "frecventa": " ",
+        "materie": "Calcul numeric",
+        "ora": "14:00-16:00",
+        "pachet": " ",
+        "profesori": [
+            "Colab. Miron Radu"
+        ],
+        "sala": [
+            "C409"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "e1e72e9bf57482d89bf8b4e6df2b5911",
+        "frecventa": " ",
+        "materie": "Metodologii de lucru in mediul Open Source",
+        "ora": "16:00-18:00",
+        "pachet": "6",
+        "profesori": [
+            "Yonder"
+        ],
+        "sala": [
+            "C309"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "3cff75764e5b594fbc193416e181c250",
+        "frecventa": " ",
+        "materie": "Tehnici de programare e platforma Android",
+        "ora": "18:00-20:00",
+        "pachet": "5",
+        "profesori": [
+            "Colab. Onu Stefan"
+        ],
+        "sala": [
+            "C405"
+        ],
+        "tip": "Laborator"
+    }
+]

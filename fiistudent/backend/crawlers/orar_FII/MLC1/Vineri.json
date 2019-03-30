@@ -1,0 +1,22 @@
+[
+    {
+        "MD5": "016eb2d5f738d5491a7c15708919f88f",
+        "frecventa": " ",
+        "materie": "Cerc NLP",
+        "ora": "12:00-14:00",
+        "pachet": " ",
+        "profesori": [
+            "Prof.dr. Cristea Dan",
+            "drd. Diac Paul",
+            "Cerc. Dr. Gifu Daniela",
+            "Conf. dr. Iftene Adrian",
+            "Lect.dr. Moruz Alex",
+            "Lect. dr. Pistol Ionut",
+            "Conf. dr. Trandabat Diana"
+        ],
+        "sala": [
+            "C210"
+        ],
+        "tip": "Cerc stiintific"
+    }
+]

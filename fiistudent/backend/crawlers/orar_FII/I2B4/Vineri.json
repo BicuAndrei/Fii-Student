@@ -1,0 +1,72 @@
+[
+    {
+        "MD5": "7160b9e7bcc3ad513b9e6dd101b13514",
+        "frecventa": " ",
+        "materie": "Ingineria programarii",
+        "ora": "08:00-10:00",
+        "pachet": " ",
+        "profesori": [
+            "Colab. Olariu Florin"
+        ],
+        "sala": [
+            "C403"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "e5444806cf38a84079c532771b95b3f9",
+        "frecventa": " ",
+        "materie": "Tehnologii Web",
+        "ora": "12:00-14:00",
+        "pachet": " ",
+        "profesori": [
+            "Coman Alexandru"
+        ],
+        "sala": [
+            "C409"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "1a5a7d1334ebf5d3025f592d325e90cb",
+        "frecventa": " ",
+        "materie": "Programare functionala",
+        "ora": "14:00-16:00",
+        "pachet": "1",
+        "profesori": [
+            "Colab. Rusu Radu"
+        ],
+        "sala": [
+            "C403"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "2378a966d67a62f31b35df00082aacc0",
+        "frecventa": " ",
+        "materie": "Limba engleza IV",
+        "ora": "16:00-18:00",
+        "pachet": " ",
+        "profesori": [
+            "drd. Perez Cenel Augusto"
+        ],
+        "sala": [
+            "C905"
+        ],
+        "tip": "Seminar"
+    },
+    {
+        "MD5": "ec6a1519ba7ca1156cf20ead048da2cd",
+        "frecventa": " ",
+        "materie": "Didactica informaticii",
+        "ora": "18:00-20:00",
+        "pachet": " ",
+        "profesori": [
+            "Colab. Tibu Mirela"
+        ],
+        "sala": [
+            "C909"
+        ],
+        "tip": "Seminar"
+    }
+]

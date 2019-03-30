@@ -1,0 +1,45 @@
+[
+    {
+        "MD5": "adc5d2cb410c2872822e2c2f87c38cc5",
+        "frecventa": " ",
+        "materie": "Operating Systems",
+        "ora": "10:00-12:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect.dr. Vidrascu Cristian"
+        ],
+        "sala": [
+            "C210",
+            "laptop"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "626a78da9cc2327a0144afe3fc0a81d8",
+        "frecventa": " ",
+        "materie": "Sisteme de operare",
+        "ora": "16:00-18:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect. dr. Benchea Razvan"
+        ],
+        "sala": [
+            "C411"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "3449194053511171d3258cd9040876b8",
+        "frecventa": " ",
+        "materie": "Algebraic Foundations of Computer Science",
+        "ora": "18:00-20:00",
+        "pachet": " ",
+        "profesori": [
+            "Colab. Dr. Cojocaru Liliana"
+        ],
+        "sala": [
+            "C903"
+        ],
+        "tip": "Seminar"
+    }
+]

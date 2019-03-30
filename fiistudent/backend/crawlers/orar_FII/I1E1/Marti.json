@@ -1,0 +1,47 @@
+[
+    {
+        "MD5": "a6fc124b31e30221ab6dc53d2548f06c",
+        "frecventa": " ",
+        "materie": "Algorithm Design",
+        "ora": "10:00-12:00",
+        "pachet": " ",
+        "profesori": [
+            "Conf. dr. Ciobaca Stefan",
+            "Prof.dr. Lucanu Dorel"
+        ],
+        "sala": [
+            "C210",
+            "laptop"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "a4012ac1279574b6ffd3a1206402c6c3",
+        "frecventa": " ",
+        "materie": "Pedagogie",
+        "ora": "16:00-18:00",
+        "pachet": " ",
+        "profesori": [
+            "Tatarusanu Florin"
+        ],
+        "sala": [
+            "C903"
+        ],
+        "tip": "Seminar"
+    },
+    {
+        "MD5": "938477c16871a9723bec42a3cb5d47c7",
+        "frecventa": " ",
+        "materie": "Programare competitiva II, facultativ, pregatire olimpiada",
+        "ora": "16:00-20:00",
+        "pachet": " ",
+        "profesori": [
+            "drd. Diac Paul",
+            "Colab. Ionita Alexandru"
+        ],
+        "sala": [
+            "C412"
+        ],
+        "tip": "Curs"
+    }
+]

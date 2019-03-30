@@ -1,0 +1,30 @@
+[
+    {
+        "MD5": "06c650941e08682110dc78623529bf19",
+        "frecventa": " ",
+        "materie": "Fundamente algebrice ale informaticii",
+        "ora": "08:00-10:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect.dr. Iftene Sorin"
+        ],
+        "sala": [
+            "C905"
+        ],
+        "tip": "Seminar"
+    },
+    {
+        "MD5": "884762b3f2bf95216b210d78101c5ecf",
+        "frecventa": " ",
+        "materie": "Etica si integritate academica",
+        "ora": "10:00-12:00",
+        "pachet": " ",
+        "profesori": [
+            "Conf. dr. Trandabat Diana"
+        ],
+        "sala": [
+            "C905"
+        ],
+        "tip": "Curs"
+    }
+]

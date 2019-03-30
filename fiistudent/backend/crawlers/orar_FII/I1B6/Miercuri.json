@@ -1,0 +1,18 @@
+[
+    {
+        "MD5": "30630d1a893ed1e48d050a0e119f35b7",
+        "frecventa": " ",
+        "materie": "Programare orientata-obiect",
+        "ora": "08:00-10:00",
+        "pachet": " ",
+        "profesori": [
+            "Conf. dr. Gavrilut Dragos",
+            "Prof.dr. Lucanu Dorel"
+        ],
+        "sala": [
+            "C2",
+            "laptop"
+        ],
+        "tip": "Curs"
+    }
+]

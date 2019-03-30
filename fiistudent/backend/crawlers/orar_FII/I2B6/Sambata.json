@@ -1,0 +1,30 @@
+[
+    {
+        "MD5": "eadf31c063bec555af74423140b053ae",
+        "frecventa": " ",
+        "materie": "Programare avansata",
+        "ora": "08:00-10:00",
+        "pachet": " ",
+        "profesori": [
+            "Colab. Cusmuliuc Ciprian"
+        ],
+        "sala": [
+            "C403"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "37422937f468e738f565a62717e011ec",
+        "frecventa": " ",
+        "materie": "Tehnologii Web",
+        "ora": "10:00-12:00",
+        "pachet": " ",
+        "profesori": [
+            "Coman Alexandru"
+        ],
+        "sala": [
+            "C409"
+        ],
+        "tip": "Laborator"
+    }
+]

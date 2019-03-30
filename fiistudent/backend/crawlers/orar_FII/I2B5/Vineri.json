@@ -1,0 +1,30 @@
+[
+    {
+        "MD5": "4642c8943d9513b5b3abe98fa042b61e",
+        "frecventa": " ",
+        "materie": "Limba engleza IV",
+        "ora": "12:00-14:00",
+        "pachet": " ",
+        "profesori": [
+            "drd. Perez Cenel Augusto"
+        ],
+        "sala": [
+            "C909"
+        ],
+        "tip": "Seminar"
+    },
+    {
+        "MD5": "ec6a1519ba7ca1156cf20ead048da2cd",
+        "frecventa": " ",
+        "materie": "Didactica informaticii",
+        "ora": "18:00-20:00",
+        "pachet": " ",
+        "profesori": [
+            "Colab. Tibu Mirela"
+        ],
+        "sala": [
+            "C909"
+        ],
+        "tip": "Seminar"
+    }
+]

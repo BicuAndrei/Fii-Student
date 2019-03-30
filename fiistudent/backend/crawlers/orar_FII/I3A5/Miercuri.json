@@ -1,0 +1,86 @@
+[
+    {
+        "MD5": "cda7c01706c87ed2cdb8496bcc2cdad2",
+        "frecventa": " ",
+        "materie": "Tehnici de programare e platforma Android",
+        "ora": "08:00-10:00",
+        "pachet": "5",
+        "profesori": [
+            "Colab. Lupascu Marilena"
+        ],
+        "sala": [
+            "C411"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "8eb01859cfe44af5154ad92d52101aae",
+        "frecventa": " ",
+        "materie": "Retele Petri si aplicatii",
+        "ora": "10:00-12:00",
+        "pachet": "7",
+        "profesori": [
+            "Lect. dr. Captarencu Oana"
+        ],
+        "sala": [
+            "C112"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "5a0841d2d61acdd535295143c6687889",
+        "frecventa": " ",
+        "materie": "Topici speciale de programare .NET",
+        "ora": "12:00-14:00",
+        "pachet": "7",
+        "profesori": [
+            "Lect. Asiminoaei Ioan"
+        ],
+        "sala": [
+            "C412"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "b1fc222c08a1e4047c5c66bff4ba3b44",
+        "frecventa": " ",
+        "materie": "Tehnici de ingineria limbajului natural",
+        "ora": "14:00-16:00",
+        "pachet": "7",
+        "profesori": [
+            "Prof.dr. Cristea Dan"
+        ],
+        "sala": [
+            "C309"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "e1e72e9bf57482d89bf8b4e6df2b5911",
+        "frecventa": " ",
+        "materie": "Metodologii de lucru in mediul Open Source",
+        "ora": "16:00-18:00",
+        "pachet": "6",
+        "profesori": [
+            "Yonder"
+        ],
+        "sala": [
+            "C309"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "b4f4203e9384d1adb7d49e92a15da9a3",
+        "frecventa": " ",
+        "materie": "Programare MS-Office",
+        "ora": "16:00-18:00",
+        "pachet": "6",
+        "profesori": [
+            "Lect.dr. Radulescu Vlad"
+        ],
+        "sala": [
+            "C412"
+        ],
+        "tip": "Laborator"
+    }
+]

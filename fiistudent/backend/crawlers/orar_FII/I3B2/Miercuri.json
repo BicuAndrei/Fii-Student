@@ -1,0 +1,100 @@
+[
+    {
+        "MD5": "53923da118ede0c7004377dfbc9246d0",
+        "frecventa": " ",
+        "materie": "Practica pedagogica in invatamantul preuniversitar obligatoriu (2), facultativ",
+        "ora": "08:00-11:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect.dr. Ignat Anca"
+        ],
+        "sala": [
+            "Cabinet"
+        ],
+        "tip": "Alte activitati"
+    },
+    {
+        "MD5": "8eb01859cfe44af5154ad92d52101aae",
+        "frecventa": " ",
+        "materie": "Retele Petri si aplicatii",
+        "ora": "10:00-12:00",
+        "pachet": "7",
+        "profesori": [
+            "Lect. dr. Captarencu Oana"
+        ],
+        "sala": [
+            "C112"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "5f541bdabc5f3b1973f06f819870dbe5",
+        "frecventa": " ",
+        "materie": "Calcul numeric",
+        "ora": "12:00-14:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect.dr. Ignat Anca"
+        ],
+        "sala": [
+            "C112"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "b1fc222c08a1e4047c5c66bff4ba3b44",
+        "frecventa": " ",
+        "materie": "Tehnici de ingineria limbajului natural",
+        "ora": "14:00-16:00",
+        "pachet": "7",
+        "profesori": [
+            "Prof.dr. Cristea Dan"
+        ],
+        "sala": [
+            "C309"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "aae29fddfd3540d91fc443f89b45d0ef",
+        "frecventa": " ",
+        "materie": "Calcul numeric",
+        "ora": "14:00-16:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect.dr. Ignat Anca"
+        ],
+        "sala": [
+            "C412"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "e1e72e9bf57482d89bf8b4e6df2b5911",
+        "frecventa": " ",
+        "materie": "Metodologii de lucru in mediul Open Source",
+        "ora": "16:00-18:00",
+        "pachet": "6",
+        "profesori": [
+            "Yonder"
+        ],
+        "sala": [
+            "C309"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "81597de1539fb6a7bec6e9972fc11877",
+        "frecventa": " ",
+        "materie": "Cloud computing",
+        "ora": "18:00-20:00",
+        "pachet": "6",
+        "profesori": [
+            "Colab. Calancea Georgiana"
+        ],
+        "sala": [
+            "C210"
+        ],
+        "tip": "Laborator"
+    }
+]

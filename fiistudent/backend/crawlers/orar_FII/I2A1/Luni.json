@@ -1,0 +1,73 @@
+[
+    {
+        "MD5": "d2c3bb0c78b93b25c28af4deb6472f08",
+        "frecventa": " ",
+        "materie": "Ingineria programarii",
+        "ora": "08:00-10:00",
+        "pachet": " ",
+        "profesori": [
+            "Conf. dr. Iftene Adrian"
+        ],
+        "sala": [
+            "C210"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "fb0e7a99c497533710025f92b95442d2",
+        "frecventa": " ",
+        "materie": "Ingineria programarii",
+        "ora": "10:00-12:00",
+        "pachet": " ",
+        "profesori": [
+            "Conf. dr. Iftene Adrian"
+        ],
+        "sala": [
+            "C112"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "5f4470ea7b6f8a6c35216eb865cb9d3a",
+        "frecventa": " ",
+        "materie": "Modele continue si Matlab",
+        "ora": "12:00-14:00",
+        "pachet": "1",
+        "profesori": [
+            "Lect.dr. Iacob Florin"
+        ],
+        "sala": [
+            "C112"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "964673be8fc4657f5c8a8e8b4ff8a844",
+        "frecventa": " ",
+        "materie": "Matematica pentru concursuri",
+        "ora": "18:00-20:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect.dr. Iacob Florin"
+        ],
+        "sala": [
+            "C2"
+        ],
+        "tip": "Alte activitati"
+    },
+    {
+        "MD5": "4b2625326df9a24331934564a44d06d4",
+        "frecventa": " ",
+        "materie": "Introducere in criptografie",
+        "ora": "18:00-20:00",
+        "pachet": "1",
+        "profesori": [
+            "Prof.dr. Tiplea Ferucio Laurentiu"
+        ],
+        "sala": [
+            "C112",
+            "laptop"
+        ],
+        "tip": "Curs"
+    }
+]

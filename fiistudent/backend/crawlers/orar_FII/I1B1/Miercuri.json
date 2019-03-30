@@ -1,0 +1,32 @@
+[
+    {
+        "MD5": "30630d1a893ed1e48d050a0e119f35b7",
+        "frecventa": " ",
+        "materie": "Programare orientata-obiect",
+        "ora": "08:00-10:00",
+        "pachet": " ",
+        "profesori": [
+            "Conf. dr. Gavrilut Dragos",
+            "Prof.dr. Lucanu Dorel"
+        ],
+        "sala": [
+            "C2",
+            "laptop"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "4b7e95daab3ac8ab111c2842b7d65f1f",
+        "frecventa": " ",
+        "materie": "Limba engleza II",
+        "ora": "14:00-16:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect. dr. Onofrei Paula"
+        ],
+        "sala": [
+            "C909"
+        ],
+        "tip": "Seminar"
+    }
+]

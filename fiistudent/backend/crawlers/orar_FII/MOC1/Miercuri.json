@@ -1,0 +1,47 @@
+[
+    {
+        "MD5": "743a04a5364b3fb62cf28c150704c938",
+        "frecventa": " ",
+        "materie": "Aspecte pragmatice pentru ingineria serviciilor cloud: arhitecturi, procese si practici",
+        "ora": "08:00-10:00",
+        "pachet": " ",
+        "profesori": [],
+        "sala": [],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "743a04a5364b3fb62cf28c150704c938",
+        "frecventa": " ",
+        "materie": "Aspecte pragmatice pentru ingineria serviciilor cloud: arhitecturi, procese si practici",
+        "ora": "08:00-10:00",
+        "pachet": " ",
+        "profesori": [],
+        "sala": [],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "160d7350baec76afc8ae4cb00f1a2b56",
+        "frecventa": " ",
+        "materie": "Metode inspirate din natura",
+        "ora": "10:00-14:00",
+        "pachet": " ",
+        "profesori": [
+            "Prof.dr. Luchian Henri"
+        ],
+        "sala": [
+            "C308",
+            "laptop"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "743a04a5364b3fb62cf28c150704c938",
+        "frecventa": " ",
+        "materie": "Aspecte pragmatice pentru ingineria serviciilor cloud: arhitecturi, procese si practici",
+        "ora": "08:00-10:00",
+        "pachet": " ",
+        "profesori": [],
+        "sala": [],
+        "tip": "Laborator"
+    }
+]

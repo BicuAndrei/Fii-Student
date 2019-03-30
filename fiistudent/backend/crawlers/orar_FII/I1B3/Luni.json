@@ -1,0 +1,46 @@
+[
+    {
+        "MD5": "b8af3726c7df82a8e0076061a0ec0bde",
+        "frecventa": " ",
+        "materie": "Limba engleza II",
+        "ora": "12:00-14:00",
+        "pachet": " ",
+        "profesori": [
+            "Colab. Enachescu Cristian"
+        ],
+        "sala": [
+            "C903"
+        ],
+        "tip": "Seminar"
+    },
+    {
+        "MD5": "61ef6543d3d67ecc295c5b2081ab61f0",
+        "frecventa": " ",
+        "materie": "Proiectarea algoritmilor",
+        "ora": "14:00-16:00",
+        "pachet": " ",
+        "profesori": [
+            "Conf. dr. Ciobaca Stefan",
+            "Prof.dr. Lucanu Dorel"
+        ],
+        "sala": [
+            "C2",
+            "laptop"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "964673be8fc4657f5c8a8e8b4ff8a844",
+        "frecventa": " ",
+        "materie": "Matematica pentru concursuri",
+        "ora": "18:00-20:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect.dr. Iacob Florin"
+        ],
+        "sala": [
+            "C2"
+        ],
+        "tip": "Alte activitati"
+    }
+]

@@ -1,0 +1,50 @@
+[
+    {
+        "MD5": "097cadca27b078084af973b8188af091",
+        "frecventa": " ",
+        "materie": "Protocoale de securitate: modelare si verificare",
+        "ora": "10:00-12:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect.dr. Birjoveanu Catalin"
+        ],
+        "sala": [
+            "C413",
+            "laptop",
+            "video"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "97666f4ea6a6d942abdcd8fc16c98678",
+        "frecventa": " ",
+        "materie": "Modele de securitate",
+        "ora": "08:00-10:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect. Dr. Condurache Rodica"
+        ],
+        "sala": [
+            "C909",
+            "laptop",
+            "video"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "097cadca27b078084af973b8188af091",
+        "frecventa": " ",
+        "materie": "Protocoale de securitate: modelare si verificare",
+        "ora": "10:00-12:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect.dr. Birjoveanu Catalin"
+        ],
+        "sala": [
+            "C413",
+            "laptop",
+            "video"
+        ],
+        "tip": "Curs"
+    }
+]

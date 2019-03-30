@@ -1,0 +1,44 @@
+[
+    {
+        "MD5": "d012feadf9068c6842b077a31272ef2a",
+        "frecventa": " ",
+        "materie": "Proiectarea algoritmilor",
+        "ora": "08:00-10:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect. dr. Patrut Bogdan"
+        ],
+        "sala": [
+            "C905"
+        ],
+        "tip": "Seminar"
+    },
+    {
+        "MD5": "631c4bb4dfe0e15f01c2e2c3cce04a4a",
+        "frecventa": " ",
+        "materie": "Pedagogie",
+        "ora": "08:00-10:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect. Dr. Apostolache Roxana"
+        ],
+        "sala": [
+            "C308"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "5bcf53366edb81da3acc4d9eff03c36b",
+        "frecventa": " ",
+        "materie": "Fundamente algebrice ale informaticii",
+        "ora": "12:00-14:00",
+        "pachet": " ",
+        "profesori": [
+            "Voicu Maria"
+        ],
+        "sala": [
+            "C903"
+        ],
+        "tip": "Seminar"
+    }
+]

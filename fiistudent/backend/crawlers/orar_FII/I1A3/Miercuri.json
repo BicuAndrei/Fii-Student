@@ -1,0 +1,30 @@
+[
+    {
+        "MD5": "07c3115d8d267d199355ea85458958cb",
+        "frecventa": " ",
+        "materie": "Proiectarea algoritmilor",
+        "ora": "10:00-12:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect. Dr. Condurache Rodica"
+        ],
+        "sala": [
+            "C905"
+        ],
+        "tip": "Seminar"
+    },
+    {
+        "MD5": "d9fb5c7e893a09a9c1dc5673e065c8ce",
+        "frecventa": " ",
+        "materie": "Fundamente algebrice ale informaticii",
+        "ora": "12:00-14:00",
+        "pachet": " ",
+        "profesori": [
+            "Asist. drd. Nica Anca-Maria"
+        ],
+        "sala": [
+            "C903"
+        ],
+        "tip": "Seminar"
+    }
+]

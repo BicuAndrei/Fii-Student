@@ -1,0 +1,44 @@
+[
+    {
+        "MD5": "884762b3f2bf95216b210d78101c5ecf",
+        "frecventa": " ",
+        "materie": "Etica si integritate academica",
+        "ora": "10:00-12:00",
+        "pachet": " ",
+        "profesori": [
+            "Conf. dr. Trandabat Diana"
+        ],
+        "sala": [
+            "C905"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "3e74923c4d2d0a60ebc59fb4c2343ec8",
+        "frecventa": " ",
+        "materie": "Proiectarea algoritmilor",
+        "ora": "12:00-14:00",
+        "pachet": " ",
+        "profesori": [
+            "Colab. Simionescu Cristian"
+        ],
+        "sala": [
+            "C905"
+        ],
+        "tip": "Seminar"
+    },
+    {
+        "MD5": "b5f40ba89ecb0596c3b5928332916dd8",
+        "frecventa": " ",
+        "materie": "Sisteme de operare",
+        "ora": "14:00-16:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect. dr. Patrut Bogdan"
+        ],
+        "sala": [
+            "C403"
+        ],
+        "tip": "Laborator"
+    }
+]

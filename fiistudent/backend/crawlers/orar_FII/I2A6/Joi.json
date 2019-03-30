@@ -1,0 +1,58 @@
+[
+    {
+        "MD5": "916a87fbd3c9fed1d5e783bfa36a81f2",
+        "frecventa": " ",
+        "materie": "Introducere in criptografie",
+        "ora": "12:00-14:00",
+        "pachet": "1",
+        "profesori": [
+            "Lect.dr. Iftene Sorin"
+        ],
+        "sala": [
+            "C405"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "7160b9e7bcc3ad513b9e6dd101b13514",
+        "frecventa": " ",
+        "materie": "Ingineria programarii",
+        "ora": "08:00-10:00",
+        "pachet": " ",
+        "profesori": [
+            "Colab. Olariu Florin"
+        ],
+        "sala": [
+            "C403"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "d7816cb049bc37810686440c7eaa48ce",
+        "frecventa": " ",
+        "materie": "Practica SGBD",
+        "ora": "10:00-12:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect. dr. Varlan Cosmin"
+        ],
+        "sala": [
+            "C411"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "916a87fbd3c9fed1d5e783bfa36a81f2",
+        "frecventa": " ",
+        "materie": "Introducere in criptografie",
+        "ora": "12:00-14:00",
+        "pachet": "1",
+        "profesori": [
+            "Lect.dr. Iftene Sorin"
+        ],
+        "sala": [
+            "C405"
+        ],
+        "tip": "Laborator"
+    }
+]

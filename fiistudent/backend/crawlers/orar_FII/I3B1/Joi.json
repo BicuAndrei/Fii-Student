@@ -1,0 +1,45 @@
+[
+    {
+        "MD5": "a8e3ca8253d1a9a8a50849d4537147b5",
+        "frecventa": " ",
+        "materie": "Programare bazata pe reguli",
+        "ora": "08:00-12:00",
+        "pachet": "5",
+        "profesori": [
+            "Prof.dr. Cristea Dan"
+        ],
+        "sala": [
+            "C309"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "cf27d4df4b534c697aa5c3aeb90b02b1",
+        "frecventa": " ",
+        "materie": "Grafica pe calculator",
+        "ora": "14:00-16:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect.dr. Ghirvu Lucian"
+        ],
+        "sala": [
+            "C112",
+            "laptop"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "0192c7ded1374f5c6a0b2b0541f29391",
+        "frecventa": " ",
+        "materie": "Topici speciale de programare .NET",
+        "ora": "16:00-18:00",
+        "pachet": "7",
+        "profesori": [
+            "Lect. Asiminoaei Ioan"
+        ],
+        "sala": [
+            "C309"
+        ],
+        "tip": "Curs"
+    }
+]

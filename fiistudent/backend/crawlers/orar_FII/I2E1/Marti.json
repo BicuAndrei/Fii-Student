@@ -1,0 +1,59 @@
+[
+    {
+        "MD5": "99af4beb37eaf3b5289a0970825cc7c9",
+        "frecventa": " ",
+        "materie": "Software Engineering",
+        "ora": "08:00-10:00",
+        "pachet": " ",
+        "profesori": [
+            "Conf. dr. Iftene Adrian"
+        ],
+        "sala": [
+            "C210"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "c61d0ac098b85b6b917f21c2f6f47fdc",
+        "frecventa": " ",
+        "materie": "Tehnologii Web",
+        "ora": "10:00-12:00",
+        "pachet": " ",
+        "profesori": [
+            "Asist. Panu Andrei"
+        ],
+        "sala": [
+            "C403"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "938477c16871a9723bec42a3cb5d47c7",
+        "frecventa": " ",
+        "materie": "Programare competitiva II, facultativ, pregatire olimpiada",
+        "ora": "16:00-20:00",
+        "pachet": " ",
+        "profesori": [
+            "drd. Diac Paul",
+            "Colab. Ionita Alexandru"
+        ],
+        "sala": [
+            "C412"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "a1a66b90742c448bab21b5b456a153bd",
+        "frecventa": " ",
+        "materie": "Advanced Programming",
+        "ora": "18:00-20:00",
+        "pachet": " ",
+        "profesori": [
+            "Popovici Paul"
+        ],
+        "sala": [
+            "C309"
+        ],
+        "tip": "Curs"
+    }
+]

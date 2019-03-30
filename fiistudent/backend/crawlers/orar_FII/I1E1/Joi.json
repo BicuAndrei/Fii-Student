@@ -1,0 +1,30 @@
+[
+    {
+        "MD5": "6580c7a5a4156846e5856a5a52dc169e",
+        "frecventa": " ",
+        "materie": "Probabilitati si statistica",
+        "ora": "08:00-10:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect. dr. Olariu Florentin Emanuel"
+        ],
+        "sala": [
+            "C413"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "884762b3f2bf95216b210d78101c5ecf",
+        "frecventa": " ",
+        "materie": "Etica si integritate academica",
+        "ora": "10:00-12:00",
+        "pachet": " ",
+        "profesori": [
+            "Conf. dr. Trandabat Diana"
+        ],
+        "sala": [
+            "C905"
+        ],
+        "tip": "Curs"
+    }
+]

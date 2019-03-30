@@ -1,0 +1,87 @@
+[
+    {
+        "MD5": "05fd4b63428d8667e70d0f22ae5551a3",
+        "frecventa": " ",
+        "materie": "Capitole speciale de invatare automata",
+        "ora": "12:00-14:00",
+        "pachet": " ",
+        "profesori": [
+            "Conf.dr. Ciortuz Liviu"
+        ],
+        "sala": [
+            "C413"
+        ],
+        "tip": "Seminar"
+    },
+    {
+        "MD5": "ff00d19dd338bec6f79ebc8577468241",
+        "frecventa": " ",
+        "materie": "Sisteme bazate pe evenimente",
+        "ora": "16:00-18:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect. dr. Onica Emanuel"
+        ],
+        "sala": [
+            "C210"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "c767add836d0fefeae5a06edd08debae",
+        "frecventa": " ",
+        "materie": "Sisteme bazate pe evenimente",
+        "ora": "18:00-20:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect. dr. Onica Emanuel"
+        ],
+        "sala": [
+            "C210"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "05fd4b63428d8667e70d0f22ae5551a3",
+        "frecventa": " ",
+        "materie": "Capitole speciale de invatare automata",
+        "ora": "12:00-14:00",
+        "pachet": " ",
+        "profesori": [
+            "Conf.dr. Ciortuz Liviu"
+        ],
+        "sala": [
+            "C413"
+        ],
+        "tip": "Seminar"
+    },
+    {
+        "MD5": "0b1471deefadb3d1c6337ce56e384142",
+        "frecventa": " ",
+        "materie": "Protocoale de securitate: modelare si verificare",
+        "ora": "10:00-12:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect.dr. Birjoveanu Catalin"
+        ],
+        "sala": [
+            "C412",
+            "laptop"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "05fd4b63428d8667e70d0f22ae5551a3",
+        "frecventa": " ",
+        "materie": "Capitole speciale de invatare automata",
+        "ora": "12:00-14:00",
+        "pachet": " ",
+        "profesori": [
+            "Conf.dr. Ciortuz Liviu"
+        ],
+        "sala": [
+            "C413"
+        ],
+        "tip": "Seminar"
+    }
+]

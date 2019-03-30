@@ -1,0 +1,87 @@
+[
+    {
+        "MD5": "0ffd3a218cc109621814087b7bba9a3e",
+        "frecventa": " ",
+        "materie": "Software Engineering",
+        "ora": "10:00-12:00",
+        "pachet": " ",
+        "profesori": [
+            "Conf. dr. Iftene Adrian"
+        ],
+        "sala": [
+            "C309",
+            "laptop"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "c30e066701cc267cca6e9eabfb722ef6",
+        "frecventa": " ",
+        "materie": "Antreprenoriat si inovare in IT",
+        "ora": "12:00-14:00",
+        "pachet": "1",
+        "profesori": [
+            "Conf.dr. Forascu Corina"
+        ],
+        "sala": [
+            "C309"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "48202add520a7cb50f57343abe21dae8",
+        "frecventa": " ",
+        "materie": "Modele continue si Matlab",
+        "ora": "14:00-16:00",
+        "pachet": "1",
+        "profesori": [
+            "Lect.dr. Iacob Florin"
+        ],
+        "sala": [
+            "C2"
+        ],
+        "tip": "Consultatii"
+    },
+    {
+        "MD5": "4ce662ab58dbdd76bb7a3fd45defe92e",
+        "frecventa": " ",
+        "materie": "Programare functionala",
+        "ora": "14:00-16:00",
+        "pachet": "1",
+        "profesori": [
+            "Conf. dr. Ciobaca Stefan"
+        ],
+        "sala": [
+            "C112"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "27a82ca7b3f78da7c7da6ae278c103f5",
+        "frecventa": " ",
+        "materie": "Antreprenoriat si inovare in IT",
+        "ora": "16:00-18:00",
+        "pachet": "1",
+        "profesori": [
+            "Conf.dr. Forascu Corina"
+        ],
+        "sala": [
+            "C905"
+        ],
+        "tip": "Seminar"
+    },
+    {
+        "MD5": "c4e1ec931872a2624489e8216e71881a",
+        "frecventa": " ",
+        "materie": "Advanced Programming",
+        "ora": "18:00-20:00",
+        "pachet": " ",
+        "profesori": [
+            "Popovici Paul"
+        ],
+        "sala": [
+            "C401"
+        ],
+        "tip": "Laborator"
+    }
+]

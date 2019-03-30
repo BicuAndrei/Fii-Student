@@ -1,0 +1,44 @@
+[
+    {
+        "MD5": "6cc9e8599944a8e87c2fe8da35657d54",
+        "frecventa": " ",
+        "materie": "Limba engleza IV",
+        "ora": "08:00-10:00",
+        "pachet": " ",
+        "profesori": [
+            "drd. Perez Cenel Augusto"
+        ],
+        "sala": [
+            "C903"
+        ],
+        "tip": "Seminar"
+    },
+    {
+        "MD5": "1a5a7d1334ebf5d3025f592d325e90cb",
+        "frecventa": " ",
+        "materie": "Programare functionala",
+        "ora": "14:00-16:00",
+        "pachet": "1",
+        "profesori": [
+            "Colab. Rusu Radu"
+        ],
+        "sala": [
+            "C403"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "ec6a1519ba7ca1156cf20ead048da2cd",
+        "frecventa": " ",
+        "materie": "Didactica informaticii",
+        "ora": "18:00-20:00",
+        "pachet": " ",
+        "profesori": [
+            "Colab. Tibu Mirela"
+        ],
+        "sala": [
+            "C909"
+        ],
+        "tip": "Seminar"
+    }
+]

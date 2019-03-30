@@ -1,0 +1,100 @@
+[
+    {
+        "MD5": "276332ba377eaebafaaa7c190a00d59d",
+        "frecventa": " ",
+        "materie": "Interactiune om-calculator",
+        "ora": "08:00-10:00",
+        "pachet": " ",
+        "profesori": [
+            "Colab. Grigoriu Alecsandru"
+        ],
+        "sala": [
+            "C401"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "6d2c82f85a999ab41cde1a42051c0308",
+        "frecventa": " ",
+        "materie": "Interactiune om-calculator",
+        "ora": "12:00-14:00",
+        "pachet": " ",
+        "profesori": [
+            "Conf.dr. Buraga Sabin Corneliu"
+        ],
+        "sala": [
+            "C309"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "b7825f010affdf018dfd096e380f4b65",
+        "frecventa": " ",
+        "materie": "Sisteme bazate pe evenimente",
+        "ora": "16:00-18:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect. dr. Onica Emanuel"
+        ],
+        "sala": [
+            "C308"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "ea014304441450ec292a685114dce7aa",
+        "frecventa": " ",
+        "materie": "Capitole speciale de invatare automata",
+        "ora": "16:00-18:00",
+        "pachet": " ",
+        "profesori": [
+            "Conf.dr. Ciortuz Liviu"
+        ],
+        "sala": [
+            "C112"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "0b0e5a51e328832bb292656fcd59f32a",
+        "frecventa": " ",
+        "materie": "Capitole speciale de invatare automata",
+        "ora": "18:00-20:00",
+        "pachet": " ",
+        "profesori": [
+            "Conf.dr. Ciortuz Liviu"
+        ],
+        "sala": [
+            "C112"
+        ],
+        "tip": "Seminar"
+    },
+    {
+        "MD5": "b7825f010affdf018dfd096e380f4b65",
+        "frecventa": " ",
+        "materie": "Sisteme bazate pe evenimente",
+        "ora": "16:00-18:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect. dr. Onica Emanuel"
+        ],
+        "sala": [
+            "C308"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "b7825f010affdf018dfd096e380f4b65",
+        "frecventa": " ",
+        "materie": "Sisteme bazate pe evenimente",
+        "ora": "16:00-18:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect. dr. Onica Emanuel"
+        ],
+        "sala": [
+            "C308"
+        ],
+        "tip": "Curs"
+    }
+]

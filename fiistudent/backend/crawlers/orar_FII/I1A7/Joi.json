@@ -1,0 +1,72 @@
+[
+    {
+        "MD5": "3d91fd81f2b4d87a48009035d33fab16",
+        "frecventa": " ",
+        "materie": "Fundamente algebrice ale informaticii",
+        "ora": "08:00-10:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect.dr. Birjoveanu Catalin"
+        ],
+        "sala": [
+            "C409"
+        ],
+        "tip": "Seminar"
+    },
+    {
+        "MD5": "884762b3f2bf95216b210d78101c5ecf",
+        "frecventa": " ",
+        "materie": "Etica si integritate academica",
+        "ora": "10:00-12:00",
+        "pachet": " ",
+        "profesori": [
+            "Conf. dr. Trandabat Diana"
+        ],
+        "sala": [
+            "C905"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "418328e14a3ccefeb70b5b894bb0b83f",
+        "frecventa": " ",
+        "materie": "Proiectarea algoritmilor",
+        "ora": "12:00-14:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect. Dr. Condurache Rodica"
+        ],
+        "sala": [
+            "C903"
+        ],
+        "tip": "Seminar"
+    },
+    {
+        "MD5": "f318c8ac2216e59a0b7454af811b6368",
+        "frecventa": " ",
+        "materie": "Programare orientata-obiect",
+        "ora": "16:00-18:00",
+        "pachet": " ",
+        "profesori": [
+            "Ionita Norbert"
+        ],
+        "sala": [
+            "C401"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "a41b6cf3a647f0b683b0b3ec5da0973a",
+        "frecventa": " ",
+        "materie": "Probabilitati si statistica",
+        "ora": "18:00-20:00",
+        "pachet": " ",
+        "profesori": [
+            "Colab. Policiuc A"
+        ],
+        "sala": [
+            "C403"
+        ],
+        "tip": "Laborator"
+    }
+]

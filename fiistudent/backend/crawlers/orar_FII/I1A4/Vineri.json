@@ -1,0 +1,28 @@
+[
+    {
+        "MD5": "631c4bb4dfe0e15f01c2e2c3cce04a4a",
+        "frecventa": " ",
+        "materie": "Pedagogie",
+        "ora": "08:00-10:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect. Dr. Apostolache Roxana"
+        ],
+        "sala": [
+            "C308"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "b51197febc49bbde679ccbeb29e2e6c7",
+        "frecventa": " ",
+        "materie": "Probabilitati si statistica",
+        "ora": "18:00-20:00",
+        "pachet": " ",
+        "profesori": [
+            "Colab. Dr. Spiridonica Alexandru"
+        ],
+        "sala": [],
+        "tip": "Laborator"
+    }
+]

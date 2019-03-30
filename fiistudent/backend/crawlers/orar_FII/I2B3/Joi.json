@@ -1,0 +1,59 @@
+[
+    {
+        "MD5": "916a87fbd3c9fed1d5e783bfa36a81f2",
+        "frecventa": " ",
+        "materie": "Introducere in criptografie",
+        "ora": "12:00-14:00",
+        "pachet": "1",
+        "profesori": [
+            "Lect.dr. Iftene Sorin"
+        ],
+        "sala": [
+            "C405"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "12febdb3cfd3b9f4807eb56c0631b7ad",
+        "frecventa": " ",
+        "materie": "Programare avansata",
+        "ora": "10:00-12:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect.dr. Frasinaru Cristian"
+        ],
+        "sala": [
+            "C112",
+            "laptop"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "916a87fbd3c9fed1d5e783bfa36a81f2",
+        "frecventa": " ",
+        "materie": "Introducere in criptografie",
+        "ora": "12:00-14:00",
+        "pachet": "1",
+        "profesori": [
+            "Lect.dr. Iftene Sorin"
+        ],
+        "sala": [
+            "C405"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "29a89e69ba3f9a9c30ca9c538e66c03f",
+        "frecventa": " ",
+        "materie": "Practica SGBD",
+        "ora": "14:00-16:00",
+        "pachet": " ",
+        "profesori": [
+            "Asist. dr. Varlan Simona-Elena"
+        ],
+        "sala": [
+            "C412"
+        ],
+        "tip": "Laborator"
+    }
+]

@@ -1,0 +1,30 @@
+[
+    {
+        "MD5": "7a63caf9f727417bb20f8525cebc7418",
+        "frecventa": " ",
+        "materie": "Proiectarea algoritmilor",
+        "ora": "08:00-10:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect. Dr. Condurache Rodica"
+        ],
+        "sala": [
+            "C905"
+        ],
+        "tip": "Seminar"
+    },
+    {
+        "MD5": "846cfab72e71c26612c5ba8b65a5bd91",
+        "frecventa": " ",
+        "materie": "Programare orientata-obiect",
+        "ora": "10:00-12:00",
+        "pachet": " ",
+        "profesori": [
+            "Colab. Lupascu Marilena"
+        ],
+        "sala": [
+            "C403"
+        ],
+        "tip": "Laborator"
+    }
+]

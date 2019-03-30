@@ -1,0 +1,59 @@
+[
+    {
+        "MD5": "0f4ab44567eb5983006dc30c42ec49d0",
+        "frecventa": " ",
+        "materie": "Proiectarea algoritmilor",
+        "ora": "12:00-14:00",
+        "pachet": " ",
+        "profesori": [
+            "Colab. Ionita Alexandru"
+        ],
+        "sala": [
+            "C905"
+        ],
+        "tip": "Seminar"
+    },
+    {
+        "MD5": "a7e96f7fbba0c15db41bf0de9d97d6c3",
+        "frecventa": " ",
+        "materie": "Fundamente algebrice ale informaticii",
+        "ora": "14:00-16:00",
+        "pachet": " ",
+        "profesori": [
+            "Asist. drd. Nica Anca-Maria"
+        ],
+        "sala": [
+            "C903"
+        ],
+        "tip": "Seminar"
+    },
+    {
+        "MD5": "938477c16871a9723bec42a3cb5d47c7",
+        "frecventa": " ",
+        "materie": "Programare competitiva II, facultativ, pregatire olimpiada",
+        "ora": "16:00-20:00",
+        "pachet": " ",
+        "profesori": [
+            "drd. Diac Paul",
+            "Colab. Ionita Alexandru"
+        ],
+        "sala": [
+            "C412"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "7c35bd65aed12559f222ac4d6d90f4f4",
+        "frecventa": " ",
+        "materie": "Pedagogie",
+        "ora": "18:00-20:00",
+        "pachet": " ",
+        "profesori": [
+            "Tatarusanu Florin"
+        ],
+        "sala": [
+            "C210"
+        ],
+        "tip": "Seminar"
+    }
+]

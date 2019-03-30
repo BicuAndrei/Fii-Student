@@ -1,0 +1,40 @@
+[
+    {
+        "MD5": "3b371755a269117f44405edaf466e4a3",
+        "data": "Miercuri, 05.06.2019",
+        "materie": "Programare bazata pe reguli",
+        "ora": "11:00-12:00",
+        "profesori": [
+            "Prof.dr. Cristea Dan",
+            "Lect. dr. Pistol Ionut"
+        ],
+        "sala": [
+            "C309"
+        ]
+    },
+    {
+        "MD5": "c46a582c8e70e42d7e0ebf4e09bdbd86",
+        "data": "Vineri, 07.06.2019",
+        "materie": "Retele Petri si aplicatii",
+        "ora": "10:00-12:30",
+        "profesori": [
+            "Lect. dr. Captarencu Oana"
+        ],
+        "sala": [
+            "C112"
+        ]
+    },
+    {
+        "MD5": "46090b987e44a9776f55a1381943e48f",
+        "data": "Luni, 10.06.2019",
+        "materie": "Tehnici de programare e platforma Android",
+        "ora": "08:00-10:00",
+        "profesori": [
+            "Conf. dr. Gavrilut Dragos"
+        ],
+        "sala": [
+            "C112",
+            "C2"
+        ]
+    }
+]

@@ -1,0 +1,44 @@
+[
+    {
+        "MD5": "52ddb5ab834de63e77edbc5db5429992",
+        "frecventa": " ",
+        "materie": "Introducere in criptografie",
+        "ora": "10:00-12:00",
+        "pachet": "1",
+        "profesori": [
+            "Asist. drd. Nica Anca-Maria"
+        ],
+        "sala": [
+            "C308"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "aad985d6a0baafac97b51851c23d8525",
+        "frecventa": " ",
+        "materie": "Tehnologii Web",
+        "ora": "10:00-12:00",
+        "pachet": " ",
+        "profesori": [
+            "Asist. Panu Andrei"
+        ],
+        "sala": [
+            "C409"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "142a0bfe4dffd475b4cb7f9d23313b33",
+        "frecventa": " ",
+        "materie": "Programare avansata",
+        "ora": "12:00-14:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect.dr. Frasinaru Cristian"
+        ],
+        "sala": [
+            "C411"
+        ],
+        "tip": "Laborator"
+    }
+]

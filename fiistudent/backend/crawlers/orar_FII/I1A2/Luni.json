@@ -1,0 +1,30 @@
+[
+    {
+        "MD5": "3fe99f64488e685404adda39a25c8497",
+        "frecventa": " ",
+        "materie": "Limba engleza II",
+        "ora": "16:00-18:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect. dr. Onofrei Paula"
+        ],
+        "sala": [
+            "C909"
+        ],
+        "tip": "Seminar"
+    },
+    {
+        "MD5": "964673be8fc4657f5c8a8e8b4ff8a844",
+        "frecventa": " ",
+        "materie": "Matematica pentru concursuri",
+        "ora": "18:00-20:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect.dr. Iacob Florin"
+        ],
+        "sala": [
+            "C2"
+        ],
+        "tip": "Alte activitati"
+    }
+]

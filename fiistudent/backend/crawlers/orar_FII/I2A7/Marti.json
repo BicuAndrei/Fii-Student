@@ -1,0 +1,89 @@
+[
+    {
+        "MD5": "48cd1a4d8877bb9b5f331e8b36c784ef",
+        "frecventa": " ",
+        "materie": "Practica SGBD",
+        "ora": "08:00-10:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect. dr. Varlan Cosmin"
+        ],
+        "sala": [
+            "C112"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "6f58ddcdbf7839509f25b8940a10f1b4",
+        "frecventa": " ",
+        "materie": "Programare functionala",
+        "ora": "10:00-12:00",
+        "pachet": "1",
+        "profesori": [
+            "Lect. Dr. Arusoaie Andrei"
+        ],
+        "sala": [
+            "C412"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "88bd0ceaa6f4a383779df2c0f2d12da1",
+        "frecventa": " ",
+        "materie": "Limba engleza IV",
+        "ora": "12:00-14:00",
+        "pachet": " ",
+        "profesori": [
+            "Colab. Enachescu Cristian"
+        ],
+        "sala": [
+            "C412"
+        ],
+        "tip": "Seminar"
+    },
+    {
+        "MD5": "541061bd2e4f61a5d28fab61b650649b",
+        "frecventa": " ",
+        "materie": "Tehnologii Web",
+        "ora": "14:00-16:00",
+        "pachet": " ",
+        "profesori": [
+            "Conf.dr. Buraga Sabin Corneliu"
+        ],
+        "sala": [
+            "C112"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "938477c16871a9723bec42a3cb5d47c7",
+        "frecventa": " ",
+        "materie": "Programare competitiva II, facultativ, pregatire olimpiada",
+        "ora": "16:00-20:00",
+        "pachet": " ",
+        "profesori": [
+            "drd. Diac Paul",
+            "Colab. Ionita Alexandru"
+        ],
+        "sala": [
+            "C412"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "610c7a6b42c0a1d2022f61946c49ed74",
+        "frecventa": " ",
+        "materie": "Programare avansata",
+        "ora": "16:00-18:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect.dr. Frasinaru Cristian"
+        ],
+        "sala": [
+            "C2",
+            "laptop",
+            "video"
+        ],
+        "tip": "Curs"
+    }
+]

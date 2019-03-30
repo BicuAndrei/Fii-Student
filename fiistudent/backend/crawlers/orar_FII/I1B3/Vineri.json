@@ -1,0 +1,30 @@
+[
+    {
+        "MD5": "631c4bb4dfe0e15f01c2e2c3cce04a4a",
+        "frecventa": " ",
+        "materie": "Pedagogie",
+        "ora": "08:00-10:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect. Dr. Apostolache Roxana"
+        ],
+        "sala": [
+            "C308"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "399be2c13eac0f664aa3df1405f711ca",
+        "frecventa": " ",
+        "materie": "Fundamente algebrice ale informaticii",
+        "ora": "10:00-12:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect.dr. Iftene Sorin"
+        ],
+        "sala": [
+            "C308"
+        ],
+        "tip": "Seminar"
+    }
+]

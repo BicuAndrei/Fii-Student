@@ -1,0 +1,58 @@
+[
+    {
+        "MD5": "3edd769212e6d0a67ac80b5bc26cc972",
+        "frecventa": " ",
+        "materie": "Programare orientata-obiect",
+        "ora": "08:00-10:00",
+        "pachet": " ",
+        "profesori": [
+            "Colab. Ungureanu Ionut"
+        ],
+        "sala": [
+            "C412"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "884762b3f2bf95216b210d78101c5ecf",
+        "frecventa": " ",
+        "materie": "Etica si integritate academica",
+        "ora": "10:00-12:00",
+        "pachet": " ",
+        "profesori": [
+            "Conf. dr. Trandabat Diana"
+        ],
+        "sala": [
+            "C905"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "f5fe91dddc8f0944c5d78df24b7384a0",
+        "frecventa": " ",
+        "materie": "Proiectarea algoritmilor",
+        "ora": "10:00-12:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect. Dr. Condurache Rodica"
+        ],
+        "sala": [
+            "C903"
+        ],
+        "tip": "Seminar"
+    },
+    {
+        "MD5": "fcfbf96384b753ebda1f331be3c24bad",
+        "frecventa": " ",
+        "materie": "Probabilitati si statistica",
+        "ora": "16:00-18:00",
+        "pachet": " ",
+        "profesori": [
+            "Colab. Policiuc A"
+        ],
+        "sala": [
+            "C411"
+        ],
+        "tip": "Laborator"
+    }
+]

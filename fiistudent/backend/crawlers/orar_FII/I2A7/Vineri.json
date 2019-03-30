@@ -1,0 +1,30 @@
+[
+    {
+        "MD5": "37422937f468e738f565a62717e011ec",
+        "frecventa": " ",
+        "materie": "Tehnologii Web",
+        "ora": "10:00-12:00",
+        "pachet": " ",
+        "profesori": [
+            "Coman Alexandru"
+        ],
+        "sala": [
+            "C409"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "4fce692a5c5ebc75d39511950da39744",
+        "frecventa": " ",
+        "materie": "Didactica informaticii",
+        "ora": "16:00-18:00",
+        "pachet": " ",
+        "profesori": [
+            "Colab. Tibu Mirela"
+        ],
+        "sala": [
+            "C909"
+        ],
+        "tip": "Seminar"
+    }
+]

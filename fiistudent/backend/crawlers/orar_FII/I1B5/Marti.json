@@ -1,0 +1,74 @@
+[
+    {
+        "MD5": "096d3b36ca32e5657c356cbcd274d19d",
+        "frecventa": " ",
+        "materie": "Sisteme de operare",
+        "ora": "10:00-12:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect.dr. Vidrascu Cristian"
+        ],
+        "sala": [
+            "C2",
+            "laptop"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "faa9ffacdf2b64259cb31e67739b1283",
+        "frecventa": " ",
+        "materie": "Probabilitati si statistica",
+        "ora": "12:00-14:00",
+        "pachet": " ",
+        "profesori": [
+            "Asist. dr. Botezat Sorin"
+        ],
+        "sala": [
+            "C403"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "360555b7e8b85a97b6df9216f404f155",
+        "frecventa": " ",
+        "materie": "Proiectarea algoritmilor",
+        "ora": "14:00-16:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect. Dr. Arusoaie Andrei"
+        ],
+        "sala": [
+            "C413"
+        ],
+        "tip": "Seminar"
+    },
+    {
+        "MD5": "938477c16871a9723bec42a3cb5d47c7",
+        "frecventa": " ",
+        "materie": "Programare competitiva II, facultativ, pregatire olimpiada",
+        "ora": "16:00-20:00",
+        "pachet": " ",
+        "profesori": [
+            "drd. Diac Paul",
+            "Colab. Ionita Alexandru"
+        ],
+        "sala": [
+            "C412"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "7c35bd65aed12559f222ac4d6d90f4f4",
+        "frecventa": " ",
+        "materie": "Pedagogie",
+        "ora": "18:00-20:00",
+        "pachet": " ",
+        "profesori": [
+            "Tatarusanu Florin"
+        ],
+        "sala": [
+            "C210"
+        ],
+        "tip": "Seminar"
+    }
+]

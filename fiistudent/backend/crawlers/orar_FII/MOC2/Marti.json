@@ -1,0 +1,157 @@
+[
+    {
+        "MD5": "b02194eec462590e2c8614bf7ea329a4",
+        "frecventa": " ",
+        "materie": "Programare concurenta si distribuita",
+        "ora": "08:00-10:00",
+        "pachet": " ",
+        "profesori": [
+            "Conf. dr. Alboaie Lenuta"
+        ],
+        "sala": [
+            "C413"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "030da49018c00515af533eeadbedf909",
+        "frecventa": " ",
+        "materie": "Programare concurenta si distribuita",
+        "ora": "16:00-18:00",
+        "pachet": " ",
+        "profesori": [
+            "Conf. dr. Alboaie Lenuta"
+        ],
+        "sala": [
+            "C309"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "073da9caa3427a9e4034d31ff72493d7",
+        "frecventa": " ",
+        "materie": "Programare concurenta si distribuita",
+        "ora": "18:00-20:00",
+        "pachet": " ",
+        "profesori": [
+            "Conf. dr. Alboaie Lenuta"
+        ],
+        "sala": [
+            "C413"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "b4824e376fe4d6d1e5b78ca4ea1512d0",
+        "frecventa": " ",
+        "materie": "Data Mining",
+        "ora": "10:00-14:00",
+        "pachet": " ",
+        "profesori": [
+            "Prof.dr. Luchian Henri"
+        ],
+        "sala": [
+            "C308",
+            "laptop"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "b02194eec462590e2c8614bf7ea329a4",
+        "frecventa": " ",
+        "materie": "Programare concurenta si distribuita",
+        "ora": "08:00-10:00",
+        "pachet": " ",
+        "profesori": [
+            "Conf. dr. Alboaie Lenuta"
+        ],
+        "sala": [
+            "C413"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "979e7991cb15d42fbecf6a8fefe5dff5",
+        "frecventa": " ",
+        "materie": "Metode inspirate din natura",
+        "ora": "08:00-10:00",
+        "pachet": " ",
+        "profesori": [
+            "Conf. dr. Breaban Mihaela"
+        ],
+        "sala": [
+            "C403"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "030da49018c00515af533eeadbedf909",
+        "frecventa": " ",
+        "materie": "Programare concurenta si distribuita",
+        "ora": "16:00-18:00",
+        "pachet": " ",
+        "profesori": [
+            "Conf. dr. Alboaie Lenuta"
+        ],
+        "sala": [
+            "C309"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "073da9caa3427a9e4034d31ff72493d7",
+        "frecventa": " ",
+        "materie": "Programare concurenta si distribuita",
+        "ora": "18:00-20:00",
+        "pachet": " ",
+        "profesori": [
+            "Conf. dr. Alboaie Lenuta"
+        ],
+        "sala": [
+            "C413"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "b02194eec462590e2c8614bf7ea329a4",
+        "frecventa": " ",
+        "materie": "Programare concurenta si distribuita",
+        "ora": "08:00-10:00",
+        "pachet": " ",
+        "profesori": [
+            "Conf. dr. Alboaie Lenuta"
+        ],
+        "sala": [
+            "C413"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "030da49018c00515af533eeadbedf909",
+        "frecventa": " ",
+        "materie": "Programare concurenta si distribuita",
+        "ora": "16:00-18:00",
+        "pachet": " ",
+        "profesori": [
+            "Conf. dr. Alboaie Lenuta"
+        ],
+        "sala": [
+            "C309"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "073da9caa3427a9e4034d31ff72493d7",
+        "frecventa": " ",
+        "materie": "Programare concurenta si distribuita",
+        "ora": "18:00-20:00",
+        "pachet": " ",
+        "profesori": [
+            "Conf. dr. Alboaie Lenuta"
+        ],
+        "sala": [
+            "C413"
+        ],
+        "tip": "Laborator"
+    }
+]

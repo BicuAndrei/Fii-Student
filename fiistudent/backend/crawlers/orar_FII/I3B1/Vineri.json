@@ -1,0 +1,72 @@
+[
+    {
+        "MD5": "3f0a07090823e2a1557e9a3c099d0b6b",
+        "frecventa": " ",
+        "materie": "Aspecte computationale in teoria numerelor",
+        "ora": "08:00-10:00",
+        "pachet": "5",
+        "profesori": [
+            "Lect.dr. Iftene Sorin"
+        ],
+        "sala": [
+            "C112"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "9ea7b50bdfcf2ca5f4bb2a064706b3b6",
+        "frecventa": "Pare",
+        "materie": "Managementul clasei de elevi",
+        "ora": "10:00-12:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect.dr. Curelaru Versavia"
+        ],
+        "sala": [
+            "C309"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "adc3baf19c248a34795daae80e7b631e",
+        "frecventa": " ",
+        "materie": "Analiza retelelor media sociale",
+        "ora": "12:00-14:00",
+        "pachet": "5",
+        "profesori": [
+            "Conf. dr. Vitcu Anca"
+        ],
+        "sala": [
+            "C308"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "a9cc3337e5f53f3258555bdc347ce860",
+        "frecventa": " ",
+        "materie": "Aspecte computationale in teoria numerelor",
+        "ora": "16:00-18:00",
+        "pachet": "5",
+        "profesori": [
+            "Lect.dr. Iftene Sorin"
+        ],
+        "sala": [
+            "C401"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "6fd9714dea6d2dc2016a4df4e7518e79",
+        "frecventa": " ",
+        "materie": "Grafica pe calculator",
+        "ora": "18:00-20:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect.dr. Ghirvu Lucian"
+        ],
+        "sala": [
+            "C401"
+        ],
+        "tip": "Laborator"
+    }
+]

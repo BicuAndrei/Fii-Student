@@ -1,0 +1,31 @@
+[
+    {
+        "MD5": "f1280b535b66a20dae2a85979b9b9cc9",
+        "frecventa": " ",
+        "materie": "DBMS Practice",
+        "ora": "08:00-10:00",
+        "pachet": " ",
+        "profesori": [
+            "Asist. dr. Varlan Simona-Elena"
+        ],
+        "sala": [
+            "C112",
+            "laptop"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "faf2ecb82b739e214ad949046f11fa7d",
+        "frecventa": " ",
+        "materie": "Introducere in criptografie",
+        "ora": "10:00-12:00",
+        "pachet": "1",
+        "profesori": [
+            "Lect.dr. Iftene Sorin"
+        ],
+        "sala": [
+            "C412"
+        ],
+        "tip": "Laborator"
+    }
+]

@@ -1,0 +1,44 @@
+[
+    {
+        "MD5": "631c4bb4dfe0e15f01c2e2c3cce04a4a",
+        "frecventa": " ",
+        "materie": "Pedagogie",
+        "ora": "08:00-10:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect. Dr. Apostolache Roxana"
+        ],
+        "sala": [
+            "C308"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "c21d08d14d7ef7435acbdcd3e6b23ac1",
+        "frecventa": " ",
+        "materie": "Limba engleza II",
+        "ora": "16:00-18:00",
+        "pachet": " ",
+        "profesori": [
+            "Colab. Enachescu Cristian"
+        ],
+        "sala": [
+            "C903"
+        ],
+        "tip": "Seminar"
+    },
+    {
+        "MD5": "a419ca604ab3ed6c619941adfd426eb8",
+        "frecventa": " ",
+        "materie": "Sisteme de operare",
+        "ora": "18:00-20:00",
+        "pachet": " ",
+        "profesori": [
+            "drd. Craciun Vlad"
+        ],
+        "sala": [
+            "C403"
+        ],
+        "tip": "Laborator"
+    }
+]

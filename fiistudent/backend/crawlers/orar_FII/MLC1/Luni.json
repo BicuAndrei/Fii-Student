@@ -1,0 +1,44 @@
+[
+    {
+        "MD5": "7e3fa79f16296189915cc41095c908ad",
+        "frecventa": " ",
+        "materie": "Limbaje de scripturi (pentru studentii umanisti)",
+        "ora": "14:00-16:00",
+        "pachet": " ",
+        "profesori": [
+            "Conf. dr. Trandabat Diana"
+        ],
+        "sala": [
+            "C403"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "41e9cd345985d4ff017eff3a8ede1f1c",
+        "frecventa": " ",
+        "materie": "Introducere in Lingvistica Computationala",
+        "ora": "16:00-18:00",
+        "pachet": " ",
+        "profesori": [
+            "Prof.dr. Cristea Dan"
+        ],
+        "sala": [
+            "C309"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "aa2d69ce3cd58e23e081a6b73f2b74f3",
+        "frecventa": " ",
+        "materie": "Introducere in Lingvistica Computationala",
+        "ora": "18:00-20:00",
+        "pachet": " ",
+        "profesori": [
+            "Prof.dr. Cristea Dan"
+        ],
+        "sala": [
+            "C905"
+        ],
+        "tip": "Seminar"
+    }
+]

@@ -1,0 +1,87 @@
+[
+    {
+        "MD5": "53923da118ede0c7004377dfbc9246d0",
+        "frecventa": " ",
+        "materie": "Practica pedagogica in invatamantul preuniversitar obligatoriu (2), facultativ",
+        "ora": "08:00-11:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect.dr. Ignat Anca"
+        ],
+        "sala": [
+            "Cabinet"
+        ],
+        "tip": "Alte activitati"
+    },
+    {
+        "MD5": "a8e3ca8253d1a9a8a50849d4537147b5",
+        "frecventa": " ",
+        "materie": "Programare bazata pe reguli",
+        "ora": "08:00-12:00",
+        "pachet": "5",
+        "profesori": [
+            "Prof.dr. Cristea Dan"
+        ],
+        "sala": [
+            "C309"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "d6e136f5c93d857d07dcc93cc25cc522",
+        "frecventa": " ",
+        "materie": "Topici speciale de programare .NET",
+        "ora": "12:00-14:00",
+        "pachet": "7",
+        "profesori": [
+            "Lect. Asiminoaei Ioan"
+        ],
+        "sala": [
+            "C401"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "cf27d4df4b534c697aa5c3aeb90b02b1",
+        "frecventa": " ",
+        "materie": "Grafica pe calculator",
+        "ora": "14:00-16:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect.dr. Ghirvu Lucian"
+        ],
+        "sala": [
+            "C112",
+            "laptop"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "4b1dbb9f85b911e6a8fbf74e6ade4a53",
+        "frecventa": " ",
+        "materie": "Analiza retelelor media sociale",
+        "ora": "14:00-16:00",
+        "pachet": "5",
+        "profesori": [
+            "Conf. dr. Vitcu Anca"
+        ],
+        "sala": [
+            "C401"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "0192c7ded1374f5c6a0b2b0541f29391",
+        "frecventa": " ",
+        "materie": "Topici speciale de programare .NET",
+        "ora": "16:00-18:00",
+        "pachet": "7",
+        "profesori": [
+            "Lect. Asiminoaei Ioan"
+        ],
+        "sala": [
+            "C309"
+        ],
+        "tip": "Curs"
+    }
+]

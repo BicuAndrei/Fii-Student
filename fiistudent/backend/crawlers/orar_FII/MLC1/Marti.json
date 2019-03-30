@@ -1,0 +1,60 @@
+[
+    {
+        "MD5": "b4824e376fe4d6d1e5b78ca4ea1512d0",
+        "frecventa": " ",
+        "materie": "Data Mining",
+        "ora": "10:00-14:00",
+        "pachet": " ",
+        "profesori": [
+            "Prof.dr. Luchian Henri"
+        ],
+        "sala": [
+            "C308",
+            "laptop"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "871d6b0e1425386b223f013d9a5934a3",
+        "frecventa": " ",
+        "materie": "Introducere in Lingvistica Computationala",
+        "ora": "16:00-18:00",
+        "pachet": " ",
+        "profesori": [
+            "Prof.dr. Cristea Dan"
+        ],
+        "sala": [
+            "C308"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "aa2d69ce3cd58e23e081a6b73f2b74f3",
+        "frecventa": " ",
+        "materie": "Introducere in Lingvistica Computationala",
+        "ora": "18:00-20:00",
+        "pachet": " ",
+        "profesori": [
+            "Prof.dr. Cristea Dan"
+        ],
+        "sala": [
+            "C905"
+        ],
+        "tip": "Seminar"
+    },
+    {
+        "MD5": "b4824e376fe4d6d1e5b78ca4ea1512d0",
+        "frecventa": " ",
+        "materie": "Data Mining",
+        "ora": "10:00-14:00",
+        "pachet": " ",
+        "profesori": [
+            "Prof.dr. Luchian Henri"
+        ],
+        "sala": [
+            "C308",
+            "laptop"
+        ],
+        "tip": "Curs"
+    }
+]

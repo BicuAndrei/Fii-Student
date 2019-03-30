@@ -1,0 +1,73 @@
+[
+    {
+        "MD5": "387c1e2ee8813b9d08de8a8772f14d10",
+        "frecventa": " ",
+        "materie": "Programare avansata",
+        "ora": "08:00-10:00",
+        "pachet": " ",
+        "profesori": [
+            "Colab. Gabor Silviu"
+        ],
+        "sala": [
+            "C405"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "872cc599409537cb424ee4f2918ed558",
+        "frecventa": " ",
+        "materie": "Ingineria programarii",
+        "ora": "10:00-12:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect.dr. Moruz Alex"
+        ],
+        "sala": [
+            "C309"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "65ab86b0fa056c0520532d9fb35f7cc4",
+        "frecventa": " ",
+        "materie": "Tehnologii Web",
+        "ora": "12:00-14:00",
+        "pachet": " ",
+        "profesori": [
+            "Conf.dr. Buraga Sabin Corneliu"
+        ],
+        "sala": [
+            "C112"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "551d75b848d748f745e40e0b2236123d",
+        "frecventa": " ",
+        "materie": "Tehnologii Web",
+        "ora": "14:00-16:00",
+        "pachet": " ",
+        "profesori": [
+            "Asist. Panu Andrei"
+        ],
+        "sala": [
+            "C405"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "938477c16871a9723bec42a3cb5d47c7",
+        "frecventa": " ",
+        "materie": "Programare competitiva II, facultativ, pregatire olimpiada",
+        "ora": "16:00-20:00",
+        "pachet": " ",
+        "profesori": [
+            "drd. Diac Paul",
+            "Colab. Ionita Alexandru"
+        ],
+        "sala": [
+            "C412"
+        ],
+        "tip": "Curs"
+    }
+]

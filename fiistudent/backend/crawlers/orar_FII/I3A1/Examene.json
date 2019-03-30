@@ -1,0 +1,164 @@
+[
+    {
+        "MD5": "1f73e206732374f9d156c22d1e9a8a97",
+        "data": "Luni, 08.04.2019",
+        "materie": "Analiza retelelor media sociale",
+        "ora": "10:00-12:00",
+        "profesori": [
+            "Conf. dr. Vitcu Anca"
+        ],
+        "sala": [
+            "C409"
+        ]
+    },
+    {
+        "MD5": "1bf15d00ff17104b9008e843b772bb89",
+        "data": "Miercuri, 10.04.2019",
+        "materie": "Programare MS-Office",
+        "ora": "08:00-10:00",
+        "profesori": [
+            "Lect.dr. Radulescu Vlad"
+        ],
+        "sala": [
+            "C112",
+            "C2"
+        ]
+    },
+    {
+        "MD5": "f309183f1c13d40fdef9c6d1455f9cb3",
+        "data": "Joi, 11.04.2019",
+        "materie": "Retele Petri si aplicatii",
+        "ora": "08:00-11:00",
+        "profesori": [
+            "Lect. dr. Captarencu Oana"
+        ],
+        "sala": [
+            "C112"
+        ]
+    },
+    {
+        "MD5": "9498cf5fde3212cdae1a2c110b0a6c7b",
+        "data": "Vineri, 12.04.2019",
+        "materie": "Aspecte computationale in teoria numerelor",
+        "ora": "08:00-10:00",
+        "profesori": [
+            "Lect.dr. Iftene Sorin"
+        ],
+        "sala": [
+            "C112"
+        ]
+    },
+    {
+        "MD5": "1d7f90498262aa8bfe452de736416d8b",
+        "data": "Sambata, 11.05.2019",
+        "materie": "Calcul numeric",
+        "ora": "14:00-17:00",
+        "profesori": [
+            "Lect.dr. Ignat Anca"
+        ],
+        "sala": [
+            "C112",
+            "C2",
+            "C309"
+        ]
+    },
+    {
+        "MD5": "dfe2b3d31d166db790ce43dd72a8e4bf",
+        "data": "Sambata, 25.05.2019",
+        "materie": "Grafica pe calculator",
+        "ora": "10:00-14:00",
+        "profesori": [
+            "Lect.dr. Ghirvu Lucian"
+        ],
+        "sala": [
+            "C2"
+        ]
+    },
+    {
+        "MD5": "9be400277f91e73f494764c5c9855c9c",
+        "data": "Sambata, 25.05.2019",
+        "materie": "Grafica pe calculator",
+        "ora": "10:00-16:00",
+        "profesori": [
+            "Lect.dr. Ghirvu Lucian"
+        ],
+        "sala": [
+            "C112"
+        ]
+    },
+    {
+        "MD5": "cdf856a3e7dfce77834ffac4fcdf5d10",
+        "data": "Vineri, 31.05.2019",
+        "materie": "Aspecte computationale in teoria numerelor",
+        "ora": "08:00-10:00",
+        "profesori": [
+            "Lect.dr. Iftene Sorin"
+        ],
+        "sala": [
+            "C112"
+        ]
+    },
+    {
+        "MD5": "19ba58e9b68eab70777431b078ad2603",
+        "data": "Luni, 03.06.2019",
+        "materie": "Programare MS-Office",
+        "ora": "08:00-10:00",
+        "profesori": [
+            "Lect.dr. Radulescu Vlad"
+        ],
+        "sala": [
+            "C112",
+            "C2"
+        ]
+    },
+    {
+        "MD5": "461d4554abf6cb816627d67f57a174d0",
+        "data": "Miercuri, 05.06.2019",
+        "materie": "Programare bazata pe reguli",
+        "ora": "10:00-10:30",
+        "profesori": [
+            "Prof.dr. Cristea Dan",
+            "Lect. dr. Pistol Ionut"
+        ],
+        "sala": [
+            "C309"
+        ]
+    },
+    {
+        "MD5": "208bda97e3622edee8bd176d8a47a1aa",
+        "data": "Miercuri, 05.06.2019",
+        "materie": "Analiza retelelor media sociale",
+        "ora": "10:00-12:00",
+        "profesori": [
+            "Conf. dr. Vitcu Anca"
+        ],
+        "sala": [
+            "C409"
+        ]
+    },
+    {
+        "MD5": "c46a582c8e70e42d7e0ebf4e09bdbd86",
+        "data": "Vineri, 07.06.2019",
+        "materie": "Retele Petri si aplicatii",
+        "ora": "10:00-12:30",
+        "profesori": [
+            "Lect. dr. Captarencu Oana"
+        ],
+        "sala": [
+            "C112"
+        ]
+    },
+    {
+        "MD5": "46090b987e44a9776f55a1381943e48f",
+        "data": "Luni, 10.06.2019",
+        "materie": "Tehnici de programare e platforma Android",
+        "ora": "08:00-10:00",
+        "profesori": [
+            "Conf. dr. Gavrilut Dragos"
+        ],
+        "sala": [
+            "C112",
+            "C2"
+        ]
+    }
+]

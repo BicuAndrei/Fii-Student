@@ -1,0 +1,72 @@
+[
+    {
+        "MD5": "884762b3f2bf95216b210d78101c5ecf",
+        "frecventa": " ",
+        "materie": "Etica si integritate academica",
+        "ora": "10:00-12:00",
+        "pachet": " ",
+        "profesori": [
+            "Conf. dr. Trandabat Diana"
+        ],
+        "sala": [
+            "C905"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "916a87fbd3c9fed1d5e783bfa36a81f2",
+        "frecventa": " ",
+        "materie": "Introducere in criptografie",
+        "ora": "12:00-14:00",
+        "pachet": "1",
+        "profesori": [
+            "Lect.dr. Iftene Sorin"
+        ],
+        "sala": [
+            "C405"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "9b2145c44640578023d0da16ec8d03d4",
+        "frecventa": " ",
+        "materie": "Probabilitati si statistica",
+        "ora": "14:00-16:00",
+        "pachet": " ",
+        "profesori": [
+            "Colab. Motroi Valeriu"
+        ],
+        "sala": [
+            "C308"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "ebd9d1ae8ea963e1c3b0c251ae1c7af9",
+        "frecventa": " ",
+        "materie": "Proiectarea algoritmilor",
+        "ora": "18:00-20:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect. dr. Patrut Bogdan"
+        ],
+        "sala": [
+            "C909"
+        ],
+        "tip": "Seminar"
+    },
+    {
+        "MD5": "916a87fbd3c9fed1d5e783bfa36a81f2",
+        "frecventa": " ",
+        "materie": "Introducere in criptografie",
+        "ora": "12:00-14:00",
+        "pachet": "1",
+        "profesori": [
+            "Lect.dr. Iftene Sorin"
+        ],
+        "sala": [
+            "C405"
+        ],
+        "tip": "Laborator"
+    }
+]

@@ -1,0 +1,31 @@
+[
+    {
+        "MD5": "52ddb5ab834de63e77edbc5db5429992",
+        "frecventa": " ",
+        "materie": "Introducere in criptografie",
+        "ora": "10:00-12:00",
+        "pachet": "1",
+        "profesori": [
+            "Asist. drd. Nica Anca-Maria"
+        ],
+        "sala": [
+            "C308"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "12febdb3cfd3b9f4807eb56c0631b7ad",
+        "frecventa": " ",
+        "materie": "Programare avansata",
+        "ora": "10:00-12:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect.dr. Frasinaru Cristian"
+        ],
+        "sala": [
+            "C112",
+            "laptop"
+        ],
+        "tip": "Curs"
+    }
+]

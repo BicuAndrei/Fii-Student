@@ -1,0 +1,15 @@
+[
+    {
+        "MD5": "5da9bb10efc68a721718e5fd4aabd045",
+        "data": "Vineri, 05.04.2019",
+        "materie": "Recuperari Sisteme de operare",
+        "ora": "16:00-18:00",
+        "profesori": [
+            "Lect.dr. Vidrascu Cristian"
+        ],
+        "sala": [
+            "C413"
+        ],
+        "tip": "Laborator"
+    }
+]

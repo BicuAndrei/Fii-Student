@@ -1,0 +1,97 @@
+[
+    {
+        "MD5": "497f65a099fafb39e5267d043572c0e5",
+        "data": "Luni, 08.04.2019",
+        "materie": "Proiectarea algoritmilor",
+        "ora": "10:00-11:30",
+        "profesori": [
+            "Conf. dr. Ciobaca Stefan",
+            "Prof.dr. Lucanu Dorel"
+        ],
+        "sala": [
+            "C112",
+            "C2",
+            "C308"
+        ]
+    },
+    {
+        "MD5": "b93a9373f694ac277457c3a59baa3f40",
+        "data": "Miercuri, 10.04.2019",
+        "materie": "Programare orientata-obiect",
+        "ora": "08:00-20:00",
+        "profesori": [
+            "Conf. dr. Gavrilut Dragos"
+        ],
+        "sala": [
+            "C210",
+            "C401",
+            "C403",
+            "C405",
+            "C409",
+            "C411",
+            "C412",
+            "C413"
+        ]
+    },
+    {
+        "MD5": "c27a2788acfd31dab4346a2d8ebf8bb2",
+        "data": "Luni, 03.06.2019",
+        "materie": "Sisteme de operare",
+        "ora": "16:00-18:00",
+        "profesori": [
+            "Lect.dr. Vidrascu Cristian"
+        ],
+        "sala": [
+            "C112",
+            "C2",
+            "C309"
+        ]
+    },
+    {
+        "MD5": "e3e0cb91eee1d3f48f5209fbf14d00c5",
+        "data": "Joi, 06.06.2019",
+        "materie": "Programare orientata-obiect",
+        "ora": "10:30-11:30",
+        "profesori": [
+            "Conf. dr. Gavrilut Dragos",
+            "Prof.dr. Lucanu Dorel"
+        ],
+        "sala": [
+            "C112",
+            "C2",
+            "C308",
+            "C309"
+        ]
+    },
+    {
+        "MD5": "2ba3ed8155c51b40426fcae5d136d514",
+        "data": "Luni, 10.06.2019",
+        "materie": "Proiectarea algoritmilor",
+        "ora": "12:30-14:00",
+        "profesori": [
+            "Conf. dr. Ciobaca Stefan",
+            "Prof.dr. Lucanu Dorel"
+        ],
+        "sala": [
+            "C112",
+            "C2",
+            "C308",
+            "C309"
+        ]
+    },
+    {
+        "MD5": "f69ba2e3922e48b17cd2f3199efacfdc",
+        "data": "Miercuri, 12.06.2019",
+        "materie": "Fundamente algebrice ale informaticii",
+        "ora": "10:00-12:00",
+        "profesori": [
+            "Lect.dr. Iftene Sorin",
+            "Prof.dr. Tiplea Ferucio Laurentiu"
+        ],
+        "sala": [
+            "C112",
+            "C2",
+            "C309"
+        ]
+    }
+]

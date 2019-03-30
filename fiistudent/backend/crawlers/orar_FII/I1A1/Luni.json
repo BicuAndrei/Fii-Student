@@ -1,0 +1,44 @@
+[
+    {
+        "MD5": "4b7e95daab3ac8ab111c2842b7d65f1f",
+        "frecventa": " ",
+        "materie": "Limba engleza II",
+        "ora": "14:00-16:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect. dr. Onofrei Paula"
+        ],
+        "sala": [
+            "C909"
+        ],
+        "tip": "Seminar"
+    },
+    {
+        "MD5": "828341d91e47f851e4d82113530e2713",
+        "frecventa": " ",
+        "materie": "Programare orientata-obiect",
+        "ora": "16:00-18:00",
+        "pachet": " ",
+        "profesori": [
+            "Conf. dr. Gavrilut Dragos"
+        ],
+        "sala": [
+            "C210"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "964673be8fc4657f5c8a8e8b4ff8a844",
+        "frecventa": " ",
+        "materie": "Matematica pentru concursuri",
+        "ora": "18:00-20:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect.dr. Iacob Florin"
+        ],
+        "sala": [
+            "C2"
+        ],
+        "tip": "Alte activitati"
+    }
+]

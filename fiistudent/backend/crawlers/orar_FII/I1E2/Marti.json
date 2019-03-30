@@ -1,0 +1,59 @@
+[
+    {
+        "MD5": "4b7e95daab3ac8ab111c2842b7d65f1f",
+        "frecventa": " ",
+        "materie": "Limba engleza II",
+        "ora": "14:00-16:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect. dr. Onofrei Paula"
+        ],
+        "sala": [
+            "C909"
+        ],
+        "tip": "Seminar"
+    },
+    {
+        "MD5": "a4012ac1279574b6ffd3a1206402c6c3",
+        "frecventa": " ",
+        "materie": "Pedagogie",
+        "ora": "16:00-18:00",
+        "pachet": " ",
+        "profesori": [
+            "Tatarusanu Florin"
+        ],
+        "sala": [
+            "C903"
+        ],
+        "tip": "Seminar"
+    },
+    {
+        "MD5": "938477c16871a9723bec42a3cb5d47c7",
+        "frecventa": " ",
+        "materie": "Programare competitiva II, facultativ, pregatire olimpiada",
+        "ora": "16:00-20:00",
+        "pachet": " ",
+        "profesori": [
+            "drd. Diac Paul",
+            "Colab. Ionita Alexandru"
+        ],
+        "sala": [
+            "C412"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "6f1dff51ef57d499390a883896295757",
+        "frecventa": " ",
+        "materie": "Object-Oriented Programming",
+        "ora": "18:00-20:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect. dr. Benchea Razvan"
+        ],
+        "sala": [
+            "C411"
+        ],
+        "tip": "Laborator"
+    }
+]

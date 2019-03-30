@@ -1,0 +1,45 @@
+[
+    {
+        "MD5": "07ad05c33814dfe8b5e4ddec3c0d266d",
+        "frecventa": " ",
+        "materie": "Programare orientata-obiect",
+        "ora": "16:00-18:00",
+        "pachet": " ",
+        "profesori": [
+            "Colab. Ungureanu Ionut"
+        ],
+        "sala": [
+            "C405"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "005ed6135545e253397054797068470e",
+        "frecventa": " ",
+        "materie": "Limba engleza II",
+        "ora": "18:00-20:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect. dr. Onofrei Paula"
+        ],
+        "sala": [
+            "C909"
+        ],
+        "tip": "Seminar"
+    },
+    {
+        "MD5": "938477c16871a9723bec42a3cb5d47c7",
+        "frecventa": " ",
+        "materie": "Programare competitiva II, facultativ, pregatire olimpiada",
+        "ora": "16:00-20:00",
+        "pachet": " ",
+        "profesori": [
+            "drd. Diac Paul",
+            "Colab. Ionita Alexandru"
+        ],
+        "sala": [
+            "C412"
+        ],
+        "tip": "Curs"
+    }
+]

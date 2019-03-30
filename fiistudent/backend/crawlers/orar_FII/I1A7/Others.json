@@ -1,0 +1,41 @@
+[
+    {
+        "MD5": "c55f3120384113abcb21a5ee19287e29",
+        "data": "Miercuri, 27.02.2019",
+        "materie": "Limba engleza II",
+        "ora": "12:00-14:00",
+        "profesori": [
+            "Lect. dr. Onofrei Paula"
+        ],
+        "sala": [
+            "C2"
+        ],
+        "tip": "Seminar"
+    },
+    {
+        "MD5": "acbdf08d8b3bd22370585959987b32a9",
+        "data": "Miercuri, 13.03.2019",
+        "materie": "Limba engleza II",
+        "ora": "18:00-20:00",
+        "profesori": [
+            "Lect. dr. Onofrei Paula"
+        ],
+        "sala": [
+            "C309"
+        ],
+        "tip": "Seminar"
+    },
+    {
+        "MD5": "9b5b9eb1bf0223f0b0158eb8599985a4",
+        "data": "Miercuri, 03.04.2019",
+        "materie": "Recuperari Sisteme de operare",
+        "ora": "18:00-20:00",
+        "profesori": [
+            "Lect.dr. Vidrascu Cristian"
+        ],
+        "sala": [
+            "C309"
+        ],
+        "tip": "Laborator"
+    }
+]

@@ -1,0 +1,30 @@
+[
+    {
+        "MD5": "05692348b52cd6132fecb1fd8a9c60f5",
+        "frecventa": " ",
+        "materie": "Proiectarea algoritmilor",
+        "ora": "12:00-14:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect. Dr. Condurache Rodica"
+        ],
+        "sala": [
+            "C909"
+        ],
+        "tip": "Seminar"
+    },
+    {
+        "MD5": "fb909d15af3cbd8ec0d37300a80c1ca4",
+        "frecventa": " ",
+        "materie": "Sisteme de operare",
+        "ora": "18:00-20:00",
+        "pachet": " ",
+        "profesori": [
+            "Colab. Rusu Bogdan"
+        ],
+        "sala": [
+            "C403"
+        ],
+        "tip": "Laborator"
+    }
+]

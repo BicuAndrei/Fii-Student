@@ -1,0 +1,31 @@
+[
+    {
+        "MD5": "b4824e376fe4d6d1e5b78ca4ea1512d0",
+        "frecventa": " ",
+        "materie": "Data Mining",
+        "ora": "10:00-14:00",
+        "pachet": " ",
+        "profesori": [
+            "Prof.dr. Luchian Henri"
+        ],
+        "sala": [
+            "C308",
+            "laptop"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "979e7991cb15d42fbecf6a8fefe5dff5",
+        "frecventa": " ",
+        "materie": "Metode inspirate din natura",
+        "ora": "08:00-10:00",
+        "pachet": " ",
+        "profesori": [
+            "Conf. dr. Breaban Mihaela"
+        ],
+        "sala": [
+            "C403"
+        ],
+        "tip": "Laborator"
+    }
+]

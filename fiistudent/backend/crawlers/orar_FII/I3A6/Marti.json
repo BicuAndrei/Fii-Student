@@ -1,0 +1,104 @@
+[
+    {
+        "MD5": "8f70f54d1279056b7a6f6468f946ae24",
+        "frecventa": " ",
+        "materie": "Programare bazata pe reguli",
+        "ora": "08:00-10:00",
+        "pachet": "5",
+        "profesori": [
+            "Lect. dr. Pistol Ionut"
+        ],
+        "sala": [
+            "C401"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "cc4e5e30ceb0fd81cae91d500c4c1dfd",
+        "frecventa": " ",
+        "materie": "Psihologia comunicarii profesionale in domeniul IT-lui",
+        "ora": "08:00-10:00",
+        "pachet": "6",
+        "profesori": [
+            "Armanu Nicoleta"
+        ],
+        "sala": [
+            "C309",
+            "laptop"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "be3a91e5e0832e271743426b103842e8",
+        "frecventa": " ",
+        "materie": "Psihologia comunicarii profesionale in domeniul IT-lui",
+        "ora": "10:00-12:00",
+        "pachet": "6",
+        "profesori": [
+            "Armanu Nicoleta"
+        ],
+        "sala": [
+            "C909"
+        ],
+        "tip": "Seminar"
+    },
+    {
+        "MD5": "07577f9a9a4ab264c04561efcf1ee986",
+        "frecventa": " ",
+        "materie": "Tehnici de ingineria limbajului natural",
+        "ora": "12:00-14:00",
+        "pachet": "7",
+        "profesori": [
+            "Cerc. Dr. Gifu Daniela",
+            "Lect. dr. Pistol Ionut",
+            "Conf. dr. Trandabat Diana"
+        ],
+        "sala": [
+            "C401"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "51943d6dce95348127efa6bba9425661",
+        "frecventa": " ",
+        "materie": "Cloud computing",
+        "ora": "14:00-16:00",
+        "pachet": "6",
+        "profesori": [
+            "Conf. dr. Alboaie Lenuta"
+        ],
+        "sala": [
+            "C309"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "189de2a7c5a079b972766148e0716a36",
+        "frecventa": " ",
+        "materie": "Programare MS-Office",
+        "ora": "14:00-16:00",
+        "pachet": "6",
+        "profesori": [
+            "Lect.dr. Radulescu Vlad"
+        ],
+        "sala": [
+            "C308"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "938477c16871a9723bec42a3cb5d47c7",
+        "frecventa": " ",
+        "materie": "Programare competitiva II, facultativ, pregatire olimpiada",
+        "ora": "16:00-20:00",
+        "pachet": " ",
+        "profesori": [
+            "drd. Diac Paul",
+            "Colab. Ionita Alexandru"
+        ],
+        "sala": [
+            "C412"
+        ],
+        "tip": "Curs"
+    }
+]

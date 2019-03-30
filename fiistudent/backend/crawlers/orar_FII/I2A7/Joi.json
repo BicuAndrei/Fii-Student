@@ -1,0 +1,30 @@
+[
+    {
+        "MD5": "5730188d7e113b3b8bd39a44471264bd",
+        "frecventa": " ",
+        "materie": "Practica SGBD",
+        "ora": "08:00-10:00",
+        "pachet": " ",
+        "profesori": [
+            "Lect. dr. Varlan Cosmin"
+        ],
+        "sala": [
+            "C210"
+        ],
+        "tip": "Laborator"
+    },
+    {
+        "MD5": "faf2ecb82b739e214ad949046f11fa7d",
+        "frecventa": " ",
+        "materie": "Introducere in criptografie",
+        "ora": "10:00-12:00",
+        "pachet": "1",
+        "profesori": [
+            "Lect.dr. Iftene Sorin"
+        ],
+        "sala": [
+            "C412"
+        ],
+        "tip": "Laborator"
+    }
+]

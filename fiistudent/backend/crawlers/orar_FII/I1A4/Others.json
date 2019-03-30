@@ -1,0 +1,15 @@
+[
+    {
+        "MD5": "eadaec172f08980953ee9c3e541d1004",
+        "data": "Miercuri, 27.02.2019",
+        "materie": "Limba engleza II",
+        "ora": "10:00-12:00",
+        "profesori": [
+            "Lect. dr. Onofrei Paula"
+        ],
+        "sala": [
+            "C2"
+        ],
+        "tip": "Seminar"
+    }
+]

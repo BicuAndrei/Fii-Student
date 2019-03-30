@@ -1,0 +1,30 @@
+[
+    {
+        "MD5": "884762b3f2bf95216b210d78101c5ecf",
+        "frecventa": " ",
+        "materie": "Etica si integritate academica",
+        "ora": "10:00-12:00",
+        "pachet": " ",
+        "profesori": [
+            "Conf. dr. Trandabat Diana"
+        ],
+        "sala": [
+            "C905"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "0ab91fa53984075c28e742994e459f01",
+        "frecventa": " ",
+        "materie": "Programare orientata-obiect",
+        "ora": "16:00-18:00",
+        "pachet": " ",
+        "profesori": [
+            "Colab. Timcu Tudor"
+        ],
+        "sala": [
+            "C409"
+        ],
+        "tip": "Laborator"
+    }
+]

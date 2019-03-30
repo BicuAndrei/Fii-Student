@@ -1,0 +1,34 @@
+[
+    {
+        "MD5": "df32f7e6378901e544cb3a456ba4e51c",
+        "frecventa": " ",
+        "materie": "Metode de invatare aplicate limbajului natural",
+        "ora": "16:00-18:00",
+        "pachet": " ",
+        "profesori": [
+            "Conf.dr. Forascu Corina",
+            "Colab. Oniciuc Oriana"
+        ],
+        "sala": [
+            "C903",
+            "video"
+        ],
+        "tip": "Curs"
+    },
+    {
+        "MD5": "0fd51a3ffd5d19dadfa2ea7ade6c51dc",
+        "frecventa": " ",
+        "materie": "Metode de invatare aplicate limbajului natural",
+        "ora": "18:00-20:00",
+        "pachet": " ",
+        "profesori": [
+            "Conf.dr. Forascu Corina",
+            "Colab. Oniciuc Oriana"
+        ],
+        "sala": [
+            "C903",
+            "video"
+        ],
+        "tip": "Seminar"
+    }
+]
