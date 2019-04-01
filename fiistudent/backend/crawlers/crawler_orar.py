@@ -10,14 +10,13 @@ folderName = "orar_FII"
 pagini_orar = ["https://profs.info.uaic.ro/~orar/participanti/orar_I1.html",
                "https://profs.info.uaic.ro/~orar/participanti/orar_I2.html",
                "https://profs.info.uaic.ro/~orar/participanti/orar_I3.html",
-               # "https://profs.info.uaic.ro/~orar/participanti/orar_I1x.html",
                "https://profs.info.uaic.ro/~orar/participanti/orar_MIS.html",
                "https://profs.info.uaic.ro/~orar/participanti/orar_MLC.html",
                "https://profs.info.uaic.ro/~orar/participanti/orar_MOC.html",
                "https://profs.info.uaic.ro/~orar/participanti/orar_MSD.html",
                "https://profs.info.uaic.ro/~orar/participanti/orar_MSI.html", ]
 
-orar_grupe = {}
+groups_schedule = {}
 exams = {}
 examsList = []
 others = {}
@@ -25,55 +24,79 @@ othersList = []
 
 
 def md5(n):
+    """
+    Calculeaza un hash MD5 pe un string
+    :param n:
+    :return:
+    """
     h = hashlib.md5()
     h.update(str(n).encode('utf-8'))
     return h.hexdigest()
 
 
-def updateDictionarOre(day, ore, grupe, materie, tip, profesori, sala, frecventa, pachet):
-    global orar_grupe
-    grupe_generale = ['I1', 'I2', 'I3', 'I1B', 'I1A', 'I2A', 'I2B', 'I3A', 'I3B', 'I1E', 'I2E', 'I3E', 'MSD', 'MIS',
+def updateClassDictionary(day, classes, groups, subject, type, professors, place, freq, package):
+    """
+    Actualizeaza orarul grupelor
+    :param day:
+    :param classes:
+    :param groups:
+    :param subject:
+    :param type:
+    :param professors:
+    :param place:
+    :param freq:
+    :param package:
+    """
+    global groups_schedule
+    general_groups = ['I1', 'I2', 'I3', 'I1B', 'I1A', 'I2A', 'I2B', 'I3A', 'I3B', 'I1E', 'I2E', 'I3E', 'MSD', 'MIS',
                       'MOC', 'MLC']
-    newOra = {}
-    newOra['ora'] = ore
-    newOra['materie'] = materie
-    newOra['tip'] = tip
-    newOra['profesori'] = profesori
-    newOra['sala'] = sala
-    newOra['frecventa'] = frecventa
-    newOra['pachet'] = pachet
-    my_md5 = md5(newOra)
-    newOra['MD5'] = my_md5
+    newClass = {}
+    newClass['ora'] = classes
+    newClass['materie'] = subject
+    newClass['tip'] = type
+    newClass['profesori'] = professors
+    newClass['sala'] = place
+    newClass['frecventa'] = freq
+    newClass['pachet'] = package
+    my_md5 = md5(newClass)
+    newClass['MD5'] = my_md5
 
-    for grupa in grupe:
-        if grupa in grupe_generale:
-            for myGrupa in orar_grupe:
+    for grupa in groups:
+        if grupa in general_groups:
+            for myGrupa in groups_schedule:
                 if myGrupa.startswith(grupa):
-                    if day not in orar_grupe[myGrupa]:
-                        orar_grupe[myGrupa][day] = []
-                    deja = False
-                    for ore in orar_grupe[myGrupa][day]:
-                        if ore['MD5'] == newOra['MD5']:
-                            deja = True
+                    if day not in groups_schedule[myGrupa]:
+                        groups_schedule[myGrupa][day] = []
+                    already = False
+                    for classes in groups_schedule[myGrupa][day]:
+                        if classes['MD5'] == newClass['MD5']:
+                            already = True
                             break
-                    if deja:
+                    if already:
                         continue
-                    orar_grupe[myGrupa][day].append(newOra)
+                    groups_schedule[myGrupa][day].append(newClass)
             continue
-        if grupa not in orar_grupe:
-            orar_grupe[grupa] = {}
-        if day not in orar_grupe[grupa]:
-            orar_grupe[grupa][day] = []
-        deja = False
-        for ore in orar_grupe[grupa][day]:
-            if md5(ore) == my_md5:
-                deja = True
-        if deja:
+        if grupa not in groups_schedule:
+            groups_schedule[grupa] = {}
+        if day not in groups_schedule[grupa]:
+            groups_schedule[grupa][day] = []
+        already = False
+        for classes in groups_schedule[grupa][day]:
+            if md5(classes) == my_md5:
+                already = True
+        if already:
             continue
-        orar_grupe[grupa][day].append(newOra)
+        groups_schedule[grupa][day].append(newClass)
 
 
 def parseRow(row, day, update):
+    """
+    Proceseaza un rand din tabel
+    :param row:
+    :param day:
+    :param update:
+    :return:
+    """
     tds = row.find_all("td")
     ore = tds[0].text[1:] + "-" + tds[1].text[1:]
     grupe = []
@@ -91,40 +114,52 @@ def parseRow(row, day, update):
     frecventa = tds[7].text.replace(" ", "").replace("\r", "").replace("\n", "").replace("\xa0", " ")
     pachet = tds[8].text.replace(" ", "").replace("\r", "").replace("\n", "").replace("\xa0", " ")
     if update == True:
-        updateDictionarOre(day, ore, grupe, materie, tip, profesori, detalii_sala, frecventa, pachet)
+        updateClassDictionary(day, ore, grupe, materie, tip, profesori, detalii_sala, frecventa, pachet)
         return
     return [day, ore, grupe, materie, tip, profesori, detalii_sala, frecventa, pachet]
 
 
-def updateDictionarExams(grupa, exam):
+def updateExamsDictionary(group, exam):
+    """
+    Actualizeaza orarul examenelor
+    :param group:
+    :param exam:
+    :return:
+    """
     global exams
-    grupe_generale = ['I1', 'I2', 'I3', 'I1B', 'I1A', 'I2A', 'I2B', 'I3A', 'I3B', 'I1E', 'I2E', 'I3E', 'MSD', 'MIS',
+    general_groups = ['I1', 'I2', 'I3', 'I1B', 'I1A', 'I2A', 'I2B', 'I3A', 'I3B', 'I1E', 'I2E', 'I3E', 'MSD', 'MIS',
                       'MOC', 'MLC']
-    if grupa in grupe_generale:
-        for myGrupa in exams:
-            if myGrupa.startswith(grupa):
-                deja = False
-                for examen in exams[myGrupa]:
+    if group in general_groups:
+        for myGroup in exams:
+            if myGroup.startswith(group):
+                already = False
+                for examen in exams[myGroup]:
                     if examen['MD5'] == exam['MD5']:
-                        deja = True
+                        already = True
                         break
-                if deja:
+                if already:
                     continue
-                exams[myGrupa].append(exam)
+                exams[myGroup].append(exam)
         return
-    if grupa not in exams:
-        exams[grupa] = []
-    deja = False
-    for oldExam in exams[grupa]:
+    if group not in exams:
+        exams[group] = []
+    already = False
+    for oldExam in exams[group]:
         if oldExam['MD5'] == exam['MD5']:
-            deja = True
+            already = True
             break
-    if deja:
+    if already:
         return
-    exams[grupa].append(exam)
+    exams[group].append(exam)
 
 
 def parseRowExams(row, day):
+    """
+    Proceseaza un rand din tabelul cu examene
+    :param row:
+    :param day:
+    :return:
+    """
     tds = row.find_all("td")
     ore = tds[0].text[1:] + "-" + tds[1].text[1:]
     grupe = []
@@ -142,6 +177,10 @@ def parseRowExams(row, day):
 
 
 def updateExams(exams):
+    """
+    Creeaza un dictionar nou pentru examen si actualizeaza orarul
+    :param exams:
+    """
     newExam = {}
     newExam['data'] = exams[0]
     newExam['ora'] = exams[1]
@@ -149,11 +188,15 @@ def updateExams(exams):
     newExam['profesori'] = exams[5]
     newExam['sala'] = exams[6]
     newExam['MD5'] = md5(newExam)
-    for grupa in exams[2]:
-        updateDictionarExams(grupa, newExam)
+    for group in exams[2]:
+        updateExamsDictionary(group, newExam)
 
 
-def parsePagina(url):
+def parsePage(url):
+    """
+    Proceseaza o pagina de orar
+    :param url:
+    """
     page = requests.get(url)
     page = page.content
     soup = BeautifulSoup(page, 'lxml')
@@ -182,35 +225,45 @@ def parsePagina(url):
             othersList.append(lista)
 
 
-def updateOthersDictionar(grupa, other):
+def updateOthersDictionar(group, other):
+    """
+    Actualizeaza orarul grupelor cu elemente din tabelul de examene care nu sunt examene
+    :param group:
+    :param other:
+    :return:
+    """
     global others
-    grupe_generale = ['I1', 'I2', 'I3', 'I1B', 'I1A', 'I2A', 'I2B', 'I3A', 'I3B', 'I1E', 'I2E', 'I3E', 'MSD', 'MIS',
+    general_groups = ['I1', 'I2', 'I3', 'I1B', 'I1A', 'I2A', 'I2B', 'I3A', 'I3B', 'I1E', 'I2E', 'I3E', 'MSD', 'MIS',
                       'MOC', 'MLC']
-    if grupa in grupe_generale:
-        for myGrupa in others:
-            if myGrupa.startswith(grupa):
-                deja = False
-                for knownOthers in others[myGrupa]:
+    if group in general_groups:
+        for myGroup in others:
+            if myGroup.startswith(group):
+                already = False
+                for knownOthers in others[myGroup]:
                     if knownOthers['MD5'] == other['MD5']:
-                        deja = True
+                        already = True
                         break
-                if deja:
+                if already:
                     continue
-                others[myGrupa].append(other)
+                others[myGroup].append(other)
         return
-    if grupa not in others:
-        others[grupa] = []
-    deja = False
-    for oldOther in others[grupa]:
+    if group not in others:
+        others[group] = []
+    already = False
+    for oldOther in others[group]:
         if oldOther['MD5'] == other['MD5']:
-            deja = True
+            already = True
             break
-    if deja:
+    if already:
         return
-    others[grupa].append(other)
+    others[group].append(other)
 
 
 def updateOthers(lista):
+    """
+    Actualizeaza orarul cu alte activitati
+    :param lista:
+    """
     newOther = {}
     newOther['data'] = lista[0]
     newOther['ora'] = lista[1]
@@ -223,12 +276,15 @@ def updateOthers(lista):
         updateOthersDictionar(grupa, newOther)
 
 
-def crawlOrarFii():
+def crawlWebsiteSchedule():
+    """
+    Proceseaza fiecare pagina de orar si actualizeaza dictionarele.
+    """
     for pagina in pagini_orar:
-        parsePagina(pagina)
+        parsePage(pagina)
         print("Parsed -- {0}".format(pagina))
     global exams, others
-    for grupa in orar_grupe:
+    for grupa in groups_schedule:
         exams[grupa] = []
         others[grupa] = []
     for examen_lista in examsList:
@@ -238,20 +294,27 @@ def crawlOrarFii():
 
 
 def resetFolder(name):
+    """
+    Reseteaza folder-ul (il sterge si face altul nou)
+    :param name:
+    """
     if os.path.isdir(name):
         rmtree(name)
     os.mkdir(name)
 
 
 def updateFolders():
-    for grupa in orar_grupe:
+    """
+    Actualizeaza toate fisierele cu informatiile gasite
+    """
+    for grupa in groups_schedule:
         path = os.path.join(folderName, grupa)
         resetFolder(path)
-        for zi in orar_grupe[grupa]:
+        for zi in groups_schedule[grupa]:
             fileName = zi + ".json"
             path = os.path.join(folderName, grupa, fileName)
             handle = open(path, "a+")
-            handle.write(json.dumps(orar_grupe[grupa][zi], indent=4, sort_keys=True))
+            handle.write(json.dumps(groups_schedule[grupa][zi], indent=4, sort_keys=True))
             handle.close()
     for grupa in exams:
         folder = os.path.join(folderName, grupa)
@@ -269,7 +332,7 @@ def updateFolders():
 
 
 def main():
-    crawlOrarFii()
+    crawlWebsiteSchedule()
     resetFolder(folderName)
     updateFolders()
 
