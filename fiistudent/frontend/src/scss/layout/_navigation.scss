@@ -1,0 +1,15 @@
+.navbar {
+	.nav-item {
+		padding: 10px 10px; 
+
+		&.active {
+			.nav-link {
+				color: $color-primary;
+			}
+		}
+
+		.nav-link {
+			font-weight: bold;
+		}
+	}
+}

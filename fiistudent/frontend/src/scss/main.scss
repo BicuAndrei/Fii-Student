@@ -1,7 +1,7 @@
-@import "~bootstrap/scss/bootstrap";
+@import "utilities/utilities.scss";
 
-.hero {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+@import "vendors/vendors.scss";
+
+@import "base/base.scss";
+@import "components/components.scss";
+@import "layout/layout.scss";

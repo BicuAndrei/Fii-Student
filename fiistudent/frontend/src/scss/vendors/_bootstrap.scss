@@ -1,0 +1,10 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+
+$theme-colors: (
+  primary: $color-primary
+);
+
+$enable-rounded: false;
+
+@import "~bootstrap/scss/bootstrap";
