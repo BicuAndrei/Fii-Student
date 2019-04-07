@@ -1,0 +1,41 @@
+.sign-modal {
+	.modal-body {
+		padding: 0;
+		box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+	}
+
+	.header {
+		text-align: center;
+		padding: 2rem;
+		background-color: $color-primary;
+		position: relative;
+
+		.over-title {
+			color: #fff;
+			font-weight: normal;
+			text-transform: uppercase;
+		}
+
+		.title {
+			color: #fff;
+		}
+
+		&:after {
+			content: '';
+			position: absolute;
+			width: 100%;
+			height: 20px;
+			right: 0;
+			bottom: 0;
+			background-color: darken($color: $color-primary, $amount: 10%);
+		}
+	}
+
+	.content {
+		padding: 2rem;
+	}
+
+	.title {
+		font-weight: bold;
+	}
+}

@@ -1,0 +1,23 @@
+.color-primary {
+	color: $color-primary;
+}
+
+.color-secondary {
+	color: $color-secondary;
+}
+
+.background-fade {
+	background: linear-gradient(#fff, darken(#fff, 5%));
+}
+
+.background-primary {
+	background-color: $color-primary;
+}
+
+.background-dark {
+	background-color: #151414;
+}
+
+.background-light-grey {
+	background-color: #F2F6FC;
+}
