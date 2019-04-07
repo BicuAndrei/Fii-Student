@@ -5,6 +5,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const FileIncludeWebpackPlugin = require('file-include-webpack-plugin')
 
 module.exports = {
+	mode: "development",
 	entry: { main: './src/index.js' },
 	output: {
 		path: path.resolve(__dirname, 'dist'),

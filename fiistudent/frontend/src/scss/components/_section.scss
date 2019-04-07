@@ -12,14 +12,25 @@
 		font-size: 40px;
 		margin-bottom: 60px;
 		text-transform: capitalize;
+		font-weight: bold;
 	}
 
 	.content {
 		font-size: 20px;
-		color: #6a7695;
+		color: $color-text-secondary;
 	}
 
 	img {
 		max-width: 100%;
+	}
+
+	&.section-inverted {
+		.over-title {
+			color: #fff;
+		}
+
+		.title {
+			color: #fff;
+		}
 	}
 }

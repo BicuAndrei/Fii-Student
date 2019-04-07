@@ -7,6 +7,14 @@
 		}
 	}
 
+	.title {
+		font-weight: bold;
+	}
+
+	.lead {
+		color: $color-text-secondary;
+	}
+
 	.clip {
 		position: absolute;
 		width: 100%;

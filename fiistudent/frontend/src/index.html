@@ -11,11 +11,43 @@
 
 <body>
 
-	<%= require('html-loader!./pages/partials/navbar.html') %>
+	<%= require('html-loader!./pages/partials/shared/navbar.html') %>
 	<%= require('html-loader!./pages/partials/hero.html') %>
 	<%= require('html-loader!./pages/partials/about.html') %>
+	<%= require('html-loader!./pages/partials/team.html') %>
 	<%= require('html-loader!./pages/partials/services.html') %>
+	<%= require('html-loader!./pages/partials/contact.html') %>
+	<%= require('html-loader!./pages/partials/shared/footer.html') %>
 
+	<!-- Login Modal -->
+	<div class="modal sign-modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+						<div class="header">
+							<h6 class="over-title">Welcome back</h6>
+							<h2 class="title">Log In</h2>
+						</div>
+						<div class="content">
+							<form>
+								<div class="form-group">
+									<label for="email">Email address</label>
+									<input type="email" class="form-control" id="email" placeholder="Enter email">
+								</div>
+								<div class="form-group">
+									<label for="password">Password</label>
+									<input type="password" class="form-control" id="password" placeholder="Password">
+								</div>	
+								<p><a href="#" class="color-primary">Forgot password? </a></p>
+								<button type="submit" class="btn btn-primary">Log In</button>
+								<span class="m-2 color-text-secondary"> or </span><a href="#" class="color-primary">Register</a></p>
+							</form>
+						</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 
 </html>
