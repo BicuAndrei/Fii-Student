@@ -10,7 +10,7 @@
 </head>
 
 <body>
-
+	
 	<%= require('html-loader!./pages/partials/shared/navbar.html') %>
 	<%= require('html-loader!./pages/partials/hero.html') %>
 	<%= require('html-loader!./pages/partials/about.html') %>
@@ -25,7 +25,7 @@
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-body">
-						<div class="header">
+						<div class="header"> 
 							<h6 class="over-title">Welcome back</h6>
 							<h2 class="title">Log In</h2>
 						</div>
@@ -38,10 +38,44 @@
 								<div class="form-group">
 									<label for="password">Password</label>
 									<input type="password" class="form-control" id="password" placeholder="Password">
-								</div>	
+								</div> 
 								<p><a href="#" class="color-primary">Forgot password? </a></p>
 								<button type="submit" class="btn btn-primary">Log In</button>
-								<span class="m-2 color-text-secondary"> or </span><a href="#" class="color-primary">Register</a></p>
+								<span class="m-2 color-text-secondary"> or </span>
+								<a href="#" class="color-primary" data-toggle="modal" data-dismiss="modal" data-target="#registerModal">Register</a>
+							</form>
+						</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal sign-modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+						<div class="header"> 
+							<h6 class="over-title">Welcome to fiistudent</h6>
+							<h2 class="title">Register</h2>
+						</div>
+						<div class="content">
+							<form>
+								<div class="form-group">
+									<label for="email">Email address</label>
+									<input type="email" class="form-control" id="email" placeholder="Enter email">
+								</div>
+								<div class="form-group">
+									<label for="password">Password</label>
+									<input type="password" class="form-control" id="password" placeholder="Password">
+								</div> 
+								<div class="form-group">
+									<label for="password">Confirm Password</label>
+									<input type="password" class="form-control" id="password" placeholder="Confirm Password">
+								</div> 
+								<button type="submit" class="btn btn-primary">Register</button>
+								<span class="m-2 color-text-secondary"> or </span>
+								<a href="#" class="color-primary" data-toggle="modal" data-dismiss="modal" data-target="#loginModal">Log In</a>
 							</form>
 						</div>
 				</div>
