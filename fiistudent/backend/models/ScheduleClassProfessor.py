@@ -1,5 +1,10 @@
 import ndb_orm as ndb
 
+import Professor
+import ScheduleClass
+
+
 class ScheduleClassProfessor(ndb.Model):
-    id_professor = ndb.StringProperty()
-    id_scheduleclass = ndb.StringProperty()
+    professor = ndb.KeyProperty(kind=Professor, required=True)
+    scheduleclass = ndb.KeyProperty(kind=ScheduleClass, required=True)
+

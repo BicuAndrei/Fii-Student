@@ -1,4 +1,6 @@
 import ndb_orm as ndb
 
+import ScheduleClass
+
 class Timetable(ndb.Model):
-    id_scheduleclass = ndb.StringProperty()
+    scheduleclass = ndb.KeyProperty(kind=ScheduleClass, required=True)
