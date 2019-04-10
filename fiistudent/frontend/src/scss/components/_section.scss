@@ -24,6 +24,52 @@
 		max-width: 100%;
 	}
 
+	.col-md-3{
+		display: grid;
+		margin-left: 8vw;
+		margin-top: 3vw;
+	}
+	.phoneNumber,  .emailSupport, .location{
+		display: grid;
+		grid-template-columns: 12% 41% 41%;
+		grid-column-gap: 1vw;
+	}
+	.col-md-3 div{
+		display: grid;
+		grid-template-rows:30% 70%;
+		grid-row-gap: 1vw;
+		width: 300px;
+		text-align: left;
+	}
+	.col-md-3 img{
+		width: 5vw;
+        height: 3vw;
+	}
+	.loc, .phNumber, .emSupport{
+		font-weight: bold;
+		font-size: 17px;
+	}
+	form{
+		margin-left: 42vw;
+		margin-top:-25vw;
+		display:grid;
+		grid-row-gap: 1vw;
+	}
+	/*#name1, #name2{
+		display: grid;
+    	grid-template-columns: 40% 40%;
+	}
+	#subject, #email{
+		display: grid;
+    	grid-template-columns: 40% 40%;
+	}*/
+	#message{
+		width: 40vw;
+		height: 13vw;
+		font-size: 20px;
+	}
+	
+
 	&.section-inverted {
 		.over-title {
 			color: #fff;

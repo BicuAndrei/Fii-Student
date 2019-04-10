@@ -1,12 +1,92 @@
 <div class="container-fluid background-light-grey">
-		<div class="container">
-			<div class="section">
-				<h6 class="over-title">contact us</h6>
-				<h2 class="title">Get In Touch</h2>
-				<div class="content">
-					<!-- Something similar to this -->
-					<!-- https://droitthemes.com/wp/seom_new/contact-us/ -->
+	<div class="container">
+		<div class="section">
+			<h6 class="over-title">contact us</h6>
+			<h2 class="title">Get In Touch</h2>
+			<div class="content">
+			<div class="row">
+					<!--Grid column-->
+					<div class="col-md-3 ">
+						<div class="location">
+							<img src="./img/locatie.png" alt="location">
+							<div>
+								<p class="loc">Locatie</p>
+								<p class="description1">Bd. Tudor Vladimirescu nr.32, Iasi</p>
+							</div>
+						</div>
+						<div class="phoneNumber">
+							<img src="./img/telefon.png" alt="phone">
+							<div>
+								<p class="phNumber">Numar de telefon</p>
+								<p class="description2">Office: +4 0745 378 445</p>
+							</div>
+						</div>
+						<div class="emailSupport">
+							<img src="./img/email.png" alt="email">
+							<div>
+								<p class="emSupport">E-mail</p>
+								<p class="description3">fiistudent@gmail.com</p>
+							</div>
+						</div>
+					</div>
+					<!--Grid column-->
+
+					<!--Grid column-->
+					<div class="col-md-9 mb-md-0 mb-5">
+						<form id="contact-form" name="contact-form" action="mail.php" method="POST">
+							<!--Grid row-->
+							<div class="row">
+								<!--Grid column-->
+								<div class="col-md-6">
+									<div class="md-form mb-0">
+										<input type="text" id="name1" name="name1" class="form-control form-control-lg" placeholder="Nume">
+									</div>
+								</div>
+								<!--Grid column-->
+				
+								<!--Grid column-->
+								<div class="col-md-6">
+									<div class="md-form mb-0">
+										<input type="text" id="name2" name="name2" class="form-control form-control-lg" placeholder="Prenume">
+									</div>
+								</div>
+								<!--Grid column-->
+							</div>
+							<!--Grid row-->
+				
+							<!--Grid row-->
+							<div class="row">
+								<div class="col-md-6">
+									<div class="md-form mb-0">
+										<input type="text" id="subject" name="subject" class="form-control form-control-lg" placeholder="Subiect">
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="md-form mb-0">
+										<input type="text" id="email" name="email" class="form-control form-control-lg" placeholder="E-mail">
+									</div>
+								</div>
+							</div>
+							<!--Grid row-->
+				
+							<!--Grid row-->
+							<div class="row">
+								<!--Grid column-->
+								<div class="col-md-12">
+									<div class="md-form">
+										<textarea type="text" id="message" name="message" rows="4" class="form-control md-textarea" placeholder="Mesaj"></textarea>
+									</div>
+								</div>
+							</div>
+							<!--Grid row-->
+						</form>
+						<div class="text-center text-md-left">
+							<button type="submit" class="btn btn-primary" id="btn_msg">Trimite</button>
+						</div>
+						<div class="status"></div>
+					</div>
+					<!--Grid column-->
 				</div>
-			</div>
 		</div>
 	</div>
+</div>
