@@ -12,7 +12,7 @@
 </head>
 
 <body>
-
+	
 	<%= require('html-loader!./pages/partials/shared/navbar.html') %>
 	<%= require('html-loader!./pages/partials/hero.html') %>
 	<%= require('html-loader!./pages/partials/about.html') %>
@@ -29,29 +29,30 @@
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-body">
-					<div class="header">
-						<h6 class="over-title">Bine ai revenit!</h6>
-						<h2 class="title">Log In</h2>
-					</div>
-					<div class="content">
-						<form>
-							<div class="form-group">
-								<label for="email">Adresa email</label>
-								<input type="email" class="form-control" id="email" placeholder=" email">
-							</div>
-							<div class="form-group">
-								<label for="password">Parola</label>
-								<input type="password" class="form-control" id="password" placeholder="parola">
-							</div>
-							<div class="text-center">
 
+					<div class="header"> 
+							<h6 class="over-title">Welcome back</h6>
+							<h2 class="title">Log In</h2>
+						</div>
+						<div class="content">
+							<form>
+								<div class="form-group">
+									<label for="email">Email address</label>
+									<input type="email" class="form-control" id="email" placeholder="Enter email">
+								</div>
+								<div class="form-group">
+									<label for="password">Password</label>
+									<input type="password" class="form-control" id="password" placeholder="Password">
+								</div> 
+								<div class="text-center">
 								<a href="#forgotpassModal" id="fgpsd" class="color-primary" data-toggle="modal">Mi-am
 									uitat parola</a>
-							</div>
-							<button type="submit" class="btn btn-primary">Log In</button>
-							<span class="m-2 color-text-secondary"> or </span><a href="#"
-								class="color-primary">Inregistrare</a></p>
-						</form>
+								</div>
+								<button type="submit" class="btn btn-primary">Log In</button>
+								<span class="m-2 color-text-secondary"> or </span>
+								<a href="#" class="color-primary" data-toggle="modal" data-dismiss="modal" data-target="#registerModal">Register</a>
+							</form>
+						
 
 					</div>
 				</div>
@@ -59,6 +60,53 @@
 		</div>
 	</div>
 
+<!--Register Modal-->
+	<div class="modal sign-modal fade scroll-modal" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+						<div class="header"> 
+							<h6 class="over-title">Bun venit pe FiiStudent!</h6>
+							<h2 class="title">Inregistreaza-te</h2>
+						</div>
+						<div class="content">
+							<form>
+								<div class="form-group">
+									<label for="name">Nume</label>
+									<input type="text" class="form-control" id="name" placeholder="Introduceti numele">
+								</div>
+								<div class="form-group">
+									<label for="name2">Prenume</label>
+									<input type="text" class="form-control" id="name2" placeholder="Introduceti prenumele">
+								</div>
+								<div class="form-group">
+									<label for="matricol">Numar Matricol</label>
+									<input type="text" class="form-control" id="matricol" placeholder="Introduceti numarul matricol">
+								</div>
+								<div class="form-group">
+									<label for="email">Adresa Email</label>
+									<input type="email" class="form-control" id="email" placeholder="Introduceti email-ul">
+								</div>
+								<div class="form-group">
+									<label for="password">Parola</label>
+									<input type="password" class="form-control" id="password" placeholder="Introduceti parola">
+								</div> 
+								<div class="form-group">
+									<label for="password">Confirma Parola</label>
+									<input type="password" class="form-control" id="password" placeholder="Confirmati parola">
+								</div> 
+								<button type="submit" class="btn btn-primary">Inregistreaza-te</button>
+								<span class="m-2 color-text-secondary"> sau </span>
+								<a href="#" class="color-primary" data-toggle="modal" data-dismiss="modal" data-target="#loginModal">Log In</a>
+							</form>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+						
 
 	<!-- Modal Forgot Password -->
 
@@ -70,7 +118,7 @@
 					<div class="header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 						<h5 class="over-title">Mi-am uitat parola</h5>
-						<h3 class="title">Reseteaza parola in cel mai simplu mod </h3>
+						<h3 class="title">Reseteaza parola</h3>
 					</div>
 					<div class="content">
 						<div class="sub-title">
@@ -78,26 +126,29 @@
 						</div>
 						<form>
 							<div class="form-group">
-								<i class="fa fa-user"></i>
+								
 								<label for="email">Adresa email</label>
-								<input type="email" class="form-control" id="email" placeholder=" email">
+								<input type="email" class="form-control" id="email" placeholder="Introduceti email-ul">
 							</div>
 							<div class="form-group">
 								<input type="submit" class="btn btn-primary btn-block btn-lg" value="trimite  email">
 							</div>
 							<div class="form-group">
-								<p>Ai deja cont?<a href="#"> Login </a></p>
-								<p>Utilizator nou ?<a href="#">Inregistreaza-te</a></p>
+								<p>Ai deja cont?<a href="#loginModal" data-toggle="modal" class="color-primary"> Log In </a></p>
+								<p>Utilizator nou ?<a href="#registerModal" data-toggle="modal" class="color-primary">Inregistreaza-te</a></p>
 								<p><a href="#resetpassModal" class="color-primary" data-toggle="modal">Parola Noua </a>
 								</p>
 							</div>
 						</form>
 
 					</div>
+
+					
 				</div>
 			</div>
 		</div>
 	</div>
+
 	<!-- Modal Reset Password -->
 
 	<div class="modal sign-modal fade" id="resetpassModal" tabindex="-1" role="dialog"
@@ -116,21 +167,17 @@
 						</div>
 						<form>
 							<div class="form-group">
-								<label for="password">Parola Noua*</label>
-								<input type="password" class="form-control" id="password" placeholder="parola">
+								<label for="password">Parola</label>
+								<input type="password" class="form-control" id="password" placeholder="Introduceti parola">
 							</div>
 							<div class="form-group">
-								<label for="password">Repeta parola*</label>
-								<input type="password" class="form-control" id="password" placeholder="repeta parola">
+								<label for="password">Confirma parola</label>
+								<input type="password" class="form-control" id="password" placeholder="Confirmati parola">
 							</div>
 							<div class="form-group">
 								<input type="submit" class="btn btn-primary btn-block btn-lg" value="schimba parola">
 							</div>
-							<div class="form-group">
-								<p>
-									*Campuri obligatorii
-								</p>
-							</div>
+							
 						</form>
 
 					</div>
@@ -139,6 +186,8 @@
 		</div>
 	</div>
 
+
+	
 
 </body>
 
