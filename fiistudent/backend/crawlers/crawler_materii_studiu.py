@@ -17,6 +17,10 @@ master_inside_links=[]
 materii_licenta = {}
 
 def parse_license_line(line):
+    """
+    Parseaza o linie din script-ul de pe https://www.info.uaic.ro/programs/informatica-ro-en/
+    :param line: linia
+    """
     global materii_licenta
     pieces = line.split("|")
     year = "An"+pieces[0]
@@ -42,6 +46,9 @@ def parse_license_line(line):
 
 
 def mark_optional_license_courses():
+    """
+    Marcheaza materiile optionale ca fiind optionale in dictionar
+    """
     global materii_licenta
     for year in materii_licenta:
         for sem in materii_licenta[year]:
@@ -55,6 +62,9 @@ def mark_optional_license_courses():
                         break
 
 def parse_licenta():
+    """
+    Intra pe https://www.info.uaic.ro/programs/informatica-ro-en/ si parseaza linie cu linie materiile
+    """
     mystr = requests.get(link_licenta,verify=False) #nu merge fara verify = false
     mystr = mystr.content
     soup = BeautifulSoup(mystr, 'lxml')
@@ -66,6 +76,9 @@ def parse_licenta():
 
 
 def get_masters_links():
+    """
+    Ia link-urile cu materiile de la master
+    """
     mystr = requests.get(link_masters, verify=False)  # nu merge fara verify = false
     mystr = mystr.content
     soup = BeautifulSoup(mystr, 'lxml')
