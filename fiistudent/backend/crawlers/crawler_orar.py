@@ -2,19 +2,13 @@ import hashlib
 import json
 import os
 from shutil import rmtree
+
 import requests
 from bs4 import BeautifulSoup
 
 folderName = "orar_FII"
 
-pagini_orar = ["https://profs.info.uaic.ro/~orar/participanti/orar_I1.html",
-               "https://profs.info.uaic.ro/~orar/participanti/orar_I2.html",
-               "https://profs.info.uaic.ro/~orar/participanti/orar_I3.html",
-               "https://profs.info.uaic.ro/~orar/participanti/orar_MIS.html",
-               "https://profs.info.uaic.ro/~orar/participanti/orar_MLC.html",
-               "https://profs.info.uaic.ro/~orar/participanti/orar_MOC.html",
-               "https://profs.info.uaic.ro/~orar/participanti/orar_MSD.html",
-               "https://profs.info.uaic.ro/~orar/participanti/orar_MSI.html", ]
+crwl_pages = []
 
 groups_schedule = {}
 exams = {}
@@ -103,14 +97,14 @@ def parseRow(row, day, update):
     for grupa in tds[2].find_all("a"):
         text = grupa.text.replace("\n", "").replace(" ", "").replace("\r", "")
         grupe.append(text)
-    materie = tds[3].text[1:]
-    tip = tds[4].text[1:]
+    materie = tds[3].text[1:].replace("\n", "").replace("\r", "").replace(" ", "")
+    tip = tds[4].text[1:].replace("\n", "").replace("\r", "").replace(" ", "")
     profesori = []
     for ref in tds[5].find_all("a"):
-        profesori.append(ref.text)
+        profesori.append(ref.text.replace("\n", "").replace("\r", "").replace(" ", ""))
     detalii_sala = []
     for ref in tds[6].find_all("a"):
-        detalii_sala.append(ref.text)
+        detalii_sala.append(ref.text.replace("\n", "").replace("\r", "").replace(" ", ""))
     frecventa = tds[7].text.replace(" ", "").replace("\r", "").replace("\n", "").replace("\xa0", " ")
     pachet = tds[8].text.replace(" ", "").replace("\r", "").replace("\n", "").replace("\xa0", " ")
     if update == True:
@@ -165,14 +159,14 @@ def parseRowExams(row, day):
     grupe = []
     for ref in tds[2].find_all("a"):
         grupe.append(ref.text.replace("\n", "").replace("\r", "").replace(" ", ""))
-    materie = tds[3].text[1:]
-    tip = tds[4].text[1:]
+    materie = tds[3].text[1:].replace("\n", "").replace("\r", "").replace(" ", "")
+    tip = tds[4].text[1:].replace("\n", "").replace("\r", "").replace(" ", "")
     profesori = []
     for ref in tds[5].find_all("a"):
-        profesori.append(ref.text)
+        profesori.append(ref.text.replace("\n", "").replace("\r", "").replace(" ", ""))
     sala = []
     for ref in tds[6].find_all("a"):
-        sala.append(ref.text)
+        sala.append(ref.text.replace("\n","").replace("\r","").replace(" ",""))
     return [day, ore, grupe, materie, tip, profesori, sala]
 
 
@@ -280,7 +274,7 @@ def crawlWebsiteSchedule():
     """
     Proceseaza fiecare pagina de orar si actualizeaza dictionarele.
     """
-    for pagina in pagini_orar:
+    for pagina in crwl_pages:
         parsePage(pagina)
         print("Parsed -- {0}".format(pagina))
     global exams, others
@@ -331,7 +325,34 @@ def updateFolders():
         handle.close()
 
 
+def getSchedulePages():
+    """
+    Intra pe https://profs.info.uaic.ro/~orar/orar_studenti.html si ia link-urile ce urmeaza sa fie crawlate
+    """
+    global crwl_pages
+    base = "https://profs.info.uaic.ro/~orar/"
+    url = "https://profs.info.uaic.ro/~orar/orar_studenti.html"
+    page = requests.get(url)
+    page = page.content
+    soup = BeautifulSoup(page, 'lxml')
+    found_groups = []
+    a_items = soup.find_all("a")
+    for a_item in a_items[1:-1]:
+        link = a_item.get("href")
+        not_ok = False
+        group = link.split("_")[1].replace(".html", "")
+        for fgroup in found_groups:
+            if fgroup in group:
+                not_ok = True
+                break
+        if not_ok:
+            continue
+        found_groups.append(group)
+        crwl_pages.append(base + link)
+
+
 def main():
+    getSchedulePages()
     crawlWebsiteSchedule()
     resetFolder(folderName)
     updateFolders()
