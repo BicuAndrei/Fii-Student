@@ -11,6 +11,8 @@ from bs4 import BeautifulSoup
 link_licenta = "https://www.info.uaic.ro/programs/informatica-ro-en/"
 link_masters = "https://www.info.uaic.ro/studii-de-master/"
 
+master_inside_links=[]
+
 
 materii_licenta = {}
 
@@ -63,9 +65,27 @@ def parse_licenta():
     mark_optional_license_courses()
 
 
+def get_masters_links():
+    mystr = requests.get(link_masters, verify=False)  # nu merge fara verify = false
+    mystr = mystr.content
+    soup = BeautifulSoup(mystr, 'lxml')
+    a_list = soup.find_all("a")
+    base = "https://www.info.uaic.ro"
+    global master_inside_links
+    for a in a_list:
+        href = a.get("href")
+        if href is None:
+            continue
+        if href.startswith("/") and base not in href:
+            master_inside_links.append(base + href)
+
+
 
 def main():
     parse_licenta()
+    get_masters_links()
+    for link in master_inside_links:
+        print(link)
 
 
 
