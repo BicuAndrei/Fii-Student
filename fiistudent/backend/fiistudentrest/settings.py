@@ -5,8 +5,9 @@ from pathlib import Path
 
 # Server environment and application settings.
 DEBUG = not os.getenv("GAE_ENV", "").startswith("standard")
-APP_NAME = "FiiStudent"
+APP_NAME = "Fii-Student"
 PROJECT_ID = APP_NAME.lower()
+NAMESPACE = "development"
 
 # Miscellaneous.
 TIMEOUT = 10
