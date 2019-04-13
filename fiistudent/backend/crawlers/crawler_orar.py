@@ -97,11 +97,11 @@ def parseRow(row, day, update):
     for grupa in tds[2].find_all("a"):
         text = grupa.text.replace("\n", "").replace(" ", "").replace("\r", "")
         grupe.append(text)
-    materie = tds[3].text[1:].replace("\n", "").replace("\r", "").replace(" ", "")
-    tip = tds[4].text[1:].replace("\n", "").replace("\r", "").replace(" ", "")
+    materie = tds[3].text[1:].replace("\n", "").replace("\r", "")
+    tip = tds[4].text[1:].replace("\n", "").replace("\r", "")
     profesori = []
     for ref in tds[5].find_all("a"):
-        profesori.append(ref.text.replace("\n", "").replace("\r", "").replace(" ", ""))
+        profesori.append(ref.text.replace("\n", "").replace("\r", ""))
     detalii_sala = []
     for ref in tds[6].find_all("a"):
         detalii_sala.append(ref.text.replace("\n", "").replace("\r", "").replace(" ", ""))
@@ -159,11 +159,11 @@ def parseRowExams(row, day):
     grupe = []
     for ref in tds[2].find_all("a"):
         grupe.append(ref.text.replace("\n", "").replace("\r", "").replace(" ", ""))
-    materie = tds[3].text[1:].replace("\n", "").replace("\r", "").replace(" ", "")
-    tip = tds[4].text[1:].replace("\n", "").replace("\r", "").replace(" ", "")
+    materie = tds[3].text[1:].replace("\n", "").replace("\r", "")
+    tip = tds[4].text[1:].replace("\n", "").replace("\r", "")
     profesori = []
     for ref in tds[5].find_all("a"):
-        profesori.append(ref.text.replace("\n", "").replace("\r", "").replace(" ", ""))
+        profesori.append(ref.text.replace("\n", "").replace("\r", ""))
     sala = []
     for ref in tds[6].find_all("a"):
         sala.append(ref.text.replace("\n","").replace("\r","").replace(" ",""))
