@@ -1,22 +1,19 @@
-import hashlib
-import json
-from shutil import rmtree
 import requests
-from requests.packages.urllib3.exceptions import InsecureRequestWarning   #disable la warning
+from requests.packages.urllib3.exceptions import InsecureRequestWarning  # disable la warning
+
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
 from bs4 import BeautifulSoup
 
-
 link_licenta = "https://www.info.uaic.ro/programs/informatica-ro-en/"
 link_masters = "https://www.info.uaic.ro/studii-de-master/"
 
-master_inside_links=[]
-
+master_inside_links = []
 
 license_classes = {}
 
 master_classes = {}
+
 
 def parse_license_line(line):
     """
@@ -25,8 +22,8 @@ def parse_license_line(line):
     """
     global license_classes
     pieces = line.split("|")
-    year = "An"+pieces[0]
-    sem = "Sem"+pieces[1]
+    year = "An" + pieces[0]
+    sem = "Sem" + pieces[1]
     if "F" in pieces[2]:
         fac = False
     else:
@@ -54,20 +51,22 @@ def mark_optional_license_courses():
     global license_classes
     for year in license_classes:
         for sem in license_classes[year]:
-            for i,my_class in enumerate(license_classes[year][sem]):
+            for i, my_class in enumerate(license_classes[year][sem]):
                 if my_class["optional"] == True:
                     continue
-                for j,other_class in enumerate(license_classes[year][sem]):
-                    if my_class["name"] != other_class["name"] and my_class["course_index"] == other_class["course_index"]:
+                for j, other_class in enumerate(license_classes[year][sem]):
+                    if my_class["name"] != other_class["name"] and my_class["course_index"] == other_class[
+                        "course_index"]:
                         license_classes[year][sem][i]["optional"] = True
                         license_classes[year][sem][j]["optional"] = True
                         break
+
 
 def parse_license_classes_page():
     """
     Intra pe https://www.info.uaic.ro/programs/informatica-ro-en/ si parseaza linie cu linie materiile
     """
-    mystr = requests.get(link_licenta,verify=False) #nu merge fara verify = false
+    mystr = requests.get(link_licenta, verify=False)  # nu merge fara verify = false
     mystr = mystr.content
     soup = BeautifulSoup(mystr, 'lxml')
     script = soup.find_all("script")[1]
@@ -105,17 +104,23 @@ def mark_optional_master_courses(master):
     global master_classes
     for year in master_classes[master]:
         for sem in master_classes[master][year]:
-            for i,my_class in enumerate(master_classes[master][year][sem]):
+            for i, my_class in enumerate(master_classes[master][year][sem]):
                 if my_class["optional"] == True:
                     continue
-                for j,other_class in enumerate(master_classes[master][year][sem]):
-                    if my_class["name"] != other_class["name"] and my_class["course_index"] == other_class["course_index"]:
+                for j, other_class in enumerate(master_classes[master][year][sem]):
+                    if my_class["name"] != other_class["name"] and my_class["course_index"] == other_class[
+                        "course_index"]:
                         master_classes[master][year][sem][i]["optional"] = True
                         master_classes[master][year][sem][j]["optional"] = True
                         break
 
 
-def parse_master_line(line,master):
+def parse_master_line(line, master):
+    """
+    Parseaza o linie din script-ul de pe pagina materiilor de la master-ul mentionat
+    :param line: linia
+    :param master: Numele master-ului
+    """
     global master_classes
     pieces = line.split("|")
     year = "An" + pieces[0]
@@ -140,28 +145,28 @@ def parse_master_line(line,master):
     master_classes[master][year][sem].append(new_class)
 
 
-
-def crawl_masters_page(page,master):
+def crawl_masters_page(page, master):
+    """
+    Intra pe pagina master-ului si ia materiile sale
+    :param page: link-ul
+    :param master: numele master-ului
+    """
     mystr = requests.get(page, verify=False)  # nu merge fara verify = false
     mystr = mystr.content
     soup = BeautifulSoup(mystr, 'lxml')
     scripts = soup.find_all("script")
     buffer = scripts[1].text.split("rawData = `")[1]
     for line in buffer.split("\n"):
-        parse_master_line(line,master)
+        parse_master_line(line, master)
 
 
 def main():
     parse_license_classes_page()
     get_masters_links()
     master_names = list(master_classes.keys())
-    for i,link in enumerate(master_inside_links):
-        crawl_masters_page(link,master_names[i])
+    for i, link in enumerate(master_inside_links):
+        crawl_masters_page(link, master_names[i])
         mark_optional_master_courses(master_names[i])
-
-
-
-
 
 
 if __name__ == "__main__":
