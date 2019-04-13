@@ -1,6 +1,6 @@
 import ndb_orm as ndb
 
-import Class
+from . import Course
 
 class Professor(ndb.Model):
     firstName = ndb.StringProperty()
@@ -9,4 +9,4 @@ class Professor(ndb.Model):
     username = ndb.StringProperty()
     password = ndb.StringProperty()
     type = ndb.StringProperty()
-    teachingClass = ndb.KeyProperty(kind=Class, required=True)
+    teachingClass = ndb.KeyProperty(kind=Course, required=True)

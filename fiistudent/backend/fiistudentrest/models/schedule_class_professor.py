@@ -1,7 +1,7 @@
 import ndb_orm as ndb
 
-import Professor
-import ScheduleClass
+from . import Professor
+from . import ScheduleClass
 
 
 class ScheduleClassProfessor(ndb.Model):

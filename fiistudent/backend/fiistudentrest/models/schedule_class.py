@@ -1,7 +1,7 @@
 import ndb_orm as ndb
 
-import Classroom
-import Professor
+from . import Classroom
+from . import Professor
 
 class ScheduleClass(ndb.Model):
     dayOfTheWeek = ndb.StringProperty()
