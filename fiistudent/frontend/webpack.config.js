@@ -64,8 +64,8 @@ module.exports = {
 			filename: 'index.html'
 		}),
 		new HtmlWebpackPlugin({
-			template: path.join(__dirname, 'src', 'pages', 'login.html'),
-			filename: 'login.html'
+			template: path.join(__dirname, 'src', 'schedule.html'),
+			filename: 'schedule.html'
 		}),
 		new HtmlWebpackPlugin({
 			template: path.join(__dirname, 'src', 'pages', 'register.html'),
