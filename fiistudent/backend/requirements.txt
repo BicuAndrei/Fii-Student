@@ -1,5 +1,6 @@
 hug>=2.4.7
 google-cloud-datastore>=1.7.3
 gunicorn>=19.9.0
+beautifulsoup4>=4.7.1
 
 -e git://github.com/savvybit/ndb-orm.git@develop#egg=ndb-orm
