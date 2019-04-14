@@ -1,6 +1,6 @@
 import ndb_orm as ndb
 
-class Alert(ndb.Model):
+class Alert(BaseModel):
     type = ndb.StringProperty()
     level = ndb.StringProperty()
     sender = ndb.StringProperty()

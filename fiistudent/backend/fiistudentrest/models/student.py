@@ -1,6 +1,6 @@
 import ndb_orm as ndb
 
-class Student(ndb.Model):
+class Student(BaseModel):
     registrationNumber = ndb.StringProperty()
     firstName = ndb.StringProperty()
     lastName = ndb.StringProperty()

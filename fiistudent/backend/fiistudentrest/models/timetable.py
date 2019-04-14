@@ -2,5 +2,5 @@ import ndb_orm as ndb
 
 from . import ScheduleClass
 
-class Timetable(ndb.Model):
+class Timetable(BaseModel):
     scheduleclass = ndb.KeyProperty(kind=ScheduleClass, required=True)

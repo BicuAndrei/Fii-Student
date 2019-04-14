@@ -2,7 +2,7 @@ import ndb_orm as ndb
 
 from . import Course
 
-class Professor(ndb.Model):
+class Professor(BaseModel):
     firstName = ndb.StringProperty()
     lastName = ndb.StringProperty()
     email = ndb.StringProperty()
