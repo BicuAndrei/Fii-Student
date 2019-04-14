@@ -1,6 +1,6 @@
-import ndb_orm as ndb
+from fiistudentrest.models.base import BaseModel, ndb
 
-class Student(ndb.Model):
+class Student(BaseModel):
     registrationNumber = ndb.StringProperty()
     firstName = ndb.StringProperty()
     lastName = ndb.StringProperty()

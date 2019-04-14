@@ -1,6 +1,6 @@
-import ndb_orm as ndb
+from fiistudentrest.models.base import BaseModel, ndb
 
-class Course(ndb.Model):
+class Course(BaseModel):
     title = ndb.StringProperty()
     year = ndb.IntegerProperty()
     semester= ndb.IntegerProperty()

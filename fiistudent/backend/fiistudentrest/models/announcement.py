@@ -1,5 +1,5 @@
-import ndb_orm as ndb
+from fiistudentrest.models.base import BaseModel, ndb
 
-class Announcement(ndb.Model):
+class Announcement(BaseModel):
     sender = ndb.StringProperty()
     receiver = ndb.StringProperty()
