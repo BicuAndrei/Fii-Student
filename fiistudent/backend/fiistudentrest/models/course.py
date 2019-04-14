@@ -1,4 +1,4 @@
-import ndb_orm as ndb
+from fiistudentrest.models.base import BaseModel, ndb
 
 class Course(BaseModel):
     title = ndb.StringProperty()

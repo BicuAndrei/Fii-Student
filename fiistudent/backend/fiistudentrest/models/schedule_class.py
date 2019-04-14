@@ -1,4 +1,4 @@
-import ndb_orm as ndb
+from fiistudentrest.models.base import BaseModel, ndb
 
 from . import Classroom
 from . import Professor
