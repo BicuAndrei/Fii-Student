@@ -1,6 +1,6 @@
 """ Base setup script """
 
-from setuptools import setup
+from setuptools import find_packages, setup
 
 setup(
     name = "fiistudent",
@@ -9,5 +9,6 @@ setup(
     url = "https://github.com/BicuAndrei/Fii-Student",
     author = "Irina Bejan",
     author_email = "irinam.bejan@gmail.com",
+    packages=find_packages(),
 )
 
