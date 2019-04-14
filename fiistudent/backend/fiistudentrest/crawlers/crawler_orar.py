@@ -28,7 +28,7 @@ def md5(n):
     return h.hexdigest()
 
 
-def updateClassDictionary(day, classes, groups, subject, type, professors, place, freq, package):
+def update_class_dictionary(day, classes, groups, subject, type, professors, place, freq, package):
     """
     Actualizeaza orarul grupelor
     :param day:
@@ -83,7 +83,7 @@ def updateClassDictionary(day, classes, groups, subject, type, professors, place
         groups_schedule[grupa][day].append(newClass)
 
 
-def parseRow(row, day, update):
+def parse_row(row, day, update):
     """
     Proceseaza un rand din tabel
     :param row:
@@ -108,12 +108,12 @@ def parseRow(row, day, update):
     frecventa = tds[7].text.replace(" ", "").replace("\r", "").replace("\n", "").replace("\xa0", " ")
     pachet = tds[8].text.replace(" ", "").replace("\r", "").replace("\n", "").replace("\xa0", " ")
     if update == True:
-        updateClassDictionary(day, ore, grupe, materie, tip, profesori, detalii_sala, frecventa, pachet)
+        update_class_dictionary(day, ore, grupe, materie, tip, profesori, detalii_sala, frecventa, pachet)
         return
     return [day, ore, grupe, materie, tip, profesori, detalii_sala, frecventa, pachet]
 
 
-def updateExamsDictionary(group, exam):
+def update_exams_dictionary(group, exam):
     """
     Actualizeaza orarul examenelor
     :param group:
@@ -147,7 +147,7 @@ def updateExamsDictionary(group, exam):
     exams[group].append(exam)
 
 
-def parseRowExams(row, day):
+def parse_row_exams(row, day):
     """
     Proceseaza un rand din tabelul cu examene
     :param row:
@@ -170,7 +170,7 @@ def parseRowExams(row, day):
     return [day, ore, grupe, materie, tip, profesori, sala]
 
 
-def updateExams(exams):
+def update_exams(exams):
     """
     Creeaza un dictionar nou pentru examen si actualizeaza orarul
     :param exams:
@@ -183,10 +183,10 @@ def updateExams(exams):
     newExam['sala'] = exams[6]
     newExam['MD5'] = md5(newExam)
     for group in exams[2]:
-        updateExamsDictionary(group, newExam)
+        update_exams_dictionary(group, newExam)
 
 
-def parsePage(url):
+def parse_page(url):
     """
     Proceseaza o pagina de orar
     :param url:
@@ -202,7 +202,7 @@ def parsePage(url):
         if len(row.find_all("b")) == 1:
             last_day = row.text.replace("\n", "")
             continue
-        parseRow(row, last_day, True)
+        parse_row(row, last_day, True)
 
     global examsList, othersList
     rows = tabel_examene.find_all("tr")
@@ -212,14 +212,14 @@ def parsePage(url):
             for b in row.find_all("b"):
                 last_day = last_day + b.text.replace("\n", "")
             continue
-        lista = parseRowExams(row, last_day)
+        lista = parse_row_exams(row, last_day)
         if lista[4] == "Examen":
             examsList.append(lista)
         else:
             othersList.append(lista)
 
 
-def updateOthersDictionar(group, other):
+def update_others_dictionary(group, other):
     """
     Actualizeaza orarul grupelor cu elemente din tabelul de examene care nu sunt examene
     :param group:
@@ -253,7 +253,7 @@ def updateOthersDictionar(group, other):
     others[group].append(other)
 
 
-def updateOthers(lista):
+def update_others(lista):
     """
     Actualizeaza orarul cu alte activitati
     :param lista:
@@ -267,27 +267,27 @@ def updateOthers(lista):
     newOther['sala'] = lista[6]
     newOther['MD5'] = md5(newOther)
     for grupa in lista[2]:
-        updateOthersDictionar(grupa, newOther)
+        update_others_dictionary(grupa, newOther)
 
 
-def crawlWebsiteSchedule():
+def crawl_website_schedule():
     """
     Proceseaza fiecare pagina de orar si actualizeaza dictionarele.
     """
     for pagina in crwl_pages:
-        parsePage(pagina)
+        parse_page(pagina)
         print("Parsed -- {0}".format(pagina))
     global exams, others
     for grupa in groups_schedule:
         exams[grupa] = []
         others[grupa] = []
     for examen_lista in examsList:
-        updateExams(examen_lista)
+        update_exams(examen_lista)
     for others_list in othersList:
-        updateOthers(others_list)
+        update_others(others_list)
 
 
-def resetFolder(name):
+def reset_folder(name):
     """
     Reseteaza folder-ul (il sterge si face altul nou)
     :param name:
@@ -297,13 +297,13 @@ def resetFolder(name):
     os.mkdir(name)
 
 
-def updateFolders():
+def update_folders():
     """
     Actualizeaza toate fisierele cu informatiile gasite
     """
     for grupa in groups_schedule:
         path = os.path.join(folderName, grupa)
-        resetFolder(path)
+        reset_folder(path)
         for zi in groups_schedule[grupa]:
             fileName = zi + ".json"
             path = os.path.join(folderName, grupa, fileName)
@@ -325,7 +325,7 @@ def updateFolders():
         handle.close()
 
 
-def getSchedulePages():
+def get_schedule_pages():
     """
     Intra pe https://profs.info.uaic.ro/~orar/orar_studenti.html si ia link-urile ce urmeaza sa fie crawlate
     """
@@ -352,10 +352,10 @@ def getSchedulePages():
 
 
 def main():
-    getSchedulePages()
-    crawlWebsiteSchedule()
-    resetFolder(folderName)
-    updateFolders()
+    get_schedule_pages()
+    crawl_website_schedule()
+    reset_folder(folderName)
+    update_folders()
 
 
 if __name__ == "__main__":
