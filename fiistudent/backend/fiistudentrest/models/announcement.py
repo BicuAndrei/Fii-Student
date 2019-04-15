@@ -1,6 +1,6 @@
-import ndb_orm as ndb
+from fiistudentrest.models.base import BaseModel, ndb
 
-class Announcement(ndb.Model):
+class Announcement(BaseModel):
 
     """The name of the person who puts the announcement and for whom it is intended."""
 

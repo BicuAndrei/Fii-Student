@@ -1,7 +1,7 @@
-import ndb_orm as ndb
+from fiistudentrest.models.base import BaseModel, ndb
 
-class Classroom(ndb.Model):
-
+class Classroom(BaseModel):
+    
     """Location and capacity information of a classroom."""
 
     type = ndb.StringProperty()

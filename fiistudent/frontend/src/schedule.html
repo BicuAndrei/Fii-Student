@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+		integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+	<title>FII Student</title>
+</head>
+
+<body>
+
+	<%= require('html-loader!./pages/partials/shared/navbar.html') %>
+	<%= require('html-loader!./pages/partials/shared/page-header.html') %>
+
+	<div class="container-fluid">
+		<div class="container">
+			<div class="section">
+				<div class="content">
+					<table class="table schedule">
+						<thead>
+							<tr>
+								<th scope="col"></th>
+								<th scope="col">Luni</th>
+								<th scope="col">Marti</th>
+								<th scope="col">Miercuri</th>
+								<th scope="col">Joi</th>
+								<th scope="col">Vineri</th>
+								<th scope="col">Sambata</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th scope="row">8:00 - 10:00</th>
+								<td><div class="object"></div></td>
+								<td><div class="object"></div></td>
+								<td><div class="object course">PSGBD</div></td>
+								<td><div class="object"></div></td>
+								<td><div class="object"></div></td>
+								<td><div class="object"></div></td>
+							</tr>
+							<tr>
+								<th scope="row">10:00 - 12:00</th>
+								<td><div class="object"></div></td>
+								<td><div class="object course">IP</div></td>
+								<td><div class="object"></div></td>
+								<td><div class="object"></div></td>
+								<td><div class="object seminary">LE</div></td>
+								<td><div class="object"></div></td>
+							</tr>
+							<tr>
+								<th scope="row">12:00 - 14:00</th>
+								<td><div class="object course">MCM</div></td>
+								<td><div class="object course">TW</div></td>
+								<td><div class="object laboratory">IP</div></td>
+								<td><div class="object"></div></td>
+								<td><div class="object"></div></td>
+								<td><div class="object"></div></td>
+							</tr>
+							<tr>
+								<th scope="row">14:00 - 16:00</th>
+								<td><div class="object laboratory">MCM</div></td>
+								<td><div class="object"></div></td>
+								<td>
+									<div class="object consultations">MCM</div>
+									<div class="object laboratory">TW</div>
+								</td>
+								<td><div class="object laboratory">PSGBD</div></td>
+								<td><div class="object"></div></td>
+								<td><div class="object"></div></td>
+							</tr>
+							<tr>
+								<th scope="row">16:00 - 18:00</th>
+								<td><div class="object laboratory">PA</div></td>
+								<td><div class="object"></div></td>
+								<td><div class="object"></div></td>
+								<td><div class="object"></div></td>
+								<td><div class="object"></div></td>
+								<td><div class="object"></div></td>
+							</tr>
+							<tr>
+								<th scope="row">18:00 - 20:00</th>
+								<td><div class="object"></div></td>
+								<td><div class="object"></div></td>
+								<td><div class="object"></div></td>
+								<td><div class="object"></div></td>
+								<td><div class="object"></div></td>
+								<td><div class="object"></div></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<%= require('html-loader!./pages/partials/shared/footer.html') %>
+</body>
+
+</html>

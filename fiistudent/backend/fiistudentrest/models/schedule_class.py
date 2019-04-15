@@ -1,9 +1,9 @@
-import ndb_orm as ndb
+from fiistudentrest.models.base import BaseModel, ndb
 
 from . import Classroom
-from . import Professor
+from . import Course
 
-class ScheduleClass(ndb.Model):
+class ScheduleClass(BaseModel):
 
     """Details about the subjects held in that classroom."""
 
@@ -11,5 +11,5 @@ class ScheduleClass(ndb.Model):
     startHour = ndb.StringProperty()
     endHour = ndb.StringProperty()
     classroom = ndb.KeyProperty(kind=Classroom, required=True)
-    professor = ndb.KeyProperty(kind=Professor, required=True)
+    course = ndb.KeyProperty(kind=Course, required=True)
 

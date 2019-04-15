@@ -1,9 +1,9 @@
-import ndb_orm as ndb
+from fiistudentrest.models.base import BaseModel, ndb
 
-class Mail(ndb.Model):
+class Mail(BaseModel):
 
     """Subject and receiver of the email."""
-
+    
     cc = ndb.StringProperty()
     bcc = ndb.StringProperty()
     subject = ndb.StringProperty()

@@ -1,6 +1,6 @@
-import ndb_orm as ndb
+from fiistudentrest.models.base import BaseModel, ndb
 
-class Alert(ndb.Model):
+class Alert(BaseModel):
 
     """Information about an alert (who gave it, how serious it is, who it's intended for)."""
 

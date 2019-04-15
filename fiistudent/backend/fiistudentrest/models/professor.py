@@ -1,9 +1,9 @@
-import ndb_orm as ndb
+from fiistudentrest.models.base import BaseModel, ndb
 
 from . import Course
 
-class Professor(ndb.Model):
-
+class Professor(BaseModel):
+    
     """Credentials and data of professor."""
 
     firstName = ndb.StringProperty()
