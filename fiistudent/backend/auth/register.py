@@ -37,6 +37,7 @@ def register(registrationNumber: hug.types.text, firstName: hug.types.text, last
              email: hug.types.text, username: hug.types.text, password: hug.types.text,
              confirm_password: hug.types.text, year: hug.types.number,
              group: hug.types.text, hug_timer=3):
+    """ Adds the entity in the datastore if possible and return an appropriate json response for every scenario """
     # verify if the password and confirm password match, if they don't match, return a json response
     if password != confirm_password:
         return {'status': 'error',
