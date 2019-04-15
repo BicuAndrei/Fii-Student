@@ -1,4 +1,4 @@
-from backend.models.base import BaseModel, ndb
+from fiistudentrest.models.base import BaseModel, ndb
 
 class Administrator(BaseModel):
 
