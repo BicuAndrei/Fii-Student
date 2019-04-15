@@ -131,7 +131,12 @@ def parse_master_line(line, master):
     else:
         fac = True
     name = pieces[3]
-    course_page = pieces[6]
+    if "Discipline opţionale:" in name:
+        return
+    if pieces[6] != "`;":
+        course_page = pieces[6]
+    else:
+        course_page = " "
     optional = False
     if year not in master_classes[master]:
         master_classes[master][year] = {}
@@ -162,30 +167,12 @@ def crawl_masters_page(page, master):
         parse_master_line(line, master)
 
 
-def fix_page():
-    """
-    Rezolva cazurile cand pagina apare ca fiind `;
-    """
-    for year in license_classes:
-        for sem in license_classes[year]:
-            for my_class in license_classes[year][sem]:
-                if my_class['page'] == "`;":
-                    my_class['page'] = " "
-
-    for master in master_classes:
-        for year in master_classes[master]:
-            for sem in master_classes[master][year]:
-                for my_class in master_classes[master][year][sem]:
-                    if my_class['page'] == "`;":
-                        my_class['page'] = " "
-
-
 def ent_exists(entity):
     query = entity.query()
     query.add_filter('title', '=', entity.title)
     querys = query.fetch()
     for my_query in querys:
-        if my_query.title != "":
+        if my_query.title != "" and entity.studies == my_query.studies:
             return True
     return False
 
@@ -219,6 +206,12 @@ def populate_datastore():
             for my_class in license_classes[year][sem]:
                 update_classes(year, sem, "Licenta", my_class)
 
+    for master in master_classes:
+        for year in master_classes[master]:
+            for sem in master_classes[master][year]:
+                for my_class in master_classes[master][year][sem]:
+                    update_classes(year, sem, master, my_class)
+
 
 def main():
     parse_license_classes_page()
@@ -227,7 +220,6 @@ def main():
     for i, link in enumerate(master_inside_links):
         crawl_masters_page(link, master_names[i])
         mark_optional_master_courses(master_names[i])
-    fix_page()
     populate_datastore()
 
 
