@@ -3,9 +3,7 @@ from requests.packages.urllib3.exceptions import InsecureRequestWarning  # disab
 
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 from bs4 import BeautifulSoup
-from google.cloud import datastore
 from fiistudentrest.models import Course
-import hug
 
 link_licenta = "https://www.info.uaic.ro/programs/informatica-ro-en/"
 link_masters = "https://www.info.uaic.ro/studii-de-master/"
@@ -164,7 +162,6 @@ def crawl_masters_page(page, master):
         parse_master_line(line, master)
 
 
-
 def fix_page():
     """
     Rezolva cazurile cand pagina apare ca fiind `;
@@ -174,6 +171,7 @@ def fix_page():
             for my_class in license_classes[year][sem]:
                 if my_class['page'] == "`;":
                     my_class['page'] = " "
+
     for master in master_classes:
         for year in master_classes[master]:
             for sem in master_classes[master][year]:
@@ -182,8 +180,44 @@ def fix_page():
                         my_class['page'] = " "
 
 
+def ent_exists(entity):
+    query = entity.query()
+    query.add_filter('title', '=', entity.title)
+    querys = query.fetch()
+    for my_query in querys:
+        if my_query.title != "":
+            return True
+    return False
 
-def
+
+def update_classes(year, sem, studies, my_class):
+    """
+    Face update unei materii in tabel
+    :param year: anul
+    :param sem: semestrul
+    :param studies: licenta/nume_master
+    :param my_class: dictionar cu informatii despre materie
+    """
+    course = Course(
+        title=my_class['name'],
+        year=int(year.replace("An", "")),
+        semester=int(sem.replace("Sem", "")),
+        credits=int(my_class['credits']),
+        link=my_class['page'],
+        studies=studies
+    )
+    if not ent_exists(course):
+        course.put()
+
+
+def populate_datastore():
+    """
+    Populeaza baza de date cu materiile de studiu
+    """
+    for year in license_classes:
+        for sem in license_classes[year]:
+            for my_class in license_classes[year][sem]:
+                update_classes(year, sem, "Licenta", my_class)
 
 
 def main():
@@ -194,7 +228,7 @@ def main():
         crawl_masters_page(link, master_names[i])
         mark_optional_master_courses(master_names[i])
     fix_page()
-
+    populate_datastore()
 
 
 if __name__ == "__main__":
