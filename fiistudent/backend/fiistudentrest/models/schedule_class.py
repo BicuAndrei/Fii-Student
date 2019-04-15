@@ -1,12 +1,12 @@
 from fiistudentrest.models.base import BaseModel, ndb
 
 from . import Classroom
-from . import Professor
+from . import Course
 
 class ScheduleClass(BaseModel):
     dayOfTheWeek = ndb.StringProperty()
     startHour = ndb.StringProperty()
     endHour = ndb.StringProperty()
     classroom = ndb.KeyProperty(kind=Classroom, required=True)
-    professor = ndb.KeyProperty(kind=Professor, required=True)
+    course = ndb.KeyProperty(kind=Course, required=True)
 
