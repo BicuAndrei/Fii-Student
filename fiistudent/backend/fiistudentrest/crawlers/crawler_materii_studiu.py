@@ -2,8 +2,10 @@ import requests
 from requests.packages.urllib3.exceptions import InsecureRequestWarning  # disable la warning
 
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
-
 from bs4 import BeautifulSoup
+from google.cloud import datastore
+from fiistudentrest.models import Course
+import hug
 
 link_licenta = "https://www.info.uaic.ro/programs/informatica-ro-en/"
 link_masters = "https://www.info.uaic.ro/studii-de-master/"
@@ -41,6 +43,7 @@ def parse_license_line(line):
     new_class['optional'] = optional
     new_class['mandatory'] = fac
     new_class['course_index'] = pieces[2]
+    new_class['credits'] = pieces[4]
     license_classes[year][sem].append(new_class)
 
 
@@ -142,6 +145,7 @@ def parse_master_line(line, master):
     new_class['optional'] = optional
     new_class['mandatory'] = fac
     new_class['course_index'] = pieces[2]
+    new_class['credits'] = pieces[4]
     master_classes[master][year][sem].append(new_class)
 
 
@@ -160,6 +164,28 @@ def crawl_masters_page(page, master):
         parse_master_line(line, master)
 
 
+
+def fix_page():
+    """
+    Rezolva cazurile cand pagina apare ca fiind `;
+    """
+    for year in license_classes:
+        for sem in license_classes[year]:
+            for my_class in license_classes[year][sem]:
+                if my_class['page'] == "`;":
+                    my_class['page'] = " "
+    for master in master_classes:
+        for year in master_classes[master]:
+            for sem in master_classes[master][year]:
+                for my_class in master_classes[master][year][sem]:
+                    if my_class['page'] == "`;":
+                        my_class['page'] = " "
+
+
+
+def
+
+
 def main():
     parse_license_classes_page()
     get_masters_links()
@@ -167,6 +193,8 @@ def main():
     for i, link in enumerate(master_inside_links):
         crawl_masters_page(link, master_names[i])
         mark_optional_master_courses(master_names[i])
+    fix_page()
+
 
 
 if __name__ == "__main__":
