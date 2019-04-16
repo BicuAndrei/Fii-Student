@@ -1,0 +1,148 @@
+- kind: Administrator
+  properties:
+  - name: firstName
+    direction: asc
+  - name: lastName
+    direction: asc
+  - name: username
+    direction: desc
+  - name: password
+    direction: desc
+  - name: created_at
+    direction: desc
+    
+- kind: Alert
+  properties:
+  - name: type
+    direction: asc
+  - name: level
+    direction: asc
+  - name: sender
+    direction: asc
+  - name: receiver
+    direction: asc
+  - name: created_at
+    direction: desc
+    
+- kind: Announcement
+  properties:
+  - name: sender
+    direction: asc
+  - name: receiver
+    direction: asc
+  - name: created_at
+    direction: desc
+
+- kind: Classroom
+  properties:
+  - name: type
+    direction: asc
+  - name: floor
+    direction: asc
+  - name: identifier
+    direction: asc
+  - name: capacity
+    direction: asc
+  - name: created_at
+    direction: desc
+    
+- kind: Course
+  properties:
+  - name: title
+  - name: year
+    direction: asc
+  - name: semester
+    direction: asc
+  - name: credits
+    direction: asc
+  - name: studies
+  - name: created_at
+    direction: desc
+    
+- kind: Link
+  properties:
+  - name: link
+  - name: description
+  - name: created_at
+    direction: desc
+
+- kind: Mail
+  properties:
+  - name: cc
+  - name: bcc
+  - name: subject
+  - name: created_at
+    direction: desc
+    
+- kind: Professor
+  properties:
+  - name: firstName
+    direction: asc
+  - name: lastName
+    direction: asc
+  - name: email
+    direction: asc
+  - name: username
+    direction: asc
+  - name: password
+    direction: asc
+  - name: type
+    direction: asc
+  - name: office
+    direction: asc
+  - name: link
+    direction: asc
+  - name: created_at
+    direction: desc
+    
+- kind: ScheduleClass
+  properties:
+  - name: dayOfTheWeek
+    direction: asc
+  - name: startHour
+    direction: asc
+  - name: endHour
+    direction: asc
+  - name: classroom
+    direction: asc
+  - name: course
+    direction: asc
+  - name: created_at
+    direction: desc
+    
+- kind: ScheduleClassProfessor
+  properties:
+  - name: professor
+    direction: asc
+  - name: scheduleClass
+    direction: asc
+  - name: created_at
+    direction: desc
+    
+- kind: Student
+  properties:
+  - name: registrationNumber
+    direction: asc
+  - name: firstName
+    direction: asc
+  - name: lastName
+    direction: asc
+  - name: email
+    direction: asc
+  - name: username
+    direction: asc
+  - name: password
+    direction: asc
+  - name: year
+    direction: asc
+  - name: group
+    direction: asc
+  - name: created_at
+    direction: desc
+    
+- kind: Timetable
+  properties:
+  - name: scheduleClass
+    direction: asc
+  - name: created_at
+    direction: desc
