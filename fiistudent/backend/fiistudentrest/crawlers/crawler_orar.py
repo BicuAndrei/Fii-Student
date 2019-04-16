@@ -3,8 +3,10 @@ import json
 import os
 from shutil import rmtree
 
+import ndb
 import requests
 from bs4 import BeautifulSoup
+from fiistudentrest.models import Classroom, Course, ScheduleClass
 
 folderName = "orar_FII"
 
@@ -297,34 +299,6 @@ def reset_folder(name):
     os.mkdir(name)
 
 
-def update_folders():
-    """
-    Actualizeaza toate fisierele cu informatiile gasite
-    """
-    for grupa in groups_schedule:
-        path = os.path.join(folderName, grupa)
-        reset_folder(path)
-        for zi in groups_schedule[grupa]:
-            fileName = zi + ".json"
-            path = os.path.join(folderName, grupa, fileName)
-            handle = open(path, "a+")
-            handle.write(json.dumps(groups_schedule[grupa][zi], indent=4, sort_keys=True))
-            handle.close()
-    for grupa in exams:
-        folder = os.path.join(folderName, grupa)
-        if not os.path.isdir(folder):
-            os.mkdir(folder)
-        file = os.path.join(folder, "Examene.json")
-        handle = open(file, "a+")
-        handle.write(json.dumps(exams[grupa], indent=4, sort_keys=True))
-        handle.close()
-    for grupa in others:
-        file = os.path.join(folderName, grupa, "Others.json")
-        handle = open(file, "a+")
-        handle.write(json.dumps(others[grupa], indent=4, sort_keys=True))
-        handle.close()
-
-
 def get_schedule_pages():
     """
     Intra pe https://profs.info.uaic.ro/~orar/orar_studenti.html si ia link-urile ce urmeaza sa fie crawlate
@@ -351,11 +325,55 @@ def get_schedule_pages():
         crwl_pages.append(base + link)
 
 
+def empty_entity():
+    ndb.delete_multi(
+        ScheduleClass.query().fetch()
+    )
+
+def create_class(day,group,course,obj):
+
+    query = Course.query()
+    query.add_filter('title', '=', course)
+    querys = query.fetch()
+    new_course = '-'
+    for result in querys:
+        new_course = result.key
+        break
+
+    query = Classroom.query()
+    query.add_filter('identifier', '=', obj['sala'])
+    querys = query.fetch()
+    new_classroom = '-'
+    for result in querys:
+        new_classroom=result.key
+        break
+
+    scheduleclass = ScheduleClass(
+        dayOfTheWeek=day,
+        startHour = obj['ora'].split('-')[0],
+        endHour = obj['ora'].split('-')[1],
+        classroom = new_classroom,
+        course = new_course,
+        group = group
+    )
+
+    scheduleclass.put()
+
+
+def populate_datastore():
+    global groups_schedule
+    empty_entity()
+    for group in groups_schedule:
+        for day in groups_schedule[group]:
+            for course in groups_schedule[group][day]:
+                create_class(day,group,course,groups_schedule[group][day][course])
+
+
 def main():
     get_schedule_pages()
     crawl_website_schedule()
     reset_folder(folderName)
-    update_folders()
+    populate_datastore()
 
 
 if __name__ == "__main__":
