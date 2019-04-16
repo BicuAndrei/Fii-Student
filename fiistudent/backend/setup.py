@@ -3,7 +3,7 @@
 from setuptools import find_packages, setup
 
 setup(
-    name = "fiistudent",
+    name = "fiistudentrest",
     version = "0.0.1",
     description = "Yet best platform for FII Students",
     url = "https://github.com/BicuAndrei/Fii-Student",

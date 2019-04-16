@@ -3,7 +3,12 @@ import random
 import sys
 
 from google.cloud import datastore
-from fiistudentrest.models import Link
+from .models import Link
+from . import mail
+
+
+def send_mail():
+    send_mail("irinam.bejan@gmail.com", "Fii-Student", "Succesful test!!!!")
 
 
 def test_model():
@@ -39,6 +44,7 @@ def main():
 
     funcs = {
         "test_model": test_model,
+        "test_mail": send_mail,
     }
     funcs[sys.argv[1]]()
 
