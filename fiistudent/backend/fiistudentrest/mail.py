@@ -36,5 +36,3 @@ def send_mail(to_mails, subject, text_content, html_content=None,
 
     print("E-mail sent from", from_mail," to ", to_mails, subject, code)
 
-
-send_mail("irinam.bejan@gmail.com", "Test", "Salutare")
