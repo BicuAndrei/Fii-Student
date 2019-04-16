@@ -8,8 +8,8 @@ class ScheduleClass(BaseModel):
     """Details about the subjects held in that classroom."""
 
     dayOfTheWeek = ndb.StringProperty()
-    startHour = ndb.StringProperty()
-    endHour = ndb.StringProperty()
+    startHour = ndb.IntegerProperty()
+    endHour = ndb.IntegerProperty()
     group = ndb.StringProperty()
     classroom = ndb.KeyProperty(kind=Classroom, required=True)
     course = ndb.KeyProperty(kind=Course, required=True)
