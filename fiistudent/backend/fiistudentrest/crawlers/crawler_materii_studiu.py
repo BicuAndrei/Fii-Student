@@ -2,8 +2,8 @@ import requests
 from requests.packages.urllib3.exceptions import InsecureRequestWarning  # disable la warning
 
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
-
 from bs4 import BeautifulSoup
+from fiistudentrest.models import Course
 
 link_licenta = "https://www.info.uaic.ro/programs/informatica-ro-en/"
 link_masters = "https://www.info.uaic.ro/studii-de-master/"
@@ -41,6 +41,7 @@ def parse_license_line(line):
     new_class['optional'] = optional
     new_class['mandatory'] = fac
     new_class['course_index'] = pieces[2]
+    new_class['credits'] = pieces[4]
     license_classes[year][sem].append(new_class)
 
 
@@ -130,7 +131,12 @@ def parse_master_line(line, master):
     else:
         fac = True
     name = pieces[3]
-    course_page = pieces[6]
+    if "Discipline opţionale:" in name:
+        return
+    if pieces[6] != "`;":
+        course_page = pieces[6]
+    else:
+        course_page = " "
     optional = False
     if year not in master_classes[master]:
         master_classes[master][year] = {}
@@ -142,6 +148,7 @@ def parse_master_line(line, master):
     new_class['optional'] = optional
     new_class['mandatory'] = fac
     new_class['course_index'] = pieces[2]
+    new_class['credits'] = pieces[4]
     master_classes[master][year][sem].append(new_class)
 
 
@@ -160,6 +167,52 @@ def crawl_masters_page(page, master):
         parse_master_line(line, master)
 
 
+def ent_exists(entity):
+    query = entity.query()
+    query.add_filter('title', '=', entity.title)
+    querys = query.fetch()
+    for my_query in querys:
+        if my_query.title != "" and entity.studies == my_query.studies:
+            return True
+    return False
+
+
+def update_classes(year, sem, studies, my_class):
+    """
+    Face update unei materii in tabel
+    :param year: anul
+    :param sem: semestrul
+    :param studies: licenta/nume_master
+    :param my_class: dictionar cu informatii despre materie
+    """
+    course = Course(
+        title=my_class['name'],
+        year=int(year.replace("An", "")),
+        semester=int(sem.replace("Sem", "")),
+        credits=int(my_class['credits']),
+        link=my_class['page'],
+        studies=studies
+    )
+    if not ent_exists(course):
+        course.put()
+
+
+def populate_datastore():
+    """
+    Populeaza baza de date cu materiile de studiu
+    """
+    for year in license_classes:
+        for sem in license_classes[year]:
+            for my_class in license_classes[year][sem]:
+                update_classes(year, sem, "Licenta", my_class)
+
+    for master in master_classes:
+        for year in master_classes[master]:
+            for sem in master_classes[master][year]:
+                for my_class in master_classes[master][year][sem]:
+                    update_classes(year, sem, master, my_class)
+
+
 def main():
     parse_license_classes_page()
     get_masters_links()
@@ -167,6 +220,7 @@ def main():
     for i, link in enumerate(master_inside_links):
         crawl_masters_page(link, master_names[i])
         mark_optional_master_courses(master_names[i])
+    populate_datastore()
 
 
 if __name__ == "__main__":
