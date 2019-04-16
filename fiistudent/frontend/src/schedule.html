@@ -36,7 +36,7 @@
 								<th scope="row">8:00 - 10:00</th>
 								<td><div class="object"></div></td>
 								<td><div class="object"></div></td>
-								<td><div class="object course">PSGBD</div></td>
+								<td><div class="object course" data-toggle="modal" data-target="#detailsModal">PSGBD</div></td>
 								<td><div class="object"></div></td>
 								<td><div class="object"></div></td>
 								<td><div class="object"></div></td>
@@ -44,36 +44,36 @@
 							<tr>
 								<th scope="row">10:00 - 12:00</th>
 								<td><div class="object"></div></td>
-								<td><div class="object course">IP</div></td>
+								<td><div class="object course" data-toggle="modal" data-target="#detailsModal" >IP</div></td>
 								<td><div class="object"></div></td>
 								<td><div class="object"></div></td>
-								<td><div class="object seminary">LE</div></td>
+								<td><div class="object seminary" data-toggle="modal" data-target="#detailsModal" >LE</div></td>
 								<td><div class="object"></div></td>
 							</tr>
 							<tr>
 								<th scope="row">12:00 - 14:00</th>
-								<td><div class="object course">MCM</div></td>
-								<td><div class="object course">TW</div></td>
-								<td><div class="object laboratory">IP</div></td>
+								<td><div class="object course" data-toggle="modal" data-target="#detailsModal" >MCM</div></td>
+								<td><div class="object course" data-toggle="modal" data-target="#detailsModal" >TW</div></td>
+								<td><div class="object laboratory" data-toggle="modal" data-target="#detailsModal" >IP</div></td>
 								<td><div class="object"></div></td>
 								<td><div class="object"></div></td>
 								<td><div class="object"></div></td>
 							</tr>
 							<tr>
 								<th scope="row">14:00 - 16:00</th>
-								<td><div class="object laboratory">MCM</div></td>
+								<td><div class="object laboratory" data-toggle="modal" data-target="#detailsModal" >MCM</div></td>
 								<td><div class="object"></div></td>
 								<td>
-									<div class="object consultations">MCM</div>
-									<div class="object laboratory">TW</div>
+									<div class="object consultations" data-toggle="modal" data-target="#detailsModal" >MCM</div>
+									<div class="object laboratory" data-toggle="modal" data-target="#detailsModal" >TW</div>
 								</td>
-								<td><div class="object laboratory">PSGBD</div></td>
+								<td><div class="object laboratory" data-toggle="modal" data-target="#detailsModal" >PSGBD</div></td>
 								<td><div class="object"></div></td>
 								<td><div class="object"></div></td>
 							</tr>
 							<tr>
 								<th scope="row">16:00 - 18:00</th>
-								<td><div class="object laboratory">PA</div></td>
+								<td><div class="object laboratory" data-toggle="modal" data-target="#detailsModal" >PA</div></td>
 								<td><div class="object"></div></td>
 								<td><div class="object"></div></td>
 								<td><div class="object"></div></td>
@@ -97,6 +97,47 @@
 	</div>
 
 	<%= require('html-loader!./pages/partials/shared/footer.html') %>
+
+
+	<!-- Details Modal -->
+
+	<div class="modal sign-modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="detailsModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+
+					<div class="header">
+						<h6 class="over-title">Detalii despre</h6>
+						<h2 class="title">--Materie--</h2>
+					</div>
+					<div class="content text-center">
+						<!--Content-->
+
+						<div class="text-black-50 text-left"><small>NUME PROFESOR</small></div>
+						<h5 class="text-primary text-left">Nume Prenume</h5>
+						<hr class="my-3">
+						<div class="text-black-50 text-left"><small>CONTACT PROFESOR</small></div>
+						<h5 class="text-primary text-left">profesor@profs.info.uaic.ro</h5>
+						<hr class="my-3">
+						<div class="text-black-50 text-left"><small>SITE</small></div>
+						<h5 class="text-primary text-left"><a href="">www.profesor.info.uaic.ro</a></h5>
+						<hr class="my-3">
+						<div class="text-black-50 text-left"><small>NUMAR CREDITE</small></div>
+						<h5 class="text-primary text-left">6</h5>
+						<hr class="my-3">
+						<div class="text-black-50 text-left"><small>LINK-URI UTILE</small></div>
+						<h5 class="text-primary text-left"><a href="">www.google.ro</a></h5>
+						<hr class="my-3">
+					
+						<button class="btn btn-primary row mt-4">Email rapid</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
 </body>
 
 </html>
