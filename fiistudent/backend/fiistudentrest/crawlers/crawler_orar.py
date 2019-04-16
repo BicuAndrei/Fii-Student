@@ -3,7 +3,6 @@ import json
 import os
 from shutil import rmtree
 
-import ndb
 import requests
 from bs4 import BeautifulSoup
 from fiistudentrest.models import Classroom, Course, ScheduleClass
@@ -326,9 +325,8 @@ def get_schedule_pages():
 
 
 def empty_entity():
-    ndb.delete_multi(
-        ScheduleClass.query().fetch()
-    )
+    list_of_keys = ScheduleClass.query().fetch(keys_only=True)
+    ScheduleClass.remove_multi(list_of_keys)
 
 def create_class(day,group,course,obj):
 
