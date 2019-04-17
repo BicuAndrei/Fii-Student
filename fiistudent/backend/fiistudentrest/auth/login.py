@@ -29,5 +29,5 @@ def login(email: hug.types.text, password: hug.types.text):
     if login_function(email, password) == True:
         return {'status': 'ok', 'errors': []}
     else:
-        return {'status': 'error', 'errors':[{'for': 'The username or password you entered did not match our records.'}]}
-
+        return {'status': 'error', 'errors': [
+            {'for': 'login', 'message': 'The username or password you entered did not match our records.'}]}
