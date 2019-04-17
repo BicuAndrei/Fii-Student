@@ -78,9 +78,9 @@ module.exports = {
 		}),
 		new HtmlWebpackPlugin({
 			template: path.join(__dirname, 'src', 'teachers.html'),
-		filename: 'teachers.html'}),
-		new HTMLWebpackPlugin({
-
+			filename: 'teachers.html'
+		}),
+		new HtmlWebpackPlugin({
 			template: path.join(__dirname, 'src', 'pages', 'free-rooms.html'),
 			filename: 'free-rooms.html'
 
