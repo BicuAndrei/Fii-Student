@@ -14,4 +14,3 @@ class Professor(BaseModel):
     type = ndb.StringProperty()
     office = ndb.StringProperty()
     link = ndb.StringProperty()
-    teachingClass = ndb.KeyProperty(kind=Course, required=True)
