@@ -18,8 +18,33 @@
 	.content {
 		font-size: 20px;
 		color: $color-text-secondary;
+		
+		.sidebar {
+			width: 15%;
+			height: 100%;
+			overflow: auto;
+		}
+		.sidebar a {
+			display: block;
+			padding: 6%;
+			color: $color-primary;
+			text-decoration: none;
+		  }
+		   
+		  .sidebar a:hover {
+			background-color: $color-primary;
+			color: $color-text-primary;
+		  }
+		  
 	}
-
+	
+	.pad-left {
+		padding-left: 10%;
+	}
+	.pad-bot {
+	  padding-bottom: 1rem;
+	  }
+	  
 	img {
 		max-width: 100%;
 	}
