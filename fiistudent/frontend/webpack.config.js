@@ -72,12 +72,18 @@ module.exports = {
 			filename: 'register.html'
 		}),
 		new HtmlWebpackPlugin({
+
 			template: path.join(__dirname, 'src', 'subjects.html'),
 			filename: 'subjects.html'
 		}),
 		new HtmlWebpackPlugin({
 			template: path.join(__dirname, 'src', 'teachers.html'),
-			filename: 'teachers.html'
+		filename: 'teachers.html'}),
+		new HTMLWebpackPlugin({
+
+			template: path.join(__dirname, 'src', 'pages', 'free-rooms.html'),
+			filename: 'free-rooms.html'
+
 		})
 	]
 };
