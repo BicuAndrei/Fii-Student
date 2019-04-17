@@ -1,11 +1,163 @@
-<div class="container-fluid background-primary" id="team">
+<style>
+	.id-team1,.id-team2,.id-team3,.id-team4{
+		background-color: aliceblue;
+		width:230px;
+		height:50vh;
+		margin-right:40px;
+		margin-left:0px;
+		margin-top:10px;
+		padding-top:30px;
+	}
+	
+</style>
+<style>
+		.mySlides1,.mySlides2,.mySlides3,.mySlides4 {display:none;
+			border-style:solid; 
+			border-color:black;
+			margin-top:10px;
+			margin-left:12px;}
+		.p1,.p2,.p3,.p4 {
+			display:none;
+		}
+		</style>
+<script>
+		var slideIndex = 0;
+		showDivs1(slideIndex);
+		showDivs2(slideIndex);
+		showDivs3(slideIndex);
+		showDivs4(slideIndex);
+		
+
+		function plusDivs1(n) {
+		  showDivs1(slideIndex += n);
+		  
+		}
+		function plusDivs2(n) {
+		  showDivs2(slideIndex += n);
+		  
+		}
+		function plusDivs3(n) {
+		  showDivs3(slideIndex += n);
+		  
+		}
+		function plusDivs4(n) {
+		  showDivs4(slideIndex += n);
+		  
+		}
+		
+		function showDivs1(n) {
+		  var i;
+		  var x = document.getElementsByClassName("mySlides1");
+		  if (n > x.length) {slideIndex = 2}
+		  if (n < 1) {slideIndex = x.length}
+		  for (i = 0; i < x.length; i++) {
+			x[i].style.display = "none";  
+		  }
+		  x[slideIndex-1].style.display = "block";  
+		}
+		
+		function showDivs2(n) {
+		  var i;
+		  var x = document.getElementsByClassName("mySlides2");
+		  if (n > x.length) {slideIndex = 1}
+		  if (n < 1) {slideIndex = x.length}
+		  for (i = 0; i < x.length; i++) {
+			x[i].style.display = "none";  
+		  }
+		  x[slideIndex-1].style.display = "block";  
+		}
+		function showDivs3(n) {
+		  var i;
+		  var x = document.getElementsByClassName("mySlides3");
+		  if (n > x.length) {slideIndex = 1}
+		  if (n < 1) {slideIndex = x.length}
+		  for (i = 0; i < x.length; i++) {
+			x[i].style.display = "none";  
+		  }
+		  x[slideIndex-1].style.display = "block";  
+		}
+		function showDivs4(n) {
+		  var i;
+		  var x = document.getElementsByClassName("mySlides4");
+		  if (n > x.length) {slideIndex = 1}
+		  if (n < 1) {slideIndex = x.length}
+		  for (i = 0; i < x.length; i++) {
+			x[i].style.display = "none";  
+		  }
+		  x[slideIndex-1].style.display = "block";  
+		}
+		</script>
+	
+<div class="container-fluid background-primary">
+		
 	<div class="container">
 		<div class="section section-inverted">
 			<h6 class="over-title">WHO WE ARE ?</h6>
 			<h2 class="title">Our Exclusive Team</h2>
 			<div class="content">
-				<!-- Something similar to this -->
-				<!-- https://droitthemes.com/wp/seom_new/new-2/ -->
+				<div class="container" style="background-color: none; "> 
+					<div class="row">
+					  <div class="id-team1">
+						  <h2 style="color:#373d46">Front-End</h2>
+						    <p>Team</p>
+							<div class="w3-content w3-display-container">
+									<img class="mySlides1" src="./Poze/front/Ursaciuc-Adrian.png" style="width:90%">
+									<img class="mySlides1" src="./Poze/front/Botez-Mihai.png" style="width:90%">
+									<img class="mySlides1" src="./Poze/front/Nechita-Ramona.png" style="width:90%">
+									<img class="mySlides1" src="./Poze/front/Vulpe-Alexandru.png" style="width:90%">
+									<img class="mySlides1" src="./Poze/front/Tiganescu-Ana.png" style="width:90%">
+								
+									<button class="w3-button w3-black w3-display-left" style="background-color:white" onclick="plusDivs1(-1)">&#10094;</button>
+									<button class="w3-button w3-black w3-display-right" style="background-color:white" onclick="plusDivs1(1)">&#10095;</button>
+									
+								  </div>
+					  </div>
+					  <div class="id-team2">
+							<h2 style="color:#373d46">Back-End</h2>
+							<p>Team</p>
+							<div class="w3-content w3-display-container">
+									<img class="mySlides2" src="https://cdn.dribbble.com/users/1220170/screenshots/5758802/new_avatar.jpg" style="width:90%">
+									<img class="mySlides2" src="https://cdn.dribbble.com/users/1220170/screenshots/5758802/new_avatar.jpg" style="width:90%">
+									<img class="mySlides2" src="https://cdn.dribbble.com/users/1220170/screenshots/5758802/new_avatar.jpg" style="width:90%">
+									<img class="mySlides2" src="https://cdn.dribbble.com/users/1220170/screenshots/5758802/new_avatar.jpg" style="width:90%">
+								
+									<button class="w3-button w3-black w3-display-left" style="background-color:white" onclick="plusDivs2(-1)">&#10094;</button>
+									<button class="w3-button w3-black w3-display-right" style="background-color:white" onclick="plusDivs2(1)">&#10095;</button>
+									
+							
+								</div>
+						</div>
+						<div class="id-team3">
+								<h2 style="color:#373d46">QA</h2>
+								<p>Team</p>
+								<div class="w3-content w3-display-container">
+										<img class="mySlides3" src="https://cdn.dribbble.com/users/1220170/screenshots/5758802/new_avatar.jpg" style="width:90%">
+										<img class="mySlides3" src="https://cdn.dribbble.com/users/1220170/screenshots/5758802/new_avatar.jpg" style="width:90%">
+										<img class="mySlides3" src="https://cdn.dribbble.com/users/1220170/screenshots/5758802/new_avatar.jpg" style="width:90%">
+										<img class="mySlides3" src="https://cdn.dribbble.com/users/1220170/screenshots/5758802/new_avatar.jpg" style="width:90%">
+									
+										<button class="w3-button w3-black w3-display-left" style="background-color:white" onclick="plusDivs3(-1)">&#10094;</button>
+										<button class="w3-button w3-black w3-display-right" style="background-color:white" onclick="plusDivs3(1)">&#10095;</button>
+										
+									</div>
+							</div>
+							<div class="id-team4">
+									<h2 style="color:#373d46">Administrare</h2>
+									<p>Team</p>
+									<div class="w3-content w3-display-container">
+											<img class="mySlides4" src="https://cdn.dribbble.com/users/1220170/screenshots/5758802/new_avatar.jpg" style="width:90%">
+											<img class="mySlides4" src="https://cdn.dribbble.com/users/1220170/screenshots/5758802/new_avatar.jpg" style="width:90%">
+											<img class="mySlides4" src="https://cdn.dribbble.com/users/1220170/screenshots/5758802/new_avatar.jpg" style="width:90%">
+											<img class="mySlides4" src="https://cdn.dribbble.com/users/1220170/screenshots/5758802/new_avatar.jpg" style="width:90%">
+										
+											<button class="w3-button w3-black w3-display-left" style="background-color:white" onclick="plusDivs4(-1)">&#10094;</button>
+											<button class="w3-button w3-black w3-display-right" style="background-color:white" onclick="plusDivs4(1)">&#10095;</button>
+											
+										</div>
+								</div>
+					</div>
+					
+				</div>
 			</div>
 		</div>
 	</div>
