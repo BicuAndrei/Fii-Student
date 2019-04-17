@@ -1,4 +1,13 @@
+<script>
+
+	document.addEventListener('DOMContentLoaded', function () {
+		document.getElementById('header-title').innerText = title;
+		document.getElementById('header-subtitle').innerText = subtitle;
+	}, false);
+
+</script>
+
 <div class="container-fluid page-header h-50 d-flex background-light-grey">
-	<h2 class="title">Schedule</h2>
-	<h4 class="subtitle">what are you going to do today?</h4>
+	<h2 class="title" id="header-title"></h2>
+	<h4 class="subtitle" id="header-subtitle"></h4>
 </div>

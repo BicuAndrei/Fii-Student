@@ -54,6 +54,13 @@ module.exports = {
 				options: {
 					name: '[path][name].[ext]'
 				}
+			},
+			{
+				test: require.resolve('jquery'),
+				use: [{
+					loader: 'expose-loader',
+					options: '$'
+				}]
 			}
 		]
 	},
