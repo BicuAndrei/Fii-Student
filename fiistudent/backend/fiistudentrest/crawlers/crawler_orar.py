@@ -325,12 +325,22 @@ def get_schedule_pages():
 
 
 def empty_entity():
-    list_of_keys = ScheduleClass.query().fetch(keys_only=True)
-    ScheduleClass.remove_multi(list_of_keys)
+    schedule_class = ScheduleClass(
+        dayOfTheWeek = ' ',
+        startHour = 1,
+        endHour = 1,
+        group = ' '
+    )
+    classes = schedule_class.query().fetch()
+    for c in classes:
+        c.remove()
+    print('remove done')
 
-def create_class(day,group,course,obj):
 
-    query = Course.query()
+def create_class(day, group, course, hour, sala):
+
+    ccourse = Course()
+    query = ccourse.query()
     query.add_filter('title', '=', course)
     querys = query.fetch()
     new_course = '-'
@@ -338,24 +348,66 @@ def create_class(day,group,course,obj):
         new_course = result.key
         break
 
-    query = Classroom.query()
-    query.add_filter('identifier', '=', obj['sala'])
-    querys = query.fetch()
     new_classroom = '-'
-    for result in querys:
-        new_classroom=result.key
-        break
+    if len(sala) > 0:
+        classroom = Classroom()
+        query = classroom.query()
+        query.add_filter('identifier', '=', sala[0])
+        querys = query.fetch()
+        for result in querys:
+            new_classroom=result.key
+            print(result)
+            print(new_classroom)
+            x = ndb.Key('Classroom', str(result.key.id))
+            print(x)
+            #print(result.key.to_old_key())
+            break
 
+
+    if new_classroom != '-':
+        if new_course != '-':
+            scheduleclass = ScheduleClass(
+                dayOfTheWeek=day,
+                startHour = int(hour.split('-')[0].split(':')[0]),
+                endHour = int(hour.split('-')[1].split(':')[0]),
+                classroom = new_classroom,
+                course = new_course,
+                group = group
+            )
+        else:
+            scheduleclass = ScheduleClass(
+                dayOfTheWeek=day,
+                startHour=int(hour.split('-')[0].split(':')[0]),
+                endHour=int(hour.split('-')[1].split(':')[0]),
+                classroom=new_classroom,
+                group=group
+            )
+    else:
+        if new_course != '-':
+            scheduleclass = ScheduleClass(
+                dayOfTheWeek=day,
+                startHour=int(hour.split('-')[0].split(':')[0]),
+                endHour=int(hour.split('-')[1].split(':')[0]),
+                course=new_course,
+                group=group
+            )
+        else:
+            scheduleclass = ScheduleClass(
+                dayOfTheWeek=day,
+                startHour=int(hour.split('-')[0].split(':')[0]),
+                endHour=int(hour.split('-')[1].split(':')[0]),
+                group=group
+            )
+    '''
     scheduleclass = ScheduleClass(
         dayOfTheWeek=day,
-        startHour = obj['ora'].split('-')[0],
-        endHour = obj['ora'].split('-')[1],
-        classroom = new_classroom,
-        course = new_course,
-        group = group
+        startHour=int(hour.split('-')[0].split(':')[0]),
+        endHour=int(hour.split('-')[1].split(':')[0]),
+        group=group
     )
-
+    '''
     scheduleclass.put()
+    print('Schedule class added')
 
 
 def populate_datastore():
@@ -364,7 +416,7 @@ def populate_datastore():
     for group in groups_schedule:
         for day in groups_schedule[group]:
             for course in groups_schedule[group][day]:
-                create_class(day,group,course,groups_schedule[group][day][course])
+                create_class(day,group,course['materie'],course['ora'],course['sala'])
 
 
 def main():
