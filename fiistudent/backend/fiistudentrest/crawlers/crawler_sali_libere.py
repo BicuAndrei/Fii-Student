@@ -1,6 +1,8 @@
 # import libraries
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
+from fiistudentrest.models import Classroom
+from fiistudentrest.models.available_classroom import AvailableClassroom
 
 
 class Course:
@@ -75,6 +77,7 @@ def crawl_pages():
     global crawlable_pages
     for page in crawlable_pages:
         crawl_page(page)
+        print('Crawled %s' % page)
 
 
 def get_schedule_pages():
@@ -104,9 +107,38 @@ def get_schedule_pages():
         crawlable_pages.append(new_page)
 
 
+def clear_entities():
+    avb = AvailableClassroom(
+        endHour=1,
+        startHour=2
+    )
+    avbs = avb.query().fetch()
+    for a in avbs:
+        a.remove()
+
+
+def populate_entity(period):
+    avb = AvailableClassroom()
+    for free_period in period['free_period']:
+        avb.startHour = int(free_period.starthour.split(':')[0])
+        avb.endHour = int(free_period.endhour.split(':')[0])
+        avb.dayOfTheWeek = free_period.day
+        print(avb)
+        # trebuie sa ii mai pun cheia straina catre classroom
+
+    #avb.put()
+
+
+def populate_datastore():
+    global free_days
+    clear_entities()
+    for period in free_days:
+        populate_entity(period)
+
 def main():
     get_schedule_pages()
     crawl_pages()
+    populate_datastore()
 
 
 if __name__ == "__main__":
