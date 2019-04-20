@@ -2,20 +2,17 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
-		integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-	<title>FII Student</title>
+	<%= require('html-loader!./partials/shared/_head.html') %>
+
+	<title>FII Student - Profesori</title>
 
 </head>
 
 <body>
-	<%= require('html-loader!./pages/partials/shared/navbar.html') %>
-	<%= require('html-loader!./pages/partials/quick-email-modal.html') %>
-	<div class="container-fluid">
+	<%= require('html-loader!./partials/shared/navbar.html') %>
+	<%= require('html-loader!./partials/modals/quick-email.modal.html') %>
 
+	<div class="container-fluid">
 		<div class="container">
 
 			<div class="section text-left">
@@ -171,7 +168,8 @@
 			</div>
 		</div>
 	</div>
-	<%= require('html-loader!./pages/partials/shared/footer.html') %>
+
+	<%= require('html-loader!./partials/shared/footer.html') %>
 </body>
 
 </html>

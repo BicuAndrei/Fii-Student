@@ -2,15 +2,13 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<%= require('html-loader!./partials/shared/_head.html') %>
+
+	<title>FII Student - Camere libere</title>
+
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
 	<link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
-		integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-	<title>FII Student</title>
 </head>
 
 <body>
@@ -129,12 +127,9 @@
 		</div>
 	</div>
 	<script>
-
-
 		$('#datepicker').datepicker({
 			uiLibrary: 'bootstrap4'
 		});
-
 	</script>
 	<%= require('html-loader!./partials/shared/footer.html') %>
 </body>
