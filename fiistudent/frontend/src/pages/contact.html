@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<%= require('html-loader!./partials/shared/_head.html') %>
+	${require('./partials/shared/_head.html')}
 
 	<script>
 		const title = 'Contact';
@@ -11,13 +11,13 @@
 </head>
 
 <body>
-	<%= require('html-loader!./partials/shared/navbar.html') %>
+	${require('./partials/shared/navbar.html')}
 
-	<%= require('html-loader!./partials/shared/page-header.html') %>
+	${require('./partials/shared/page-header.html')}
 
-	<%= require('html-loader!./partials/contact.html') %>	
+	${require('./partials/contact.html')}
 
-	<%= require('html-loader!./partials/shared/footer.html') %>
+	${require('./partials/shared/footer.html')}
 </body>
 
 </html>

@@ -2,9 +2,14 @@
 <html lang="en">
 
 <head>
-	<%= require('html-loader!./partials/shared/_head.html') %>
+	${require('./partials/shared/_head.html')}
 
 	<title>FII Student - Camere libere</title>
+
+	<script>
+		const title = 'Camere libere';
+		const subtitle = 'Cauta o camera libera';
+	</script>
 
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
@@ -12,8 +17,9 @@
 </head>
 
 <body>
+	${require('./partials/shared/navbar.html')}
 
-	<%= require('html-loader!./partials/shared/navbar.html') %>
+	${require('./partials/shared/page-header.html')}
 	<div class="container-fluid">
 		<div class="container">
 			<div class="section">
@@ -131,7 +137,8 @@
 			uiLibrary: 'bootstrap4'
 		});
 	</script>
-	<%= require('html-loader!./partials/shared/footer.html') %>
+	${require('./partials/shared/footer.html')}
+	
 </body>
 
 </html>

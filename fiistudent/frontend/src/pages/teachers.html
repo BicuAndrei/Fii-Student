@@ -2,15 +2,15 @@
 <html lang="en">
 
 <head>
-	<%= require('html-loader!./partials/shared/_head.html') %>
+	${require('./partials/shared/_head.html')}
 
 	<title>FII Student - Profesori</title>
 
 </head>
 
 <body>
-	<%= require('html-loader!./partials/shared/navbar.html') %>
-	<%= require('html-loader!./partials/modals/quick-email.modal.html') %>
+	${require('./partials/shared/navbar.html')}
+	${require('./partials/modals/quick-email.modal.html')}
 
 	<div class="container-fluid">
 		<div class="container">
@@ -169,7 +169,7 @@
 		</div>
 	</div>
 
-	<%= require('html-loader!./partials/shared/footer.html') %>
+	${require('./partials/shared/footer.html')}
 </body>
 
 </html>

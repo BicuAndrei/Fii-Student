@@ -61,6 +61,16 @@ module.exports = {
 					loader: 'expose-loader',
 					options: '$'
 				}]
+			},
+			{
+				test: /\.(html)$/,
+				include: path.join(__dirname, 'src/pages'),
+				use: {
+					loader: 'html-loader',
+					options: {
+						interpolate: true
+					}
+				}
 			}
 		]
 	},
