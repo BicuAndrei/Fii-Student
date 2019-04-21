@@ -1,4 +1,5 @@
 import requests
+import unidecode
 from requests.packages.urllib3.exceptions import InsecureRequestWarning  # disable la warning
 
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
@@ -36,7 +37,7 @@ def parse_license_line(line):
     if sem not in license_classes[year]:
         license_classes[year][sem] = []
     new_class = {}
-    new_class['name'] = name
+    new_class['name'] = unidecode.unidecode(name)
     new_class['page'] = course_page
     new_class['optional'] = optional
     new_class['mandatory'] = fac
@@ -143,7 +144,7 @@ def parse_master_line(line, master):
     if sem not in master_classes[master][year]:
         master_classes[master][year][sem] = []
     new_class = {}
-    new_class['name'] = name
+    new_class['name'] = unidecode.unidecode(name)
     new_class['page'] = course_page
     new_class['optional'] = optional
     new_class['mandatory'] = fac
@@ -197,10 +198,19 @@ def update_classes(year, sem, studies, my_class):
         course.put()
 
 
+def empty_entity():
+    course = Course()
+    classes = course.query().fetch()
+    for c in classes:
+        c.remove()
+    print('remove done')
+
+
 def populate_datastore():
     """
     Populeaza baza de date cu materiile de studiu
     """
+    empty_entity()
     for year in license_classes:
         for sem in license_classes[year]:
             for my_class in license_classes[year][sem]:
@@ -221,7 +231,24 @@ def main():
         crawl_masters_page(link, master_names[i])
         mark_optional_master_courses(master_names[i])
     populate_datastore()
-
+    course = Course(
+        title='Managementul proiectelor',
+        year=2,
+        semester=2,
+        credits=0,
+        link='',
+        studies=''
+    )
+    course.put()
+    course = Course(
+        title='Programare competitiva II, facultativ, pregatire olimpiada',
+        year=3,
+        semester=2,
+        credits=0,
+        link='',
+        studies='Licenta'
+    )
+    course.put()
 
 if __name__ == "__main__":
     main()
