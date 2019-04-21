@@ -73,4 +73,5 @@ def get_schedule(year: hug.types.text, group: hug.types.text):
             response += '", "endTime": "' + str(ent.endHour)
             response += '", "day": "' + str(ent.dayOfTheWeek)
             response += '"}'
+        response += ']'
     return response
