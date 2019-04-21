@@ -338,11 +338,16 @@ def create_class(day, group, course, hour, sala):
 
     ccourse = Course()
     query = ccourse.query()
+    if course=='Data Mining':
+        course='Data mining'
     query.add_filter('title', '=', course)
     querys = query.fetch()
     for result in querys:
         scheduleclass.course = result.key
         break
+
+    print('Cursurile sunt')
+    print(course)
 
     if len(sala) > 0:
         classroom = Classroom()
@@ -368,12 +373,13 @@ def populate_datastore():
         for day in groups_schedule[group]:
             for course in groups_schedule[group][day]:
                 create_class(day,group,course['materie'],course['ora'],course['sala'])
+                #print(course['materie'])
 
 
 def main():
     get_schedule_pages()
     crawl_website_schedule()
-    reset_folder(folderName)
+    #reset_folder(folderName)
     populate_datastore()
 
 

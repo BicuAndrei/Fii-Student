@@ -231,7 +231,24 @@ def main():
         crawl_masters_page(link, master_names[i])
         mark_optional_master_courses(master_names[i])
     populate_datastore()
-
+    course = Course(
+        title='Managementul proiectelor',
+        year=2,
+        semester=2,
+        credits=0,
+        link='',
+        studies=''
+    )
+    course.put()
+    course = Course(
+        title='Programare competitiva II, facultativ, pregatire olimpiada',
+        year=3,
+        semester=2,
+        credits=0,
+        link='',
+        studies='Licenta'
+    )
+    course.put()
 
 if __name__ == "__main__":
     main()
