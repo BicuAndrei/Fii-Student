@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	${require('./partials/shared/_head.html')}
+
+	<title>FII Student - Orar</title>
+
+	<script>
+		const title = 'Orar';
+		const subtitle = 'Ce o sa faci azi?';
+	</script>
+</head>
+
+<body>
+
+	${require('./partials/shared/navbar.html')}
+	${require('./partials/shared/page-header.html')}
+
+	<div class="container-fluid">
+		<div class="container">
+			<div class="section">
+				<div class="content">
+					<table class="table schedule">
+						<thead>
+							<tr>
+								<th scope="col"></th>
+								<th scope="col">Luni</th>
+								<th scope="col">Marti</th>
+								<th scope="col">Miercuri</th>
+								<th scope="col">Joi</th>
+								<th scope="col">Vineri</th>
+								<th scope="col">Sambata</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th scope="row">8:00 - 10:00</th>
+								<td>
+									<div class="object"></div>
+								</td>
+								<td>
+									<div class="object"></div>
+								</td>
+								<td>
+									<div class="object course" data-toggle="modal" data-target="#detailsModal">PSGBD
+									</div>
+								</td>
+								<td>
+									<div class="object"></div>
+								</td>
+								<td>
+									<div class="object"></div>
+								</td>
+								<td>
+									<div class="object"></div>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">10:00 - 12:00</th>
+								<td>
+									<div class="object"></div>
+								</td>
+								<td>
+									<div class="object course" data-toggle="modal" data-target="#detailsModal">IP</div>
+								</td>
+								<td>
+									<div class="object"></div>
+								</td>
+								<td>
+									<div class="object"></div>
+								</td>
+								<td>
+									<div class="object seminary" data-toggle="modal" data-target="#detailsModal">LE
+									</div>
+								</td>
+								<td>
+									<div class="object"></div>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">12:00 - 14:00</th>
+								<td>
+									<div class="object course" data-toggle="modal" data-target="#detailsModal">MCM</div>
+								</td>
+								<td>
+									<div class="object course" data-toggle="modal" data-target="#detailsModal">TW</div>
+								</td>
+								<td>
+									<div class="object laboratory" data-toggle="modal" data-target="#detailsModal">IP
+									</div>
+								</td>
+								<td>
+									<div class="object"></div>
+								</td>
+								<td>
+									<div class="object"></div>
+								</td>
+								<td>
+									<div class="object"></div>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">14:00 - 16:00</th>
+								<td>
+									<div class="object laboratory" data-toggle="modal" data-target="#detailsModal">MCM
+									</div>
+								</td>
+								<td>
+									<div class="object"></div>
+								</td>
+								<td>
+									<div class="object consultations" data-toggle="modal" data-target="#detailsModal">
+										MCM</div>
+									<div class="object laboratory" data-toggle="modal" data-target="#detailsModal">TW
+									</div>
+								</td>
+								<td>
+									<div class="object laboratory" data-toggle="modal" data-target="#detailsModal">PSGBD
+									</div>
+								</td>
+								<td>
+									<div class="object"></div>
+								</td>
+								<td>
+									<div class="object"></div>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">16:00 - 18:00</th>
+								<td>
+									<div class="object laboratory" data-toggle="modal" data-target="#detailsModal">PA
+									</div>
+								</td>
+								<td>
+									<div class="object"></div>
+								</td>
+								<td>
+									<div class="object"></div>
+								</td>
+								<td>
+									<div class="object"></div>
+								</td>
+								<td>
+									<div class="object"></div>
+								</td>
+								<td>
+									<div class="object"></div>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">18:00 - 20:00</th>
+								<td>
+									<div class="object"></div>
+								</td>
+								<td>
+									<div class="object"></div>
+								</td>
+								<td>
+									<div class="object"></div>
+								</td>
+								<td>
+									<div class="object"></div>
+								</td>
+								<td>
+									<div class="object"></div>
+								</td>
+								<td>
+									<div class="object"></div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	${require('./partials/modals/subject-details.modal.html')}
+	${require('./partials/shared/footer.html')}
+</body>
+
+</html>
