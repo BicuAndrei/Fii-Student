@@ -1,7 +1,7 @@
 from google.cloud import datastore
 from fiistudentrest.models import Student
-import hug
 
+import hug
 
 def login_function(email, password):
     """ Verify if the user exists in the datastore """
@@ -9,7 +9,6 @@ def login_function(email, password):
     query = Student.query()
     query.add_filter('email', '=', email)
     query.add_filter('password', '=', password)
-    print(query)
     query_it = query.fetch()
     for ent in query_it:
         if ent is None:
@@ -31,3 +30,8 @@ def login(email: hug.types.text, password: hug.types.text):
     else:
         return {'status': 'error', 'errors': [
             {'for': 'login', 'message': 'The username or password you entered did not match our records.'}]}
+
+
+if __name__ == '__main__':
+    
+    login.interface.cli()
