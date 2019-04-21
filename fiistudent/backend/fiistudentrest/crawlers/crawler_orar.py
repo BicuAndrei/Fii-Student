@@ -325,12 +325,7 @@ def get_schedule_pages():
 
 
 def empty_entity():
-    schedule_class = ScheduleClass(
-        dayOfTheWeek = ' ',
-        startHour = 1,
-        endHour = 1,
-        group = ' '
-    )
+    schedule_class = ScheduleClass()
     classes = schedule_class.query().fetch()
     for c in classes:
         c.remove()
@@ -346,7 +341,7 @@ def create_class(day, group, course, hour, sala):
     query.add_filter('title', '=', course)
     querys = query.fetch()
     for result in querys:
-        scheduleclass.course = ndb.Key('Course', str(result.key.id))
+        scheduleclass.course = result.key
         break
 
     if len(sala) > 0:
@@ -355,7 +350,7 @@ def create_class(day, group, course, hour, sala):
         query.add_filter('identifier', '=', sala[0])
         querys = query.fetch()
         for result in querys:
-            scheduleclass.classroom = ndb.Key('Classroom', str(result.key.id))
+            scheduleclass.classroom = result.key
             break
 
     scheduleclass.dayOfTheWeek = day
@@ -368,12 +363,11 @@ def create_class(day, group, course, hour, sala):
 
 def populate_datastore():
     global groups_schedule
-    #empty_entity()
+    empty_entity()
     for group in groups_schedule:
         for day in groups_schedule[group]:
             for course in groups_schedule[group][day]:
-                #create_class(day,group,course['materie'],course['ora'],course['sala'])
-                print(course['materie'])
+                create_class(day,group,course['materie'],course['ora'],course['sala'])
 
 
 def main():
