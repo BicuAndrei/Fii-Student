@@ -123,10 +123,18 @@ def populate_entity(period):
         avb.startHour = int(free_period.starthour.split(':')[0])
         avb.endHour = int(free_period.endhour.split(':')[0])
         avb.dayOfTheWeek = free_period.day
+
+        classroom = Classroom()
+        query = classroom.query()
+        query.add_filter('identifier', '=', period['name'])
+        querys = query.fetch()
+        for result in querys:
+            avb.classroom = result.key
+            break
         print(avb)
         # trebuie sa ii mai pun cheia straina catre classroom
 
-    #avb.put()
+    avb.put()
 
 
 def populate_datastore():
