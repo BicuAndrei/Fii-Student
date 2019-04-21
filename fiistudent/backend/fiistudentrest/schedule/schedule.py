@@ -58,20 +58,17 @@ def get_schedule(year: hug.types.text, group: hug.types.text):
 
         response = '['
         for ent in schedule_query_it:
-            response += first_it
-            first_it = ', {'
             course_key = ent.course
-            response += '"id": "' + ent.urlsafe
             if course_key is not None:
+                response += first_it
+                first_it = ', {'
+                response += '"id": "' + ent.urlsafe
                 course = Course.get(course_key)
                 response += '", "name": "' + course.title
                 response += '", "abv": "' + get_abreviation(course.title)
-            else:
-                response += '", "name": "' + str(course_key)
-                response += '", "abv": "' + str(course_key)
-            response += '", "startTime": "' + str(ent.startHour)
-            response += '", "endTime": "' + str(ent.endHour)
-            response += '", "day": "' + str(ent.dayOfTheWeek)
-            response += '"}'
+                response += '", "startTime": "' + str(ent.startHour)
+                response += '", "endTime": "' + str(ent.endHour)
+                response += '", "day": "' + str(ent.dayOfTheWeek)
+                response += '"}'
         response += ']'
     return response
