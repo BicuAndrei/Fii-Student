@@ -1,5 +1,5 @@
 import hashlib
-import json
+import ndb_orm as ndb
 import os
 from shutil import rmtree
 
@@ -339,84 +339,41 @@ def empty_entity():
 
 def create_class(day, group, course, hour, sala):
 
+    scheduleclass = ScheduleClass()
+
     ccourse = Course()
     query = ccourse.query()
     query.add_filter('title', '=', course)
     querys = query.fetch()
-    new_course = '-'
     for result in querys:
-        new_course = result.key
+        scheduleclass.course = ndb.Key('Course', str(result.key.id))
         break
 
-    new_classroom = '-'
     if len(sala) > 0:
         classroom = Classroom()
         query = classroom.query()
         query.add_filter('identifier', '=', sala[0])
         querys = query.fetch()
         for result in querys:
-            new_classroom=result.key
-            print(result)
-            print(new_classroom)
-            x = ndb.Key('Classroom', str(result.key.id))
-            print(x)
-            #print(result.key.to_old_key())
+            scheduleclass.classroom = ndb.Key('Classroom', str(result.key.id))
             break
 
-
-    if new_classroom != '-':
-        if new_course != '-':
-            scheduleclass = ScheduleClass(
-                dayOfTheWeek=day,
-                startHour = int(hour.split('-')[0].split(':')[0]),
-                endHour = int(hour.split('-')[1].split(':')[0]),
-                classroom = new_classroom,
-                course = new_course,
-                group = group
-            )
-        else:
-            scheduleclass = ScheduleClass(
-                dayOfTheWeek=day,
-                startHour=int(hour.split('-')[0].split(':')[0]),
-                endHour=int(hour.split('-')[1].split(':')[0]),
-                classroom=new_classroom,
-                group=group
-            )
-    else:
-        if new_course != '-':
-            scheduleclass = ScheduleClass(
-                dayOfTheWeek=day,
-                startHour=int(hour.split('-')[0].split(':')[0]),
-                endHour=int(hour.split('-')[1].split(':')[0]),
-                course=new_course,
-                group=group
-            )
-        else:
-            scheduleclass = ScheduleClass(
-                dayOfTheWeek=day,
-                startHour=int(hour.split('-')[0].split(':')[0]),
-                endHour=int(hour.split('-')[1].split(':')[0]),
-                group=group
-            )
-    '''
-    scheduleclass = ScheduleClass(
-        dayOfTheWeek=day,
-        startHour=int(hour.split('-')[0].split(':')[0]),
-        endHour=int(hour.split('-')[1].split(':')[0]),
-        group=group
-    )
-    '''
+    scheduleclass.dayOfTheWeek = day
+    scheduleclass.startHour=int(hour.split('-')[0].split(':')[0])
+    scheduleclass.endHour=int(hour.split('-')[1].split(':')[0])
+    scheduleclass.group=group
     scheduleclass.put()
     print('Schedule class added')
 
 
 def populate_datastore():
     global groups_schedule
-    empty_entity()
+    #empty_entity()
     for group in groups_schedule:
         for day in groups_schedule[group]:
             for course in groups_schedule[group][day]:
-                create_class(day,group,course['materie'],course['ora'],course['sala'])
+                #create_class(day,group,course['materie'],course['ora'],course['sala'])
+                print(course['materie'])
 
 
 def main():
