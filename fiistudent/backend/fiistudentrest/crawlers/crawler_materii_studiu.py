@@ -195,7 +195,8 @@ def update_classes(year, sem, studies, my_class):
         credits=int(my_class['credits']),
         link=my_class['page'],
         studies=studies,
-        sub_desc = my_class['sub_desc']
+        sub_desc = my_class['sub_desc'],
+        optional = my_class['optional']
     )
     if not ent_exists(course):
         course.put()
@@ -241,7 +242,8 @@ def main():
         credits=0,
         link='',
         studies='',
-        sub_desc = ''
+        sub_desc = '',
+        optional = True
     )
     course.put()
     course = Course(
@@ -251,7 +253,8 @@ def main():
         credits=0,
         link='',
         studies='Licenta',
-        sub_desc = ''
+        sub_desc = '',
+        optional = True
     )
     course.put()
 
