@@ -11,3 +11,4 @@ class Course(BaseModel):
     link = ndb.StringProperty()
     sub_desc = ndb.StringProperty()
     studies = ndb.StringProperty()
+    optional = ndb.BooleanProperty()
