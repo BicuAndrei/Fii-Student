@@ -92,6 +92,8 @@
     direction: asc
   - name: link
     direction: asc
+  - name: teachingClass
+    direction: asc
   - name: created_at
     direction: desc
     
