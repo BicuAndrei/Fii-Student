@@ -19,6 +19,8 @@ class Course:
 
 #contains all the pages with the labs
 crawlable_pages = []
+crawlable_pages.append('https://profs.info.uaic.ro/~orar/resurse/orar_B5.html')
+crawlable_pages.append('https://profs.info.uaic.ro/~orar/resurse/orar_Cabinet.html')
 #contains all the free periods from all labs
 free_days = []
 
@@ -70,6 +72,8 @@ def crawl_page(url):
             endHour = ''
 
     lab_name = url.split('_')[1].split('.')[0]
+    if lab_name=='video':
+        lab_name='Videoproiector+Laptop'
     free_period_lab = {'name' : lab_name, 'free_period' : freePeriods}
     free_days.append(free_period_lab)
 
@@ -108,36 +112,45 @@ def get_schedule_pages():
 
 
 def clear_entities():
-    avb = AvailableClassroom(
-        endHour=1,
-        startHour=2
-    )
+    avb = AvailableClassroom()
     avbs = avb.query().fetch()
     for a in avbs:
         a.remove()
 
 
-def populate_entity(period):
-    avb = AvailableClassroom()
-    for free_period in period['free_period']:
-        avb.startHour = int(free_period.starthour.split(':')[0])
-        avb.endHour = int(free_period.endhour.split(':')[0])
-        avb.dayOfTheWeek = free_period.day
+def populate_entity(day):
+    for period in day['free_period']:
+        avb = AvailableClassroom()
+        classroom = Classroom()
+        query = classroom.query()
+        query.add_filter('identifier', '=', day['name'])
+        querys = query.fetch()
+        for result in querys:
+            avb.classroom = result.key
+            break
+        avb.startHour = int(period.starthour.split(':')[0])
+        avb.endHour = int(period.endhour.split(':')[0])
+        avb.dayOfTheWeek = period.day
         print(avb)
-        # trebuie sa ii mai pun cheia straina catre classroom
-
-    #avb.put()
+        avb.put()
+        #print('Updated classroom %s on %s from %s to %s' % (day['name'],avb.dayOfTheWeek,avb.startHour,avb.endHour))
 
 
 def populate_datastore():
     global free_days
-    clear_entities()
-    for period in free_days:
-        populate_entity(period)
+    for day in free_days:
+        populate_entity(day)
 
 def main():
     get_schedule_pages()
     crawl_pages()
+    '''global free_days
+    for day in free_days:
+        print(day['name'])
+        for period in day['free_period']:
+            print(period)
+    '''
+    clear_entities()
     populate_datastore()
 
 

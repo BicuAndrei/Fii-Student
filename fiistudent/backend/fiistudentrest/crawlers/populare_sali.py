@@ -53,6 +53,20 @@ def remove_existing_entities():
 def main():
     remove_existing_entities()
     populate_datastore()
+    classroom = Classroom(
+        floor=0,
+        type='alte sali',
+        capacity=30,
+        identifier='B5'
+    )
+    classroom.put()
+    classroom = Classroom(
+        floor=0,
+        type='cabinet',
+        capacity=0,
+        identifier='Cabinet'
+    )
+    classroom.put()
 
 
 if __name__ == '__main__':
