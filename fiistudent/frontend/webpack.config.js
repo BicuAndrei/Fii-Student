@@ -61,36 +61,54 @@ module.exports = {
 					loader: 'expose-loader',
 					options: '$'
 				}]
+			},
+			{
+				test: /\.(html)$/,
+				include: path.join(__dirname, 'src/pages'),
+				use: {
+					loader: 'html-loader',
+					options: {
+						interpolate: true
+					}
+				}
 			}
 		]
 	},
 	plugins: [
 		new CleanWebpackPlugin(),
 		new HtmlWebpackPlugin({
-			template: path.join(__dirname, 'src', 'index.html'),
+			template: path.join(__dirname, 'src', 'pages', 'index.html'),
 			filename: 'index.html'
 		}),
 		new HtmlWebpackPlugin({
-			template: path.join(__dirname, 'src', 'schedule.html'),
+			template: path.join(__dirname, 'src', 'pages', 'schedule.html'),
 			filename: 'schedule.html'
 		}),
 		new HtmlWebpackPlugin({
-			template: path.join(__dirname, 'src', 'pages', 'register.html'),
-			filename: 'register.html'
-		}),
-		new HtmlWebpackPlugin({
 
-			template: path.join(__dirname, 'src', 'subjects.html'),
+			template: path.join(__dirname, 'src', 'pages', 'subjects.html'),
 			filename: 'subjects.html'
 		}),
 		new HtmlWebpackPlugin({
-			template: path.join(__dirname, 'src', 'teachers.html'),
+			template: path.join(__dirname, 'src', 'pages', 'teachers.html'),
 			filename: 'teachers.html'
 		}),
 		new HtmlWebpackPlugin({
 			template: path.join(__dirname, 'src', 'pages', 'free-rooms.html'),
 			filename: 'free-rooms.html'
 
+		}),
+		new HtmlWebpackPlugin({
+			template: path.join(__dirname, 'src', 'pages', 'team.html'),
+			filename: 'team.html'
+		}),
+		new HtmlWebpackPlugin({
+			template: path.join(__dirname, 'src', 'pages', 'about.html'),
+			filename: 'about.html'
+		}),
+		new HtmlWebpackPlugin({
+			template: path.join(__dirname, 'src', 'pages', 'contact.html'),
+			filename: 'contact.html'
 		})
 	]
 };
