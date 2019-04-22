@@ -60,3 +60,7 @@ def register(registrationNumber: hug.types.text, firstName: hug.types.text, last
             return {'status': 'ok', 'errors': []}
         else:
             return {'status': 'error', 'errors': [{'for': 'email', 'message': 'The email is already in our database.'}]}
+
+
+if __name__ == '__main__':
+    register.interface.cli()
