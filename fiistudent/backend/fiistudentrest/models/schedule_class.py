@@ -10,6 +10,7 @@ class ScheduleClass(BaseModel):
     dayOfTheWeek = ndb.StringProperty()
     startHour = ndb.IntegerProperty()
     endHour = ndb.IntegerProperty()
-    classroom = ndb.KeyProperty(kind=Classroom, required=True)
-    course = ndb.KeyProperty(kind=Course, required=True)
+    group = ndb.StringProperty()
+    classroom = ndb.KeyProperty(kind=Classroom)
+    course = ndb.KeyProperty(kind=Course)
 
