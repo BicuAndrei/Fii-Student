@@ -6,7 +6,7 @@ from fiistudentrest.models.course import Course
 @hug.local()
 @hug.get()
 @hug.cli()
-def get_courses():
+def courses():
     data_list = []
 
     data1 = {}
