@@ -10,13 +10,16 @@
 		const title = 'Orar';
 		const subtitle = 'Ce o sa faci azi?';
 	</script>
+
 </head>
 
 <body>
 
 	${require('./partials/shared/navbar.html')}
 	${require('./partials/shared/page-header.html')}
-
+	<div class="wrapper d-flex">
+	
+		${require('./partials/sidebar.html')}
 	<div class="container-fluid">
 		<div class="container">
 			<div class="section">
@@ -175,7 +178,7 @@
 			</div>
 		</div>
 	</div>
-
+</div>
 	${require('./partials/modals/subject-details.modal.html')}
 	${require('./partials/shared/footer.html')}
 </body>
