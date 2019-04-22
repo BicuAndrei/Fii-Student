@@ -87,7 +87,7 @@ def free_rooms(date: hug.types.text, start_hour: hug.types.number, duration: hug
                 data["disponibility"] = elem[0]
                 data_list.append(data)
 
-    json_data = json.dumps(data_list)
+        json_data = json.dumps(data_list)
 
     return json_data
 
