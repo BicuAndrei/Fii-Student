@@ -24,16 +24,17 @@ def exists(email, user_type):
 @hug.local()
 @hug.get()
 @hug.cli()
-def send_email(from_email: hug.types.text, to_email: hug.types.text, subject: hug.types.text, content: hug.types.text):
+def send_email(from_email: hug.types.text, urlsafe: hug.types.text, subject: hug.types.text, content: hug.types.text):
     """ Sends an email from a student to a professor """
-    if exists(from_email, Student) == True and exists(to_email, Professor) == True:
-        Mail.send_mail(from_email, to_email, subject, content)
+    professor = Professor.get(urlsafe)
+    if exists(from_email, Student) == True and exists(professor.email, Professor) == True:
+        Mail.send_mail(from_email, professor.email, subject, content)
         return {'status': 'ok', 'errors': []}
-    elif exists(from_email, Student) == True and exists(to_email, Professor) == False:
+    elif exists(from_email, Student) == True and exists(professor.email, Professor) == False:
         return {'status': 'error',
                 'errors': [
-                    {'for': 'email_professor', 'message': 'We could not find the professor with the email({}).'.format(to_email)}]}
-    elif exists(from_email, Student) == False and exists(to_email, Professor) == True:
+                    {'for': 'email_professor', 'message': 'We could not find the professor with the email({}).'.format(professor.email)}]}
+    elif exists(from_email, Student) == False and exists(professor.email, Professor) == True:
         return {'status': 'error',
                 'errors': [
                     {'for': 'email_student', 'message': 'We could not find the student with the email({}).'.format(from_email)}]}
