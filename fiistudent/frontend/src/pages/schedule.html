@@ -15,11 +15,12 @@
 
 <body>
 
-	${require('./partials/shared/navbar.html')}
-	${require('./partials/shared/page-header.html')}
 	<div class="wrapper d-flex">
 	
 		${require('./partials/sidebar.html')}
+		
+		<div class="d-flex flex-column flex-grow-1"> 
+				${require('./partials/shared/page-header.html')}
 	<div class="container-fluid">
 		<div class="container">
 			<div class="section">
@@ -177,6 +178,8 @@
 				</div>
 			</div>
 		</div>
+	</div>
+	<!-- am inchis container fluid -->
 	</div>
 </div>
 	${require('./partials/modals/subject-details.modal.html')}
