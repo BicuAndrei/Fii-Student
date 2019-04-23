@@ -1,20 +1,7 @@
-const endpoint = "https://develop-dot-fii-student.appspot.com/";
-
-$('#loginForm').submit(function(event) {
-	event.preventDefault();
-
-	$.ajax({
-		url: endpoint + "login",
-		data: {
-			email: $(this).find('#email').val(),
-			password: $(this).find('#password').val()
+$(document).ready(function() {
+	if (shouldBeLoggedIn === true) {
+		if (sessionStorage.getItem("accessToken") == null) {
+			window.location.href = "/";
 		}
-	}).then(function (data) {
-		if(data.status === "error") {
-			alert(data.errors[0].message);
-		}
-		if(data.status === "ok") {
-			alert('Success!');
-		}
-	});
+	}
 });

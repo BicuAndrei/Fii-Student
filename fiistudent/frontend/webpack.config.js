@@ -65,25 +65,11 @@ module.exports = {
 						interpolate: true
 					}
 				}
-			},
-			{
-				test: require.resolve('jquery'),
-				use: [{
-					loader: 'expose-loader',
-					options: 'jQuery'
-				}, {
-					loader: 'expose-loader',
-					options: '$'
-				}]
 			}
 		]
 	},
 
 	plugins: [
-		new webpack.ProvidePlugin({
-			$: "jquery",
-			jQuery: "jquery"
-		}),
 		new CleanWebpackPlugin(),
 		new HtmlWebpackPlugin({
 			template: path.join(__dirname, 'src', 'pages', 'index.html'),
