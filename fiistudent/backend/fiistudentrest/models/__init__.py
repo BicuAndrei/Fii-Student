@@ -13,4 +13,4 @@ from .schedule_class import ScheduleClass
 from .schedule_class_professor import ScheduleClassProfessor
 from .student import Student
 from .timetable import Timetable
-
+from .token import Token
