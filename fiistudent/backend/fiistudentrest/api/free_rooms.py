@@ -36,7 +36,7 @@ def get_all_classrooms():
 @hug.local()
 @hug.get()
 @hug.cli()
-def free_rooms(date: hug.types.text, start_hour: hug.types.number, duration: hug.types.number):
+def free_rooms(request, date: hug.types.text, start_hour: hug.types.number, duration: hug.types.number):
     authorization = request.get_header('Authorization')
     if not authorization:
         return {'status': 'error',

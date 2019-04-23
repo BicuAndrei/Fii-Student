@@ -7,7 +7,7 @@ from fiistudentrest.auth import verify_token
 @hug.local()
 @hug.get()
 @hug.cli()
-def professors():
+def professors(request):
     authorization = request.get_header('Authorization')
     if not authorization:
         return {'status': 'error',
