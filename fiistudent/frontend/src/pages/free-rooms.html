@@ -15,13 +15,14 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
 	<link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+
 </head>
 
 <body>
 	${require('./partials/shared/navbar.html')}
 
 	${require('./partials/shared/page-header.html')}
-	
+
 	<div class="container-fluid">
 		<div class="container">
 			<div class="section">
@@ -46,17 +47,15 @@
 						<div class="search-room col-sm-10 col-md-10 border-left">
 							<div class="search-form m-auto">
 								<div class="row pad-left border-bottom pad-bot">
-									<div class="container">
+									<div class="container" id="dates">
 
 
 										<div class="row">
 											<div class='col-sm-3'>
 												Data
 												<div class="form-group">
-													<div class='input-group date' id='datetimepicker1'>
+													<div class='input-group datepicker' id='datetimepicker1'>
 														<input id="datepicker" width="276" />
-
-
 													</div>
 												</div>
 											</div>
@@ -64,8 +63,16 @@
 												Ora de start
 												<div class="control-group">
 
-													<select name="start-hour" id="start-hour" class="form-control">
+													<select name="start-hour" id="starthour" id="start-hour"
+														class="form-control">
 														<option value="" selected="selected"></option>
+														<option value="1">1</option>
+														<option value="2">2</option>
+														<option value="3">3</option>
+														<option value="4">4</option>
+														<option value="5">5</option>
+														<option value="6">6</option>
+														<option value="7">7</option>
 														<option value="8">8</option>
 														<option value="9">9</option>
 														<option value="10">10</option>
@@ -81,6 +88,9 @@
 														<option value="20">20</option>
 														<option value="21">21</option>
 														<option value="22">22</option>
+														<option value="23">23</option>
+														<option value="24">24</option>
+
 													</select>
 												</div>
 											</div>
@@ -95,35 +105,39 @@
 														<option value="3">3</option>
 														<option value="4">4</option>
 														<option value="5">5</option>
+														<option value="6">6</option>
+														<option value="7">7</option>
+														<option value="8">8</option>
+														<option value="9">9</option>
+														<option value="10">10</option>
+														<option value=11>11</option>
+														<option value="12">12</option>
 													</select>
 												</div>
 											</div>
 											<div class="col-sm-3">
 
 												<div class="control-group">
-													<button type="submit" class="btn btn-primary">Cauta sala </button>
+													<button type="submit" class="btn btn-primary" id="searchBTN">Cauta
+														sala </button>
 												</div>
 											</div>
 										</div>
 									</div>
-
-
-
-
 
 								</div>
 
 								<!--aici va aparea lista de sali-->
 								<div class="row">
 									<div class="col-md-10">
-										<h4>Am gasit urmatoarele sali disponibile :</h4>
+										<h4>Rezultat:</h4>
 									</div>
 
 								</div>
 								<div class="row">
-									<div class="col-md-10">
-										<p>Sala : 413 </p><span> Disponibilitate: 08:00-12:00</span>
-										<p>Sala : C309 </p><span>Disponibilitate: 14:00-16:00</span>
+									<div class="col-md-10" id="result">
+										<p id="eroare"></p>
+
 
 									</div>
 								</div>
@@ -139,8 +153,56 @@
 			uiLibrary: 'bootstrap4'
 		});
 	</script>
+
+
+	<script>
+
+		$('#searchBTN').click(function () {
+			var datetime = window.document.getElementById("datepicker").value;
+			var startHour = $('#starthour option:selected').val();
+			var duration = $('#duration option:selected').val();
+			$.ajax({
+
+				url: endpoint + "free_rooms",
+				type: "GET",
+				contentType: "application/json; charset=utf-8",
+				dataType: "json",
+				beforeSend: function (xhr) {
+					xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
+				},
+				data: {
+					date: datetime,
+					start_hour: startHour,
+					duration: duration
+				},
+				success: function (result) {
+					var resultat = "";
+					var json = result;
+					obj = JSON.parse(json);
+					console.log(obj);
+					if (obj.length == 0) {
+						alert('Nu s-a gasit nici o sala libera');
+
+					}
+					else {
+						for (i = 0; i < obj.length; i++)
+						{
+							var room = obj[i].room;
+							var disponibility = obj[i].disponibility;
+							resultat += "<p><strong>Sala:</strong> " + room + "</p>" + "<p ><strong>Disponibilitate :</strong>" + disponibility + "</p>";
+						}
+						}
+							$('div#result').append(resultat);
+				},
+				error: function () {
+					
+					alert('Oh-oh! Ceva nu a mers bine!')
+				}
+			})
+		})
+	</script>
 	${require('./partials/shared/footer.html')}
-	
+
 </body>
 
 </html>
