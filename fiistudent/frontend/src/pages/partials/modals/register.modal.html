@@ -97,12 +97,16 @@
 							<input type="email" class="form-control" id="email" placeholder="Introduceți email-ul">
 						</div>
 						<div class="form-group">
-							<label for="password">Parolă</label>
-							<input type="password" class="form-control" id="password" placeholder="Introduceți parola">
+							<label for="username">Nume de utilizator</label>
+							<input type="text" class="form-control" id="username" placeholder="Introduceti numele de utilizator">
 						</div>
 						<div class="form-group">
-							<label for="password">Confirmă Parola</label>
-							<input type="password" class="form-control" id="password" placeholder="Confirmați parola">
+							<label for="password">Parola</label>
+							<input type="password" class="form-control" id="password" placeholder="Introduceti parola">
+						</div>
+						<div class="form-group">
+							<label for="password">Confirma Parola</label>
+							<input type="password" class="form-control" id="password2" placeholder="Confirmati parola">
 						</div>
 						<button type="submit" class="btn btn-primary">Înregistrează-te</button>
 						<span class="m-2 color-text-secondary"> sau </span>
@@ -114,3 +118,40 @@
 		</div>
 	</div>
 </div>
+<script>
+	const endpoint = "https://develop-dot-fii-student.appspot.com/";
+	$('#registerForm').submit(function(event) {
+		event.preventDefault();
+		let auxGroup = $(this).find('#stud-group');
+		let studyYear = null, group = null;
+		if(auxGroup[0]=="I"){
+			studyYear = parseInt(auxGroup[1],10);
+			group = auxGroup.substring(2,3);
+		}
+		else if(auxGroup[0]=="M"){
+			studyYear = parseInt(auxGroup[3],10);
+			group = auxGroup.substring(1,2);
+		}
+		$.ajax({
+			url: endpoint + "register",
+			data: {
+				registrationNumber: $(this).find('#matricol').val(),
+				firstName: $(this).find('#name').val(),
+				lastName: $(this).find('#name2').val(),
+				email: $(this).find('#email').val(),
+				password: $(this).find('#password').val(),
+				confirm_password: $(this).find('#password2').val(),
+				year: studyYear,
+				group: group
+
+			}
+		}).then(function (data) {
+			if(data.status === "error") {
+				alert(data.errors[0].message);
+			}
+			if(data.status === "ok") {
+				alert('Success!');
+			}
+		});
+	});
+</script>
