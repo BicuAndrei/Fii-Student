@@ -148,6 +148,18 @@
 	
 	${require('./partials/shared/footer.html')}
 
+	<script>
+		$(document).ready(function() {
+			$.ajax({
+				url: endpoint + "courses",
+				beforeSend: function (xhr) {
+					xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
+				},
+			}).then(function (data) {
+				console.log(JSON.parse(data));
+			});
+		});
+	</script>
 </body>
 
 </html>
