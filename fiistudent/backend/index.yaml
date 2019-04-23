@@ -1,3 +1,5 @@
+indexes:
+        
 - kind: Administrator
   properties:
   - name: firstName

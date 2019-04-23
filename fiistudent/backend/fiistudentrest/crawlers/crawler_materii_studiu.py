@@ -43,6 +43,7 @@ def parse_license_line(line):
     new_class['mandatory'] = fac
     new_class['course_index'] = pieces[2]
     new_class['credits'] = pieces[4]
+    new_class['sub_desc'] = pieces[5]
     license_classes[year][sem].append(new_class)
 
 
@@ -150,6 +151,7 @@ def parse_master_line(line, master):
     new_class['mandatory'] = fac
     new_class['course_index'] = pieces[2]
     new_class['credits'] = pieces[4]
+    new_class['sub_desc'] = pieces[5]
     master_classes[master][year][sem].append(new_class)
 
 
@@ -192,7 +194,9 @@ def update_classes(year, sem, studies, my_class):
         semester=int(sem.replace("Sem", "")),
         credits=int(my_class['credits']),
         link=my_class['page'],
-        studies=studies
+        studies=studies,
+        sub_desc = my_class['sub_desc'],
+        optional = my_class['optional']
     )
     if not ent_exists(course):
         course.put()
@@ -237,7 +241,9 @@ def main():
         semester=2,
         credits=0,
         link='',
-        studies=''
+        studies='',
+        sub_desc = '',
+        optional = True
     )
     course.put()
     course = Course(
@@ -246,7 +252,9 @@ def main():
         semester=2,
         credits=0,
         link='',
-        studies='Licenta'
+        studies='Licenta',
+        sub_desc = '',
+        optional = True
     )
     course.put()
 

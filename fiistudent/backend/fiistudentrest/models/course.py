@@ -9,4 +9,6 @@ class Course(BaseModel):
     semester= ndb.IntegerProperty()
     credits = ndb.IntegerProperty()
     link = ndb.StringProperty()
+    sub_desc = ndb.StringProperty()
     studies = ndb.StringProperty()
+    optional = ndb.BooleanProperty()

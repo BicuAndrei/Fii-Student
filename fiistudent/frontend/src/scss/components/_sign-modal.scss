@@ -7,7 +7,7 @@
 	}
 
 	.modal-body::-webkit-scrollbar { 
-		display: none; 
+		display: -webkit-box;
 	} 
 
 	.header {
