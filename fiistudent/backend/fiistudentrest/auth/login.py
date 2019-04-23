@@ -1,5 +1,5 @@
 from google.cloud import datastore
-from fiistudentrest.models import Student, Token
+from fiistudentrest.models import ndb,Student, Token
 
 import hug
 import jwt
@@ -48,6 +48,8 @@ def update_token(jwt_token, user):
 
 
 def generate_token(user):
+    """ Generates token encoding user urlsafe and time """
+
     payload = {
         'user_url': user.urlsafe,
         'exp': datetime.utcnow() + timedelta(seconds=config['token_expiration_seconds'])
@@ -55,6 +57,36 @@ def generate_token(user):
     return jwt.encode(payload, config['jwt_secret'], config['jwt_algorithm'])
        
 
+def exists_token(token):
+    """ Chekcs whether the token exists in the database """
+    
+    query = Token.query()
+    query.add_filter('token','=',token)
+    query_list = list(query.fetch())
+    
+    if query_list:
+        for token_entity in query_list:
+            if token_entity:
+                return True
+    
+    return False
+
+
+
+def verify_token(authorization):
+    """ Checks if given token is valid """
+    try:
+        token = authorization.split(' ')[1]
+        decoding = jwt.decode(token, config['jwt_secret'], config['jwt_algorithm'])
+        if not exists_token(token):
+            return None
+
+        return decoding['user_url']
+
+    except jwt.InvalidTokenError:
+        return None
+
+    
 @hug.local()
 @hug.cli()
 @hug.get()
@@ -62,7 +94,8 @@ def login(email: hug.types.text, password: hug.types.text):
     """ Verify if the user exists in the datastore and return an appropriate json response for every scenario """
     user = login_function(email, password)
     if user != None:
-        jwt_token = generate_token(user)    
+        jwt_token = generate_token(user)
+        update_token(jwt_token,user)
         return {'token': jwt_token.decode("utf-8"), 'errors': []}
     else:
         return {'status': 'error', 'errors': [
@@ -70,5 +103,5 @@ def login(email: hug.types.text, password: hug.types.text):
 
 
 if __name__ == '__main__':
-    
     login.interface.cli()
+

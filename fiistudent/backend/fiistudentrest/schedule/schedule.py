@@ -42,8 +42,21 @@ def get_abbreviation(title):
 @hug.local()
 @hug.get()
 @hug.cli()
-def schedule(student_key_urlsafe: hug.types.text):
+def schedule(request):
     """ Gets the schedule for a logged user """
+    authorization = request.get_header('Authorization')
+    if not authorization:
+        return {'status': 'error',
+                'errors': [
+                    {'for': 'request_header', 'message': 'No Authorization field exists in request header'}]}
+
+    student_key_urlsafe = verify_token(authorization)
+    if not user_urlsafe:
+        return {'status': 'error',
+                'errors': [
+                    {'for': 'request_header', 'message': 'Header contains token, but it is not a valid one.'}]}
+
+
     student = Student.get(student_key_urlsafe)
     year_and_group = student.group
 

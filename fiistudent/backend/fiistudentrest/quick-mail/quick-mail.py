@@ -1,6 +1,8 @@
 import fiistudentrest.mail as Mail
 from fiistudentrest.models import Student
 from fiistudentrest.models import Professor
+from login import verify_token
+
 import hug
 
 
@@ -24,8 +26,22 @@ def exists(email, user_type):
 @hug.local()
 @hug.get()
 @hug.cli()
-def send_email(from_email: hug.types.text, urlsafe: hug.types.text, subject: hug.types.text, content: hug.types.text):
+def send_email(request, urlsafe: hug.types.text, subject: hug.types.text, content: hug.types.text):
     """ Sends an email from a student to a professor """
+    authorization = request.get_header('Authorization')
+    if not authorization:
+        return {'status': 'error',
+                'errors': [
+                    {'for': 'request_header', 'message': 'No Authorization field exists in request header'}]}
+
+    user_urlsafe = verify_token(authorization)
+    if not user_urlsafe:
+        return {'status': 'error',
+                'errors': [
+                    {'for': 'request_header', 'message': 'Header contains token, but it is not a valid one.'}]}
+
+    from_email = Student.get(user_urlsafe)
+
     professor = Professor.get(urlsafe)
     if exists(from_email, Student) == True and exists(professor.email, Professor) == True:
         Mail.send_mail(from_email, professor.email, subject, content)
