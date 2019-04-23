@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="d-flex">
+        ${require('./partials/sidebar.html')}
+        <div class="page ml-3 mt-3 mb-3 flex-column flex-grow-1">
+            <div class="header">
+                <h3>Setari</h3>
+            </div>
+            <div class="content d-flex flex-row">
+                <div class="group border w-25">
+                    <form action=" " method="GET" class="p-2">
+                        <h5> Nu-ti mai plac colegii? Nu mai sta pe ganduri, schimba grupa! </h5>
+                        <label>Semianul </label>
+                        <select>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                        </select>
+                        <br>
+                        <label>Nr-ul grupei</label>
+                        <select>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                        </select>
+                        <br>
+                        <input class="btn btn-primary" type="submit" value="Trimite cererea">
+                    </form>
+                </div>
+                <div class="changePass ml-5 border w-50 p-3">
+                    <h5>Schimba parola</h5>
+                    <form action=" " method="GET" class="p-2">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Adresa de e-mail</label>
+                            <input type="email" class="form-control " id="exampleInputEmail1"
+                                placeholder="Introdu parola de e-mail">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Parola actuala</label>
+                            <input type="password" class="form-control " id="exampleInputPassword1"
+                                placeholder="Introdu parola pe care o ai acum">
+                        </div>
+                        <div class="form-group">
+                            <label for="Password2">Parola noua</label>
+                            <input type="password" class="form-control " id="Password2"
+                                placeholder="Introdu parola noua">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    ${require('./partials/shared/footer.html')}
+</body>
+
+</html>

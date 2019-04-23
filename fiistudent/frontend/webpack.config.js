@@ -109,6 +109,10 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			template: path.join(__dirname, 'src', 'pages', 'contact.html'),
 			filename: 'contact.html'
+		}),
+		new HtmlWebpackPlugin({
+			template: path.join(__dirname, 'src', 'pages', 'settings.html'),
+			filename: 'settings.html'
 		})
 	]
 };
