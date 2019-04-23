@@ -5,27 +5,27 @@
 			<div class="modal-body">
 
 				<div class="header">
-					<h6 class="over-title">Welcome back</h6>
-					<h2 class="title">Log In</h2>
+					<h6 class="over-title">Bine ați revenit!</h6>
+					<h2 class="title">Logare</h2>
 				</div>
 				<div class="content">
-					<form id="loginForm">
+					<form id="loginForm" class="needs-validation" novalidate>
 						<div class="form-group">
-							<label for="email">Email address</label>
-							<input type="email" class="form-control" id="email" placeholder="Enter email">
+							<label for="email">Adresă email</label>
+							<input type="email" class="form-control" id="email" placeholder="Introduceți email-ul" required>
 						</div>
 						<div class="form-group">
-							<label for="password">Password</label>
-							<input type="password" class="form-control" id="password" placeholder="Password">
+							<label for="password">Parolă</label>
+							<input type="password" class="form-control" id="password" placeholder="Introduceți parola" required>
 						</div>
-						<div class="text-center">
+						<!-- <div class="text-left">
 							<a href="#forgotpassModal" id="fgpsd" class="color-primary" data-dismiss="modal"
-								data-toggle="modal">Mi-am uitat parola</a>
-						</div>
-						<button type="submit" class="btn btn-primary">Log In</button>
-						<span class="m-2 color-text-secondary"> or </span>
+								data-toggle="modal">Mi-am uitat parola</a> 
+						</div> -->
+						<button type="submit" class="btn btn-primary">Loghează-te</button>
+						<span class="m-2 color-text-secondary"> sau </span>
 						<a href="#" class="color-primary" data-toggle="modal" data-dismiss="modal"
-							data-target="#registerModal">Register</a>
+							data-target="#registerModal">Înregistrează-te</a>
 					</form>
 				</div>
 			</div>
@@ -36,6 +36,10 @@
 <script>
 	$('#loginForm').submit(function(event) {
 		event.preventDefault();
+
+		if(!this.checkValidity()) {
+			return;
+		}
 
 		$.ajax({
 			url: endpoint + "login",

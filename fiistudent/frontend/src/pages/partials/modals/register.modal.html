@@ -6,26 +6,26 @@
 
 				<div class="header">
 					<h6 class="over-title">Bun venit pe FiiStudent!</h6>
-					<h2 class="title">Inregistreaza-te</h2>
+					<h2 class="title">Înregistrează-te</h2>
 				</div>
 				<div class="content">
-					<form id="registerForm">
+					<form id="registerForm" class="needs-validation" novalidate>
 						<div class="form-group">
 							<label for="name">Nume</label>
-							<input type="text" class="form-control" id="name" placeholder="Introduceti numele">
+							<input type="text" class="form-control" id="name" placeholder="Introduceți numele" required>
 						</div>
 						<div class="form-group">
 							<label for="name2">Prenume</label>
-							<input type="text" class="form-control" id="name2" placeholder="Introduceti prenumele">
+							<input type="text" class="form-control" id="name2" placeholder="Introduceți prenumele" required>
 						</div>
 						<div class="form-group">
-							<label for="matricol">Numar Matricol</label>
+							<label for="matricol">Număr Matricol</label>
 							<input type="text" class="form-control" id="matricol"
-								placeholder="Introduceti numarul matricol">
+								placeholder="Introduceți numărul matricol" required>
 						</div>
 						<div class="form-group">
-							<label for="stud-group">An/Grupa</label>
-							<select id="stud-group">
+							<label for="stud-group">An/Grupă</label>
+							<select id="stud-group" class="form-control" required>
 								<option value="MOC1">MOC1</option>
 								<option value="MOC2">MOC2</option>
 								<option value="MIS2">MIS2</option>
@@ -93,24 +93,72 @@
 							
 						</div>
 						<div class="form-group">
-							<label for="email">Adresa Email</label>
-							<input type="email" class="form-control" id="email" placeholder="Introduceti email-ul">
+							<label for="email">Adresă Email</label>
+							<input type="email" class="form-control" id="email" placeholder="Introduceți email-ul" required>
+						</div>
+						<div class="form-group">
+							<label for="username">Nume de utilizator</label>
+							<input type="text" class="form-control" id="username" placeholder="Introduceti numele de utilizator" required>
 						</div>
 						<div class="form-group">
 							<label for="password">Parola</label>
-							<input type="password" class="form-control" id="password" placeholder="Introduceti parola">
+							<input type="password" class="form-control" id="password" placeholder="Introduceti parola" required>
 						</div>
 						<div class="form-group">
 							<label for="password">Confirma Parola</label>
-							<input type="password" class="form-control" id="password" placeholder="Confirmati parola">
+							<input type="password" class="form-control" id="password2" placeholder="Confirmati parola" required>
 						</div>
-						<button type="submit" class="btn btn-primary">Inregistreaza-te</button>
+						<button type="submit" class="btn btn-primary">Înregistrează-te</button>
 						<span class="m-2 color-text-secondary"> sau </span>
 						<a href="#" class="color-primary" data-toggle="modal" data-dismiss="modal"
-							data-target="#loginModal">Logheaza-te</a>
+							data-target="#loginModal">Loghează-te</a>
 					</form>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
+<script>
+	$('#registerForm').submit(function(event) {
+		event.preventDefault();
+
+		if(!this.checkValidity()) {
+			return;
+		}
+
+		let auxGroup = $(this).find('#stud-group').val();
+		let studyYear = null, group = null;
+		if(auxGroup[0]=="I"){
+			studyYear = parseInt(auxGroup[1],10);
+			group = auxGroup.substring(2,3);
+		}
+		else if(auxGroup[0]=="M"){
+			studyYear = parseInt(auxGroup[3],10);
+			group = auxGroup.substring(1,2);
+		}
+
+		$.ajax({
+			url: endpoint + "register",
+			data: {
+				registrationNumber: $(this).find('#matricol').val(),
+				firstName: $(this).find('#name').val(),
+				lastName: $(this).find('#name2').val(),
+				email: $(this).find('#email').val(),
+				password: $(this).find('#password').val(),
+				username: $(this).find('#username').val(),
+				confirm_password: $(this).find('#password2').val(),
+				year: studyYear,
+				group: group
+			}
+		}).then(function (data) {
+			if(data.status === "error") {
+				alert(data.errors[0].message);
+			}
+
+			if(data.status === "ok") {
+				$('#registerModal').modal('toggle'); 
+			}
+		});
+	});
+</script>

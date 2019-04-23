@@ -8,16 +8,20 @@
 
 	<script>
 		const title = 'Orar';
-		const subtitle = 'Ce o sa faci azi?';
+		const subtitle = 'Ce vei face astăzi?';
 		const shouldBeLoggedIn = true;
 	</script>
+
 </head>
 
 <body>
 
-	${require('./partials/shared/navbar.html')}
-	${require('./partials/shared/page-header.html')}
-
+	<div class="wrapper d-flex">
+	
+		${require('./partials/sidebar.html')}
+		
+		<div class="d-flex flex-column flex-grow-1"> 
+				${require('./partials/shared/page-header.html')}
 	<div class="container-fluid">
 		<div class="container">
 			<div class="section">
@@ -27,11 +31,11 @@
 							<tr>
 								<th scope="col"></th>
 								<th scope="col">Luni</th>
-								<th scope="col">Marti</th>
+								<th scope="col">Marți</th>
 								<th scope="col">Miercuri</th>
 								<th scope="col">Joi</th>
 								<th scope="col">Vineri</th>
-								<th scope="col">Sambata</th>
+								<th scope="col">Sâmbătă</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -176,7 +180,9 @@
 			</div>
 		</div>
 	</div>
-
+	<!-- am inchis container fluid -->
+	</div>
+</div>
 	${require('./partials/modals/subject-details.modal.html')}
 	${require('./partials/shared/footer.html')}
 </body>
