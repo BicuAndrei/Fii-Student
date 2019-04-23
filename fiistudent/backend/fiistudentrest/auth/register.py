@@ -44,15 +44,16 @@ def register(registrationNumber: hug.types.text, firstName: hug.types.text, last
                 'errors': [{'for': 'confirm_password', 'message': "The password and the confirm password don't match"}]}
     else:
         # create the entity
+
         student = Student(
             registrationNumber=registrationNumber,
             firstName=firstName,
             lastName=lastName,
-            email=email,
+            email=email.lower(),
             username=username,
             password=password,
             year=year,
-            group=group
+            group=group.upper()
         )
 
         # add the entity if it does not exist and return a json response
