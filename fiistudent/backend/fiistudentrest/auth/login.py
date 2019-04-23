@@ -92,7 +92,7 @@ def verify_token(authorization):
 @hug.get()
 def login(email: hug.types.text, password: hug.types.text):
     """ Verify if the user exists in the datastore and return an appropriate json response for every scenario """
-    user = login_function(email, password)
+    user = login_function(email.lower(), password)
     if user != None:
         jwt_token = generate_token(user)
         update_token(jwt_token,user)
