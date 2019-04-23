@@ -1,5 +1,6 @@
 from fiistudentrest.models import Classroom
 from fiistudentrest.models import ScheduleClass
+from fiistudentrest.auth import verify_token
 import hug
 import datetime
 import json
@@ -36,6 +37,18 @@ def get_all_classrooms():
 @hug.get()
 @hug.cli()
 def free_rooms(date: hug.types.text, start_hour: hug.types.number, duration: hug.types.number):
+    authorization = request.get_header('Authorization')
+    if not authorization:
+        return {'status': 'error',
+                'errors': [
+                    {'for': 'request_header', 'message': 'No Authorization field exists in request header'}]}
+
+    user_urlsafe = verify_token(authorization)
+    if not user_urlsafe:
+        return {'status': 'error',
+                'errors': [
+                    {'for': 'request_header', 'message': 'Header contains token, but it is not a valid one.'}]}
+
     day, month, year = (int(x) for x in date.split('.'))
     date_obj = datetime.date(year, month, day)
     day_of_week = date_obj.weekday()

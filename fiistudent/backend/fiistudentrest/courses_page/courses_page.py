@@ -2,6 +2,7 @@ import hug
 import json
 
 from fiistudentrest.models.course import Course
+from fiistudentrest.auth import verify_token
 
 @hug.local()
 @hug.get()

@@ -1,7 +1,7 @@
 import fiistudentrest.mail as Mail
 from fiistudentrest.models import Student
 from fiistudentrest.models import Professor
-from login import verify_token
+from fiistudentrest.auth import verify_token
 
 import hug
 
@@ -26,7 +26,7 @@ def exists(email, user_type):
 @hug.local()
 @hug.get()
 @hug.cli()
-def send_email(request, urlsafe: hug.types.text, subject: hug.types.text, content: hug.types.text):
+def quickmail(request, urlsafe: hug.types.text, subject: hug.types.text, content: hug.types.text):
     """ Sends an email from a student to a professor """
     authorization = request.get_header('Authorization')
     if not authorization:

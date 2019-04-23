@@ -3,7 +3,7 @@ import json
 
 from fiistudentrest.models import ScheduleClass, Student
 from fiistudentrest.models import Course
-
+from fiistudentrest.auth import verify_token
 
 def get_abbreviation(title):
     """Gets the abreviation for the course"""
