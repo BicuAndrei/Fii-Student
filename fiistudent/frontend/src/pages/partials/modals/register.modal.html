@@ -9,23 +9,23 @@
 					<h2 class="title">Înregistrează-te</h2>
 				</div>
 				<div class="content">
-					<form id="registerForm">
+					<form id="registerForm" class="needs-validation" novalidate>
 						<div class="form-group">
 							<label for="name">Nume</label>
-							<input type="text" class="form-control" id="name" placeholder="Introduceți numele">
+							<input type="text" class="form-control" id="name" placeholder="Introduceți numele" required>
 						</div>
 						<div class="form-group">
 							<label for="name2">Prenume</label>
-							<input type="text" class="form-control" id="name2" placeholder="Introduceți prenumele">
+							<input type="text" class="form-control" id="name2" placeholder="Introduceți prenumele" required>
 						</div>
 						<div class="form-group">
 							<label for="matricol">Număr Matricol</label>
 							<input type="text" class="form-control" id="matricol"
-								placeholder="Introduceți numărul matricol">
+								placeholder="Introduceți numărul matricol" required>
 						</div>
 						<div class="form-group">
 							<label for="stud-group">An/Grupă</label>
-							<select id="stud-group" class="form-control">
+							<select id="stud-group" class="form-control" required>
 								<option value="MOC1">MOC1</option>
 								<option value="MOC2">MOC2</option>
 								<option value="MIS2">MIS2</option>
@@ -94,19 +94,19 @@
 						</div>
 						<div class="form-group">
 							<label for="email">Adresă Email</label>
-							<input type="email" class="form-control" id="email" placeholder="Introduceți email-ul">
+							<input type="email" class="form-control" id="email" placeholder="Introduceți email-ul" required>
 						</div>
 						<div class="form-group">
 							<label for="username">Nume de utilizator</label>
-							<input type="text" class="form-control" id="username" placeholder="Introduceti numele de utilizator">
+							<input type="text" class="form-control" id="username" placeholder="Introduceti numele de utilizator" required>
 						</div>
 						<div class="form-group">
 							<label for="password">Parola</label>
-							<input type="password" class="form-control" id="password" placeholder="Introduceti parola">
+							<input type="password" class="form-control" id="password" placeholder="Introduceti parola" required>
 						</div>
 						<div class="form-group">
 							<label for="password">Confirma Parola</label>
-							<input type="password" class="form-control" id="password2" placeholder="Confirmati parola">
+							<input type="password" class="form-control" id="password2" placeholder="Confirmati parola" required>
 						</div>
 						<button type="submit" class="btn btn-primary">Înregistrează-te</button>
 						<span class="m-2 color-text-secondary"> sau </span>
@@ -118,9 +118,14 @@
 		</div>
 	</div>
 </div>
+
 <script>
 	$('#registerForm').submit(function(event) {
 		event.preventDefault();
+
+		if(!this.checkValidity()) {
+			return;
+		}
 
 		let auxGroup = $(this).find('#stud-group').val();
 		let studyYear = null, group = null;
@@ -150,8 +155,9 @@
 			if(data.status === "error") {
 				alert(data.errors[0].message);
 			}
+
 			if(data.status === "ok") {
-				alert('Success!');
+				$('#registerModal').modal('toggle'); 
 			}
 		});
 	});
