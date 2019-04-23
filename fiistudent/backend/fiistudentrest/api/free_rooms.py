@@ -49,7 +49,7 @@ def free_rooms(request, date: hug.types.text, start_hour: hug.types.number, dura
                 'errors': [
                     {'for': 'request_header', 'message': 'Header contains token, but it is not a valid one.'}]}
 
-    day, month, year = (int(x) for x in date.split('.'))
+    month, day, year = (int(x) for x in date.split('/'))
     date_obj = datetime.date(year, month, day)
     day_of_week = date_obj.weekday()
 
