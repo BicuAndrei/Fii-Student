@@ -48,6 +48,7 @@
 				alert(data.errors[0].message);
 			} else {
 				sessionStorage.setItem("accessToken", data.token);
+				window.location.reload();
 			}
 		});
 	});
