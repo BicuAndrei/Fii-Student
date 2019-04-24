@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="d-flex">
+        <nav id="sidebar">
+    <div class="sidebar-header">
+        <img class=" m-auto" src="src/assets/img/user.jpg" alt="user">
+        <p class="text-center">Tuxy Pinguinescool</p>
+        <button class="d-block m-auto"> <i class="fas fa-sign-out-alt d-block m-auto"></i> </button>
+    </div>
+    <ul class="list-unstyled components">
+        <p>Dashboard</p>
+        <li class="pl-2">
+                <i class="fas fa-search d-inline-block"></i>
+            <a class="d-inline-block" href="free-rooms.html">Cauta o sala</a>
+        </li>
+        <li class="pl-2">
+                <i class="fas fa-book d-inline-block"></i>
+            <a class="d-inline-block" href="subjects.html">Materii</a>
+        </li>
+        <li class="pl-2">
+                <i class="fas fa-chalkboard-teacher d-inline-block mr-1"></i>
+            <a class="d-inline-block" href="teachers.html">Profesori</a>
+        </li>
+        <li class="pl-2">
+                <i class="fas fa-calendar-alt d-inline-block"></i>
+            <a class="d-inline-block" href="schedule.html"> Orar </a>
+        </li>
+        <li class="pl-2">
+                <i class="fas fa-cog d-inline-block"></i>
+            <a class="d-inline-block" href="settings.html"> Setari </a>
+        </li>
+        
+
+    </ul>
+</nav>
+        <div class="page ml-3 mt-3 mb-3 flex-column flex-grow-1">
+            <div class="header">
+                <h3>Setari</h3>
+            </div>
+            <div class="content d-flex flex-row">
+                <div class="group border w-25">
+                    <form action=" " method="GET" class="p-2">
+                        <h5> Nu-ti mai plac colegii? Nu mai sta pe ganduri, schimba grupa! </h5>
+                        <label>Semianul </label>
+                        <select>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                        </select>
+                        <br>
+                        <label>Nr-ul grupei</label>
+                        <select>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                        </select>
+                        <br>
+                        <input class="btn btn-primary" type="submit" value="Trimite cererea">
+                    </form>
+                </div>
+                <div class="changePass ml-5 border w-50 p-3">
+                    <h5>Schimba parola</h5>
+                    <form action=" " method="GET" class="p-2">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Adresa de e-mail</label>
+                            <input type="email" class="form-control " id="exampleInputEmail1"
+                                placeholder="Introdu parola de e-mail">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Parola actuala</label>
+                            <input type="password" class="form-control " id="exampleInputPassword1"
+                                placeholder="Introdu parola pe care o ai acum">
+                        </div>
+                        <div class="form-group">
+                            <label for="Password2">Parola noua</label>
+                            <input type="password" class="form-control " id="Password2"
+                                placeholder="Introdu parola noua">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid  background-dark align-content-sm-center pageFooter">
+    <div
+        class="d-flex justify-content-center align-content-center align-content-md-center align-items-start flex-md-column flex-xs-column flex-lg-row flex-sm-column justify-content-md-center flex-wrap m-auto">
+        <div class="p-1 m-2 ml-lg-5 pl-lg-5 flex-fill flex-lg-fill flex-xl-fill  justify-content-sm-start ml-sm-0 pl-sm-0">
+            <img src="src/assets/img/logoEditat2.png" alt="logo">
+            <p class="ml-2"> Făcut de studenți pentru studenți </p>
+        </div>
+        <div class="p-1 m-2 mt-4 flex-fill flex-lg-fill flex-xl-fill" >
+            <h5 class="text-left "><strong>Link-uri utile</strong></h5>
+            <ul>
+                <li class="text-left"><a href="#"> Despre noi </a></li>
+                <li class="text-left"><a href="#"> Contactează-ne </a></li>
+            </ul>
+        </div>
+        <div class="p-1 m-2 mt-4 flex-fill flex-lg-fill flex-xl-fill" >
+            <h5 class="text-left"><strong> fiistudent.ro </strong></h5>
+            <ul>
+                <li class="text-left"><a href="#"> Termeni și condiții</a></li>
+                <li class="text-left"><a href="#"> Prelucrarea datelor cu caracter personal </a></li>
+                <li class="text-left"><a href="#"> Politică de utilizare Cookie-uri </a></li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class=" p-4 d-flex flex-wrap  justify-content-between footer2">
+        <div class="media mr-2 pr-2">
+            <div class="media-left mr-3 mt-1">
+                 <i class="fas fa-map-marker-alt"> </i>
+            </div>
+            <div class="media-body">
+                <h5>Iași, România</h5>
+                <p>Online Support</p>
+            </div>
+        </div>
+
+        <div class="media mr-2 pr-2">
+            <div class="media-left mr-3 mt-1">
+                <i class="fas fa-mobile-alt"></i>
+            </div>
+            <div class="media-body">
+                <h5>0722 222 222</h5>
+                <p>Administrator</p>
+            </div>
+        </div>
+
+        <div class="media">
+            <div class="media-left mr-3 mt-1">
+                <i class="fas fa-envelope-open-text"></i>
+            </div>
+            <div class="media-body">
+                <h5>fiistudent@info.uaic.ro</h5>
+                <p>Online Support</p>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="footer_bottom_two">
+        <div class="container">
+            <div class="d-flex justify-content-between">
+                <div class="p-2 m-2">
+                    <p>© 2019 All Rights Reserved FiiStudent B3</p>
+                </div>
+
+
+                <div class="social_footer">
+                    <ul class="d-flex flex-lg-row  flex-wrap">
+                        <li class="follow_text p-2 m-2">Urmărește-ne</li>
+                        <li class="p-2 m-2 "><a target="_blank" href="#"><i class="fab fa-facebook"></i></a></li>
+                        <li class="p-2 m-2 "><a target="_blank" href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li class="p-2 m-2 "><a target="_blank" href="#"><i class="fab fa-instagram"></i></a></li>
+                        <li class="p-2 m-2 "><a target="_blank" href="#"><i class="fab fa-git"></i></a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="main.53c85edf66d4ec8b0432.js"></script></body>
+
+</html>

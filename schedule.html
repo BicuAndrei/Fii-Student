@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" crossorigin="anonymous" />
+<script src="https://code.jquery.com/jquery-3.4.0.min.js"
+    integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+
+<script>
+    const endpoint = "https://develop-dot-fii-student.appspot.com/";
+</script>
+
+<script>
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            var forms = document.getElementsByClassName('needs-validation');
+
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    
+                    form.classList.add('was-validated');
+
+                }, false);
+            });
+        }, false);
+    })();
+</script>
+
+    <title>FII Student - Orar</title>
+
+    <script>
+        const title = 'Orar';
+        const subtitle = 'Ce vei face astăzi?';
+        const shouldBeLoggedIn = true;
+    </script>
+
+</head>
+
+<body>
+
+    <div class="wrapper d-flex">
+    
+        <nav id="sidebar">
+    <div class="sidebar-header">
+        <img class=" m-auto" src="src/assets/img/user.jpg" alt="user">
+        <p class="text-center">Tuxy Pinguinescool</p>
+        <button class="d-block m-auto"> <i class="fas fa-sign-out-alt d-block m-auto"></i> </button>
+    </div>
+    <ul class="list-unstyled components">
+        <p>Dashboard</p>
+        <li class="pl-2">
+                <i class="fas fa-search d-inline-block"></i>
+            <a class="d-inline-block" href="free-rooms.html">Cauta o sala</a>
+        </li>
+        <li class="pl-2">
+                <i class="fas fa-book d-inline-block"></i>
+            <a class="d-inline-block" href="subjects.html">Materii</a>
+        </li>
+        <li class="pl-2">
+                <i class="fas fa-chalkboard-teacher d-inline-block mr-1"></i>
+            <a class="d-inline-block" href="teachers.html">Profesori</a>
+        </li>
+        <li class="pl-2">
+                <i class="fas fa-calendar-alt d-inline-block"></i>
+            <a class="d-inline-block" href="schedule.html"> Orar </a>
+        </li>
+        <li class="pl-2">
+                <i class="fas fa-cog d-inline-block"></i>
+            <a class="d-inline-block" href="settings.html"> Setari </a>
+        </li>
+        
+
+    </ul>
+</nav>
+        
+        <div class="d-flex flex-column flex-grow-1"> 
+                <script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('header-title').innerText = title;
+        document.getElementById('header-subtitle').innerText = subtitle;
+    }, false);
+
+</script>
+
+<div class="container-fluid page-header h-50 d-flex background-light-grey">
+    <h2 class="title" id="header-title"></h2>
+    <h4 class="subtitle" id="header-subtitle"></h4>
+</div>
+    <div class="container-fluid">
+        <div class="container">
+            <div class="section">
+                <div class="content">
+                    <table class="table schedule">
+                        <thead>
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col">Luni</th>
+                                <th scope="col">Marți</th>
+                                <th scope="col">Miercuri</th>
+                                <th scope="col">Joi</th>
+                                <th scope="col">Vineri</th>
+                                <th scope="col">Sâmbătă</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">8:00 - 10:00</th>
+                                <td>
+                                    <div class="object" id="firstCourseMonday"></div>
+                                </td>
+                                <td>
+                                    <div class="object" id="firstCourseTuesday"></div>
+                                </td>
+                                <td>
+                                    <div class="object" id="firstCourseWednesday">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="object" id="firstCourseThursday"></div>
+                                </td>
+                                <td>
+                                    <div class="object" id="firstCourseFriday"></div>
+                                </td>
+                                <td>
+                                    <div class="object" id="firstCourseSaturday"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">10:00 - 12:00</th>
+                                <td>
+                                    <div class="object" id=secondCourseMonday"></div>
+                                </td>
+                                <td>
+                                    <div class="object" id="secondCourseTuesday"></div>
+                                </td>
+                                <td>
+                                    <div class="object" id="secondCourseWednesday"></div>
+                                </td>
+                                <td>
+                                    <div class="object" id="secondCourseThursday"></div>
+                                </td>
+                                <td>
+                                    <div class="object" id="secondCourseFriday">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="object" id="secondCourseSaturday"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">12:00 - 14:00</th>
+                                <td>
+                                    <div class="object" id="thirdCourseMonday"></div>
+                                </td>
+                                <td>
+                                    <div class="object" id="thirdCourseTuesday"></div>
+                                </td>
+                                <td>
+                                    <div class="object" id="thirdCourseWednesday">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="object" id="thirdCourseThursday"></div>
+                                </td>
+                                <td>
+                                    <div class="object" id="thirdCourseFriday"></div>
+                                </td>
+                                <td>
+                                    <div class="object" id="thirdCourseSaturday"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">14:00 - 16:00</th>
+                                <td>
+                                    <div class="object" id="fourthCourseMonday">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="object"></div>
+                                </td>
+                                <td>
+                                    <div class="object" id="fourthCourseTuesday">
+                                        </div>
+                                    <div class="object" id="fourthCourseWednesday">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="object" id="fourthCourseThursday">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="object" id="fourthCourseFriday"></div>
+                                </td>
+                                <td>
+                                    <div class="object" id="fourthCourseSaturday"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">16:00 - 18:00</th>
+                                <td>
+                                    <div class="object" id="fifthCourseMonday"></div>
+                                </td>
+                                <td>
+                                    <div class="object" id="fifthCourseTuesday"></div>
+                                </td>
+                                <td>
+                                    <div class="object" id="fifthCourseWednesday"></div>
+                                </td>
+                                <td>
+                                    <div class="object" id="fifthCourseThursday"></div>
+                                </td>
+                                <td>
+                                    <div class="object" id="fifthCourseFriday"></div>
+                                </td>
+                                <td>
+                                    <div class="object" id="fifthCourseSaturday"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">18:00 - 20:00</th>
+                                <td>
+                                    <div class="object" id="sixthCourseMonday"></div>
+                                </td>
+                                <td>
+                                    <div class="object" id="sixthCourseTuesday"></div>
+                                </td>
+                                <td>
+                                    <div class="object" id="sixthCourseWednesday"></div>
+                                </td>
+                                <td>
+                                    <div class="object" id="sixthCourseThursday"></div>
+                                </td>
+                                <td>
+                                    <div class="object" id="sixthCourseFriday"></div>
+                                </td>
+                                <td>
+                                    <div class="object" id="sixthCourseSaturday"></div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- am inchis container fluid -->
+    </div>
+</div>
+    <div class="modal sign-modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="detailsModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+
+                <div class="header">
+                    <h6 class="over-title">Detalii despre</h6>
+                    <h2 class="title"></h2>
+                </div>
+                <div class="content text-center">
+                    <div class="text-black-50 text-left"><small>NUME PROFESOR</small></div>
+                    <h5 class="text-primary text-left" id="profs-name"></h5>
+                    <hr class="my-3">
+                    <div class="text-black-50 text-left"><small>CONTACT PROFESOR</small></div>
+                    <h5 class="text-primary text-left" id="profs-contact"></h5>
+                    <hr class="my-3">
+                    <div class="text-black-50 text-left"><small>SITE CURS</small></div>
+                    <h5 class="text-primary text-left" id="course-site"></h5>
+                    <hr class="my-3">
+                    <div class="text-black-50 text-left"><small>NUMĂR CREDITE</small></div>
+                    <h5 class="text-primary text-left">6</h5>
+                    <hr class="my-3">
+                    <div class="text-black-50 text-left"><small>LINK-URI UTILE</small></div>
+                    <h5 class="text-primary text-left" id="util-link"></h5>
+                    <hr class="my-3">
+
+                    <a href="#" class="btn btn-primary" data-toggle="modal" data-dismiss="modal"
+                            data-target="#quickEmailModal">Email</a>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+        $.ajax({
+            url: endpoint + "courses",
+            beforeSend: function (xhr) {
+                    xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
+                },
+        }).then(function(response){
+            let doc = JSON.parse(response);
+            let anul2 = doc[1]['subjects'];
+
+            $.ajax({
+                url: endpoint + "professors",
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
+                },
+            }).then(function(data){
+
+                let profs = JSON.parse(data);
+                
+                $("#detailsModal").mouseenter(function(){
+                //console.log("enter modal");
+                $("h2.title").text(anul2[0].name);
+                $("#course-site").html("<a href=\""+anul2[0].link+"\">Click aici!</a>");
+                $("#util-link").html("<a href=\""+anul2[0].fisa+"\">Click aici!</a>");
+                $("#profs-name").text(profs[1].name);
+                $("#profs-contact").html("<a href=\""+profs[1].link+"\">Click aici!</a>")
+            
+                });
+            });
+        });
+    });
+</script>
+
+<!--Modal Quick Email-->
+<div class="modal sign-modal fade" id="quickEmailModal" tabindex="-1" role="dialog"
+    aria-labelledby="qucikEmailModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+
+                <div class="header">
+                    <h6 class="over-title">Trimite email</h6>
+                </div>
+                <div class="content">
+                    <form id="quick-emailFrom" class="needs-validation" novalidate>
+                        <div class="form-group">
+                            <!-- <label for="recipient">Destinatar</label> -->
+                            <input type="hidden" id="id-teacher" value="" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subiect</label>
+                            <input type="text" class="form-control" id="subject" placeholder="Introduceți subiectul" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mesaj</label>
+                            <textarea type="text" id="message" name="message" rows="4" class="form-control"
+                                placeholder="Indroduceți mesajul..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Trimite</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+        $('#quick-emailFrom').submit(function(event) {
+            event.preventDefault();
+    
+            if(!this.checkValidity()) {
+                return;
+            }
+
+            $.ajax({
+                url: endpoint + "quickmail",
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
+                },
+                data: {
+                    urlsafe: $(this).find('#id-teacher').val(),
+                    subject: $(this).find('#subject').val(),
+                    content: $(this).find('#message').val()
+                }
+            }).then(function (data) {
+                if(data.status === "error") {
+                    alert(data.errors[0].message);
+                }
+    
+                if(data.status === "ok") {
+                    $('#quickEmailModal').modal('toggle'); 
+                }
+
+                $('#id-teacher').val('');
+                $('#subject').val('');
+                $('#message').val('');
+            });
+        });
+
+        function sendEmail(teacherId) {
+            $('#id-teacher').val(teacherId);
+        }
+</script>
+
+    <div class="container-fluid  background-dark align-content-sm-center pageFooter">
+    <div
+        class="d-flex justify-content-center align-content-center align-content-md-center align-items-start flex-md-column flex-xs-column flex-lg-row flex-sm-column justify-content-md-center flex-wrap m-auto">
+        <div class="p-1 m-2 ml-lg-5 pl-lg-5 flex-fill flex-lg-fill flex-xl-fill  justify-content-sm-start ml-sm-0 pl-sm-0">
+            <img src="src/assets/img/logoEditat2.png" alt="logo">
+            <p class="ml-2"> Făcut de studenți pentru studenți </p>
+        </div>
+        <div class="p-1 m-2 mt-4 flex-fill flex-lg-fill flex-xl-fill" >
+            <h5 class="text-left "><strong>Link-uri utile</strong></h5>
+            <ul>
+                <li class="text-left"><a href="#"> Despre noi </a></li>
+                <li class="text-left"><a href="#"> Contactează-ne </a></li>
+            </ul>
+        </div>
+        <div class="p-1 m-2 mt-4 flex-fill flex-lg-fill flex-xl-fill" >
+            <h5 class="text-left"><strong> fiistudent.ro </strong></h5>
+            <ul>
+                <li class="text-left"><a href="#"> Termeni și condiții</a></li>
+                <li class="text-left"><a href="#"> Prelucrarea datelor cu caracter personal </a></li>
+                <li class="text-left"><a href="#"> Politică de utilizare Cookie-uri </a></li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class=" p-4 d-flex flex-wrap  justify-content-between footer2">
+        <div class="media mr-2 pr-2">
+            <div class="media-left mr-3 mt-1">
+                 <i class="fas fa-map-marker-alt"> </i>
+            </div>
+            <div class="media-body">
+                <h5>Iași, România</h5>
+                <p>Online Support</p>
+            </div>
+        </div>
+
+        <div class="media mr-2 pr-2">
+            <div class="media-left mr-3 mt-1">
+                <i class="fas fa-mobile-alt"></i>
+            </div>
+            <div class="media-body">
+                <h5>0722 222 222</h5>
+                <p>Administrator</p>
+            </div>
+        </div>
+
+        <div class="media">
+            <div class="media-left mr-3 mt-1">
+                <i class="fas fa-envelope-open-text"></i>
+            </div>
+            <div class="media-body">
+                <h5>fiistudent@info.uaic.ro</h5>
+                <p>Online Support</p>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="footer_bottom_two">
+        <div class="container">
+            <div class="d-flex justify-content-between">
+                <div class="p-2 m-2">
+                    <p>© 2019 All Rights Reserved FiiStudent B3</p>
+                </div>
+
+
+                <div class="social_footer">
+                    <ul class="d-flex flex-lg-row  flex-wrap">
+                        <li class="follow_text p-2 m-2">Urmărește-ne</li>
+                        <li class="p-2 m-2 "><a target="_blank" href="#"><i class="fab fa-facebook"></i></a></li>
+                        <li class="p-2 m-2 "><a target="_blank" href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li class="p-2 m-2 "><a target="_blank" href="#"><i class="fab fa-instagram"></i></a></li>
+                        <li class="p-2 m-2 "><a target="_blank" href="#"><i class="fab fa-git"></i></a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="main.53c85edf66d4ec8b0432.js"></script></body>
+<script>
+
+    $(document).ready(function () {
+        $.ajax({
+            url: endpoint + "schedule",
+            type: "GET",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
+            },
+            success: function (result) {
+                var json = result;
+                obj = JSON.parse(json);
+                console.log(obj);
+                if (obj.length == 0) {
+                    alert('Nu s-a putut prelua orarul grupei tale.');
+
+                }
+                else {
+                    for (i = 0; i < obj.length; i++)
+                    {
+                        switch(obj[i].startHour){
+                            case 8:
+                                switch(obj[i].day){
+                                    case "Monday":
+                                        $("#firstCourseMonday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+                                        break;
+                                    case "Tuesday":
+                                        $("#firstCourseTuesday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+                                        break;
+                                    case "Wednesday":
+                                        $("#firstCourseWednesday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+                                        break;
+                                    case "Thursday":
+                                        $("#firstCourseThursday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+                                        break;
+                                    case "Friday":
+                                        $("#firstCourseFriday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+                                        break;
+                                    case "Saturday":
+                                        $("#firstCourseSaturday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+                                        break;
+
+
+                                }
+                                break;
+                            case 10:
+                                switch(obj.day[i]){
+                            case "Monday":
+                                $("#secondCourseMonday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+                                break;
+                            case "Tuesday":
+                                $("#secondCourseTuesday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+                                break;
+                            case "Wednesday":
+                                $("#secondCourseWednesday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+                                break;
+                            case "Thursday":
+                                $("#secondCourseThursday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+                                break;
+                            case "Friday":
+                                $("#secondCourseFriday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+                                break;
+                            case "Saturday":
+                                $("#secondCourseSaturday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+                                break;
+                                }
+                                break;
+                            case 12:
+                                switch(obj.day[i]){
+                                    case "Monday":
+                                        $("#thirdCourseMonday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+                                        break;
+                                    case "Tuesday":
+                                        $("#thirdCourseTuesday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+                                        break;
+                                    case "Wednesday":
+                                        $("#thirdCourseWednesday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+                                        break;
+                                    case "Thursday":
+                                        $("#thirdCourseThursday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+                                        break;
+                                    case "Friday":
+                                        $("#thirdCourseFriday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+                                        break;
+                                    case "Saturday":
+                                        $("#thirdCourseSaturday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+                                        break;
+                                }
+                                break;
+                            case 14:
+                                switch(obj.day[i]){
+                                    case "Monday":
+                                        $("#fourthCourseMonday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+                                        break;
+                                    case "Tuesday":
+                                        $("#fourthCourseTuesday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+                                        break;
+                                    case "Wednesday":
+                                        $("#fourthCourseWednesday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+                                        break;
+                                    case "Thursday":
+                                        $("#fourthCourseThursday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+                                        break;
+                                    case "Friday":
+                                        $("#fourthCourseFriday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+                                        break;
+                                    case "Saturday":
+                                        $("#fourthCourseSaturday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+                                        break;
+                                }
+                                break;
+                            case 16:
+                                switch(obj.day[i]){
+                                    case "Monday":
+                                        $("#fifthCourseMonday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+                                        break;
+                                    case "Tuesday":
+                                        $("#fifthCourseTuesday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+                                        break;
+                                    case "Wednesday":
+                                        $("#fifthCourseWednesday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+                                        break;
+                                    case "Thursday":
+                                        $("#fifthCourseThursday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+                                        break;
+                                    case "Friday":
+                                        $("#fifthCourseFriday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+                                        break;
+                                    case "Saturday":
+                                        $("#fifthCourseSaturday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+                                        break;
+                                }
+                                break;
+                            case 18:
+                                switch(obj.day[i]){
+                                    case "Monday":
+                                        $("#sixthCourseMonday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+                                        break;
+                                    case "Tuesday":
+                                        $("#sixthCourseTuesday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+                                        break;
+                                    case "Wednesday":
+                                        $("#sixthCourseWednesday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+                                        break;
+                                    case "Thursday":
+                                        $("#sixthCourseThursday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+                                        break;
+                                    case "Friday":
+                                        $("#sixthCourseFriday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+                                        break;
+                                    case "Saturday":
+                                        $("#sixthCourseSaturday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+                                        break;
+                                }
+                                break;
+                        }
+                    }
+                }
+            },
+            error: function () {
+
+                alert('Oh-oh! Ceva nu a mers bine!')
+            }
+        })
+    })
+</script>
+</html>
