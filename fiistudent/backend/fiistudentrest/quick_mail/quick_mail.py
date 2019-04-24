@@ -57,4 +57,4 @@ def quickmail(request, urlsafe: hug.types.text, subject: hug.types.text, content
     else:
         return {'status': 'error', 'errors': [
             {'for': 'email_student', 'message': 'We could not find the student with the email({}).'.format(from_email)},
-            {'for': 'email_professor', 'message': 'We could not find the professor with the email({}).'.format(to_email)}]}
+            {'for': 'email_professor', 'message': 'We could not find the professor with the email({}).'.format(professor.email)}]}
