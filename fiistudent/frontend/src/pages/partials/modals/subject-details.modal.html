@@ -6,23 +6,23 @@
 
 				<div class="header">
 					<h6 class="over-title">Detalii despre</h6>
-					<h2 class="title">--Materie--</h2>
+					<h2 class="title"></h2>
 				</div>
 				<div class="content text-center">
 					<div class="text-black-50 text-left"><small>NUME PROFESOR</small></div>
-					<h5 class="text-primary text-left">Nume Prenume</h5>
+					<h5 class="text-primary text-left" id="profs-name"></h5>
 					<hr class="my-3">
 					<div class="text-black-50 text-left"><small>CONTACT PROFESOR</small></div>
-					<h5 class="text-primary text-left">profesor@profs.info.uaic.ro</h5>
+					<h5 class="text-primary text-left" id="profs-contact"></h5>
 					<hr class="my-3">
-					<div class="text-black-50 text-left"><small>SITE</small></div>
-					<h5 class="text-primary text-left"><a href="">www.profesor.info.uaic.ro</a></h5>
+					<div class="text-black-50 text-left"><small>SITE CURS</small></div>
+					<h5 class="text-primary text-left" id="course-site"></h5>
 					<hr class="my-3">
 					<div class="text-black-50 text-left"><small>NUMĂR CREDITE</small></div>
 					<h5 class="text-primary text-left">6</h5>
 					<hr class="my-3">
 					<div class="text-black-50 text-left"><small>LINK-URI UTILE</small></div>
-					<h5 class="text-primary text-left"><a href="">www.google.ro</a></h5>
+					<h5 class="text-primary text-left" id="util-link"></h5>
 					<hr class="my-3">
 
 					<a href="#" class="btn btn-primary" data-toggle="modal" data-dismiss="modal"
@@ -33,5 +33,39 @@
 		</div>
 	</div>
 </div>
+
+<script>
+	$(document).ready(function(){
+		$.ajax({
+			url: endpoint + "courses",
+			beforeSend: function (xhr) {
+					xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
+				},
+		}).then(function(response){
+			let doc = JSON.parse(response);
+			let anul2 = doc[1]['subjects'];
+
+			$.ajax({
+				url: endpoint + "professors",
+				beforeSend: function (xhr) {
+					xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
+				},
+			}).then(function(data){
+
+				let profs = JSON.parse(data);
+				
+				$("#detailsModal").mouseenter(function(){
+				//console.log("enter modal");
+				$("h2.title").text(anul2[0].name);
+				$("#course-site").html("<a href=\""+anul2[0].link+"\">Click aici!</a>");
+				$("#util-link").html("<a href=\""+anul2[0].fisa+"\">Click aici!</a>");
+				$("#profs-name").text(profs[1].name);
+				$("#profs-contact").html("<a href=\""+profs[1].link+"\">Click aici!</a>")
+			
+				});
+			});
+		});
+	});
+</script>
 
 ${require('../modals/quick-email.modal.html')}
