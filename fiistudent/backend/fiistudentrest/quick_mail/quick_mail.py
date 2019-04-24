@@ -40,7 +40,11 @@ def quickmail(request, urlsafe: hug.types.text, subject: hug.types.text, content
                 'errors': [
                     {'for': 'request_header', 'message': 'Header contains token, but it is not a valid one.'}]}
 
-    from_email = Student.get(user_urlsafe)
+    student = Student.get(user_urlsafe)
+    if not student:
+        from_email = ""
+    else: 
+        from_email = student.email
 
     professor = Professor.get(urlsafe)
     if exists(from_email, Student) == True and exists(professor.email, Professor) == True:
