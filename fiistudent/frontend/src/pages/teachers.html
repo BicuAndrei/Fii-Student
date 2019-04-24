@@ -21,155 +21,12 @@
 
 	<div class="container-fluid">
 		<div class="container">
-
-			<div class="section text-left">
-
+			<div class="section text-left" id="teachers-list">
 				<div class="row">
 					<div class="col-sm-12">
-						<hr>
-						</hr>
 						<h1 class="title mb-0 ">Profesori</h1>
 						<hr>
 						</hr>
-					</div>
-
-				</div>
-				<div class="row">
-					<div class="col-sm-9 ">
-						<h4 class="secondary-title">
-							Dr. Lenuța Alboaie, Conferențiar universitar
-						</h4>
-						<p>
-							<strong>Birou: </strong>C310
-						</p>
-						<p>
-							<strong>Adresă Web: </strong>
-							<a href="http:profs.info.uaic.ro/~adria" class="external"
-								target="_blank">https://profs.info.uaic.ro/~adria</a>
-						</p>
-						<p>
-							<strong>
-								Materie predată:
-							</strong>
-							Rețele de calculatoare
-						</p>
-						<p>
-							<strong>
-								Email:
-							</strong>
-							"adria@info.uaic.ro"
-						</p>
-					</div>
-					<div class="col-sm-3">
-						<a href="#" class="btn btn-info" role="button" data-toggle="modal"
-							data-target="#quickEmailModal">Email</a>
-					</div>
-				</div>
-				<hr>
-				</hr>
-				<div class="row">
-					<div class="col-sm-9">
-						<h4 class="secondary-title">
-							Dr. Andreea Arusoaie, Lector universitar
-						</h4>
-						<p>
-							<strong>Birou: </strong>C307
-						</p>
-						<p>
-							<strong>
-								Adresă Web:
-							</strong>
-							<a href="http:profs.info.uaic.ro/~andreea.arusoaie" class="external"
-								target="_blank">https://profs.info.uaic.ro/~andreea.arusoaie</a>
-						</p>
-						<p>
-							<strong>
-								Materie predată:
-							</strong>
-							Matematică
-						</p>
-						<p>
-							<strong>
-								Email:
-							</strong>
-							"andreea.arusoaie@info.uaic.ro"
-						</p>
-					</div>
-					<div class="col-sm-3">
-						<a href="#" class="btn btn-info" role="button" data-toggle="modal"
-							data-target="#quickEmailModal">Email</a>
-					</div>
-				</div>
-				<hr>
-				</hr>
-				<div class="row">
-					<div class="col-sm-9">
-						<h4 class="secondary-title">
-							Dr. Andrei Arusoaie, Conferențiar universitar
-						</h4>
-						<p>
-							<strong>Birou: </strong>C414
-						</p>
-						<p>
-							<strong>
-								Adresă Web:
-							</strong>
-							<a href="http:profs.info.uaic.ro/~arusoaie.andrei" class="external"
-								target="_blank">https://profs.info.uaic.ro/~arusoaie.andrei</a>
-						</p>
-						<p>
-							<strong>
-								Materie predată:
-							</strong>
-							Logică, PLP
-						</p>
-						<p>
-							<strong>
-								Email:
-							</strong>
-							"andrei.arusoaie@info.uaic.ro"
-						</p>
-					</div>
-					<div class="col-sm-3">
-						<a href="#" class="btn btn-info" role="button" data-toggle="modal"
-							data-target="#quickEmailModal">Email</a>
-					</div>
-				</div>
-
-				<hr>
-				</hr>
-
-				<div class="row">
-					<div class="col-sm-9">
-						<h4 class="secondary-title">
-							Dr. Mihaela Elena Breabăn, Conferențiar universitar
-						</h4>
-						<p>
-							<strong>Birou: </strong>C416
-						</p>
-						<p>
-							<strong>
-								Adresă Web:
-							</strong>
-							<a href="http:profs.info.uaic.ro/~pmihaela" class="external"
-								target="_blank">https://profs.info.uaic.ro/~pmihaela</a>
-						</p>
-						<p>
-							<strong>
-								Materie predată:
-							</strong>
-							Baze de date, Algoritmi genetici
-						</p>
-						<p>
-							<strong>
-								Email:
-							</strong>
-							"pmihaela@info.uaic.ro"
-						</p>
-					</div>
-					<div class="col-sm-3">
-						<a href="#" class="btn btn-info" role="button" data-toggle="modal"
-							data-target="#quickEmailModal">Email</a>
 					</div>
 				</div>
 			</div>
@@ -177,6 +34,61 @@
 	</div>
 
 	${require('./partials/shared/footer.html')}
+
+	<script>
+		$(document).ready(function () {
+			$.ajax({
+				url: endpoint + "professors",
+				type: "GET",
+				contentType: "application/json; charset=utf-8",
+				dataType: "json",
+				beforeSend: function (xhr) {
+					xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
+				},
+				success: function (result) {
+					var list = JSON.parse(result);
+
+					//$('#teachers-list').html('');
+					console.log(list)
+					list.forEach(teacher => {
+						var title = "";
+						if(teacher.title) {
+							title = ", " + teacher.title;
+						}
+
+						$('#teachers-list').append(
+							"<div class='row'>" +
+							"	<div class='col-sm-9'>" +
+							"		<h4 class='secondary-title'>" +
+							"			"+teacher.name + title +
+							"		</h4>" +
+							"		<p>" +
+							"			<strong>Birou: </strong>" + teacher.office +
+							"		</p>" +
+							"		<p>" +
+							"			<strong>Adresă Web: </strong>" +
+							"			<a href='" + teacher.link + "' class='external' target='_blank'>"+teacher.link+"</a>" +
+							"		</p>" +
+							"		<p>" +
+							"			<strong>" +
+							"				Materie predată:" +
+							"			</strong>" +
+							"			Rețele de calculatoare" +
+							"		</p>" +
+							"	</div>" +
+							"	<div class='col-sm-3'>" +
+							"		<a href='javascript:void(0)' class='btn btn-info' onclick='sendEmail(\""+teacher.id+"\")' role='button' data-toggle='modal' data-target='#quickEmailModal'>Email</a>" +
+							"	</div>" +
+							"</div>" +
+							"<hr>");
+					}); 
+				},
+				error: function () {
+					alert('Oh-oh! Ceva nu a mers bine!')
+				}
+			})
+		})
+	</script>
 </body>
 
 </html>
