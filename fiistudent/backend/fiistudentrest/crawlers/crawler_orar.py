@@ -1,11 +1,10 @@
 import hashlib
-import ndb_orm as ndb
 import os
 from shutil import rmtree
 
 import requests
 from bs4 import BeautifulSoup
-from fiistudentrest.models import Classroom, Course, ScheduleClass
+from fiistudentrest.models import Classroom, Course, ScheduleClass, Professor, Exam
 
 folderName = "orar_FII"
 
@@ -167,7 +166,7 @@ def parse_row_exams(row, day):
         profesori.append(ref.text.replace("\n", "").replace("\r", ""))
     sala = []
     for ref in tds[6].find_all("a"):
-        sala.append(ref.text.replace("\n","").replace("\r","").replace(" ",""))
+        sala.append(ref.text.replace("\n", "").replace("\r", "").replace(" ", ""))
     return [day, ore, grupe, materie, tip, profesori, sala]
 
 
@@ -333,13 +332,12 @@ def empty_entity():
 
 
 def create_class(day, group, course, hour, sala):
-
     scheduleclass = ScheduleClass()
 
     ccourse = Course()
     query = ccourse.query()
-    if course=='Data Mining':
-        course='Data mining'
+    if course == 'Data Mining':
+        course = 'Data mining'
     query.add_filter('title', '=', course)
     querys = query.fetch()
     for result in querys:
@@ -359,29 +357,135 @@ def create_class(day, group, course, hour, sala):
             break
 
     scheduleclass.dayOfTheWeek = day
-    scheduleclass.startHour=int(hour.split('-')[0].split(':')[0])
-    scheduleclass.endHour=int(hour.split('-')[1].split(':')[0])
-    scheduleclass.group=group
+    scheduleclass.startHour = int(hour.split('-')[0].split(':')[0])
+    scheduleclass.endHour = int(hour.split('-')[1].split(':')[0])
+    scheduleclass.group = group
     scheduleclass.put()
     print('Schedule class added')
 
 
-def populate_datastore():
+def add_classes_to_datastore():
     global groups_schedule
     empty_entity()
     for group in groups_schedule:
         for day in groups_schedule[group]:
             for course in groups_schedule[group][day]:
-                create_class(day,group,course['materie'],course['ora'],course['sala'])
-                #print(course['materie'])
+                create_class(day, group, course['materie'], course['ora'], course['sala'])
+                # print(course['materie'])
+
+
+def get_exam_info(exam_date):
+    for group in exams:
+        for exam in exams[group]:
+            if exam['data'] == exam_date:
+                return exam
+    return False
+
+
+def get_room_key(room):
+    classroom = Classroom()
+    query = classroom.query()
+    query.add_filter('identifier', '=', room)
+    querys = query.fetch()
+    for found in querys:
+        return found.key
+    return False
+
+
+def get_prof_key(name):
+    if "Tiplea" in name:
+        last_name = name[0]
+        first_name = " ".join(x for x in name[1:])
+    else:
+        first_name = name[-1]
+        last_name = " ".join(x for x in name[:-1])
+    problematic_profs = ['Pistol', 'Moruz']
+    if last_name in problematic_profs:
+        first_name = first_name.split(" ")[0]
+    professor = Professor()
+    query = professor.query()
+    query.add_filter('firstName', '=', first_name)
+    query.add_filter('lastName', '=', last_name)
+    querys = query.fetch()
+    for found in querys:
+        return found.key
+    return False
+
+
+def get_course_key(title):
+    course = Course()
+    query = course.query()
+    query.add_filter('title', '=', title)
+    querys = query.fetch()
+    for found in querys:
+        return found.key
+    return False
+
+
+def add_exams_to_datastore():
+    wrong_courses = {'Ingineria programarii': 'Ingineria Programarii',
+                     'Limbaje de scripturi (pentru studentii umanisti)': 'Limbaje de scripturi'}
+    exams_to_groups = {}
+    for group in exams:
+        for exam in exams[group]:
+            if exam['data'] not in exams_to_groups:
+                exams_to_groups[exam['data']] = []
+            if group not in exams_to_groups[exam['data']]:
+                exams_to_groups[exam['data']].append(group)
+
+    for exam in exams_to_groups:
+        exam_info = get_exam_info(exam)
+        if exam_info['materie'] in wrong_courses:
+            exam_info['materie'] = wrong_courses[exam_info['materie']]
+        new_exam = Exam()
+        new_exam.course = get_course_key(exam_info['materie'])
+        if new_exam.course is False:
+            print("[ ERROR ] Course not found: " + exam_info['materie'])
+            continue
+        new_exam.classrooms = []
+        valid = True
+        for room in exam_info['sala']:
+            curr_key = get_room_key(room)
+            if curr_key is False:
+                print("[ ERROR ] Classroom not found: " + room)
+                valid = False
+                break
+            new_exam.classrooms.append(curr_key)
+        if not valid:
+            continue
+
+        valid = True
+        new_exam.professors = []
+        for prof in exam_info['profesori']:
+            pieces = prof.split(" ")
+            name = []
+            for piece in pieces:
+                if "." in piece:
+                    continue
+                name.append(piece)
+            curr_key = get_prof_key(name)
+            if curr_key is False:
+                valid = False
+                print("[ ERROR ] Professor not found: " + str(name))
+                break
+            new_exam.professors.append(curr_key)
+
+        if not valid:
+            continue
+        date = exam.replace(" ", "").split(",")
+        groups_string = ""
+        for group in exams_to_groups[exam]:
+            groups_string = groups_string + group + ", "
+        groups_string = groups_string[:-2]
+        hours = exam_info['ora'].split("-")
 
 
 def main():
     get_schedule_pages()
     crawl_website_schedule()
-    #reset_folder(folderName)
-    populate_datastore()
-
+    # reset_folder(folderName)
+    add_classes_to_datastore()
+    add_exams_to_datastore()
 
 if __name__ == "__main__":
     main()
