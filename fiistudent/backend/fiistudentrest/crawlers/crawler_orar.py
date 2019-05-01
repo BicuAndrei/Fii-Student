@@ -6,8 +6,6 @@ import requests
 from bs4 import BeautifulSoup
 from fiistudentrest.models import Classroom, Course, ScheduleClass, Professor, Exam
 
-folderName = "orar_FII"
-
 crwl_pages = []
 
 groups_schedule = {}
@@ -478,14 +476,23 @@ def add_exams_to_datastore():
             groups_string = groups_string + group + ", "
         groups_string = groups_string[:-2]
         hours = exam_info['ora'].split("-")
+        new_exam.dayOfTheWeek = date[0]
+        new_exam.date = date[1]
+        new_exam.startHour = hours[0]
+        new_exam.endHour = hours[1]
+        new_exam.groups = groups_string
+        # new_exam.put() pana cand se rezolva problemele cu profesorii
+
+
 
 
 def main():
     get_schedule_pages()
     crawl_website_schedule()
     # reset_folder(folderName)
-    add_classes_to_datastore()
+    # add_classes_to_datastore()
     add_exams_to_datastore()
+
 
 if __name__ == "__main__":
     main()
