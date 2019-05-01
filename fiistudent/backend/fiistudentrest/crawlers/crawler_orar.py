@@ -4,7 +4,7 @@ from shutil import rmtree
 
 import requests
 from bs4 import BeautifulSoup
-from fiistudentrest.models import Classroom, Course, ScheduleClass, Professor, Exam
+from fiistudentrest.models import Classroom, Course, ScheduleClass, Professor, Exam, SchAnnouncement
 
 crwl_pages = []
 
@@ -438,14 +438,14 @@ def add_exams_to_datastore():
         new_exam = Exam()
         new_exam.course = get_course_key(exam_info['materie'])
         if new_exam.course is False:
-            print("[ ERROR ] Course not found: " + exam_info['materie'])
+            print("[ ERROR - EXAM ] Course not found: " + exam_info['materie'])
             continue
         new_exam.classrooms = []
         valid = True
         for room in exam_info['sala']:
             curr_key = get_room_key(room)
             if curr_key is False:
-                print("[ ERROR ] Classroom not found: " + room)
+                print("[ ERROR - EXAM ] Classroom not found: " + room)
                 valid = False
                 break
             new_exam.classrooms.append(curr_key)
@@ -464,12 +464,12 @@ def add_exams_to_datastore():
             curr_key = get_prof_key(name)
             if curr_key is False:
                 valid = False
-                print("[ ERROR ] Professor not found: " + str(name))
+                print("[ ERROR - EXAM ] Professor not found: " + str(name))
                 break
             new_exam.professors.append(curr_key)
-
         if not valid:
             continue
+
         date = exam.replace(" ", "").split(",")
         groups_string = ""
         for group in exams_to_groups[exam]:
@@ -484,14 +484,77 @@ def add_exams_to_datastore():
         # new_exam.put() pana cand se rezolva problemele cu profesorii
 
 
+def get_other_info(other_date):
+    for group in others:
+        for other in others[group]:
+            if other['data'] == other_date:
+                return other
+    return False
+
+
+def add_sch_announcements_to_datastore():
+    others_to_groups = {}
+    for group in others:
+        for other in others[group]:
+            if other['data'] not in others_to_groups:
+                others_to_groups[other['data']] = []
+            if group not in others_to_groups[other['data']]:
+                others_to_groups[other['data']].append(group)
+
+    for other in others_to_groups:
+        other_info = get_other_info(other)
+        new_other = SchAnnouncement()
+        date = other_info['data'].replace(" ", "").split(",")
+        new_other.dayOfTheWeek = date[0]
+        new_other.date = date[1]
+        new_other.groups = ""
+        for group in others_to_groups[other]:
+            new_other.groups = new_other.groups + group + ", "
+        new_other.groups = new_other.groups[:-2]
+        hours = other_info['ora'].split("-")
+        new_other.startHour = hours[0]
+        new_other.endHour = hours[1]
+        new_other.title = other_info['materie']
+        new_other.type = other_info['tip']
+
+        new_other.classrooms = []
+        valid = True
+        for room in other_info['sala']:
+            curr_key = get_room_key(room)
+            if curr_key is False:
+                print("[ ERROR - OTHER ] Classroom not found: " + room)
+                valid = False
+                break
+            new_other.classrooms.append(curr_key)
+        if not valid:
+            continue
+
+        valid = True
+        new_other.professors = []
+        for prof in other_info['profesori']:
+            pieces = prof.split(" ")
+            name = []
+            for piece in pieces:
+                if "." in piece:
+                    continue
+                name.append(piece)
+            curr_key = get_prof_key(name)
+            if curr_key is False:
+                valid = False
+                print("[ ERROR - OTHER ] Professor not found: " + str(name))
+                break
+            new_other.professors.append(curr_key)
+        if not valid:
+            continue
+        #new_other.put() pana cand se rezolva problemele cu profesorii
 
 
 def main():
     get_schedule_pages()
     crawl_website_schedule()
-    # reset_folder(folderName)
-    # add_classes_to_datastore()
+    add_classes_to_datastore()
     add_exams_to_datastore()
+    add_sch_announcements_to_datastore()
 
 
 if __name__ == "__main__":

@@ -15,3 +15,4 @@ from .student import Student
 from .timetable import Timetable
 from .token import Token
 from .exam import Exam
+from .schedule_announcement import SchAnnouncement
