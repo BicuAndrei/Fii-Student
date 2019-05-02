@@ -21,10 +21,11 @@
 
 		<div id="page-content-wrapper" class="bg-light">
 			${require('./partials/shared/page-header.html')}
-			
-			<div class="container-fluid">
-				<div class="container">
-					<div class="section text-left" id="teachers-list">
+
+			<div class="container">
+				<div class="m-4">
+					<div class="row" id="teachers-list">
+
 					</div>
 				</div>
 			</div>
@@ -45,8 +46,8 @@
 				success: function (result) {
 					var list = JSON.parse(result);
 
-					//$('#teachers-list').html('');
-					console.log(list)
+					$('#teachers-list').html('');
+
 					list.forEach(teacher => {
 						var title = "";
 						if (teacher.title) {
@@ -54,8 +55,7 @@
 						}
 
 						$('#teachers-list').append(
-							"<div class='row'>" +
-							"	<div class='col-sm-9'>" +
+							"	<div class='col-md-6 teacher'>" +
 							"		<h4 class='secondary-title'>" +
 							"			" + teacher.name + title +
 							"		</h4>" +
@@ -72,12 +72,8 @@
 							"			</strong>" +
 							"			Rețele de calculatoare" +
 							"		</p>" +
-							"	</div>" +
-							"	<div class='col-sm-3'>" +
-							"		<a href='javascript:void(0)' class='btn btn-info' onclick='sendEmail(\"" + teacher.id + "\")' role='button' data-toggle='modal' data-target='#quickEmailModal'>Email</a>" +
-							"	</div>" +
-							"</div>" +
-							"<hr>");
+							"		<a href='javascript:void(0)' class='btn btn-primary' onclick='sendEmail(\"" + teacher.id + "\")' role='button' data-toggle='modal' data-target='#quickEmailModal'>Email</a>" +
+							"	</div>");
 					});
 				},
 				error: function () {

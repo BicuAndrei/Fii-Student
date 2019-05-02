@@ -31,6 +31,13 @@
 	}
 }
 
+.schedule-table-container {
+	@include material-box-shadow(2, false);
+
+	background-color: #fff;
+	padding: 30px 20px;
+}
+
 .object {
 	border-radius: 5px;
 	padding: 20px 10px;

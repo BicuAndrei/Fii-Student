@@ -16,174 +16,173 @@
 
 <body>
 
-	<div class="wrapper d-flex">
-	
+	<div class="d-flex" id="wrapper">
 		${require('./partials/shared/sidebar.html')}
-		
-		<div class="d-flex flex-column flex-grow-1"> 
-				${require('./partials/shared/page-header.html')}
-	<div class="container-fluid">
-		<div class="container">
-			<div class="section">
-				<div class="content">
-					<table class="table schedule">
-						<thead>
-							<tr>
-								<th scope="col"></th>
-								<th scope="col">Luni</th>
-								<th scope="col">Marți</th>
-								<th scope="col">Miercuri</th>
-								<th scope="col">Joi</th>
-								<th scope="col">Vineri</th>
-								<th scope="col">Sâmbătă</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<th scope="row">8:00 - 10:00</th>
-								<td>
-									<div class="object" id="firstCourseMonday"></div>
-								</td>
-								<td>
-									<div class="object" id="firstCourseTuesday"></div>
-								</td>
-								<td>
-									<div class="object" id="firstCourseWednesday">
-									</div>
-								</td>
-								<td>
-									<div class="object" id="firstCourseThursday"></div>
-								</td>
-								<td>
-									<div class="object" id="firstCourseFriday"></div>
-								</td>
-								<td>
-									<div class="object" id="firstCourseSaturday"></div>
-								</td>
-							</tr>
-							<tr>
-								<th scope="row">10:00 - 12:00</th>
-								<td>
-									<div class="object" id=secondCourseMonday"></div>
-								</td>
-								<td>
-									<div class="object" id="secondCourseTuesday"></div>
-								</td>
-								<td>
-									<div class="object" id="secondCourseWednesday"></div>
-								</td>
-								<td>
-									<div class="object" id="secondCourseThursday"></div>
-								</td>
-								<td>
-									<div class="object" id="secondCourseFriday">
-									</div>
-								</td>
-								<td>
-									<div class="object" id="secondCourseSaturday"></div>
-								</td>
-							</tr>
-							<tr>
-								<th scope="row">12:00 - 14:00</th>
-								<td>
-									<div class="object" id="thirdCourseMonday"></div>
-								</td>
-								<td>
-									<div class="object" id="thirdCourseTuesday"></div>
-								</td>
-								<td>
-									<div class="object" id="thirdCourseWednesday">
-									</div>
-								</td>
-								<td>
-									<div class="object" id="thirdCourseThursday"></div>
-								</td>
-								<td>
-									<div class="object" id="thirdCourseFriday"></div>
-								</td>
-								<td>
-									<div class="object" id="thirdCourseSaturday"></div>
-								</td>
-							</tr>
-							<tr>
-								<th scope="row">14:00 - 16:00</th>
-								<td>
-									<div class="object" id="fourthCourseMonday">
-									</div>
-								</td>
-								<td>
-									<div class="object"></div>
-								</td>
-								<td>
-									<div class="object" id="fourthCourseTuesday">
-										</div>
-									<div class="object" id="fourthCourseWednesday">
-									</div>
-								</td>
-								<td>
-									<div class="object" id="fourthCourseThursday">
-									</div>
-								</td>
-								<td>
-									<div class="object" id="fourthCourseFriday"></div>
-								</td>
-								<td>
-									<div class="object" id="fourthCourseSaturday"></div>
-								</td>
-							</tr>
-							<tr>
-								<th scope="row">16:00 - 18:00</th>
-								<td>
-									<div class="object" id="fifthCourseMonday"></div>
-								</td>
-								<td>
-									<div class="object" id="fifthCourseTuesday"></div>
-								</td>
-								<td>
-									<div class="object" id="fifthCourseWednesday"></div>
-								</td>
-								<td>
-									<div class="object" id="fifthCourseThursday"></div>
-								</td>
-								<td>
-									<div class="object" id="fifthCourseFriday"></div>
-								</td>
-								<td>
-									<div class="object" id="fifthCourseSaturday"></div>
-								</td>
-							</tr>
-							<tr>
-								<th scope="row">18:00 - 20:00</th>
-								<td>
-									<div class="object" id="sixthCourseMonday"></div>
-								</td>
-								<td>
-									<div class="object" id="sixthCourseTuesday"></div>
-								</td>
-								<td>
-									<div class="object" id="sixthCourseWednesday"></div>
-								</td>
-								<td>
-									<div class="object" id="sixthCourseThursday"></div>
-								</td>
-								<td>
-									<div class="object" id="sixthCourseFriday"></div>
-								</td>
-								<td>
-									<div class="object" id="sixthCourseSaturday"></div>
-								</td>
-							</tr>
-						</tbody>
-					</table>
+
+		<div id="page-content-wrapper" class="bg-light">
+			${require('./partials/shared/page-header.html')}
+
+			<div class="container">
+				<div class="section">
+					<div class="content">
+						<div class="schedule-table-container">
+							<table class="table schedule">
+								<thead>
+									<tr>
+										<th scope="col" style="width: 16%"></th>
+										<th scope="col" style="width: 14%">Luni</th>
+										<th scope="col" style="width: 14%">Marți</th>
+										<th scope="col" style="width: 14%">Miercuri</th>
+										<th scope="col" style="width: 14%">Joi</th>
+										<th scope="col" style="width: 14%">Vineri</th>
+										<th scope="col" style="width: 14%">Sâmbătă</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th scope="row">8:00 - 10:00</th>
+										<td>
+											<div class="object" id="firstCourseMonday"></div>
+										</td>
+										<td>
+											<div class="object" id="firstCourseTuesday"></div>
+										</td>
+										<td>
+											<div class="object" id="firstCourseWednesday">
+											</div>
+										</td>
+										<td>
+											<div class="object" id="firstCourseThursday"></div>
+										</td>
+										<td>
+											<div class="object" id="firstCourseFriday"></div>
+										</td>
+										<td>
+											<div class="object" id="firstCourseSaturday"></div>
+										</td>
+									</tr>
+									<tr>
+										<th scope="row">10:00 - 12:00</th>
+										<td>
+											<div class="object" id=secondCourseMonday"></div>
+										</td>
+										<td>
+											<div class="object" id="secondCourseTuesday"></div>
+										</td>
+										<td>
+											<div class="object" id="secondCourseWednesday"></div>
+										</td>
+										<td>
+											<div class="object" id="secondCourseThursday"></div>
+										</td>
+										<td>
+											<div class="object" id="secondCourseFriday">
+											</div>
+										</td>
+										<td>
+											<div class="object" id="secondCourseSaturday"></div>
+										</td>
+									</tr>
+									<tr>
+										<th scope="row">12:00 - 14:00</th>
+										<td>
+											<div class="object" id="thirdCourseMonday"></div>
+										</td>
+										<td>
+											<div class="object" id="thirdCourseTuesday"></div>
+										</td>
+										<td>
+											<div class="object" id="thirdCourseWednesday">
+											</div>
+										</td>
+										<td>
+											<div class="object" id="thirdCourseThursday"></div>
+										</td>
+										<td>
+											<div class="object" id="thirdCourseFriday"></div>
+										</td>
+										<td>
+											<div class="object" id="thirdCourseSaturday"></div>
+										</td>
+									</tr>
+									<tr>
+										<th scope="row">14:00 - 16:00</th>
+										<td>
+											<div class="object" id="fourthCourseMonday">
+											</div>
+										</td>
+										<td>
+											<div class="object"></div>
+										</td>
+										<td>
+											<div class="object" id="fourthCourseTuesday">
+											</div>
+											<div class="object" id="fourthCourseWednesday">
+											</div>
+										</td>
+										<td>
+											<div class="object" id="fourthCourseThursday">
+											</div>
+										</td>
+										<td>
+											<div class="object" id="fourthCourseFriday"></div>
+										</td>
+										<td>
+											<div class="object" id="fourthCourseSaturday"></div>
+										</td>
+									</tr>
+									<tr>
+										<th scope="row">16:00 - 18:00</th>
+										<td>
+											<div class="object" id="fifthCourseMonday"></div>
+										</td>
+										<td>
+											<div class="object" id="fifthCourseTuesday"></div>
+										</td>
+										<td>
+											<div class="object" id="fifthCourseWednesday"></div>
+										</td>
+										<td>
+											<div class="object" id="fifthCourseThursday"></div>
+										</td>
+										<td>
+											<div class="object" id="fifthCourseFriday"></div>
+										</td>
+										<td>
+											<div class="object" id="fifthCourseSaturday"></div>
+										</td>
+									</tr>
+									<tr>
+										<th scope="row">18:00 - 20:00</th>
+										<td>
+											<div class="object" id="sixthCourseMonday"></div>
+										</td>
+										<td>
+											<div class="object" id="sixthCourseTuesday"></div>
+										</td>
+										<td>
+											<div class="object" id="sixthCourseWednesday"></div>
+										</td>
+										<td>
+											<div class="object" id="sixthCourseThursday"></div>
+										</td>
+										<td>
+											<div class="object" id="sixthCourseFriday"></div>
+										</td>
+										<td>
+											<div class="object" id="sixthCourseSaturday"></div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- am inchis container fluid -->
-	</div>
-</div>
+
 	${require('./partials/modals/subject-details.modal.html')}
-	${require('./partials/shared/footer.html')}
 </body>
 <script>
 
@@ -196,157 +195,147 @@
 			beforeSend: function (xhr) {
 				xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
 			},
-			data: {
-				courseId: id,
-				courseName: name,
-				courseAbv: abv,
-				startHour: startTime,
-				endHour: endTime,
-				day: dayOfTheWeek
-			},
 			success: function (result) {
 				var json = result;
 				obj = JSON.parse(json);
 				console.log(obj);
 				if (obj.length == 0) {
 					alert('Nu s-a putut prelua orarul grupei tale.');
-
 				}
 				else {
-					for (i = 0; i < obj.length; i++)
-					{
-						switch(obj[i].startHour){
+					for (i = 0; i < obj.length; i++) {
+						switch (obj[i].startHour) {
 							case 8:
-								switch(obj[i].day){
+								switch (obj[i].day) {
 									case "Monday":
-										$("#firstCourseMonday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+										$("#firstCourseMonday").removeClass("object").addClass("object course").attr("data-toggle", "modal").attr("data-target", "#detailsModal").append(obj[i].courseName);
 										break;
 									case "Tuesday":
-										$("#firstCourseTuesday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+										$("#firstCourseTuesday").removeClass("object").addClass("object course").attr("data-toggle", "modal").attr("data-target", "#detailsModal").append(obj[i].courseName);
 										break;
 									case "Wednesday":
-										$("#firstCourseWednesday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+										$("#firstCourseWednesday").removeClass("object").addClass("object course").attr("data-toggle", "modal").attr("data-target", "#detailsModal").append(obj[i].courseName);
 										break;
 									case "Thursday":
-										$("#firstCourseThursday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+										$("#firstCourseThursday").removeClass("object").addClass("object course").attr("data-toggle", "modal").attr("data-target", "#detailsModal").append(obj[i].courseName);
 										break;
 									case "Friday":
-										$("#firstCourseFriday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+										$("#firstCourseFriday").removeClass("object").addClass("object course").attr("data-toggle", "modal").attr("data-target", "#detailsModal").append(obj[i].courseName);
 										break;
 									case "Saturday":
-										$("#firstCourseSaturday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+										$("#firstCourseSaturday").removeClass("object").addClass("object course").attr("data-toggle", "modal").attr("data-target", "#detailsModal").append(obj[i].courseName);
 										break;
 
 
 								}
 								break;
 							case 10:
-								switch(obj.day[i]){
-							case "Monday":
-								$("#secondCourseMonday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
-								break;
-							case "Tuesday":
-								$("#secondCourseTuesday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
-								break;
-							case "Wednesday":
-								$("#secondCourseWednesday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
-								break;
-							case "Thursday":
-								$("#secondCourseThursday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
-								break;
-							case "Friday":
-								$("#secondCourseFriday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
-								break;
-							case "Saturday":
-								$("#secondCourseSaturday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
-								break;
+								switch (obj.day[i]) {
+									case "Monday":
+										$("#secondCourseMonday").removeClass("object").addClass("object course").attr("data-toggle", "modal").attr("data-target", "#detailsModal").append(obj[i].courseName);
+										break;
+									case "Tuesday":
+										$("#secondCourseTuesday").removeClass("object").addClass("object course").attr("data-toggle", "modal").attr("data-target", "#detailsModal").append(obj[i].courseName);
+										break;
+									case "Wednesday":
+										$("#secondCourseWednesday").removeClass("object").addClass("object course").attr("data-toggle", "modal").attr("data-target", "#detailsModal").append(obj[i].courseName);
+										break;
+									case "Thursday":
+										$("#secondCourseThursday").removeClass("object").addClass("object course").attr("data-toggle", "modal").attr("data-target", "#detailsModal").append(obj[i].courseName);
+										break;
+									case "Friday":
+										$("#secondCourseFriday").removeClass("object").addClass("object course").attr("data-toggle", "modal").attr("data-target", "#detailsModal").append(obj[i].courseName);
+										break;
+									case "Saturday":
+										$("#secondCourseSaturday").removeClass("object").addClass("object course").attr("data-toggle", "modal").attr("data-target", "#detailsModal").append(obj[i].courseName);
+										break;
 								}
 								break;
 							case 12:
-								switch(obj.day[i]){
+								switch (obj.day[i]) {
 									case "Monday":
-										$("#thirdCourseMonday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+										$("#thirdCourseMonday").removeClass("object").addClass("object course").attr("data-toggle", "modal").attr("data-target", "#detailsModal").append(obj[i].courseName);
 										break;
 									case "Tuesday":
-										$("#thirdCourseTuesday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+										$("#thirdCourseTuesday").removeClass("object").addClass("object course").attr("data-toggle", "modal").attr("data-target", "#detailsModal").append(obj[i].courseName);
 										break;
 									case "Wednesday":
-										$("#thirdCourseWednesday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+										$("#thirdCourseWednesday").removeClass("object").addClass("object course").attr("data-toggle", "modal").attr("data-target", "#detailsModal").append(obj[i].courseName);
 										break;
 									case "Thursday":
-										$("#thirdCourseThursday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+										$("#thirdCourseThursday").removeClass("object").addClass("object course").attr("data-toggle", "modal").attr("data-target", "#detailsModal").append(obj[i].courseName);
 										break;
 									case "Friday":
-										$("#thirdCourseFriday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+										$("#thirdCourseFriday").removeClass("object").addClass("object course").attr("data-toggle", "modal").attr("data-target", "#detailsModal").append(obj[i].courseName);
 										break;
 									case "Saturday":
-										$("#thirdCourseSaturday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+										$("#thirdCourseSaturday").removeClass("object").addClass("object course").attr("data-toggle", "modal").attr("data-target", "#detailsModal").append(obj[i].courseName);
 										break;
 								}
 								break;
 							case 14:
-								switch(obj.day[i]){
+								switch (obj.day[i]) {
 									case "Monday":
-										$("#fourthCourseMonday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+										$("#fourthCourseMonday").removeClass("object").addClass("object course").attr("data-toggle", "modal").attr("data-target", "#detailsModal").append(obj[i].courseName);
 										break;
 									case "Tuesday":
-										$("#fourthCourseTuesday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+										$("#fourthCourseTuesday").removeClass("object").addClass("object course").attr("data-toggle", "modal").attr("data-target", "#detailsModal").append(obj[i].courseName);
 										break;
 									case "Wednesday":
-										$("#fourthCourseWednesday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+										$("#fourthCourseWednesday").removeClass("object").addClass("object course").attr("data-toggle", "modal").attr("data-target", "#detailsModal").append(obj[i].courseName);
 										break;
 									case "Thursday":
-										$("#fourthCourseThursday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+										$("#fourthCourseThursday").removeClass("object").addClass("object course").attr("data-toggle", "modal").attr("data-target", "#detailsModal").append(obj[i].courseName);
 										break;
 									case "Friday":
-										$("#fourthCourseFriday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+										$("#fourthCourseFriday").removeClass("object").addClass("object course").attr("data-toggle", "modal").attr("data-target", "#detailsModal").append(obj[i].courseName);
 										break;
 									case "Saturday":
-										$("#fourthCourseSaturday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+										$("#fourthCourseSaturday").removeClass("object").addClass("object course").attr("data-toggle", "modal").attr("data-target", "#detailsModal").append(obj[i].courseName);
 										break;
 								}
 								break;
 							case 16:
-								switch(obj.day[i]){
+								switch (obj.day[i]) {
 									case "Monday":
-										$("#fifthCourseMonday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+										$("#fifthCourseMonday").removeClass("object").addClass("object course").attr("data-toggle", "modal").attr("data-target", "#detailsModal").append(obj[i].courseName);
 										break;
 									case "Tuesday":
-										$("#fifthCourseTuesday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+										$("#fifthCourseTuesday").removeClass("object").addClass("object course").attr("data-toggle", "modal").attr("data-target", "#detailsModal").append(obj[i].courseName);
 										break;
 									case "Wednesday":
-										$("#fifthCourseWednesday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+										$("#fifthCourseWednesday").removeClass("object").addClass("object course").attr("data-toggle", "modal").attr("data-target", "#detailsModal").append(obj[i].courseName);
 										break;
 									case "Thursday":
-										$("#fifthCourseThursday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+										$("#fifthCourseThursday").removeClass("object").addClass("object course").attr("data-toggle", "modal").attr("data-target", "#detailsModal").append(obj[i].courseName);
 										break;
 									case "Friday":
-										$("#fifthCourseFriday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+										$("#fifthCourseFriday").removeClass("object").addClass("object course").attr("data-toggle", "modal").attr("data-target", "#detailsModal").append(obj[i].courseName);
 										break;
 									case "Saturday":
-										$("#fifthCourseSaturday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+										$("#fifthCourseSaturday").removeClass("object").addClass("object course").attr("data-toggle", "modal").attr("data-target", "#detailsModal").append(obj[i].courseName);
 										break;
 								}
 								break;
 							case 18:
-								switch(obj.day[i]){
+								switch (obj.day[i]) {
 									case "Monday":
-										$("#sixthCourseMonday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+										$("#sixthCourseMonday").removeClass("object").addClass("object course").attr("data-toggle", "modal").attr("data-target", "#detailsModal").append(obj[i].courseName);
 										break;
 									case "Tuesday":
-										$("#sixthCourseTuesday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+										$("#sixthCourseTuesday").removeClass("object").addClass("object course").attr("data-toggle", "modal").attr("data-target", "#detailsModal").append(obj[i].courseName);
 										break;
 									case "Wednesday":
-										$("#sixthCourseWednesday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+										$("#sixthCourseWednesday").removeClass("object").addClass("object course").attr("data-toggle", "modal").attr("data-target", "#detailsModal").append(obj[i].courseName);
 										break;
 									case "Thursday":
-										$("#sixthCourseThursday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+										$("#sixthCourseThursday").removeClass("object").addClass("object course").attr("data-toggle", "modal").attr("data-target", "#detailsModal").append(obj[i].courseName);
 										break;
 									case "Friday":
-										$("#sixthCourseFriday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+										$("#sixthCourseFriday").removeClass("object").addClass("object course").attr("data-toggle", "modal").attr("data-target", "#detailsModal").append(obj[i].courseName);
 										break;
 									case "Saturday":
-										$("#sixthCourseSaturday").removeClass("object").addClass("object course").attr("data-toggle","modal").attr("data-target","#detailsModal").append(obj[i].courseName);
+										$("#sixthCourseSaturday").removeClass("object").addClass("object course").attr("data-toggle", "modal").attr("data-target", "#detailsModal").append(obj[i].courseName);
 										break;
 								}
 								break;
@@ -361,4 +350,5 @@
 		})
 	})
 </script>
+
 </html>
