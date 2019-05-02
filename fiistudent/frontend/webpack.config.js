@@ -1,8 +1,29 @@
 const path = require('path');
-const webpack = require('webpack');
 
+const fs = require('fs');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+
+function generateHtmlPlugins(templateDir) {
+	const templateFiles = fs.readdirSync(path.resolve(__dirname, templateDir)).filter(function (file) {
+		if (file.indexOf(".html") > -1) {
+			return file;
+		}
+	});
+
+	return templateFiles.map(item => {
+		const parts = item.split('.');
+		const name = parts[0];
+		const extension = parts[1];
+
+		return new HtmlWebpackPlugin({
+			filename: `${name}.html`,
+			template: path.resolve(__dirname, `${templateDir}/${name}.${extension}`)
+		});
+	})
+}
+
+const htmlPlugins = generateHtmlPlugins('./src/pages');
 
 module.exports = {
 	mode: "development",
@@ -70,48 +91,6 @@ module.exports = {
 	},
 
 	plugins: [
-		new CleanWebpackPlugin(),
-		new HtmlWebpackPlugin({
-			template: path.join(__dirname, 'src', 'pages', 'index.html'),
-			filename: 'index.html'
-		}),
-		new HtmlWebpackPlugin({
-			template: path.join(__dirname, 'src', 'pages', 'schedule.html'),
-			filename: 'schedule.html'
-		}),
-		new HtmlWebpackPlugin({
-
-			template: path.join(__dirname, 'src', 'pages', 'subjects.html'),
-			filename: 'subjects.html'
-		}),
-		new HtmlWebpackPlugin({
-			template: path.join(__dirname, 'src', 'pages', 'teachers.html'),
-			filename: 'teachers.html'
-		}),
-		new HtmlWebpackPlugin({
-			template: path.join(__dirname, 'src', 'pages', 'free-rooms.html'),
-			filename: 'free-rooms.html'
-
-		}),
-		new HtmlWebpackPlugin({
-			template: path.join(__dirname, 'src', 'pages', 'team.html'),
-			filename: 'team.html'
-		}),
-		new HtmlWebpackPlugin({
-			template: path.join(__dirname, 'src', 'pages', 'about.html'),
-			filename: 'about.html'
-		}),
-		new HtmlWebpackPlugin({
-			template: path.join(__dirname, 'src', 'pages', 'contact.html'),
-			filename: 'contact.html'
-		}),
-		new HtmlWebpackPlugin({
-			template: path.join(__dirname, 'src', 'pages', 'settings.html'),
-			filename: 'settings.html'
-		}),
-		new HtmlWebpackPlugin({
-			template: path.join(__dirname, 'src', 'pages', 'services.html'),
-			filename: 'services.html'
-		})
-	]
+		new CleanWebpackPlugin()
+	].concat(htmlPlugins)
 };

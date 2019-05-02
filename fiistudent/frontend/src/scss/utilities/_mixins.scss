@@ -1,21 +1,46 @@
-@mixin box_shadow($level) {
-	@if $level == 1 {
-		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-	} @else if $level == 2 {
-		box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-	} @else if $level == 3 {
-		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-		} @else if $level == 4 {
-		box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-	} @else if $level == 5 {
-		box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
-	}
+@mixin darkenBgColorOnHover($color) {
+    background-color: $color;
+
+    &:hover {
+        background-color: darken($color: $color, $amount: 10%);
+    }
 }
 
-@mixin darkenBgColorOnHover($color) {
-	background-color: $color;
+@mixin material-box-shadow($level, $hover) {
+    $shadow-initial: 0;
+    $shadow-hover: 0;
 
-	&:hover {
-		background-color: darken($color: $color, $amount: 10%);
-	}
+    @if $level==1 {
+        $shadow-initial: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        $shadow-hover: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    }
+
+    @if $level==2 {
+        $shadow-initial: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+        $shadow-hover: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); // needs own settings
+    }
+
+    @if $level==3 {
+        $shadow-initial: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+        $shadow-hover: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); // needs own settings
+    }
+
+    @if $level==4 {
+        $shadow-initial: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+        $shadow-hover: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); // needs own settings
+    }
+
+    @if $level==5 {
+        $shadow-initial: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+        $shadow-hover: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); // needs own settings
+    }
+
+    box-shadow: $shadow-initial;
+	transition: opacity 0.3s cubic-bezier(.25, .8, .25, 1);
+
+    @if $hover==true {
+        &:hover {
+            box-shadow: $shadow-hover;
+        }
+    }
 }

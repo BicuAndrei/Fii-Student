@@ -19,158 +19,100 @@
 </head>
 
 <body>
-	${require('./partials/shared/navbar.html')}
 
-	${require('./partials/shared/page-header.html')}
+	${require('./partials/modals/quick-email.modal.html')}
 
-	<div class="container-fluid">
-		<div class="container">
-			<div class="section">
-				<div class="content">
-					<div class="align-middle">
-						<h2>Căutare săli libere în interval orar </h2>
-					</div>
-					<div class="row border-top">
-						<div class="sidebar ">
+	<div class="d-flex" id="wrapper">
+		${require('./partials/shared/sidebar.html')}
 
+		<div id="page-content-wrapper" class="bg-light">
+			${require('./partials/shared/page-header.html')}
 
-							<a href="#">Săli și resurse</a>
+			<div class="container">
+				<div class="search-box m-4">
+					<form class="w-100 needs-validation" id="search-room-form" novalidate>
+						<div class="form-row">
+							<div class="form-group col-md-4">
+								<label for="datepicker">Dată</label>
+								<input id="datepicker" name="datepicker" required />
+							</div>
+							<div class="form-group col-md-4">
+								<label for="starthour">Oră de start</label>
+								<select name="start-hour" id="starthour" class="form-control" required>
+									<option value="" selected="selected">Alege o optiune...</option>
+									<option value="8">8</option>
+									<option value="9">9</option>
+									<option value="10">10</option>
+									<option value="11">11</option>
+									<option value="12">12</option>
+									<option value="13">13</option>
+									<option value="14">14</option>
+									<option value="15">15</option>
+									<option value="16">16</option>
+									<option value="17">17</option>
+									<option value="18">18</option>
+									<option value="19">19</option>
+									<option value="20">20</option>
+									<option value="21">21</option>
+									<option value="22">22</option>
+									<option value="23">23</option>
+									<option value="24">24</option>
 
-
-							<a href="#">Orar Profesori</a>
-
-
-							<a href="#">Orar Studenți</a>
-
-
-						</div>
-						<div class="search-room col-sm-10 col-md-10 border-left">
-							<div class="search-form m-auto">
-								<div class="row pad-left border-bottom pad-bot">
-									<div class="container" id="dates">
-
-
-										<div class="row">
-											<div class='col-sm-3'>
-												Dată
-												<div class="form-group">
-													<div class='input-group datepicker' id='datetimepicker1'>
-														<input id="datepicker" width="276" />
-													</div>
-												</div>
-											</div>
-											<div class=" col-sm-3 ">
-												Oră de start
-												<div class="control-group">
-
-													<select name="start-hour" id="starthour" id="start-hour"
-														class="form-control">
-														<option value="" selected="selected"></option>
-														<option value="1">1</option>
-														<option value="2">2</option>
-														<option value="3">3</option>
-														<option value="4">4</option>
-														<option value="5">5</option>
-														<option value="6">6</option>
-														<option value="7">7</option>
-														<option value="8">8</option>
-														<option value="9">9</option>
-														<option value="10">10</option>
-														<option value="11">11</option>
-														<option value="12">12</option>
-														<option value="13">13</option>
-														<option value="14">14</option>
-														<option value="15">15</option>
-														<option value="16">16</option>
-														<option value="17">17</option>
-														<option value="18">18</option>
-														<option value="19">19</option>
-														<option value="20">20</option>
-														<option value="21">21</option>
-														<option value="22">22</option>
-														<option value="23">23</option>
-														<option value="24">24</option>
-
-													</select>
-												</div>
-											</div>
-											<div class=" col-sm-3 ">
-												Durată(h)
-												<div class="control-group">
-
-													<select name="duration" id="duration" class="form-control">
-														<option value="" selected="selected"></option>
-														<option value="1">1</option>
-														<option value="2">2</option>
-														<option value="3">3</option>
-														<option value="4">4</option>
-														<option value="5">5</option>
-														<option value="6">6</option>
-														<option value="7">7</option>
-														<option value="8">8</option>
-														<option value="9">9</option>
-														<option value="10">10</option>
-														<option value=11>11</option>
-														<option value="12">12</option>
-													</select>
-												</div>
-											</div>
-											<div class="col-sm-3">
-
-												<div class="control-group">
-
-													<button type="submit" class="btn btn-primary" id="searchBTN">Cauta
-														sala </button>
-
-												</div>
-											</div>
-										</div>
-									</div>
-
-								</div>
-
-								<!--aici va aparea lista de sali-->
-								<div class="row">
-									<div class="col-md-10">
-
-										<h4>Rezultat:</h4>
-
-									</div>
-
-								</div>
-								<div class="row">
-
-									<div class="col-md-10" id="result">
-										<p id="eroare"></p>
-
-
-									<div class="col-md-10">
-								
-
-									</div>
-								</div>
+								</select>
+							</div>
+							<div class="form-group col-md-4">
+								<label for="duration">Durată</label>
+								<select name="duration" id="duration" class="form-control" required>
+									<option value="" selected="selected">Alege o optiune...</option>
+									<option value="1">1</option>
+									<option value="2" selected>2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									<option value="9">9</option>
+									<option value="10">10</option>
+									<option value=11>11</option>
+									<option value="12">12</option>
+								</select>
 							</div>
 						</div>
+
+						<button type="submit" class="btn btn-primary">Cauta</button>
+					</form>
+
+
+				</div>
+
+				<div class="m-4">
+					<div class="row" id="free-rooms-list">
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
 	<script>
 		$('#datepicker').datepicker({
 			uiLibrary: 'bootstrap4'
 		});
-	</script>
 
+		$('#search-room-form').submit(function (event) {
+			event.preventDefault();
 
-	<script>
+			if (!this.checkValidity()) {
+				return;
+			}
 
-		$('#searchBTN').click(function () {
 			var datetime = window.document.getElementById("datepicker").value;
 			var startHour = $('#starthour option:selected').val();
 			var duration = $('#duration option:selected').val();
-			$.ajax({
 
+			$('#free-rooms-list').html('');
+
+			$.ajax({
 				url: endpoint + "free_rooms",
 				type: "GET",
 				contentType: "application/json; charset=utf-8",
@@ -187,30 +129,28 @@
 					var resultat = "";
 					var json = result;
 					obj = JSON.parse(json);
-					console.log(obj);
+
 					if (obj.length == 0) {
 						alert('Nu s-a gasit nici o sala libera');
-
 					}
 					else {
-						for (i = 0; i < obj.length; i++)
-						{
-							var room = obj[i].room;
-							var disponibility = obj[i].disponibility;
-							resultat += "<p><strong>Sala:</strong> " + room + "</p>" + "<p ><strong>Disponibilitate :</strong>" + disponibility + "</p>";
+						for (i = 0; i < obj.length; i++) {
+							$('#free-rooms-list').append(
+								"<div class=\"col-md-3\">" +
+								"	<div class=\"free-room\">" +
+								"		<h3 class=\"room\">" + obj[i].room + "</h3>" +
+								"		<p class=\"availability\">" + obj[i].disponibility + "</p>" +
+								"	</div>" +
+								"</div>");
 						}
-						}
-							$('div#result').append(resultat);
+					}
 				},
 				error: function () {
-					
 					alert('Oh-oh! Ceva nu a mers bine!')
 				}
 			})
-		})
+		});
 	</script>
-	${require('./partials/shared/footer.html')}
-
 </body>
 
 </html>

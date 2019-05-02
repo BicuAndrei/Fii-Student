@@ -14,26 +14,23 @@
 </head>
 
 <body>
-	${require('./partials/shared/navbar.html')}
 	${require('./partials/modals/quick-email.modal.html')}
 
-	${require('./partials/shared/page-header.html')}
+	<div class="d-flex" id="wrapper">
+		${require('./partials/shared/sidebar.html')}
 
-	<div class="container-fluid">
-		<div class="container">
-			<div class="section text-left" id="teachers-list">
-				<div class="row">
-					<div class="col-sm-12">
-						<h1 class="title mb-0 ">Profesori</h1>
-						<hr>
-						</hr>
+		<div id="page-content-wrapper" class="bg-light">
+			${require('./partials/shared/page-header.html')}
+			
+			<div class="container-fluid">
+				<div class="container">
+					<div class="section text-left" id="teachers-list">
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	${require('./partials/shared/footer.html')}
 
 	<script>
 		$(document).ready(function () {
@@ -52,7 +49,7 @@
 					console.log(list)
 					list.forEach(teacher => {
 						var title = "";
-						if(teacher.title) {
+						if (teacher.title) {
 							title = ", " + teacher.title;
 						}
 
@@ -60,14 +57,14 @@
 							"<div class='row'>" +
 							"	<div class='col-sm-9'>" +
 							"		<h4 class='secondary-title'>" +
-							"			"+teacher.name + title +
+							"			" + teacher.name + title +
 							"		</h4>" +
 							"		<p>" +
 							"			<strong>Birou: </strong>" + teacher.office +
 							"		</p>" +
 							"		<p>" +
 							"			<strong>Adresă Web: </strong>" +
-							"			<a href='" + teacher.link + "' class='external' target='_blank'>"+teacher.link+"</a>" +
+							"			<a href='" + teacher.link + "' class='external' target='_blank'>" + teacher.link + "</a>" +
 							"		</p>" +
 							"		<p>" +
 							"			<strong>" +
@@ -77,11 +74,11 @@
 							"		</p>" +
 							"	</div>" +
 							"	<div class='col-sm-3'>" +
-							"		<a href='javascript:void(0)' class='btn btn-info' onclick='sendEmail(\""+teacher.id+"\")' role='button' data-toggle='modal' data-target='#quickEmailModal'>Email</a>" +
+							"		<a href='javascript:void(0)' class='btn btn-info' onclick='sendEmail(\"" + teacher.id + "\")' role='button' data-toggle='modal' data-target='#quickEmailModal'>Email</a>" +
 							"	</div>" +
 							"</div>" +
 							"<hr>");
-					}); 
+					});
 				},
 				error: function () {
 					alert('Oh-oh! Ceva nu a mers bine!')
