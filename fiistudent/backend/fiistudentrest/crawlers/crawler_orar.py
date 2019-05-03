@@ -487,8 +487,7 @@ def add_exams_to_datastore():
         new_exam.startHour = hours[0]
         new_exam.endHour = hours[1]
         new_exam.groups = groups_string
-        # new_exam.put() pana cand se rezolva problemele cu profesorii
-
+        new_exam.put()
 
 def get_other_info(other_date):
     for group in others:
@@ -552,15 +551,23 @@ def add_sch_announcements_to_datastore():
             new_other.professors.append(curr_key)
         if not valid:
             continue
-        #new_other.put() pana cand se rezolva problemele cu profesorii
+        new_other.put()
 
+def clear_exams_and_announcements():
+    all_exams = Exam.all()
+    all_ann = SchAnnouncement.all()
+    for exam in all_exams:
+        exam.remove()
+    for ann in all_ann:
+        ann.remove()
 
 def main():
     get_schedule_pages()
     crawl_website_schedule()
-    #add_classes_to_datastore()
+    add_classes_to_datastore()
+    clear_exams_and_announcements()
     add_exams_to_datastore()
-    #add_sch_announcements_to_datastore()
+    add_sch_announcements_to_datastore()
 
 
 if __name__ == "__main__":

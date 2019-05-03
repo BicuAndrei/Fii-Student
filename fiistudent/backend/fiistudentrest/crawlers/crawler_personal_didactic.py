@@ -1,8 +1,9 @@
 import ssl
 from urllib.request import urlopen
-from bs4 import BeautifulSoup
 
+from bs4 import BeautifulSoup
 from fiistudentrest.models import Professor
+
 
 class ProfessorCrawler:
     def __init__(self, firstName, lastName, type, email, office, link):
@@ -83,8 +84,8 @@ def get_professors():
 
 def ent_exists(entity):
     query = entity.query()
-    query.add_filter('first_name', '=', entity.firstName)
-    query.add_filter('last_name', '=', entity.firstName)
+    query.add_filter('firstName', '=', entity.firstName)
+    query.add_filter('lastName', '=', entity.firstName)
     queries = query.fetch()
     for my_query in queries:
         if my_query.first_name != "" and entity.firstName == my_query.first_name:
@@ -104,12 +105,35 @@ def populate_datastore():
             office=prof.office,
             link=prof.link
         )
-        if not ent_exists(professor):
-            professor.put()
+        professor.put()
+
+
+def add_missing_profs():
+    missing_profs = ["Simion Emil",
+                     "Gavrilut Dragos",
+                     "Vitcu Anca",
+                     "Curelaru Versavia",
+                     "Iacob Florin",
+                     "Cusmuliuc Ciprian",
+                     "Coman Alexandru"]
+
+    for prof in missing_profs:
+        new_prof = Professor()
+        names = prof.split(" ")
+        new_prof.lastName = names[0]
+        new_prof.firstName = names[1]
+        new_prof.put()
+
+def clear_entries():
+    all_profs = Professor.all()
+    for prof in all_profs:
+        prof.remove()
 
 
 def main():
+    clear_entries()
     populate_datastore()
+    add_missing_profs()
 
 
 if __name__ == '__main__':
