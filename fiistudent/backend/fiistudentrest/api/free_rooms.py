@@ -8,21 +8,9 @@ import json
 
 def get_classes(day_of_the_week):
     """ Returneaza toate orele dintr-o anumita zi """
+    days = ['Luni','Marti','Miercuri','Joi','Vineri','Sambata','Duminica']
     query = ScheduleClass.query()
-    if day_of_the_week == 0:
-        query.add_filter('dayOfTheWeek', '=', 'Luni')
-    elif day_of_the_week == 1:
-        query.add_filter('dayOfTheWeek', '=', 'Marti')
-    elif day_of_the_week == 2:
-        query.add_filter('dayOfTheWeek', '=', 'Miercuri')
-    elif day_of_the_week == 3:
-        query.add_filter('dayOfTheWeek', '=', 'Joi')
-    elif day_of_the_week == 4:
-        query.add_filter('dayOfTheWeek', '=', 'Vineri')
-    elif day_of_the_week == 5:
-        query.add_filter('dayOfTheWeek', '=', 'Sambata')
-    elif day_of_the_week == 6:
-        query.add_filter('dayOfTheWeek', '=', 'Duminica')
+    query.add_filter('dayOfTheWeek', '=', days[day_of_the_week])
     query_it = query.fetch()
     return list(query_it)
 
