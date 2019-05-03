@@ -397,17 +397,23 @@ def get_prof_key(name):
     else:
         first_name = name[-1]
         last_name = " ".join(x for x in name[:-1])
-    problematic_profs = ['Pistol', 'Moruz']
-    if last_name in problematic_profs:
-        first_name = first_name.split(" ")[0]
+
     professor = Professor()
     query = professor.query()
-    query.add_filter('firstName', '=', first_name)
     query.add_filter('lastName', '=', last_name)
     querys = query.fetch()
+    possible_profs = []
     for found in querys:
-        return found.key
-    return False
+        possible_profs.append(found.key)
+    if len(possible_profs) == 0:
+        return False
+    if len(possible_profs) > 1:
+        query.add_filter('firstName','=',first_name)
+        querys = query.fetch()
+        for found in querys:
+            return found.key
+        return False
+    return possible_profs[0]
 
 
 def get_course_key(title):
@@ -552,9 +558,9 @@ def add_sch_announcements_to_datastore():
 def main():
     get_schedule_pages()
     crawl_website_schedule()
-    add_classes_to_datastore()
+    #add_classes_to_datastore()
     add_exams_to_datastore()
-    add_sch_announcements_to_datastore()
+    #add_sch_announcements_to_datastore()
 
 
 if __name__ == "__main__":
