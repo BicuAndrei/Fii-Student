@@ -29,4 +29,9 @@
 			});
 		}, false);
 	})();
+
+	function logOut() {
+		sessionStorage.removeItem("accessToken");
+		window.location.reload();
+	}
 </script>
