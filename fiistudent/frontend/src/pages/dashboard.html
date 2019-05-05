@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	${require('./partials/shared/_head.html')}
+
+	<title>FII Student - Panou principal</title>
+
+	<script>
+		const title = 'Panou principal';
+		const subtitle = 'Detalii despre contul tau';
+		const shouldBeLoggedIn = true;
+	</script>
+
+</head>
+
+<body>
+	<div class="d-flex" id="wrapper">
+		${require('./partials/shared/sidebar.html')}
+
+		<div id="page-content-wrapper" class="bg-light">
+			${require('./partials/shared/page-header.html')}
+
+
+		</div>
+	</div>
+</body>
+
+</html>
