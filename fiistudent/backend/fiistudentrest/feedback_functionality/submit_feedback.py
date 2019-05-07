@@ -73,11 +73,12 @@ def get_all_feedback():
     feedback_query = Feedback.query()
     feedback_query_it = feedback_query.fetch()
     data_list = []
-    for ent in feedback_query:
-        data = {}
-        data['stars'] = ent.stars
-        data['feedback'] = ent.text
-        data['date'] = ent.created_at
+    for ent in feedback_query_it:
+        data = {'stars': ent.stars, 'feedback': ent.text, 'date': ent.created_at}
+        data_list.append(data)
+
+    json_data = json.dumps(data_list)
+    return json_data
 
 
 def get_feedback_by_professor(professor):
@@ -85,7 +86,13 @@ def get_feedback_by_professor(professor):
     query = Feedback.query()
     query.add_filter('professor', '=', professor)
     query_it = query.fetch()
-    return query_it
+    data_list = []
+    for ent in query_it:
+        data = {'stars': ent.stars, 'feedback': ent.text, 'date': ent.created_at}
+        data_list.append(data)
+
+    json_data = json.dumps(data_list)
+    return json_data
 
 
 def get_feedback_by_professor_date(professor, start_date, end_date):
@@ -95,7 +102,13 @@ def get_feedback_by_professor_date(professor, start_date, end_date):
     query.add_filter('created_at', '>=', start_date)
     query.add_filter('created_at', '<=', end_date)
     query_it = query.fetch()
-    return query_it
+    data_list = []
+    for ent in query_it:
+        data = {'stars': ent.stars, 'feedback': ent.text, 'date': ent.created_at}
+        data_list.append(data)
+
+    json_data = json.dumps(data_list)
+    return json_data
 
 
 if __name__ == '__main__':
