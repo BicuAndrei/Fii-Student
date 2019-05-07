@@ -8,7 +8,7 @@ class Student(BaseModel):
     firstName = ndb.StringProperty()
     lastName = ndb.StringProperty()
     email = ndb.StringProperty()
-    username = ndb.StringProperty()
+    phoneNumber = ndb.StringProperty()
     password = ndb.StringProperty()
     year = ndb.IntegerProperty()
     group = ndb.StringProperty()
