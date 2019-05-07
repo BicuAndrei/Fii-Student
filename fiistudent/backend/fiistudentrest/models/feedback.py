@@ -12,5 +12,4 @@ class Feedback(BaseModel):
     professor = ndb.KeyProperty(kind=Professor, required=True)
     course = ndb.KeyProperty(kind=Course, required=True)
     text = ndb.StringProperty()
-    date = ndb.StringProperty()
     stars = ndb.IntegerProperty()
