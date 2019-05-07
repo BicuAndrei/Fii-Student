@@ -5,6 +5,7 @@ from fiistudentrest.models import ScheduleClass, Student
 from fiistudentrest.models import Course
 from fiistudentrest.auth import verify_token
 
+
 def get_abbreviation(title):
     """Gets the abreviation for the course"""
     # Can be improved
@@ -51,11 +52,10 @@ def schedule(request):
                     {'for': 'request_header', 'message': 'No Authorization field exists in request header'}]}
 
     student_key_urlsafe = verify_token(authorization)
-    if not user_urlsafe:
+    if not student_key_urlsafe:
         return {'status': 'error',
                 'errors': [
                     {'for': 'request_header', 'message': 'Header contains token, but it is not a valid one.'}]}
-
 
     student = Student.get(student_key_urlsafe)
     year_and_group = student.group
