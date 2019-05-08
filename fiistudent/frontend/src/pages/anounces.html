@@ -1,333 +1,264 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Anounces page</title>
+	${require('./partials/shared/_head.html')}
 
-      <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
-      <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'>
-      
-      <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js'></script>
-      <script src='https://code.jquery.com/jquery-2.1.4.min.js'></script>
-      <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
-      <script>
-      $(document).ready(function(){
-  
-            $('#searchbar-icon').click(function(){
-              $('#searchbar-input').animate({width: 'toggle'});
-              $("#searchbar-icon").toggle();
-              $("#searchbar-cross").toggle(500);
-            });
-            
-            $('#searchbar-cross').click(function(){
-              $('#searchbar-input').animate({width: 'toggle'});
-              $("#searchbar-cross").toggle();
-              $("#searchbar-icon").toggle(500);
-            });
-            
-          });</script>
-  <style>
-     h4.notification-title {
-  font-size: 24px;
-  text-transform: uppercase;
-  margin: 10px;
-}
+	<title>FII Student - Anunțuri</title>
 
-.pitch-list {
-  margin: 10px auto;
-  padding: 10px;
-  background-color: #fff;
-  box-shadow: 0 2px 7px -1px gray;
-}
-.pitch-list ul.notification-list {
-  list-style: none;
-}
-.pitch-list ul.notification-list li.notification-item {
-  list-style: none;
-  padding: 15px;
-  margin-right: 0px;
-  width: auto;
-}
-.pitch-list ul.notification-list a.notification-anchor {
-  display: block;
-  clear: both;
-}
-.pitch-list ul.notification-list a.notification-anchor:hover {
-  text-decoration: none;
-}
-.pitch-list ul.notification-list .notification-anchor span.notification-img {
-  float: left;
-  margin-right: 20px;
-  height: 80px;
-  padding-top: 5px;
-}
-.pitch-list ul.notification-list .notification-anchor span.notification-img img {
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-}
-.pitch-list ul.notification-list .notification-anchor p {
-  margin-bottom: 0px;
-  color: #8D8D8D;
-  font-size: 14px;
-}
-.pitch-list ul.notification-list .notification-anchor p.notification-type {
-  font-size: 16px;
-  color: #27AAE1;
-}
-.pitch-list ul.notification-list .notification-anchor p.notification-project {
-  font-style: italic;
-}
-
-.pagination-container {
-  margin-top: 30px;
-  margin-left: 40px;
-  text-align: left;
-}
-
-.pagination > li > a {
-  color: #8D8D8D;
-  font-weight: 500;
-  border: 1px solid transparent;
-}
-.pagination > li > a span {
-  text-transform: uppercase;
-}
-
-.pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
-  color: #27AAE1;
-  text-decoration: underline;
-  background-color: transparent;
-  border-color: transparent;
-}
-
-.pagination > li > a:hover,
-.pagination > li > a:focus {
-  color: #27AAE1;
-  background-color: transparent;
-  border-color: transparent;
-}
-
-.pagination > li:last-child > a:before,
-.pagination > li:last-child > span:before {
-  content: "|";
-  margin-right: 10px;
-  margin-left: -10px;
-}
-  .searchbar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  
-  #searchbar-input {
-    border: 0px solid;
-    border-bottom: 2px solid black;
-    width: 600px;
-    font-size: 4.9rem;
-    outline: none;
-    color: #606060;
-    display: none;
-  }
-  
-  .fa-times {
-    display: none;
-    font-size: 5rem;
-    cursor: pointer;
-  }
-  
-  .fa-search {
-    font-size: 5rem;
-    cursor: pointer;
-  }
-}</style>  
+	<script>
+		const title = 'Anunțuri';
+		const subtitle = 'Află informații despre evenimentele din facultate';
+		const shouldBeLoggedIn = true;
+	</script>
+	<style>
+		hr.stylehr {
+			border: 0;
+			height: 1px;
+			background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+			background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+			background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+		}
+	</style>
 </head>
 
 <body>
 
-  <div class="container">
-   <div class="row" >
-      
-      <div class="col-sm-11 pitch-list">
-         <div class="row">
-            <div class="col-sm-6">
-                  
-                  <h4 class="notification-title" style="margin-left:55px; margin-top:20px;">Anunturi Importante</h4>
-                  <ul class="notification-list">
-                  <li class="notification-item">
-                     <a class="notification-anchor" href="#">
-                        
-                           <p class="notification-user">
-                           <strong>Admin</strong> |
-                           <span class="timestamp">26.04.2019</span>
-                           </p>
-                           <p class="notification-type">
-                              Burse pentru semestrul 2 
-                           </p>
-                           <p class="notification-Studs">
-                              Studs <span class="Studs-name">News - Important!</span>
-                           </p>
-                     </a>
-                  </li>
-                  <li class="notification-item">
-                        <a class="notification-anchor" href="#">
-                           
-                              <p class="notification-user">
-                              <strong>Admin</strong> |
-                              <span class="timestamp">26.04.2019</span>
-                              </p>
-                              <p class="notification-type">
-                                 Burse pentru semestrul 2 
-                              </p>
-                              <p class="notification-Studs">
-                                 Studs <span class="Studs-name">News - Important!</span>
-                              </p>
-                        </a>
-                     </li>
-               </ul>
-               <h4 class="notification-title" style="margin-left:55px; margin-top:80px;">Cauta anunturi</h4>
-               <div class="searchbar" style="margin-left:-205px; margin-top:30px;">
-                     <input type="text" id="searchbar-input">
-                     <i class="fa fa-search" id="searchbar-icon" aria-hidden="true"></i>
-                     <i class="fa fa-times" id="searchbar-cross" aria-hidden="true"></i>
-                   </div>
-            </div>
-            
-            <div class="col-sm-6">
-                  <h4 class="notification-title" style="margin-left:55px; margin-top:20px;">Anunturi Noi</h4>
-               <ul class="notification-list">
-                  <li class="notification-item">
-               <a class="notification-anchor" href="#">
-                  <span class="notification-img">
-                     <img src="http://lorempixel.com/output/nature-q-g-640-480-6.jpg"/>
-                   </span>
-                     <p class="notification-user">
-                     <strong>Admin</strong> |
-                     <span class="timestamp">26.04.2019</span>
-                     </p>
-                     <p class="notification-type">
-                        Facultatea de Informatica a participat la o olimpiada
-                     </p>
-                     <p class="notification-Studs">
-                        Studs <span class="Studs-name">News - Important!</span>
-                     </p>
-               </a>
-            </li>
-                  <li class="notification-item">
-               <a class="notification-anchor" href="#">
-                  <span class="notification-img">
-                     <img src="http://lorempixel.com/output/nature-q-g-640-480-6.jpg"/>
-                   </span>
-                     <p class="notification-user">
-                     <strong>Admin</strong> |
-                     <span class="timestamp">26.04.2019</span>
-                     </p>
-                     <p class="notification-type">
-                        Burse pentru semestrul 2 
-                     </p>
-                     <p class="notification-Studs">
-                        Studs <span class="Studs-name">News - Important!</span>
-                     </p>
-               </a>
-            </li>
-                  <li class="notification-item">
-               <a class="notification-anchor" href="#">
-                  <span class="notification-img">
-                     <img src="http://lorempixel.com/output/nature-q-g-640-480-6.jpg"/>
-                   </span>
-                     <p class="notification-user">
-                     <strong>Admin</strong> |
-                     <span class="timestamp">26.04.2019</span>
-                     </p>
-                     <p class="notification-type">
-                       Studentii care au luat premii
-                     </p>
-                     <p class="notification-Studs">
-                        Studs <span class="Studs-name">News - Important!</span>
-                     </p>
-               </a>
-            </li>
-                  <li class="notification-item">
-               <a class="notification-anchor" href="#">
-                  <span class="notification-img">
-                     <img src="http://lorempixel.com/output/nature-q-g-640-480-6.jpg"/>
-                   </span>
-                     <p class="notification-user">
-                     <strong>Admin</strong> |
-                     <span class="timestamp">26.04.2019</span>
-                     </p>
-                     <p class="notification-type">
-                        Studentii au creat ceva nou
-                     </p>
-                     <p class="notification-Studs">
-                        Studs <span class="Studs-name">News - Important!</span>
-                     </p>
-               </a>
-            </li>
-                  <li class="notification-item">
-               <a class="notification-anchor" href="#">
-                  <span class="notification-img">
-                     <img src="http://lorempixel.com/output/nature-q-g-640-480-6.jpg"/>
-                   </span>
-                     <p class="notification-user">
-                     <strong>ASII admin</strong> |
-                     <span class="timestamp">26.04.2019</span>
-                     </p>
-                     <p class="notification-type">
-                        Bugetul anului se reduce
-                     </p>
-                     <p class="notification-Studs">
-                        Studs <span class="Studs-name">News - Important!</span>
-                     </p>
-               </a>
-            </li>
-            <li class="notification-item">
-               <a class="notification-anchor" href="#">
-                  <span class="notification-img">
-                     <img src="http://lorempixel.com/output/nature-q-g-640-480-6.jpg"/>
-                   </span>
-                     <p class="notification-user">
-                     <strong>ASII admin</strong> |
-                     <span class="timestamp">26.04.2019</span>
-                     </p>
-                     <p class="notification-type">
-                        Bugetul anului se reduce
-                     </p>
-                     <p class="notification-Studs">
-                        Studs <span class="Studs-name">News - Important!</span>
-                     </p>
-               </a>
-            </li>
-            
-               </ul>
-            </div>
-         </div>
-         <div class="pagination-container">
-            <ul class="pagination">
-                <li class="active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li>
-                  <a href="#" aria-label="Next">
-                    <span aria-hidden="true">Next</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" aria-label="Previous">
-                    <span aria-hidden="true">Previous</span>
-                  </a>
-                </li>
-             </ul>
-         </div>
-      </div>   
-   </div>
-</div>
- 
+	<div class="d-flex" id="wrapper">
+		${require('./partials/shared/sidebar.html')}
 
-  
+		<div id="page-content-wrapper" class="bg-light">
+			${require('./partials/shared/page-header.html')}
 
+			<div class="container">
+				<div class="col-md-12 pt-3">
+					<div class="shadow p-3 mb-5 bg-white rounded">
+						<h2 class="title pl-1">Anunţuri noi</h2>
+						<hr class="stylehr">
+						<div class="list">
+							<ul class="list-group list-group-flush">
+								<li class="list-group-item">
+									<p><time datetime="2018-11-16" pubdate="">16 noiembrie, 2018</time></p>
+									<h5 class="title">
+										<a href="#">Studenți –
+											consimțământ privind prelucrarea datelor cu caracter personal</a>
+									</h5>
+									<p>În conformitate cu noua legislație privind protecția datelor personale,
+										studenții de la toate nivelele de studiu trebuie să completeze și să depună
+										la secretariat declarația de consimțământ privind prelucrarea datelor […]
+									</p>
+								</li>
+
+								<li class="list-group-item">
+									<p><time datetime="2018-10-8" pubdate="">8 octombrie, 2018</time></p>
+									<h5 class="title">
+										<a href="#">Mobilități studențești de studiu Erasmus+, semestrul 2</a>
+									</h5>
+									<p>În data de 8 octombrie a început procesul de selecție pentru mobilitățile
+										studențești de studiu Erasmus+, semestrul 2 din anul universitar 2018-2019.
+										Cei interesați pot găsi informatiile necesare aici.
+									</p>
+								</li>
+								<li class="list-group-item">
+									<p><time datetime="2018-10-8" pubdate="">8 octombrie, 2018</time></p>
+									<h5 class="title">
+										<a href="#">Contracte de studii – cursanți</a>
+									</h5>
+								</li>
+
+								<li class="list-group-item">
+									<p><time datetime="2018-10-2" pubdate="">2 octombrie, 2018</time></p>
+									<h5 class="title">
+										<a href="#">Burse sociale – semestrul 1, anul universitar 2018-2019</a>
+									</h5>
+								</li>
+
+								<li class="list-group-item">
+									<p><time datetime="2018-11-16" pubdate="">16 noiembrie, 2018</time></p>
+									<h5 class="title">
+										<a href="#">Studenți –
+											consimțământ privind prelucrarea datelor cu caracter personal</a>
+									</h5>
+									<p>În conformitate cu noua legislație privind protecția datelor personale,
+										studenții de la toate nivelele de studiu trebuie să completeze și să depună
+										la secretariat declarația de consimțământ privind prelucrarea datelor […]
+									</p>
+								</li>
+
+								<li class="list-group-item">
+									<p><time datetime="2018-10-8" pubdate="">8 octombrie, 2018</time></p>
+									<h5 class="title">
+										<a href="#">Mobilități studențești de studiu Erasmus+, semestrul 2</a>
+									</h5>
+									<p>În data de 8 octombrie a început procesul de selecție pentru mobilitățile
+										studențești de studiu Erasmus+, semestrul 2 din anul universitar 2018-2019.
+										Cei interesați pot găsi informatiile necesare aici.
+									</p>
+								</li>
+								<li class="list-group-item">
+									<p><time datetime="2018-10-8" pubdate="">8 octombrie, 2018</time></p>
+									<h5 class="title">
+										<a href="#">Contracte de studii – cursanți</a>
+									</h5>
+								</li>
+
+								<li class="list-group-item">
+									<p><time datetime="2018-10-2" pubdate="">2 octombrie, 2018</time></p>
+									<h5 class="title">
+										<a href="#">Burse sociale – semestrul 1, anul universitar 2018-2019</a>
+									</h5>
+								</li>
+
+								<li class="list-group-item">
+									<p><time datetime="2018-11-16" pubdate="">16 noiembrie, 2018</time></p>
+									<h5 class="title">
+										<a href="#">Studenți –
+											consimțământ privind prelucrarea datelor cu caracter personal</a>
+									</h5>
+									<p>În conformitate cu noua legislație privind protecția datelor personale,
+										studenții de la toate nivelele de studiu trebuie să completeze și să depună
+										la secretariat declarația de consimțământ privind prelucrarea datelor […]
+									</p>
+								</li>
+
+								<li class="list-group-item">
+									<p><time datetime="2018-10-8" pubdate="">8 octombrie, 2018</time></p>
+									<h5 class="title">
+										<a href="#">Mobilități studențești de studiu Erasmus+, semestrul 2</a>
+									</h5>
+									<p>În data de 8 octombrie a început procesul de selecție pentru mobilitățile
+										studențești de studiu Erasmus+, semestrul 2 din anul universitar 2018-2019.
+										Cei interesați pot găsi informatiile necesare aici.
+									</p>
+								</li>
+								<li class="list-group-item">
+									<p><time datetime="2018-10-8" pubdate="">8 octombrie, 2018</time></p>
+									<h5 class="title">
+										<a href="#">Contracte de studii – cursanți</a>
+									</h5>
+								</li>
+
+								<li class="list-group-item">
+									<p><time datetime="2018-10-2" pubdate="">2 octombrie, 2018</time></p>
+									<h5 class="title">
+										<a href="#">Burse sociale – semestrul 1, anul universitar 2018-2019</a>
+									</h5>
+								</li>
+
+								<li class="list-group-item">
+									<p><time datetime="2018-11-16" pubdate="">16 noiembrie, 2018</time></p>
+									<h5 class="title">
+										<a href="#">Studenți –
+											consimțământ privind prelucrarea datelor cu caracter personal</a>
+									</h5>
+									<p>În conformitate cu noua legislație privind protecția datelor personale,
+										studenții de la toate nivelele de studiu trebuie să completeze și să depună
+										la secretariat declarația de consimțământ privind prelucrarea datelor […]
+									</p>
+								</li>
+
+								<li class="list-group-item">
+									<p><time datetime="2018-10-8" pubdate="">8 octombrie, 2018</time></p>
+									<h5 class="title">
+										<a href="#">Mobilități studențești de studiu Erasmus+, semestrul 2</a>
+									</h5>
+									<p>În data de 8 octombrie a început procesul de selecție pentru mobilitățile
+										studențești de studiu Erasmus+, semestrul 2 din anul universitar 2018-2019.
+										Cei interesați pot găsi informatiile necesare aici.
+									</p>
+								</li>
+								<li class="list-group-item">
+									<p><time datetime="2018-10-8" pubdate="">8 octombrie, 2018</time></p>
+									<h5 class="title">
+										<a href="#">Contracte de studii – cursanți</a>
+									</h5>
+								</li>
+
+								<li class="list-group-item">
+									<p><time datetime="2018-10-2" pubdate="">2 octombrie, 2018</time></p>
+									<h5 class="title">
+										<a href="#">Burse sociale – semestrul 1, anul universitar 2018-2019</a>
+									</h5>
+								</li>
+
+								<li class="list-group-item">
+									<p><time datetime="2018-11-16" pubdate="">16 noiembrie, 2018</time></p>
+									<h5 class="title">
+										<a href="#">Studenți –
+											consimțământ privind prelucrarea datelor cu caracter personal</a>
+									</h5>
+									<p>În conformitate cu noua legislație privind protecția datelor personale,
+										studenții de la toate nivelele de studiu trebuie să completeze și să depună
+										la secretariat declarația de consimțământ privind prelucrarea datelor […]
+									</p>
+								</li>
+
+								<li class="list-group-item">
+									<p><time datetime="2018-10-8" pubdate="">8 octombrie, 2018</time></p>
+									<h5 class="title">
+										<a href="#">Mobilități studențești de studiu Erasmus+, semestrul 2</a>
+									</h5>
+									<p>În data de 8 octombrie a început procesul de selecție pentru mobilitățile
+										studențești de studiu Erasmus+, semestrul 2 din anul universitar 2018-2019.
+										Cei interesați pot găsi informatiile necesare aici.
+									</p>
+								</li>
+								<li class="list-group-item">
+									<p><time datetime="2018-10-8" pubdate="">8 octombrie, 2018</time></p>
+									<h5 class="title">
+										<a href="#">Contracte de studii – cursanți</a>
+									</h5>
+								</li>
+
+								<li class="list-group-item">
+									<p><time datetime="2018-10-2" pubdate="">2 octombrie, 2018</time></p>
+									<h5 class="title">
+										<a href="#">Burse sociale – semestrul 1, anul universitar 2018-2019</a>
+									</h5>
+								</li>
+
+								<li class="list-group-item">
+									<p><time datetime="2018-11-16" pubdate="">16 noiembrie, 2018</time></p>
+									<h5 class="title">
+										<a href="#">Studenți –
+											consimțământ privind prelucrarea datelor cu caracter personal</a>
+									</h5>
+									<p>În conformitate cu noua legislație privind protecția datelor personale,
+										studenții de la toate nivelele de studiu trebuie să completeze și să depună
+										la secretariat declarația de consimțământ privind prelucrarea datelor […]
+									</p>
+								</li>
+
+								<li class="list-group-item">
+									<p><time datetime="2018-10-8" pubdate="">8 octombrie, 2018</time></p>
+									<h5 class="title">
+										<a href="#">Mobilități studențești de studiu Erasmus+, semestrul 2</a>
+									</h5>
+									<p>În data de 8 octombrie a început procesul de selecție pentru mobilitățile
+										studențești de studiu Erasmus+, semestrul 2 din anul universitar 2018-2019.
+										Cei interesați pot găsi informatiile necesare aici.
+									</p>
+								</li>
+								<li class="list-group-item">
+									<p><time datetime="2018-10-8" pubdate="">8 octombrie, 2018</time></p>
+									<h5 class="title">
+										<a href="#">Contracte de studii – cursanți</a>
+									</h5>
+								</li>
+
+								<li class="list-group-item">
+									<p><time datetime="2018-10-2" pubdate="">2 octombrie, 2018</time></p>
+									<h5 class="title">
+										<a href="#">Burse sociale – semestrul 1, anul universitar 2018-2019</a>
+									</h5>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 
 </html>
