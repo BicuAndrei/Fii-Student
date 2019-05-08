@@ -1,0 +1,100 @@
+.schedule {
+
+    thead th,
+    tbody th {
+        font-weight: normal;
+        color: $color-text-secondary;
+        border-top: none;
+    }
+
+    thead th {
+        border-bottom: none;
+        border-top: none;
+        text-align: left;
+        color: $color-text-primary;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 16px;
+    }
+
+    tbody td {
+        padding: 0;
+        position: relative;
+    }
+
+    tbody th {
+        font-size: 14px;
+        padding-top: 0;
+    }
+}
+
+.object {
+    border-radius: 5px;
+    padding: 20px;
+    margin: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+	height: 100%;
+	min-height: 105px;
+    width: 400px;
+	text-align: left;
+	background-color: #fff;
+
+    cursor: pointer;
+    @include material-box-shadow(1, false);
+
+    .badges {
+        margin-top: 20px;
+    }
+
+    .badge {
+        border-radius: 5px;
+        font-size: 12px;
+        font-weight: lighter;
+        padding: 7px;
+        text-transform: uppercase;
+        margin-right: 10px;
+
+        &.curs {
+            color: #fff;
+            background-color: #FFE35E;
+        }
+
+        &.laborator {
+            color: #fff;
+            background-color: #DA1E58;
+        }
+
+        &.room {
+            color: #fff;
+            background-color: #C0C0C0;
+        }
+
+        &.seminar {
+            color: #fff;
+            background-color: $color-primary;
+        }
+
+        &.consultations {
+            color: #fff;
+            background-color: #76DDD6;
+        }
+    }
+
+    p {
+        margin-bottom: 0;
+    }
+
+    .object-teacher {
+        color: #C0C0C0;
+        font-size: 16px;
+    }
+
+    .name {
+        color: $color-primary;
+    }
+
+    .room {
+        font-size: 14px;
+    }
+}
