@@ -329,7 +329,7 @@ def empty_entity():
     print('remove done')
 
 
-def create_class(day, group, course, hour, sala):
+def create_class(day, group, course, hour, sala, tip):
     scheduleclass = ScheduleClass()
 
     ccourse = Course()
@@ -358,6 +358,7 @@ def create_class(day, group, course, hour, sala):
     scheduleclass.startHour = int(hour.split('-')[0].split(':')[0])
     scheduleclass.endHour = int(hour.split('-')[1].split(':')[0])
     scheduleclass.group = group
+    scheduleclass.classType = tip
     scheduleclass.put()
     print('Schedule class added')
 
@@ -368,7 +369,7 @@ def add_classes_to_datastore():
     for group in groups_schedule:
         for day in groups_schedule[group]:
             for course in groups_schedule[group][day]:
-                create_class(day, group, course['materie'], course['ora'], course['sala'])
+                create_class(day, group, course['materie'], course['ora'], course['sala'], course['tip'])
                 # print(course['materie'])
 
 
