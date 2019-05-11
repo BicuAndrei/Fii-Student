@@ -11,6 +11,7 @@ class ScheduleClass(BaseModel):
     startHour = ndb.IntegerProperty()
     endHour = ndb.IntegerProperty()
     group = ndb.StringProperty()
+    classType = ndb.StringProperty()
     classroom = ndb.KeyProperty(kind=Classroom)
     course = ndb.KeyProperty(kind=Course)
 
