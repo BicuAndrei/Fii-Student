@@ -1,6 +1,7 @@
 from google.cloud import datastore
-from fiistudentrest.models import ndb,Student, Token
-
+from fiistudentrest.models import ndb, Student, Token
+import uuid
+import hashlib
 import hug
 import jwt
 
@@ -11,21 +12,34 @@ config = {
     # Token will expire in 3600 seconds if it is not refreshed and the user will be required to log in again.
     'token_expiration_seconds': 3600,
     # If a request is made at a time less than 1000 seconds before expiry, a new jwt is sent in the response header.
-    'token_refresh_seconds': 1000, 
+    'token_refresh_seconds': 1000,
     'jwt_algorithm': 'HS256'
 }
+
+
+def hash_password(password):
+    """ Encode a password """
+    # uuid is used to generate a random number
+    salt = uuid.uuid4().hex
+    return hashlib.sha256(salt.encode() + password.encode()).hexdigest() + ':' + salt
+
+
+def check_password(hashed_password, user_password):
+    """ Decode a password """
+    password, salt = hashed_password.split(':')
+    return password == hashlib.sha256(salt.encode() + user_password.encode()).hexdigest()
 
 
 def login_function(email, password):
     """ Verify if the user exists in the datastore """
     query = Student.query()
     query.add_filter('email', '=', email)
-    query.add_filter('password', '=', password)
+    # deleted query.add_filter('password', '=', password)
     query_it = query.fetch()
     for ent in query_it:
         if ent is None:
             print('The user is not in our database or introduced the wrong credentials.')
-        else:
+        elif check_password(ent.password, password):  # unchecked modification here
             print('The user exists in our database.')
             return ent
     return None
@@ -35,9 +49,9 @@ def update_token(jwt_token, user):
     """ Updates existing token for user or creates new one """
 
     query = Token.query()
-    query.add_filter('user','=',user.key)
+    query.add_filter('user', '=', user.key)
     query_list = list(query.fetch())
-    
+
     if query_list:
         for token_entity in query_list:
             token_entity.token = jwt_token.decode("utf-8")
@@ -55,22 +69,21 @@ def generate_token(user):
         'exp': datetime.utcnow() + timedelta(seconds=config['token_expiration_seconds'])
     }
     return jwt.encode(payload, config['jwt_secret'], config['jwt_algorithm'])
-       
+
 
 def exists_token(token):
     """ Chekcs whether the token exists in the database """
-    
+
     query = Token.query()
-    query.add_filter('token','=',token)
+    query.add_filter('token', '=', token)
     query_list = list(query.fetch())
-    
+
     if query_list:
         for token_entity in query_list:
             if token_entity:
                 return True
-    
-    return False
 
+    return False
 
 
 def verify_token(authorization):
@@ -86,7 +99,7 @@ def verify_token(authorization):
     except jwt.InvalidTokenError:
         return None
 
-    
+
 @hug.local()
 @hug.cli()
 @hug.get()
@@ -95,7 +108,7 @@ def login(email: hug.types.text, password: hug.types.text):
     user = login_function(email.lower(), password)
     if user != None:
         jwt_token = generate_token(user)
-        update_token(jwt_token,user)
+        update_token(jwt_token, user)
         return {'token': jwt_token.decode("utf-8"), 'errors': []}
     else:
         return {'status': 'error', 'errors': [
@@ -104,4 +117,3 @@ def login(email: hug.types.text, password: hug.types.text):
 
 if __name__ == '__main__':
     login.interface.cli()
-

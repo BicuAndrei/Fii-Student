@@ -2,6 +2,8 @@ from google.cloud import datastore
 from fiistudentrest.models import Student
 import hug
 import phonenumbers
+import uuid
+import hashlib
 
 
 def entity_exists(entity):
@@ -35,6 +37,13 @@ def is_real_number(phone_number):
     """ Verifies if a phone number is valid for Romania """
     the_phone_number = phonenumbers.parse(phone_number, "RO")
     return phonenumbers.is_valid_number_for_region(the_phone_number, "RO")
+
+
+def hash_password(password):
+    """ Encode a password """
+    # uuid is used to generate a random number
+    salt = uuid.uuid4().hex
+    return hashlib.sha256(salt.encode() + password.encode()).hexdigest() + ':' + salt
 
 
 @hug.get()
@@ -73,7 +82,7 @@ def register(registrationNumber: hug.types.text, firstName: hug.types.text, last
             lastName=lastName.capitalize(),
             email=email.lower(),
             phoneNumber=phone_number,
-            password=password,
+            password=hash_password(password),
             year=year,
             group=group.upper()
         )
