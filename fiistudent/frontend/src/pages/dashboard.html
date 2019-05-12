@@ -8,7 +8,7 @@
 
 	<script>
 		const title = 'Panou principal';
-		const subtitle = 'Detalii despre contul tau';
+		const subtitle = 'Detalii despre contul tău';
 		const shouldBeLoggedIn = true;
 	</script>
 
@@ -20,8 +20,59 @@
 
 		<div id="page-content-wrapper" class="bg-light">
 			${require('./partials/shared/page-header.html')}
-
-
+			
+			<div class="page ml-4 mt-4 mb-3 flex-column flex-grow-1" >
+				<div class="content d-flex flex-row">
+					<div class="changePass ml-5 mt-3 mb-5 border w-50 p-3" style="background: #ffffff">
+						<h4>Informatii personale</h4>
+						<form action=" " method="GET" class="p-2">
+							<div class="form-group">
+								<label for="exampleInputUsername">Nume de utilizator</label>
+								<input type="test" class="form-control " id="exampleInputUsername">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputPassword1">Parola actuala</label>
+								<input type="password" class="form-control " id="exampleInputPassword1">
+							</div>
+							<div class="form-group">
+								<label for="Password2">Parola noua</label>
+								<input type="password" class="form-control " id="Password2">
+							</div>
+							<div class="form-group">
+								<label for="Password2">Repeta parola</label>
+								<input type="password" class="form-control " id="Password3">
+							</div>
+							<button type="submit" class="btn btn-primary">Trimite</button>
+						</form>
+					</div>
+					<div class="group ml-5 mt-3 mb-5 border w-25 p-3" style="background: #ffffff">
+						<form action=" " method="GET" class="p-2">
+							<h5>Schimba grupa</h5>
+							<label for="semian">Semianul </label>
+							<select name="semian" id="semian" class="form-control" required>
+								<option value="" selected="selected"></option>
+								<option value="A">A</option>
+								<option value="B">B</option>
+								<option value="E">E</option>
+							</select>
+							<br>
+							<label for="group">Grupa </label>
+							<select name="group" id="group" class="form-control required">
+								<option value="" selected="selected"></option> 
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+							</select>
+							<br>
+							<button class="btn btn-primary" type="submit">Trimite</button>
+						</form>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </body>

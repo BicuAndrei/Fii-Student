@@ -26,6 +26,8 @@ def send_mail(from_mail, to_mails, subject, text_content, html_content=None):
         html_content=html_content,
     )
 
+    # added template
+    message.template_id = '700c6c6a-8c12-4b7a-b4bc-5d8b2e8de06f'
     client = SendGridAPIClient(get_secret("sendgrid_key"))
     response = client.send(message)
     code = response.status_code
