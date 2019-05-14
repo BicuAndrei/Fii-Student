@@ -12,4 +12,3 @@ class Student(BaseModel):
     password = ndb.StringProperty()
     year = ndb.IntegerProperty()
     group = ndb.StringProperty()
-    confirmed = ndb.BooleanProperty()
