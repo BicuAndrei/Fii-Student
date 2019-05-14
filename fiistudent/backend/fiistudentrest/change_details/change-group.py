@@ -6,7 +6,7 @@ import hug
 @hug.local()
 @hug.get()
 @hug.cli()
-def change_group(request, user_urlsafe: hug.types.text, semian: hug.types.text, group: hug.types.text):
+def change_group(request, semian: hug.types.text, group: hug.types.text):
     """ Changes the group for a student and returns a json response for every case"""
     authorization = request.get_header('Authorization')
     if not authorization:
