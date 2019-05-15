@@ -8,7 +8,7 @@ from fiistudentrest.auth import verify_token
 
 
 @hug.local()
-@hug.get()
+@hug.post()
 @hug.cli()
 def submit_feedback(request, professor: hug.types.text, course: hug.types.text, date: hug.types.text,
                     stars: hug.types.number, feedback: hug.types.text):
