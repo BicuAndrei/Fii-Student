@@ -108,7 +108,8 @@ def get_schedule_pages():
             continue
         rooms.append(group)
         new_page = base+link
-        crawlable_pages.append(new_page)
+        if 'laptop' not in link and 'video' not in link:
+            crawlable_pages.append(new_page)
 
 
 def clear_entities():
@@ -133,7 +134,6 @@ def populate_entity(day):
         avb.dayOfTheWeek = period.day
         print(avb)
         avb.put()
-        #print('Updated classroom %s on %s from %s to %s' % (day['name'],avb.dayOfTheWeek,avb.startHour,avb.endHour))
 
 
 def populate_datastore():
@@ -143,13 +143,8 @@ def populate_datastore():
 
 def main():
     get_schedule_pages()
+    print(crawlable_pages)
     crawl_pages()
-    '''global free_days
-    for day in free_days:
-        print(day['name'])
-        for period in day['free_period']:
-            print(period)
-    '''
     clear_entities()
     populate_datastore()
 
