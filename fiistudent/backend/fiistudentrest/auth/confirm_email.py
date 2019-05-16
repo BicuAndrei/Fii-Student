@@ -8,6 +8,7 @@ def send_confirm_email(to_email):
     link = "http://develop-dot-fii-student.appspot.com/confirm_email?token="
     token = generate_token(to_email)
     link_token = link + token
+    print(link_token)
 
     subject = "Confirm your email"
     content = "<h4>Hi there,</h4>"
@@ -16,9 +17,9 @@ def send_confirm_email(to_email):
                "If you forgot your password, you will now be able to reset it by email.</p>"
     content += '\n<div style="display:flex; flex-direction: column; align-items: center">'
     content += '\n<p>To confirm that this is your account press on the button below.</p>'
-    content += '\n<form action="' + link_token + '">' \
-               '\n<input style="border: none;cursor: pointer;padding: 10px 20px;border-radius: 5px;font-size: 15px;' \
-               'background-color: #21d146;font-weight: bold" type="submit"/></form></div>'
+    content += '\n<a href="' + link_token + '">' \
+               '\n<button style="border: none;cursor: pointer;padding: 10px 20px;border-radius: 5px;font-size: 15px;' \
+               'background-color: #21d146;font-weight: bold">Confirm email</a></div>'
 
     Mail.send_mail(Mail.DEFAULT_MAIL, to_email, subject, content)
 
