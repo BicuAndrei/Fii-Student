@@ -91,9 +91,9 @@ def register(registrationNumber: hug.types.text, firstName: hug.types.text, last
 
         # add the entity if it does not exist and return a json response
         if register_function(student) == True:
-            return {'status': 'ok', 'errors': []}
-            # send confirmation email
+           # send confirmation email
             send_confirmation_email(email)
+            return {'status': 'ok', 'errors': []}
         else:
             return {'status': 'error', 'errors': [{'for': 'email', 'message': 'The email is already in our database.'}]}
 
