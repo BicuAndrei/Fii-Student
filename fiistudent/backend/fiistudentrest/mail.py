@@ -8,7 +8,7 @@ from sendgrid.helpers.mail import Mail
 ENCODING = "utf-8"
 
 
-# DEFAULT_MAIL="irinam.bejan@gmail.com"
+DEFAULT_MAIL="irinam.bejan@gmail.com"
 
 
 def get_secret(name):

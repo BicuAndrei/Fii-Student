@@ -7,5 +7,6 @@ requests>=2.21.0
 sendgrid>=6.0.2
 PyJWT>=1.7.1
 phonenumbers>=8.10.11
+itsdangerous>=1.1.0 
 
 -e git://github.com/savvybit/ndb-orm.git@develop#egg=ndb_orm

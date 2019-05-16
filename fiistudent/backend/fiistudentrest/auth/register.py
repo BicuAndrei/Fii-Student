@@ -1,5 +1,7 @@
 from google.cloud import datastore
 from fiistudentrest.models import Student
+import fiistudentrest.mail as Mail
+from .confirm_email import send_confirm_email as send_confirmation_email
 import hug
 import phonenumbers
 import uuid
@@ -84,11 +86,14 @@ def register(registrationNumber: hug.types.text, firstName: hug.types.text, last
             phoneNumber=phone_number,
             password=hash_password(password),
             year=year,
-            group=group.upper()
+            group=group.upper(),
+            confirmed=False
         )
 
         # add the entity if it does not exist and return a json response
         if register_function(student) == True:
+            # send confirmation email
+            send_confirmation_email(email)
             return {'status': 'ok', 'errors': []}
         else:
             return {'status': 'error', 'errors': [{'for': 'email', 'message': 'The email is already in our database.'}]}
