@@ -1,0 +1,9 @@
+.search-box {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 40px 30px;
+
+	background-color: #fff;
+	@include material-box-shadow(1, false);
+}

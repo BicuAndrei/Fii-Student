@@ -86,8 +86,7 @@ def register(registrationNumber: hug.types.text, firstName: hug.types.text, last
             phoneNumber=phone_number,
             password=hash_password(password),
             year=year,
-            group=group.upper(),
-            confirmed=False
+            group=group.upper()
         )
 
         # add the entity if it does not exist and return a json response

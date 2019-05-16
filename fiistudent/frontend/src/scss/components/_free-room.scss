@@ -1,0 +1,18 @@
+.free-room {
+	@include material-box-shadow(2, false);
+	
+	background-color: $color-primary;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	margin-bottom: 20px;
+	padding: 30px 0;
+	color: #fff;
+	overflow: hidden;
+
+	.room {
+		font-weight: bold;
+		margin-bottom: 20px;
+	}
+}

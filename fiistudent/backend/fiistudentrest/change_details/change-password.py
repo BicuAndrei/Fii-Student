@@ -21,7 +21,7 @@ def check_password(hashed_password, user_password):
 @hug.local()
 @hug.get()
 @hug.cli()
-def change_password(request, user_urlsafe: hug.types.text, old_password: hug.types.text, new_password: hug.types.text,
+def change_password(request, old_password: hug.types.text, new_password: hug.types.text,
                     confirm_password: hug.types.text):
     """ Changes the password for a student and returns a json response"""
     authorization = request.get_header('Authorization')

@@ -47,7 +47,6 @@ ${require('../modals/reset-password.modal.html')}
 	});
 
 	$('#nav-logoutBtn').click(function() {
-		sessionStorage.removeItem("accessToken");
-		window.location.reload();
+		logOut();
 	});
 </script>
