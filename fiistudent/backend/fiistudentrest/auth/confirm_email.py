@@ -1,17 +1,11 @@
-from flask import Flask, redirect
 from itsdangerous import URLSafeSerializer, SignatureExpired
 from fiistudentrest.models import Student
+
 import fiistudentrest.mail as Mail
-
-
-# import os
-# os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "C:\\Users\\Dragomir Cristian\\Documents\\fii-student-5c3ee6b54bbd.json"
-
-
-# app = Flask(__name__)
+import hug
 
 def send_confirm_email(to_email):
-    link = "nujcum.ro/validate/"
+    link = "http://develop-dot-fii-student.appspot.com/confirm_email?token="
     token = generate_token(to_email)
     link_token = link + token
 
@@ -29,7 +23,6 @@ def send_confirm_email(to_email):
     Mail.send_mail(Mail.DEFAULT_MAIL, to_email, subject, content)
 
 
-
 def generate_token(email, salt='email-confirmation'):
     serializer = URLSafeSerializer("Thisisasecret!!!")
     return serializer.dumps(email, salt)
@@ -44,32 +37,23 @@ def confirm_token(token):
     return email
 
 
-# @app.route('/')
-def index():
-    email = 'dragomircristian323@yahoo.com'
-    serializer = URLSafeSerializer('Thisisasecret!!!')
-    token = serializer.dumps(email, salt='email-confirmation')
-    return '<h1>token: {}'.format(token)
-
-
-# @app.route('/confirm-email/<token>')
-def confirm_email(token):
+@hug.get()
+def confirm_email(token : hug.types.text):
     email = None
     try:
         email = confirm_token(token)
     except:
-        print("The confirmation link is invalid or has expired!")
+        return {'status': 'error', 'errors': [
+            {'for': 'confirm_email', 'message': 'The confirmation link is invalid or has expired.'}]}
     query = Student.query()
     query.add_filter('email', '=', email)
     query_it = query.fetch()
     for ent in query_it:
         if ent.confirmed == True:
-            print('Account already confirmed.')
+            print('You have confirmed your account.')
+            return {'status': 'ok'}
         else:
             ent.confirmed = True
             Student.put(ent)
-            print('You have confirmed your account.')
-        return redirect('/')
-
-# if __name__ == '__main__':
-#     app.run(debug=True)
+            print('Account already confirmed.')
+            return {'status':'ok'}
