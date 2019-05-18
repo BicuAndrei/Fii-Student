@@ -76,8 +76,11 @@ def register(registrationNumber: hug.types.text, firstName: hug.types.text, last
     elif is_real_number(phone_number) == False:
         return {'status': 'error',
                 'errors': [{'for': 'phoneNumber', 'message': "The number is not valid."}]}
+    elif not email.lower().endswith("@info.uaic.ro"):
+        return {'status': 'error',
+                'errors': [{'for': 'email', 'message': "The email address is not @info.uaic.ro"}]}
     else:
-        # create the entity
+        # create the entityW
         student = Student(
             registrationNumber=registrationNumber,
             firstName=firstName.capitalize(),
