@@ -34,10 +34,10 @@
 </div>
 
 <script>
-	$('#loginForm').submit(function(event) {
+	$('#loginForm').submit(function (event) {
 		event.preventDefault();
 
-		if(!this.checkValidity()) {
+		if (!this.checkValidity()) {
 			return;
 		}
 
@@ -48,7 +48,7 @@
 				password: $(this).find('#password').val()
 			}
 		}).then(function (data) {
-			if(data.status === "error") {
+			if (data.status === "error") {
 				alert(data.errors[0].message);
 			} else {
 				sessionStorage.setItem("accessToken", data.token);
