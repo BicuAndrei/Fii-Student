@@ -7,31 +7,17 @@ import uuid
 import hashlib
 
 
-def entity_exists(entity):
-    """ Verify if the entity exists in the datastore """
-    result = False
-    query = entity.query()
-    query.add_filter('email', '=', entity.email)
+def get_professor_by_email(email):
+    """ Gets professor from database by email"""
+    query = Professor.query()
+    query.add_filter('email', '=', email)
     print(query)
     query_it = query.fetch()
     for ent in query_it:
-        if ent is None:
-            print('The entity {} will be added.'.format(entity))
-            result = False
-        else:
-            print('The entity exists.')
-            result = True
-    return result
-
-
-def register_function(entity):
-    """ Adds the entity in the datastore """
-    if not entity_exists(entity):
-        entity_key = entity.put()
-        print("The key: ", entity_key)
-        print(entity.email)
-        return True
-    return False
+        if ent is not None:
+            print(ent)
+            return ent
+    return None
 
 
 def hash_password(password):
@@ -44,9 +30,8 @@ def hash_password(password):
 @hug.get()
 @hug.cli()
 @hug.local()
-def register(registration_number: hug.types.text, first_name: hug.types.text, last_name: hug.types.text,
-             professor_type: hug.types.text, email: hug.types.text, password: hug.types.text,
-             confirm_password: hug.types.text):
+def register(first_name: hug.types.text, last_name: hug.types.text, professor_type: hug.types.text,
+             email: hug.types.text, password: hug.types.text, confirm_password: hug.types.text):
     """ Adds the entity in the datastore if possible and return an appropriate json response for every scenario """
     if len(first_name) < 3:
         return {'status': 'error',
@@ -70,7 +55,6 @@ def register(registration_number: hug.types.text, first_name: hug.types.text, la
     else:
         # create entity
         professor = Professor(
-            registrationNumber=registration_number,
             firstName=first_name.capitalize(),
             lastName=last_name.capitalize(),
             type=professor_type,
@@ -78,14 +62,27 @@ def register(registration_number: hug.types.text, first_name: hug.types.text, la
             password=hash_password(password),
             confirmed=False
         )
-
-        # add the entity if it does not exist and return a json response
-        if register_function(professor):
-            # send confirmation email
-            send_confirmation_email(email)
-            return {'status': 'ok', 'errors': []}
+        # get professor by email from the database
+        professor_db = get_professor_by_email(email)
+        if professor_db is not None:
+            # if entity with this mail already exists, update all fields
+            professor_db.firstName = professor.firstName
+            professor_db.lastName = professor.lastName
+            professor_db.type = professor.type
+            professor_db.email = professor.email
+            professor_db.password = professor.password
+            professor_db.confirmed = False
+            entity_key = Professor.put(professor_db)
         else:
-            return {'status': 'error', 'errors': [{'for': 'email', 'message': 'The email is already in our database.'}]}
+            # add new professor entity to the database
+            entity_key = Professor.put(professor)
+
+        print("The key: ", entity_key)
+        print(professor.email)
+
+        # send confirmation email
+        send_confirmation_email(email)
+        return {'status': 'ok', 'errors': []}
 
 
 if __name__ == '__main__':
