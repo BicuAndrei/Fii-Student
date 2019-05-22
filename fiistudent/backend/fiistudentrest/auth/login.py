@@ -1,5 +1,5 @@
 from google.cloud import datastore
-from fiistudentrest.models import ndb, Student, Token
+from fiistudentrest.models import ndb, Student, Token, Professor
 import uuid
 import hashlib
 import hug
@@ -40,6 +40,19 @@ def login_function(email, password):
         if ent is None:
             print('The user is not in our database or introduced the wrong credentials.')
         elif check_password(ent.password, password):  # unchecked modification here
+            print('The user exists in our database.')
+            return ent
+    return None
+
+
+def login_function_professor(email, password):
+    query = Professor.query()
+    query.add_filter('email', '=', email)
+    query_it = query.fetch()
+    for ent in query_it:
+        if ent is None:
+            print('The user is not in our database or introduced the wrong credentials.')
+        elif check_password(ent.password, password):
             print('The user exists in our database.')
             return ent
     return None
@@ -106,9 +119,14 @@ def verify_token(authorization):
 def login(email: hug.types.text, password: hug.types.text):
     """ Verify if the user exists in the datastore and return an appropriate json response for every scenario """
     user = login_function(email.lower(), password)
+    user_professor = login_function_professor(email, password)
     if user != None:
         jwt_token = generate_token(user)
         update_token(jwt_token, user)
+        return {'token': jwt_token.decode("utf-8"), 'errors': []}
+    elif user_professor != None:
+        jwt_token = generate_token(user_professor)
+        update_token(jwt_token, user_professor)
         return {'token': jwt_token.decode("utf-8"), 'errors': []}
     else:
         return {'status': 'error', 'errors': [
