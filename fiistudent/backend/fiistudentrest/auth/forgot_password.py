@@ -50,9 +50,6 @@ def send_forgot_password_email(to_email):
     Mail.send_mail(Mail.DEFAULT_MAIL, to_email, subject, content)
 
 
-# @hug.get()
-# @hug.cli()
-# @hug.local()
 def forgot_password(email: hug.types.text):
     if entity_exists(email) == True:
         send_forgot_password_email(email)
@@ -62,7 +59,7 @@ def forgot_password(email: hug.types.text):
             {'for': 'forgot_password', 'message': 'This email does not exist in our database'}]}
 
 
-@hug.get()
+@hug.post()
 @hug.cli()
 @hug.local()
 def confirm_forgot_password_token(token):
@@ -72,5 +69,3 @@ def confirm_forgot_password_token(token):
         return {'status': 'error', 'errors': [
             {'for': 'forgot_password', 'message': 'The link is invalid or has expired'}]}
 
-if __name__ == '__main__':
-    forgot_password('dragomircristian323@yahoo.com')
