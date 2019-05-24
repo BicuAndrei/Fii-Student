@@ -1,29 +1,30 @@
 from fiistudentrest.models import Student
-from fiistudentrest.auth import verify_token
+from fiistudentrest.api_functions.auth import verify_token
+
 import hug
 import uuid
 import hashlib
 
 
 def hash_password(password):
-    """ Encode a password """
+    """Encode a password """
     # uuid is used to generate a random number
     salt = uuid.uuid4().hex
     return hashlib.sha256(salt.encode() + password.encode()).hexdigest() + ':' + salt
 
 
 def check_password(hashed_password, user_password):
-    """ Decode a password """
+    """Decode a password """
     password, salt = hashed_password.split(':')
     return password == hashlib.sha256(salt.encode() + user_password.encode()).hexdigest()
 
 
 @hug.local()
-@hug.get()
+@hug.post()
 @hug.cli()
 def change_password(request, old_password: hug.types.text, new_password: hug.types.text,
                     confirm_password: hug.types.text):
-    """ Changes the password for a student and returns a json response"""
+    """Changes the password for a student and returns a json response"""
     authorization = request.get_header('Authorization')
     if not authorization:
         return {'status': 'error',

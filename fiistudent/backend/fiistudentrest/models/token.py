@@ -1,6 +1,7 @@
 from fiistudentrest.models.base import BaseModel, ndb
 
-from . import Student, Professor
+from .student import Student
+from .professor import Professor
 
 class Token(BaseModel):
 

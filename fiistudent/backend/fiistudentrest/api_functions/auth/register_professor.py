@@ -1,7 +1,7 @@
-from google.cloud import datastore
 from fiistudentrest.models import Professor
-import fiistudentrest.mail as Mail
 from .confirm_email import send_confirm_email as send_confirmation_email
+
+from google.cloud import datastore
 import hug
 import uuid
 import hashlib
@@ -32,7 +32,7 @@ def hash_password(password):
 @hug.local()
 def register(first_name: hug.types.text, last_name: hug.types.text, professor_type: hug.types.text,
              email: hug.types.text, password: hug.types.text, confirm_password: hug.types.text):
-    """ Adds the entity in the datastore if possible and return an appropriate json response for every scenario """
+    """Adds the entity in the datastore if possible and return an appropriate json response for every scenario"""
     if len(first_name) < 3:
         return {'status': 'error',
                 'errors': [

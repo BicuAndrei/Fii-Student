@@ -1,7 +1,7 @@
-import fiistudentrest.mail as Mail
 from fiistudentrest.models import Student
 from fiistudentrest.models import Professor
-from fiistudentrest.auth import verify_token
+from fiistudentrest.api_functions.auth import verify_token
+from fiistudentrest.utils.mail import send_mail
 
 import hug
 
@@ -27,7 +27,7 @@ def exists(email, user_type):
 @hug.get()
 @hug.cli()
 def quickmail(request, urlsafe: hug.types.text, subject: hug.types.text, content: hug.types.text):
-    """ Sends an email from a student to a professor """
+    """Sends an email from a student to a professor"""
     authorization = request.get_header('Authorization')
     if not authorization:
         return {'status': 'error',
@@ -48,7 +48,7 @@ def quickmail(request, urlsafe: hug.types.text, subject: hug.types.text, content
 
     professor = Professor.get(urlsafe)
     if exists(from_email, Student) == True and exists(professor.email, Professor) == True:
-        Mail.send_mail(from_email, professor.email, subject, content)
+        send_mail(from_email, professor.email, subject, content)
         return {'status': 'ok', 'errors': []}
     elif exists(from_email, Student) == True and exists(professor.email, Professor) == False:
         return {'status': 'error',

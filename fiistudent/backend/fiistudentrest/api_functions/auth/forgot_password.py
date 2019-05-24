@@ -1,6 +1,7 @@
 from fiistudentrest.models import Student
+from fiistudentrest.utils.mail import send_mail
+
 from itsdangerous import URLSafeSerializer, SignatureExpired
-import fiistudentrest.mail as Mail
 import hug
 
 
@@ -47,7 +48,7 @@ def send_forgot_password_email(to_email):
                                          'font-weight: bold; text-decoration:none; color:black">' \
                                          'Change your password</button>' \
                                          '</div></body>'
-    Mail.send_mail(Mail.DEFAULT_MAIL, to_email, subject, content)
+    send_mail(Mail.DEFAULT_MAIL, to_email, subject, content)
 
 
 def forgot_password(email: hug.types.text):
@@ -63,6 +64,7 @@ def forgot_password(email: hug.types.text):
 @hug.cli()
 @hug.local()
 def confirm_forgot_password_token(token):
+    """Checks whether the person has the email"""
     if confirm_token(token) != False:
         return {'status': 'ok'}
     else:

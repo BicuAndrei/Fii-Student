@@ -1,7 +1,8 @@
-from fiistudentrest.models import Classroom
-from fiistudentrest.models import Professor
-from fiistudentrest.models import Course
 from fiistudentrest.models.base import BaseModel, ndb
+
+from .classroom import Classroom
+from .professor import Professor
+from .course import Course
 
 
 class Exam(BaseModel):

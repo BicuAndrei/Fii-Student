@@ -1,5 +1,6 @@
-from fiistudentrest.models import Classroom
 from fiistudentrest.models.base import BaseModel, ndb
+
+from .classroom import Classroom
 
 
 class AvailableClassroom(BaseModel):

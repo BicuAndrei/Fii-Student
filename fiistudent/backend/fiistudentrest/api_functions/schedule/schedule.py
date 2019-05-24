@@ -1,9 +1,9 @@
-import hug
-import json
-
 from fiistudentrest.models import ScheduleClass, Student
 from fiistudentrest.models import Course
-from fiistudentrest.auth import verify_token
+from fiistudentrest.api_functions.auth import verify_token
+
+import hug
+import json
 
 
 def get_abbreviation(title):
@@ -36,7 +36,7 @@ def get_abbreviation(title):
 @hug.get()
 @hug.cli()
 def schedule(request):
-    """ Gets the schedule for a logged user """
+    """Gets the schedule for a logged user"""
     authorization = request.get_header('Authorization')
     if not authorization:
         return {'status': 'error',

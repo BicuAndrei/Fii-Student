@@ -1,8 +1,8 @@
 from fiistudentrest.models.base import BaseModel, ndb
 
-from . import Student
-from . import Professor
-from . import Course
+from .student import Student
+from .professor import Professor
+from .course import Course
 
 
 class Feedback(BaseModel):

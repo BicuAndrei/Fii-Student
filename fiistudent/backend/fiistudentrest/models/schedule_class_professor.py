@@ -1,7 +1,7 @@
 from fiistudentrest.models.base import BaseModel, ndb
 
-from . import Professor
-from . import ScheduleClass
+from .professor import Professor
+from .schedule_class import ScheduleClass
 
 class ScheduleClassProfessor(BaseModel):
 

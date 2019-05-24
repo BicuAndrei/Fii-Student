@@ -2,13 +2,14 @@ import hug
 import json
 
 from fiistudentrest.models.course import Course
-from fiistudentrest.auth import verify_token
+from fiistudentrest.api_functions.auth import verify_token
 
 
 @hug.local()
 @hug.get()
 @hug.cli()
 def courses(request):
+    """Retrieves all courses"""
     authorization = request.get_header('Authorization')
     if not authorization:
         return {'status': 'error',
