@@ -1,8 +1,8 @@
-from itsdangerous import URLSafeSerializer, SignatureExpired
 from fiistudentrest.models import Student
+from fiistudentrest.utils.mail import send_mail
 
-import fiistudentrest.mail as Mail
 import hug
+from itsdangerous import URLSafeSerializer, SignatureExpired
 
 def send_confirm_email(to_email):
     link = "http://develop-dot-fii-student.appspot.com/confirm_email?token="
@@ -21,7 +21,7 @@ def send_confirm_email(to_email):
                '\n<button style="border: none;cursor: pointer;padding: 10px 20px;border-radius: 5px;font-size: 15px;' \
                'background-color: #21d146;font-weight: bold">Confirm email</a></div>'
 
-    Mail.send_mail(Mail.DEFAULT_MAIL, to_email, subject, content)
+    send_mail(Mail.DEFAULT_MAIL, to_email, subject, content)
 
 
 def generate_token(email, salt='email-confirmation'):
@@ -38,8 +38,8 @@ def confirm_token(token):
     return email
 
 
-@hug.get()
-def confirm_email(token : hug.types.text):
+def confirm_email(token):
+    """Sends confirmation email"""
     email = None
     try:
         email = confirm_token(token)

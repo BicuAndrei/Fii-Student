@@ -1,2 +1,2 @@
 runtime: python37
-entrypoint: gunicorn fiistudentrest.app:__hug_wsgi__
+entrypoint: gunicorn fiistudentrest.api_functions.app:__hug_wsgi__

@@ -1,6 +1,6 @@
 from fiistudentrest.models.base import BaseModel, ndb
 
-from . import Course
+from .course import Course
 
 
 class Professor(BaseModel):

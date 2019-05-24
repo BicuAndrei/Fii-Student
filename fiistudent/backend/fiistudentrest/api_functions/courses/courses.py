@@ -2,12 +2,14 @@ import hug
 import json
 
 from fiistudentrest.models.course import Course
-from fiistudentrest.auth import verify_token
+from fiistudentrest.api_functions.auth import verify_token
+
 
 @hug.local()
 @hug.get()
 @hug.cli()
 def courses(request):
+    """Retrieves all courses"""
     authorization = request.get_header('Authorization')
     if not authorization:
         return {'status': 'error',
@@ -76,3 +78,42 @@ def courses(request):
 
     json_data = json.dumps(data_list)
     return json_data
+
+
+@hug.local()
+@hug.get()
+@hug.cli()
+def course(request, course_id: hug.types.text):
+    """Retrieves course info"""
+    """authorization = request.get_header('Authorization')
+    if not authorization:
+        return {'status': 'error',
+                'errors': [
+                    {'for': 'request_header', 'message': 'No Authorization field exists in request header'}]}
+
+    user_urlsafe = verify_token(authorization)
+    if not user_urlsafe:
+        return {'status': 'error',
+                'errors': [
+                    {'for': 'request_header', 'message': 'Header contains token, but it is not a valid one.'}]}
+"""
+    course = Course.get(course_id)
+    
+    response = {}
+    response["status"] = "ok"
+
+    course_json = {}
+    course_json["credits"] = str(course.credits)
+    course_json["optional"] = "optional" if course.optional else "obligatoriu"
+    course_json["studies"] = course.studies
+    course_json["title"] = course.title
+    course_json["year"] = str(course.year)
+
+    if course.link:
+        course_json["link"] = course.link
+    if course.sub_desc:
+        course_json["fisa"] = course.sub_desc
+
+    response["course_info"] = course_json
+
+    return response

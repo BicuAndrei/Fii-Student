@@ -1,15 +1,15 @@
 import hug
 import json
 
-from fiistudentrest.models import Professor
-from fiistudentrest.models.feedback import Feedback
-from fiistudentrest.auth import verify_token
+from fiistudentrest.models import Professor, Feedback
+from fiistudentrest.api_functions.auth import verify_token
 
 
 @hug.local()
 @hug.get()
 @hug.cli()
 def get_feedback_by_professor(request):
+    """Retrieves all feedback for current logged in professor"""
     authorization = request.get_header('Authorization')
     if not authorization:
         return {'status': 'error',

@@ -1,6 +1,6 @@
 from fiistudentrest.models.base import BaseModel, ndb
 
-from . import ScheduleClass
+from .schedule_class import ScheduleClass
 
 class Timetable(BaseModel):
     

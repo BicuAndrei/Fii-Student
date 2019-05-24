@@ -1,9 +1,10 @@
+from fiistudentrest.models import ScheduleClass, Student
+from fiistudentrest.models import Course
+from fiistudentrest.api_functions.auth import verify_token
+
 import hug
 import json
 
-from fiistudentrest.models import ScheduleClass, Student
-from fiistudentrest.models import Course
-from fiistudentrest.auth import verify_token
 
 def get_abbreviation(title):
     """Gets the abreviation for the course"""
@@ -31,19 +32,11 @@ def get_abbreviation(title):
     return abbreviation
 
 
-# def verifyCourseKey(course_key):
-#     course_query = Course.query()
-#     course_query_it = course_query.fetch()
-#     for course_ent in course_query_it:
-#         if course_ent.key == course_key:
-#             return True
-#     return False
-
 @hug.local()
 @hug.get()
 @hug.cli()
 def schedule(request):
-    """ Gets the schedule for a logged user """
+    """Gets the schedule for a logged user"""
     authorization = request.get_header('Authorization')
     if not authorization:
         return {'status': 'error',
@@ -51,7 +44,7 @@ def schedule(request):
                     {'for': 'request_header', 'message': 'No Authorization field exists in request header'}]}
 
     student_key_urlsafe = verify_token(authorization)
-    if not user_urlsafe:
+    if not student_key_urlsafe:
         return {'status': 'error',
                 'errors': [
                     {'for': 'request_header', 'message': 'Header contains token, but it is not a valid one.'}]}
