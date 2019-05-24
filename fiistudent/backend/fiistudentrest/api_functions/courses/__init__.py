@@ -1,1 +1,1 @@
-from .courses import courses
+from .courses import courses, course
