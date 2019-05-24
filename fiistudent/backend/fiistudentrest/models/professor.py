@@ -2,8 +2,8 @@ from fiistudentrest.models.base import BaseModel, ndb
 
 from . import Course
 
+
 class Professor(BaseModel):
-    
     """Credentials and data of professor."""
 
     firstName = ndb.StringProperty()
@@ -14,3 +14,4 @@ class Professor(BaseModel):
     type = ndb.StringProperty()
     office = ndb.StringProperty()
     link = ndb.StringProperty()
+    confirmed = ndb.BooleanProperty()
