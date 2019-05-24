@@ -4,7 +4,7 @@ from fiistudentrest.models import Professor, Announcement
 import hug
 
 @hug.local()
-@hug.get()
+@hug.put()
 @hug.cli()
 def add_new_announcement(request, group: hug.types.text, text: hug.types.text, category: hug.types.text):
     authorization = request.get_header('Authorization')
@@ -18,7 +18,7 @@ def add_new_announcement(request, group: hug.types.text, text: hug.types.text, c
         return {'status': 'error',
                 'errors': [
                     {'for': 'request_header', 'message': 'Header contains token, but it is not a valid one.'}]}
-
+    
     professor = Professor.get(professor_key_urlsafe)
 
     announcement = Announcement(
