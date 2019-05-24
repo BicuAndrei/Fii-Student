@@ -46,6 +46,7 @@ def courses(request):
 
     for ent in course_query_it:
         subjects_dict = {}
+        subjects_dict["id"] = ent.urlsafe
         subjects_dict["name"] = ent.title
         subjects_dict["link"] = ent.link
         subjects_dict["fisa"] = ent.sub_desc

@@ -66,6 +66,7 @@ def schedule(request):
         if course_key is not None:
             course = Course.get(course_key)
             dictionary["id"] = ent.urlsafe
+            dictionary["course_id"] = course.urlsafe
             dictionary["name"] = course.title
             dictionary["abv"] = get_abbreviation(course.title)
             dictionary["startTime"] = str(ent.startHour)
