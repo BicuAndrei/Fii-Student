@@ -4,12 +4,12 @@ from fiistudentrest.auth import login
 from fiistudentrest.auth import register, confirm_email
 from fiistudentrest.auth import confirm_forgot_password_token
 from fiistudentrest.auth import register_professor
-from fiistudentrest.courses_page import courses
+from fiistudentrest.courses import courses
 from fiistudentrest.quick_mail import quickmail
 from fiistudentrest.schedule import schedule
 from fiistudentrest.api import free_rooms
-from fiistudentrest.professors_page import professors
-from fiistudentrest.feedback_functionality import submit_feedback
+from fiistudentrest.professors import professors
+from fiistudentrest.feedback import submit_feedback
 from fiistudentrest.feedback_by_professor import get_feedback_by_professor
 app = hug.API(__name__)
 app.http.add_middleware(hug.middleware.CORSMiddleware(app))

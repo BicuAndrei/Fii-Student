@@ -4,6 +4,7 @@ import json
 from fiistudentrest.models import Professor
 from fiistudentrest.auth import verify_token
 
+
 @hug.local()
 @hug.get()
 @hug.cli()

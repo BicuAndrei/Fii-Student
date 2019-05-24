@@ -5,6 +5,7 @@ from fiistudentrest.models import ScheduleClass, Student
 from fiistudentrest.models import Course
 from fiistudentrest.auth import verify_token
 
+
 def get_abbreviation(title):
     """Gets the abreviation for the course"""
     # Can be improved
@@ -30,14 +31,6 @@ def get_abbreviation(title):
         abbreviation += word.upper()[0]
     return abbreviation
 
-
-# def verifyCourseKey(course_key):
-#     course_query = Course.query()
-#     course_query_it = course_query.fetch()
-#     for course_ent in course_query_it:
-#         if course_ent.key == course_key:
-#             return True
-#     return False
 
 @hug.local()
 @hug.get()
