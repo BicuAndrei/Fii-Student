@@ -9,4 +9,4 @@ from .free_rooms import free_rooms
 from .professors import professors
 from .quick_mail import quickmail
 from .schedule import schedule
-
+from .preferences import add_preference
