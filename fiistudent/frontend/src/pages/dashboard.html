@@ -20,8 +20,8 @@
 
 		<div id="page-content-wrapper" class="bg-light">
 			${require('./partials/shared/page-header.html')}
-			
-			<div class="page ml-4 mt-4 mb-3 flex-column flex-grow-1" >
+
+			<div class="page ml-4 mt-4 mb-3 flex-column flex-grow-1">
 				<div class="content d-flex flex-row">
 					<div class="changePass ml-5 mt-3 mb-5 border w-50 p-3" style="background: #ffffff">
 						<h5 class="sec-title ml-2">Schimba parola</h5>
@@ -54,7 +54,7 @@
 							<br>
 							<label for="group">Grupa </label>
 							<select name="group" id="group" class="form-control required">
-								<option value="" selected="selected"></option> 
+								<option value="" selected="selected"></option>
 								<option value="1">1</option>
 								<option value="2">2</option>
 								<option value="3">3</option>
@@ -68,9 +68,192 @@
 						</form>
 					</div>
 				</div>
+				<div class="ml-5 mt-3 mb-5 border w-75 p-3" style="background: #ffffff">
+					<h2>Personalizeaza interfata asa cum vrea sufletelul tau</h2>
+					<br>
+					<form>
+						Selecteaza culoarea pentru sidebar: <input type="color" name="favcolor" id="sidebarColor"
+							value="#ff0000"><br><br>
+						<input type="submit" value="Fa schimbarea" name="sidebarButton" id="sidebarChangeColor">
+					</form>
+					<form>
+
+						Selecteaza culoarea pentru sidebar text: <input type="color" name="favcolor"
+							id="sidebarColorText" value="#ff0000"><br><br>
+						<input type="submit" value="Fa schimbarea" name="sidebarButtonText" id="sidebarChangeColorText">
+					</form>
+					<hr>
+					<form>
+						Selecteaza culoarea pentru header: <input type="color" name="favcolor" id="headerColor"
+							value="#ff0000"><br><br>
+						<input type="submit" value="Fa schimbarea" name="headerButton" id="headerChangeColor">
+					</form>
+					<form>
+						Selecteaza culoarea pentru header text: <input type="color" name="favcolor" id="headerColorText"
+							value="#ff0000"><br><br>
+						<input type="submit" value="Fa schimbarea" name="headerButtonText" id="headerChangeColorText">
+					</form>
+					<hr>
+					<form>
+
+						Schimba culoarea background-ului principal: <input type="color" name="favcolor"
+							id="backgroundColor" value="#ff0000"><br><br>
+						<input type="submit" value="Fa schimbarea" name="backgroundButton" id="backgroundButton">
+					</form>
+					<hr>
+					<form>
+						<input type="number" id="fontSize">
+						<input type="submit" value="Fa schimbarea" name="sizeButton" id="sizeButton">
+					</form>
+					<hr>
+					<form>
+						<input type="submit" value="Reseteaza totul" name="resetButton" id="resetButton">
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
+	<script>
+		if (localStorage.getItem("sidebarColor") !== null) {
+			var color = localStorage.getItem("sidebarColor");
+
+			var sidebar = document.getElementsByClassName("d-flex")[0];
+			sidebar.style.backgroundColor = color;
+			document.getElementsByClassName("list-group-flush")[0].style.backgroundColor = color;
+			var list = document.getElementsByTagName("A");
+			for (var i = 0; i < list.length; i++) {
+				if (list[i].className.indexOf('ch') > 0)
+					list[i].style.backgroundColor = color;
+			}
+		}
+
+		if (localStorage.getItem("headerColor") !== null) {
+			var color = localStorage.getItem("headerColor");
+			var header = document.getElementsByClassName("page-header")[0];
+			header.style.backgroundColor = color;
+		}
+		if (localStorage.getItem("headerColorText") !== null) {
+			var color = localStorage.getItem("headerColorText");
+			var header = document.getElementsByClassName("page-header")[0];
+			header.style.color = color;
+			document.querySelector(".page-header .subtitle").style.color = color;
+			localStorage.setItem("headerColorText", color);
+		}
+		if (localStorage.getItem("backgroundColor") !== null) {
+			var color = localStorage.getItem("backgroundColor");
+			var background = document.getElementById("page-content-wrapper");
+			background.style.backgroundColor = color;
+			background.classList.remove("bg-light");
+
+		}
+		if (localStorage.getItem("sidebarColorText") !== null) {
+			var color = localStorage.getItem("sidebarColorText");
+			var list = document.getElementsByTagName("A");
+			for (var i = 0; i < list.length; i++) {
+				if (list[i].className.indexOf('ch') > 0)
+					list[i].style.color = color;
+
+			}
+		}
+		if(localStorage.getItem("fontSize")!==null)
+		{
+			var size=localStorage.getItem("fontSize");
+			var body = document.getElementsByTagName("body")[0];
+			body.style.fontSize = size + "px";
+		}
+
+
+
+
+	</script>
+	<script>
+		document.getElementById("sidebarChangeColor").addEventListener("click", function () {
+			event.preventDefault();
+			var color = document.getElementById("sidebarColor").value;
+			var sidebar = document.getElementsByClassName("d-flex")[0];
+			sidebar.style.backgroundColor = color;
+			localStorage.setItem("sidebarColor", color);
+			document.getElementsByClassName("list-group-flush")[0].style.backgroundColor = color;
+			var list = document.getElementsByTagName("A");
+			for (var i = 0; i < list.length; i++) {
+				if (list[i].className.indexOf('ch') > 0)
+					list[i].style.backgroundColor = color;
+
+			}
+
+
+		});
+
+		document.getElementById("headerChangeColor").addEventListener("click", function () {
+			event.preventDefault();
+			var color = document.getElementById("headerColor").value;
+			var header = document.getElementsByClassName("page-header")[0];
+			header.style.backgroundColor = color;
+			localStorage.setItem("headerColor", color);
+
+		});
+		document.getElementById("headerChangeColorText").addEventListener("click", function () {
+			event.preventDefault();
+			var color = document.getElementById("headerColorText").value;
+			var header = document.getElementsByClassName("page-header")[0];
+			header.style.color = color;
+			document.querySelector(".page-header .subtitle").style.color = color;
+			localStorage.setItem("headerColorText", color);
+
+		});
+		document.getElementById("backgroundButton").addEventListener("click", function () {
+			event.preventDefault();
+			var color = document.getElementById("backgroundColor").value;
+			localStorage.setItem("backgroundColor", color);
+			var background = document.getElementById("page-content-wrapper");
+			background.style.backgroundColor = color;
+			background.classList.remove("bg-light");
+		});
+		document.getElementById("sidebarChangeColorText").addEventListener("click", function () {
+			event.preventDefault();
+			var color = document.getElementById("sidebarColorText").value;
+			localStorage.setItem("sidebarColorText", color);
+			var name = document.getElementsByClassName("name")[0];
+			name.style.color = color;
+			var list = document.getElementsByTagName("A");
+			for (var i = 0; i < list.length; i++) {
+				if (list[i].className.indexOf('ch') > 0)
+					list[i].style.color = color;
+
+			}
+		});
+		document.getElementById("resetButton").addEventListener("click", function () {
+
+			localStorage.removeItem("sidebarColorText");
+			localStorage.removeItem("backgroundColor");
+			localStorage.removeItem("headerColorText");
+			localStorage.removeItem("headerColor");
+			localStorage.removeItem("sidebarColor");
+			var initialSize=localStorage.getItem("initialSize");
+			localStorage.setItem("fontSize",initialSize);
+
+
+		});
+		document.getElementById("sizeButton").addEventListener("click", function () {
+			event.preventDefault();
+			var body = document.getElementsByTagName("body")[0];
+			var el = document.getElementsByTagName('body')[0];
+			var style = window.getComputedStyle(el, null).getPropertyValue('font-size');
+			var fontSize = parseFloat(style);
+			localStorage.setItem("initialSize", fontSize);
+			var nrSize = document.getElementById("fontSize").value;
+			body.style.fontSize = nrSize + "px";
+			const sleep = (milliseconds) => {
+				return new Promise(resolve => setTimeout(resolve, milliseconds));
+			}
+			sleep(500).then(() => {
+				if (confirm("Esti sigur ca doresti aceasta modificare?") == false)
+					body.style.fontSize = fontSize + "px";
+				else
+					localStorage.setItem("fontSize", nrSize);
+			});
+		});
+	</script>
 </body>
 
 </html>
