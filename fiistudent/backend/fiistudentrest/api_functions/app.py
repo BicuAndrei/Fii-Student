@@ -3,6 +3,7 @@ from fiistudentrest.announcement import add_new_announcement
 from fiistudentrest.auth import login
 from fiistudentrest.auth import register, confirm_email
 from fiistudentrest.auth import confirm_forgot_password_token
+from fiistudentrest.auth import register_professor
 from fiistudentrest.courses_page import courses
 from fiistudentrest.quick_mail import quickmail
 from fiistudentrest.schedule import schedule
@@ -16,6 +17,7 @@ hug.get('/login', api=app)(login)
 hug.put('/register', api=app)(register)
 hug.get('/confirm_email', api=app)(confirm_email)
 hug.post('/forgot_password',api=app)(confirm_forgot_password_token)
+hug.put('/register_proffesor', api=app)(register_professor)
 hug.get('/courses',api=app)(courses)
 hug.get('/quickmail',api=app)(quickmail)
 hug.get('/schedule',api=app)(schedule)

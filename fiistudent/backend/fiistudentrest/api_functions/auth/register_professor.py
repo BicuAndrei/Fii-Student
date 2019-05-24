@@ -27,7 +27,7 @@ def hash_password(password):
     return hashlib.sha256(salt.encode() + password.encode()).hexdigest() + ':' + salt
 
 
-@hug.get()
+@hug.put()
 @hug.cli()
 @hug.local()
 def register(first_name: hug.types.text, last_name: hug.types.text, professor_type: hug.types.text,
