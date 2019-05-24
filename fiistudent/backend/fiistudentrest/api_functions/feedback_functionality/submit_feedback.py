@@ -84,6 +84,7 @@ def get_all_feedback():
     json_data = json.dumps(data_list)
     return json_data
 
+
 def get_feedback_by_professor_date(professor, start_date, end_date):
     # filter feedback by date and professor
     query = Feedback.query()

@@ -10,7 +10,7 @@ from fiistudentrest.schedule import schedule
 from fiistudentrest.api import free_rooms
 from fiistudentrest.professors_page import professors
 from fiistudentrest.feedback_functionality import submit_feedback
-
+from fiistudentrest.feedback_by_professor import get_feedback_by_professor
 app = hug.API(__name__)
 app.http.add_middleware(hug.middleware.CORSMiddleware(app))
 hug.get('/login', api=app)(login)
@@ -24,4 +24,5 @@ hug.get('/schedule',api=app)(schedule)
 hug.get('/free_rooms',api=app)(free_rooms)
 hug.get('/professors',api=app)(professors)
 hug.post('/feedback', api=app)(submit_feedback)
+hug.get('/feedback',api=app)(get_feedback_by_professor)
 hug.put('/announcement',api=app)(add_new_announcement)
