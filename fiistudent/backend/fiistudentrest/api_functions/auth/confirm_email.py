@@ -1,5 +1,5 @@
 from fiistudentrest.models import Student
-from fiistudentrest.utils.mail import send_mail
+from fiistudentrest.utils.mail import send_mail, DEFAULT_MAIL
 
 import hug
 from itsdangerous import URLSafeSerializer, SignatureExpired
@@ -21,7 +21,7 @@ def send_confirm_email(to_email):
                '\n<button style="border: none;cursor: pointer;padding: 10px 20px;border-radius: 5px;font-size: 15px;' \
                'background-color: #21d146;font-weight: bold">Confirm email</a></div>'
 
-    send_mail(Mail.DEFAULT_MAIL, to_email, subject, content)
+    send_mail(DEFAULT_MAIL, to_email, subject, content)
 
 
 def generate_token(email, salt='email-confirmation'):

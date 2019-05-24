@@ -58,7 +58,7 @@ def login_function_professor(email, password):
     return None
 
 
-def update_token(jwt_token, user):
+def update_token_student(jwt_token, user):
     """ Updates existing token for user or creates new one """
 
     query = Token.query()
@@ -70,7 +70,23 @@ def update_token(jwt_token, user):
             token_entity.token = jwt_token.decode("utf-8")
             token_entity.put()
     else:
-        token = Token(token=jwt_token.decode("utf-8"), user=user.key)
+        token = Token(token=jwt_token.decode("utf-8"), user_student=user.key)
+        token.put()
+
+
+def update_token_professor(jwt_token, user):
+    """ Updates existing token for user or creates new one """
+
+    query = Token.query()
+    query.add_filter('user', '=', user.key)
+    query_list = list(query.fetch())
+
+    if query_list:
+        for token_entity in query_list:
+            token_entity.token = jwt_token.decode("utf-8")
+            token_entity.put()
+    else:
+        token = Token(token=jwt_token.decode("utf-8"), user_professor=user.key)
         token.put()
 
 
@@ -122,11 +138,11 @@ def login(email: hug.types.text, password: hug.types.text):
     user_professor = login_function_professor(email, password)
     if user != None:
         jwt_token = generate_token(user)
-        update_token(jwt_token, user)
+        update_token_student(jwt_token, user)
         return {'token': jwt_token.decode("utf-8"), 'errors': []}
     elif user_professor != None:
         jwt_token = generate_token(user_professor)
-        update_token(jwt_token, user_professor)
+        update_token_professor(jwt_token, user_professor)
         return {'token': jwt_token.decode("utf-8"), 'errors': []}
     else:
         return {'status': 'error', 'errors': [
