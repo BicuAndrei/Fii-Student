@@ -24,10 +24,44 @@
 
 	<div class="d-flex" id="wrapper">
 		${require('./partials/shared/sidebar.html')}
+		<script>
+			if (localStorage.getItem("sidebarColor") !== null) {
+				var color = localStorage.getItem("sidebarColor");
+				var sidebar = document.getElementsByClassName("d-flex")[0];
+				sidebar.style.backgroundColor = color;
+				document.getElementsByClassName("list-group-flush")[0].style.backgroundColor = color;
+				var list = document.getElementsByTagName("A");
+				for (var i = 0; i < list.length; i++) {
+					if (list[i].className.indexOf('ch') > 0)
+						list[i].style.backgroundColor = color;
+				}
+			}
+			if (localStorage.getItem("sidebarColorText") !== null) {
+				var color = localStorage.getItem("sidebarColorText");
+				var list = document.getElementsByTagName("A");
+				for (var i = 0; i < list.length; i++) {
+					if (list[i].className.indexOf('ch') > 0)
+						list[i].style.color = color;
+				}
+			}
+		</script>
 
 		<div id="page-content-wrapper" class="bg-light">
 			${require('./partials/shared/page-header.html')}
-
+			<script>
+				if (localStorage.getItem("headerColor") !== null) {
+					var color = localStorage.getItem("headerColor");
+					var header = document.getElementsByClassName("page-header")[0];
+					header.style.backgroundColor = color;
+				}
+				if (localStorage.getItem("headerColorText") !== null) {
+					var color = localStorage.getItem("headerColorText");
+					var header = document.getElementsByClassName("page-header")[0];
+					header.style.color = color;
+					document.querySelector(".page-header .subtitle").style.color = color;
+					localStorage.setItem("headerColorText", color);
+				}
+			</script>
 			<div class="container">
 				<div class="search-box m-4">
 					<form class="w-100 needs-validation" id="search-room-form" novalidate>
@@ -150,6 +184,19 @@
 				}
 			})
 		});
+	</script>
+	<script>
+		if (localStorage.getItem("backgroundColor") !== null) {
+			var color = localStorage.getItem("backgroundColor");
+			var background = document.getElementById("page-content-wrapper");
+			background.style.backgroundColor = color;
+			background.classList.remove("bg-light");
+		}
+		if (localStorage.getItem("fontSize") !== null) {
+			var size = localStorage.getItem("fontSize");
+			var body = document.getElementsByTagName("body")[0];
+			body.style.fontSize = size + "px";
+		}
 	</script>
 </body>
 

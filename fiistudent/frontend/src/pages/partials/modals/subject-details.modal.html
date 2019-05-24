@@ -8,26 +8,69 @@
 					<h6 class="over-title">Detalii despre</h6>
 					<h2 class="title"></h2>
 				</div>
-				<div class="content text-center">
-					<div class="text-black-50 text-left"><small>NUME PROFESOR</small></div>
-					<h5 class="text-primary text-left" id="profs-name"></h5>
-					<hr class="my-3">
-					<div class="text-black-50 text-left"><small>CONTACT PROFESOR</small></div>
-					<h5 class="text-primary text-left" id="profs-contact"></h5>
-					<hr class="my-3">
-					<div class="text-black-50 text-left"><small>SITE CURS</small></div>
-					<h5 class="text-primary text-left" id="course-site"></h5>
-					<hr class="my-3">
-					<div class="text-black-50 text-left"><small>NUMĂR CREDITE</small></div>
-					<h5 class="text-primary text-left">6</h5>
-					<hr class="my-3">
-					<div class="text-black-50 text-left"><small>LINK-URI UTILE</small></div>
-					<h5 class="text-primary text-left" id="util-link"></h5>
-					<hr class="my-3">
+				<div class="content">
+					<form id="feedbackForm" novalidate>
+						<div class="form-group">
+							<label for="prof-name">Nume Profesor</label>
+							<h5 class="text-primary text-left border-bottom" id="profs-name"></h5>
+						</div>
+						<div class="form-group">
+							<label for="profs-contact">Contact Profesor</label>
+							<h5 class="text-primary text-left border-bottom" id="profs-contact"></h5>
+						</div>
+						<div class="form-group">
+							<label for="course-site">Site Curs</label>
+							<h5 class="text-primary text-left border-bottom" id="course-site"></h5>
+						</div>
+						<div class="form-group">
+							<label for="course-site">Număr credite</label>
+							<h5 class="text-primary text-left border-bottom">6</h5>
+						</div>
+						<div class="form-group">
+							<label for="course-site">Link-uri Utile</label>
+							<h5 class="text-primary text-left border-bottom" id="util-link"></h5>
+						</div>
 
-					<a href="#" class="btn btn-primary" data-toggle="modal" data-dismiss="modal"
+						<div class="form-inline">
+							<label for="stars">Dă-i o notă acestui profesor: </label>
+							<section class="ml-0 pt-3" id="stars" name="stars">
+								<div class="rating-stars text-center">
+									<ul id="stars">
+										<li class="star d-inline" title="Nu-mi place" data-value="1">
+											<i class="fa fa-star fa-fw"></i>
+										</li>
+										<li class="star d-inline" title="Acceptabil" data-value="2">
+											<i class="fa fa-star fa-fw"></i>
+										</li>
+										<li class="star d-inline" title="Destul de bun" data-value="3">
+											<i class="fa fa-star fa-fw"></i>
+										</li>
+										<li class="star d-inline" title="Bun" data-value="4">
+											<i class="fa fa-star fa-fw"></i>
+										</li>
+										<li class="star d-inline" title="Foarte bun!" data-value="5">
+											<i class="fa fa-star fa-fw"></i>
+										</li>
+									</ul>
+								</div>
+							</section>
+
+							<div class="success-box">
+								<div class="text-message text-primary"></div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="feedback">Mesaj de Feedback</label>
+							<textarea type="text" rows="4" class="form-control" id="feedback" name="feedback"
+								placeholder="Introduceți feedback..." required></textarea>
+						</div>
+
+						<button type="submit" class="btn btn-primary">Trimite</button>
+						<span class="m-2 color-text-secondary"> sau </span>
+						<a href="#" class="color-primary" data-toggle="modal" data-dismiss="modal"
 							data-target="#quickEmailModal">Email</a>
-				
+					</form>
 				</div>
 			</div>
 		</div>
@@ -35,13 +78,67 @@
 </div>
 
 <script>
-	$(document).ready(function(){
+	$(document).ready(function () {
+
+		$('#stars li').on('mouseover', function () {
+			var onStar = parseInt($(this).data('value'), 10);
+
+			$(this).parent().children('li.star').each(function (e) {
+				if (e < onStar) {
+					$(this).addClass('hover');
+				}
+				else {
+					$(this).removeClass('hover');
+				}
+			});
+
+		}).on('mouseout', function () {
+			$(this).parent().children('li.star').each(function (e) {
+				$(this).removeClass('hover');
+			});
+		});
+
+		$('#stars li').on('click', function () {
+
+			var onStar = parseInt($(this).data('value'), 10);
+			var stars = $(this).parent().children('li.star');
+
+			for (i = 0; i < stars.length; i++) {
+				$(stars[i]).removeClass('selected');
+			}
+
+			for (i = 0; i < onStar; i++) {
+				$(stars[i]).addClass('selected');
+			}
+
+			var ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
+			var msg = "";
+			if (ratingValue == 1) {
+				msg = "Mulțumim! Ai notat acest profesor o stea.";
+			}
+			else {
+				msg = "Mulțumim! Ai notat acest profesor cu " + ratingValue + " stele.";
+			}
+
+			$(".success-box").show();
+			responseMessage(msg);
+		});
+	});
+
+	function responseMessage(msg) {
+		$('.success-box').fadeIn(150);
+		$('.success-box div.text-message').html("<span class='text-primary'>" + "<i class='fa fa-check-circle' aria-hidden='true'></i> " + msg + "</span>");
+	}
+</script>
+
+<script>
+	$(document).ready(function () {
 		$.ajax({
 			url: endpoint + "courses",
 			beforeSend: function (xhr) {
-					xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
-				},
-		}).then(function(response){
+				xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
+			},
+		}).then(function (response) {
 			let doc = JSON.parse(response);
 			let anul2 = doc[1]['subjects'];
 
@@ -50,18 +147,18 @@
 				beforeSend: function (xhr) {
 					xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
 				},
-			}).then(function(data){
+			}).then(function (data) {
 
 				let profs = JSON.parse(data);
-				
-				$("#detailsModal").mouseenter(function(){
-				//console.log("enter modal");
-				$("h2.title").text(anul2[0].name);
-				$("#course-site").html("<a href=\""+anul2[0].link+"\">Click aici!</a>");
-				$("#util-link").html("<a href=\""+anul2[0].fisa+"\">Click aici!</a>");
-				$("#profs-name").text(profs[1].name);
-				$("#profs-contact").html("<a href=\""+profs[1].link+"\">Click aici!</a>")
-			
+
+				$("#detailsModal").mouseenter(function () {
+					//console.log("enter modal");
+					$("h2.title").text(anul2[0].name);
+					$("#course-site").html("<a href=\"" + anul2[0].link + "\"  style='text-decoration: none;'>Click aici!</a>");
+					$("#util-link").html("<a href=\"" + anul2[0].fisa + "\" style='text-decoration: none;'>Click aici!</a>");
+					$("#profs-name").text(profs[1].name);
+					$("#profs-contact").html("<a href=\"" + profs[1].link + "\" style='text-decoration: none;'>Click aici!</a>")
+
 				});
 			});
 		});
