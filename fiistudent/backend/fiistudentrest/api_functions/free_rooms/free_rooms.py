@@ -1,6 +1,6 @@
-from fiistudentrest.models import Classroom
-from fiistudentrest.models import ScheduleClass
-from fiistudentrest.auth import verify_token
+from fiistudentrest.models import Classroom, ScheduleClass
+from fiistudentrest.api_functions.auth import verify_token
+
 import hug
 import datetime
 import json
@@ -25,6 +25,7 @@ def get_all_classrooms():
 @hug.get()
 @hug.cli()
 def free_rooms(request, date: hug.types.text, start_hour: hug.types.number, duration: hug.types.number):
+    """Retrieves all available classes in the given time interval"""
     authorization = request.get_header('Authorization')
     if not authorization:
         return {'status': 'error',

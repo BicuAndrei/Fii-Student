@@ -1,10 +1,9 @@
+from fiistudentrest.models import Student, Professor, Course, Feedback
+from fiistudentrest.api_functions.auth import verify_token
+
 import hug
 import json
 from datetime import datetime
-
-from fiistudentrest.models import Student, Professor, Course
-from fiistudentrest.models.feedback import Feedback
-from fiistudentrest.auth import verify_token
 
 
 @hug.local()
@@ -12,6 +11,7 @@ from fiistudentrest.auth import verify_token
 @hug.cli()
 def submit_feedback(request, professor: hug.types.text, course: hug.types.text, date: hug.types.text,
                     stars: hug.types.number, feedback: hug.types.text):
+    """Adds new feedback for the given professor and course"""
     authorization = request.get_header('Authorization')
     if not authorization:
         return {'status': 'error',
@@ -83,6 +83,7 @@ def get_all_feedback():
 
     json_data = json.dumps(data_list)
     return json_data
+
 
 def get_feedback_by_professor_date(professor, start_date, end_date):
     # filter feedback by date and professor

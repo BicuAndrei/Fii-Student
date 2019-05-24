@@ -1,7 +1,7 @@
 from fiistudentrest.models.base import BaseModel, ndb
 
-from . import Classroom
-from . import Course
+from .classroom import Classroom
+from .course import Course
 
 class ScheduleClass(BaseModel):
 

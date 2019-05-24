@@ -1,13 +1,14 @@
 from fiistudentrest.models import Student
-from fiistudentrest.auth import verify_token
+from fiistudentrest.api_functions.auth import verify_token
+
 import hug
 
 
 @hug.local()
-@hug.get()
+@hug.post()
 @hug.cli()
 def change_group(request, semian: hug.types.text, group: hug.types.text):
-    """ Changes the group for a student and returns a json response for every case"""
+    """Changes the group for a student and returns a json response for every case"""
     authorization = request.get_header('Authorization')
     if not authorization:
         return {'status': 'error',

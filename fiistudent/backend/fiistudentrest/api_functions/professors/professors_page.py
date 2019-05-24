@@ -1,13 +1,15 @@
+from fiistudentrest.models import Professor
+from fiistudentrest.api_functions.auth import verify_token
+
 import hug
 import json
 
-from fiistudentrest.models import Professor
-from fiistudentrest.auth import verify_token
 
 @hug.local()
 @hug.get()
 @hug.cli()
 def professors(request):
+    """Retrieves all existing professors"""
     authorization = request.get_header('Authorization')
     if not authorization:
         return {'status': 'error',

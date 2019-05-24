@@ -1,7 +1,7 @@
-from google.cloud import datastore
 from fiistudentrest.models import Student
-import fiistudentrest.mail as Mail
 from .confirm_email import send_confirm_email as send_confirmation_email
+
+from google.cloud import datastore
 import hug
 import phonenumbers
 import uuid
@@ -48,14 +48,14 @@ def hash_password(password):
     return hashlib.sha256(salt.encode() + password.encode()).hexdigest() + ':' + salt
 
 
-@hug.get()
+@hug.put()
 @hug.cli()
 @hug.local()
 def register(registrationNumber: hug.types.text, firstName: hug.types.text, lastName: hug.types.text,
              email: hug.types.text, phone_number: hug.types.text, password: hug.types.text,
              confirm_password: hug.types.text, year: hug.types.number,
              group: hug.types.text):
-    """ Adds the entity in the datastore if possible and return an appropriate json response for every scenario """
+    """Adds the entity in the datastore if possible and return an appropriate json response for every scenario"""
 
     if len(firstName) < 3:
         return {'status': 'error',

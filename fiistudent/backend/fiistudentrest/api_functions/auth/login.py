@@ -117,7 +117,7 @@ def verify_token(authorization):
 @hug.cli()
 @hug.get()
 def login(email: hug.types.text, password: hug.types.text):
-    """ Verify if the user exists in the datastore and return an appropriate json response for every scenario """
+    """Verify if the user exists in the datastore and return an appropriate json response for every scenario"""
     user = login_function(email.lower(), password)
     user_professor = login_function_professor(email, password)
     if user != None:
