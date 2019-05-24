@@ -3,7 +3,7 @@ from .auth import login
 from .auth import register
 from .auth import confirm_forgot_password_token
 from .auth import register_professor
-from .courses import courses
+from .courses import courses, course
 from .change_details import change_group, change_password
 from .feedback import submit_feedback, get_feedback_by_professor
 from .free_rooms import free_rooms
@@ -19,6 +19,7 @@ app.http.add_middleware(hug.middleware.CORSMiddleware(app))
 hug.put('/announcement',api=app)(add_new_announcement)
 hug.post('/change_group',api=app)(change_group)
 hug.post('/change_password',api=app)(change_password)
+hug.get('/course',api=app)(course)
 hug.get('/courses',api=app)(courses)
 hug.get('/feedback',api=app)(get_feedback_by_professor)
 hug.post('/feedback', api=app)(submit_feedback)
