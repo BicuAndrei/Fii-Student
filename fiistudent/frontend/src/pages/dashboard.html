@@ -25,24 +25,24 @@
 				<div class="content d-flex flex-row">
 					<div class="changePass ml-5 mt-3 mb-5 border w-50 p-3" style="background: #ffffff">
 						<h5 class="sec-title ml-2">Schimba parola</h5>
-						<form action=" " method="GET" class="p-2">
+						<form action="changePassForm" method="GET" class="p-2">
 							<div class="form-group">
 								<label for="exampleInputPassword1">Parola actuala</label>
-								<input type="password" class="form-control " id="exampleInputPassword1">
+								<input type="password" class="form-control " id="exampleInputPassword1" required>
 							</div>
 							<div class="form-group">
 								<label for="Password2">Parola noua</label>
-								<input type="password" class="form-control " id="Password2">
+								<input type="password" class="form-control " id="Password2" required>
 							</div>
 							<div class="form-group">
 								<label for="Password2">Repeta parola</label>
-								<input type="password" class="form-control " id="Password3">
+								<input type="password" class="form-control " id="Password3" required>
 							</div>
 							<button type="submit" class="btn btn-primary">Trimite</button>
 						</form>
 					</div>
 					<div class="group ml-5 mt-3 mb-5 border w-25 p-3" style="background: #ffffff">
-						<form action=" " method="GET" class="p-2">
+						<form action="changeGroupForm" method="GET" class="p-2">
 							<h5>Schimba grupa</h5>
 							<label for="semian">Semianul </label>
 							<select name="semian" id="semian" class="form-control" required>
@@ -254,6 +254,73 @@
 			});
 		});
 	</script>
+
+<script>
+	$('#changePassForm').submit(function (event) {
+
+		if (!this.checkValidity()) {
+			return;
+		}
+
+		let oldPass = $(this).find('#exampleInputPassword1').val();
+		let firsPass = $(this).find('#Password2').val();
+		let secondPass = $(this).find('#Password3').val();
+		
+
+		$.ajax({
+			url: endpoint + "change_password",
+			method: 'POST',
+			beforeSend: function (xhr) {
+				xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
+			},
+			data: {
+				old_password: oldPass,
+				new_password: firsPass,
+				confirm_password: secondPass
+			}
+		}).then(function (data) {
+			if (data.status === "error") {
+				alert(data.errors[0].message);
+			}
+			else
+			if (data.status == 'ok') {
+				alert('Parola schimbata!!');
+			}
+		});
+	});
+
+	$('#changeGroupForm').submit(function (event) {
+
+		if (!this.checkValidity()) {
+			return;
+		}
+
+		let group = $(this).find('#group').val();
+		let semian = $(this).find('#semian').val();
+
+
+		$.ajax({
+			url: endpoint + "change_group",
+			method: 'POST',
+			beforeSend: function (xhr) {
+				xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
+			},
+			data: {
+				semian: semian,
+				group: group
+			}
+		}).then(function (data) {
+			if (data.status === "error") {
+				alert(data.errors[0].message);
+			}
+			else
+			if (data.status == 'ok') {
+				alert('Grupa schimbata!!');
+			}
+		});
+	});
+</script>
+
 </body>
 
 </html>
