@@ -1,8 +1,18 @@
 import hug
 import json
+import datetime
 
 from fiistudentrest.models.course import Course
 from fiistudentrest.api_functions.auth import verify_token
+
+
+def get_classes(day_of_the_week):
+    """ Returneaza toate orele dintr-o anumita zi """
+    days = ['Luni', 'Marti', 'Miercuri', 'Joi', 'Vineri', 'Sambata', 'Duminica']
+    query = ScheduleClass.query()
+    query.add_filter('dayOfTheWeek', '=', days[day_of_the_week])
+    query_it = query.fetch()
+    return list(query_it)
 
 
 @hug.local()
@@ -98,16 +108,22 @@ def courses_by_time(request, weekday: hug.types.text, start_hour: hug.types.numb
                 'errors': [
                     {'for': 'request_header', 'message': 'Header contains token, but it is not a valid one.'}]}
 
+    month, day, year = (int(x) for x in date.split('/'))
+    date_obj = datetime.date(year, month, day)
+    day_of_week = date_obj.weekday()
+
+    # iau toate clasele (cursuri/lab)
+    courses = get_classes(day_of_week)
+
     scheduled_classes_list = []
-    course1["id"] = "8ejwkfh84yrfwieh43";
-    course1["title"] = "PSGBD";
-    course1["professor"] = "Simona Virlan"; 
-    course1["classroom"] = "C309";
+    for course in courses:
+        if course.startHour == start_hour and course.endHour == end_hour:
+            scheduled_classes_list.append(course)
 
-    scheduled_classes_list.append(course1);
-    scheduled_classes_list.append(course1);
-    scheduled_classes_list.append(course1);
+    print(sheduled_classes_list)
 
+    if not scheduled_classes_list:
+        return {'status': 'error'}
     json_data = json.dumps(scheduled_classes_list)
     return json_data
 
@@ -130,7 +146,7 @@ def course(request, course_id: hug.types.text):
                     {'for': 'request_header', 'message': 'Header contains token, but it is not a valid one.'}]}
 
     course = Course.get(course_id)
-    
+
     response = {}
     response["status"] = "ok"
 
