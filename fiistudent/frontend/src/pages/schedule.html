@@ -89,7 +89,7 @@
 							</thead>
 							<tbody>
 								<tr id="h8">
-									<th scope="row">8:00</th>
+									<th scope="row">08:00</th>
 									<td class="Luni">
 									</td>
 									<td class="Marti"></td>
@@ -155,6 +155,7 @@
 	</div>
 
 	${require('./partials/modals/subject-details.modal.html')}
+
 	<script>
 		if (localStorage.getItem("backgroundColor") !== null) {
 			var color = localStorage.getItem("backgroundColor");
@@ -168,45 +169,46 @@
 			body.style.fontSize = size + "px";
 		}
 	</script>
-</body>
+
+
 <script>
-	function getObjectHtml(object) {
-		return "" +
-			"<div class=\"object\" data-toggle=\"modal\" data-target=\"#detailsModal\">" +
-			"<p class=\"name\">" + object.name + "</p>" +
-			"<p class=\"object-teacher\">" + object.teacher + "</p>" +
-			"<div class=\"badges\">" +
-			"<span class=\"badge " + object.type + "\">" + object.type + "</span>" +
-			"<span class=\"badge room\">" + object.room + "</p>" +
-			"</div>" +
-			"</div>";
-	}
-
-	$(document).ready(function () {
-		$.ajax({
-			url: endpoint + "schedule",
-			type: "GET",
-			contentType: "application/json; charset=utf-8",
-			dataType: "json",
-			beforeSend: function (xhr) {
-				xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
-			},
-			success: function (result) {
-				var objects = JSON.parse(result);
-				console.log(objects.type);
-				for (h = 8; h <= 18; h += 2) {
-					objects.filter(x => x.startTime === h.toString()).forEach(element => {
-						element.type = "laborator";
-						element.room = "C201";
-						$('#h' + h.toString() + " ." + element.day).append(getObjectHtml(element));
-					});;
+		function getObjectHtml(object) {
+			return "" +
+				"<div class=\"object\" data-toggle=\"modal\" data-target=\"#detailsModal\">" +
+				"<p class=\"name\">" + object.name + "</p>" +
+				"<p class=\"object-teacher\">" + object.teacher + "</p>" +
+				"<div class=\"badges\">" +
+				"<span class=\"badge " + object.type + "\">" + object.type + "</span>" +
+				"<span class=\"badge room\">" + object.room + "</p>" +
+				"</div>" +
+				"</div>";
+		}
+	
+		$(document).ready(function () {
+			$.ajax({
+				url: endpoint + "schedule",
+				type: "GET",
+				contentType: "application/json, charset=utf-8",
+				dataType: "json",
+				beforeSend: function (xhr) {
+					xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
+				},
+				success: function (result) {
+					var objects = JSON.parse(result);
+				   
+					for (h = 8; h <= 18; h += 2) {
+						objects.filter(x => x.startTime === h.toString()).forEach(element => {
+							element.type = "laborator";
+							element.room = "C201";
+							$('#h' + h.toString() + " ." + element.day).append(getObjectHtml(element));
+						});;
+					}
+				},
+				error: function () {
+					alert('Oh-oh! Ceva nu a mers bine!')
 				}
-			},
-			error: function () {
-				alert('Oh-oh! Ceva nu a mers bine!')
-			}
+			})
 		})
-	})
-</script>
-
+	</script>
+  </body>
 </html>

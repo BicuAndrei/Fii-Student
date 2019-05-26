@@ -1,6 +1,7 @@
 from fiistudentrest.models import ScheduleClass, Student
-from fiistudentrest.models import Course
+from fiistudentrest.models import Course, Professor
 from fiistudentrest.api_functions.auth import verify_token
+from fiistudentrest.utils import export_csv
 
 import hug
 import json
@@ -62,12 +63,18 @@ def schedule(request):
     for ent in schedule_query_it:
         dictionary = {}
         course_key = ent.course
+        professor_key = ent.professor
 
-        if course_key is not None:
-            course = Course.get(course_key)
+        if course_key is not None and professor_key is not None:
+            course = Course.get(course_key)    
+            dictionary["name"] = course.title
+            
+            professor = Professor.get(professor_key)
+            dictionary["professor"] = professor.firstName + ' ' + professor.lastName
+
             dictionary["id"] = ent.urlsafe
             dictionary["course_id"] = course.urlsafe
-            dictionary["name"] = course.title
+            dictionary["type"] = ent.classType
             dictionary["abv"] = get_abbreviation(course.title)
             dictionary["startTime"] = str(ent.startHour)
             dictionary["endTime"] = str(ent.endHour)
@@ -98,6 +105,6 @@ def export(request):
     student = Student.get(student_key_urlsafe)
     
     year_and_group = student.group
-    csv_content = ''
+    csv_content = export_csv(year_and_group)
 
     return {'status':'ok', 'data':csv_content}   

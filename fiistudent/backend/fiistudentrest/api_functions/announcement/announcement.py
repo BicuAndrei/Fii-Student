@@ -65,4 +65,4 @@ def add_new_announcement(request, subject:hug.types.text, group: hug.types.text,
 
     announcement.put()
 
-    return {'status': 'ok'}
+    return {"status" :"ok"}

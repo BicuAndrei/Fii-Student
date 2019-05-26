@@ -2,6 +2,7 @@ from fiistudentrest.models.base import BaseModel, ndb
 
 from .classroom import Classroom
 from .course import Course
+from .professor import Professor
 
 class ScheduleClass(BaseModel):
 
@@ -14,4 +15,5 @@ class ScheduleClass(BaseModel):
     classType = ndb.StringProperty()
     classroom = ndb.KeyProperty(kind=Classroom)
     course = ndb.KeyProperty(kind=Course)
+    professor = ndb.KeyProperty(kind=Professor)
 

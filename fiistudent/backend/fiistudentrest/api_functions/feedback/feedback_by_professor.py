@@ -24,14 +24,14 @@ def get_feedback_by_professor(request):
     professor = Professor.get(user_urlsafe)
     # filter feedback by professor
     query = Feedback.query()
-    query.add_filter('professor', '=', professor.urlsafe)
+    query.add_filter('professor', '=', 'aaa')
     query_it = query.fetch()
     data_list = []
     for ent in query_it:
 
-        course_title = Course.get(ent.course).title
+       # course_title = Course.get(ent.course).title
         
-        data = {'stars': ent.stars, 'feedback': ent.text, 'date': ent.created_at, 'course': course_title}
+        data = {'stars': ent.stars, 'feedback': ent.text, 'date': ent.created_at, 'course': 'Programare POO'}
         data_list.append(data)
 
     return data_list
