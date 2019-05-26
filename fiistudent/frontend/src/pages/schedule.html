@@ -147,7 +147,7 @@
 						</table>
 					</div>
 					<div class="content">
-						<button class="button"><i class="fa fa-download"></i> Download</button>
+						<button class="button" id="downlaodBtn"><i class="fa fa-download"></i> Download</button>
 					</div>
 				</div>
 			</div>
@@ -172,6 +172,40 @@
 
 
 <script>
+
+		$('#downlaodBtn').click(function () {
+			$.ajax({
+				url: endpoint + "export",
+				type: "GET",
+				contentType: "application/json; charset=utf-8",
+				dataType: "json",
+				beforeSend: function (xhr) {
+					xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
+				},
+				success: function (result) {
+					var data, filename, link;
+					var csv = result.data;
+
+					if (csv == null) 
+						return;
+
+					filename = 'export.csv';
+
+					csv = 'data:text/csv;charset=utf-8,' + csv;
+					
+					data = encodeURI(csv);
+
+					link = document.createElement('a');
+					link.setAttribute('href', data);
+					link.setAttribute('download', filename);
+					link.click();
+				},
+				error: function () {
+					alert('Oh-oh! Ceva nu a mers bine!')
+				}
+			});
+		});
+
 		function getObjectHtml(object) {
 			return "" +
 				"<div class=\"object\" data-toggle=\"modal\" data-target=\"#detailsModal\">" +
