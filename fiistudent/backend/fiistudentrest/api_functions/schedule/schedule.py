@@ -1,5 +1,5 @@
 from fiistudentrest.models import ScheduleClass, Student
-from fiistudentrest.models import Course, Professor
+from fiistudentrest.models import Course, Professor, Classroom
 from fiistudentrest.api_functions.auth import verify_token
 from fiistudentrest.utils import export_csv
 
@@ -64,13 +64,17 @@ def schedule(request):
         dictionary = {}
         course_key = ent.course
         professor_key = ent.professor
+        classroom_key = ent.classroom
 
-        if course_key is not None and professor_key is not None:
+        if course_key is not None and professor_key is not None and classroom_key is not None:
             course = Course.get(course_key)    
             dictionary["name"] = course.title
             
             professor = Professor.get(professor_key)
             dictionary["professor"] = professor.firstName + ' ' + professor.lastName
+            
+            classroom = Classroom.get(classroom_key)
+            dictionary['classroom'] = classroom.identifier
 
             dictionary["id"] = ent.urlsafe
             dictionary["course_id"] = course.urlsafe
