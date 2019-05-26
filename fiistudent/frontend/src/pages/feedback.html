@@ -2,161 +2,115 @@
 <html lang="en">
 
 <head>
-    ${require('./partials/shared/_head.html')}
+	${require('./partials/shared/_head.html')}
 
-    <title>FII Student - Vizualizare Feedback</title>
+	<title>FII Student - Vizualizare Feedback</title>
 
-    <script>
-        const title = 'Vizualizare Feedback';
-        const subtitle = 'Află ce părere au studenții despre tine';
-        const shouldBeLoggedIn = true;
-    </script>
+	<script>
+		const title = 'Vizualizare Feedback';
+		const subtitle = 'Află ce părere au studenții despre tine';
+		const shouldBeLoggedIn = true;
+	</script>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
-    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+	<link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 
 </head>
 
 <body>
 
-    ${require('./partials/modals/quick-email.modal.html')}
+	${require('./partials/modals/quick-email.modal.html')}
 
-    <div class="d-flex" id="wrapper">
-        ${require('./partials/shared/sidebar.html')}
+	<div class="d-flex" id="wrapper">
+		${require('./partials/shared/sidebar.html')}
 
-        <div id="page-content-wrapper" class="bg-light">
-            ${require('./partials/shared/page-header.html')}
+		<div id="page-content-wrapper" class="bg-light">
+			${require('./partials/shared/page-header.html')}
 
-            <div class="container d-flex flex-wrap justify-content-center" id="containerFeedback">
-
-                <div class="card text-center col-md-5 mx-4">
-                    <div class="newFeedback px-3" title="Marchează ca citit">
-                        Nou
-                    </div>
-
-                    <div class="card-body">
-                        <section id="stars">
-                            <div class="rating-stars text-center">
-                                <ul>
-                                    <li class="star d-inline">
-                                        <i class="fa fa-star fa-fw text-warning"></i>
-                                    </li>
-                                    <li class="star d-inline">
-                                        <i class="fa fa-star fa-fw text-warning"></i>
-                                    </li>
-                                    <li class="star d-inline">
-                                        <i class="fa fa-star fa-fw text-warning"></i>
-                                    </li>
-                                    <li class="star d-inline">
-                                        <i class="fa fa-star fa-fw text-warning"></i>
-                                    </li>
-                                    <li class="star d-inline">
-                                        <i class="fa fa-star fa-fw text-warning"></i>
-                                    </li>
-                                </ul>
-                            </div>
-                        </section>
-
-                        <p class="card-text">„Excelent cursul și excelent trainerul. Nu pot decât să laud abilitățile
-                            domnului profesor. A reușit să ne scoată din starea zilnică cu stres, probleme, etc, și ne-a
-                            introdus în lumea minunată a comunicării. A reușit să ne facă
-                            să conștientizăm importanța comunicării și ne-a ajutat să identificăm punctele tari și
-                            punctele slabe. Mulțumesc și Felicitări!”
-                        </p>
-                    </div>
-
-                    <div class="card-footer text-muted">
-                        14-Ianuarie-2019
-                    </div>
-                </div>
-
-                
-
-            </div>
-        </div>
-    </div>
+			<div class="container d-flex flex-wrap justify-content-center" id="containerFeedback">
+			</div>
+		</div>
+	</div>
 </body>
 <script>
 
-    console.log(sessionStorage.getItem("accessToken"));
-    $(document).ready(function () {
-        $.ajax({
-            url: endpoint + "feedback",
-            beforeSend: function (xhr) {
-                xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
-                
-            },
-        }).then(function (data) {
-            
-            for(var indice=0;indice<data.length;indice++){
-            var div=document.createElement("div");
-            div.className+="card";
-            div.className+=" text-center";
-            div.className+=" col-md-5";
-            div.className+=" mx-4";
-            var parent=document.getElementById("containerFeedback");
-            parent.appendChild(div);
-            //am terminat div ul principal
-            var div2=document.createElement("div");
-            div2.className+=" newFeedback";
-            div2.className+=" px-3";
-            div2.innerHTML="Nou";
-            parent.appendChild(div);
-            div.appendChild(div2);
-            //am terminat al doilea div
-            var divCard=document.createElement("div");
-            divCard.className+=" card-body";
-            div.appendChild(divCard);
-            var section=document.createElement("section");
-            section.id="stars";
-            divCard.appendChild(section);
-            var divRating=document.createElement("div");
-            divRating.className+=" rating-stars";
-            divRating.className+=" text-center";
-            section.appendChild(divRating);
-            var ul=document.createElement("ul");
-            divRating.appendChild(ul);
-            for(var i=0;i<data[indice].stars;i++){
-                let li=document.createElement("li");
-                li.className+=" star";
-                li.className+=" d-inline";
-                let i=document.createElement("i");
-                i.className+=" fa";
-                i.className+=" fa-star";
-                i.className+=" fa-fw";
-                i.className+=" text-warning";
-                li.appendChild(i);
-                ul.appendChild(li);
+	$(document).ready(function () {
+		$.ajax({
+			url: endpoint + "feedback",
+			beforeSend: function (xhr) {
+				xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
 
-            }
-            let p=document.createElement('p');
-            p.className+="card-text";
-            p.innerHTML=data[indice].feedback;
-            divCard.appendChild(p);
-            let divFooter=document.createElement("div");
-            divFooter.className+=" card-footer";
-            divFooter.className+=" text-muted";
-            divFooter.innerHTML+=data[indice].date;
-            div.appendChild(divFooter);
-            
+			},
+		}).then(function (data) {
 
-            }
-        });
-    });
+			// Botez a trecut pe aici
+			for (var indice = 0; indice < data.length; indice++) {
+				var div = document.createElement("div");
+				div.className += "card";
+				div.className += " text-center";
+				div.className += " col-md-5";
+				div.className += " mx-4";
+				var parent = document.getElementById("containerFeedback");
+				parent.appendChild(div);
+				//am terminat div ul principal
+				var div2 = document.createElement("div");
+				div2.className += " newFeedback";
+				div2.className += " px-3";
+				div2.innerHTML = "Nou";
+				parent.appendChild(div);
+				div.appendChild(div2);
+				//am terminat al doilea div
+				var divCard = document.createElement("div");
+				divCard.className += " card-body";
+				div.appendChild(divCard);
+				var section = document.createElement("section");
+				section.id = "stars";
+				divCard.appendChild(section);
+				var divRating = document.createElement("div");
+				divRating.className += " rating-stars";
+				divRating.className += " text-center";
+				section.appendChild(divRating);
+				var ul = document.createElement("ul");
+				divRating.appendChild(ul);
+				for (var i = 0; i < data[indice].stars; i++) {
+					let li = document.createElement("li");
+					li.className += " star";
+					li.className += " d-inline";
+					let i = document.createElement("i");
+					i.className += " fa";
+					i.className += " fa-star";
+					i.className += " fa-fw";
+					i.className += " text-warning";
+					li.appendChild(i);
+					ul.appendChild(li);
+
+				}
+				let p = document.createElement('p');
+				p.className += "card-text";
+				p.innerHTML = data[indice].feedback;
+				divCard.appendChild(p);
+				let divFooter = document.createElement("div");
+				divFooter.className += " card-footer";
+				divFooter.className += " text-muted";
+				divFooter.innerHTML += data[indice].date;
+				div.appendChild(divFooter);
+			}
+		});
+	});
 
 </script>
 
 </html>
 
 <script>
-    $(document).ready(function () {
-        var allNew = document.querySelectorAll(".newFeedback");
+	$(document).ready(function () {
+		var allNew = document.querySelectorAll(".newFeedback");
 
-        for (var i = 0; i < allNew.length; i++) {
-            allNew[i].onclick = function () {
-                this.style.display = 'none';
-            }
-        };
-    });
+		for (var i = 0; i < allNew.length; i++) {
+			allNew[i].onclick = function () {
+				this.style.display = 'none';
+			}
+		};
+	});
 </script>
