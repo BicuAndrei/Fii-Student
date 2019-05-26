@@ -6,6 +6,7 @@ from .announcement import Announcement
 from .base import BaseModel, NAMESPACE, ndb
 from .course import Course
 from .classroom import Classroom
+from .custom_class import CustomClass
 from .exam import Exam
 from .feedback import Feedback
 from .link import Link
