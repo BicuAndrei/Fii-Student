@@ -20,16 +20,18 @@ def get_datastore_info(group):
 def get_course(key):
     if key is None:
         return False
-    course = Course()
-    course = course.get(key)
+    course = Course.get(key)
     return course.title
 
 
 def get_class(key):
     if key is None:
         return False
-    classroom = Classroom().get(key)
-    return classroom.identifier
+    try:
+        classroom = Classroom.get(key)
+        return classroom.identifier
+    except:
+        return False
 
 
 def get_printable_rows(datastore_rows):
