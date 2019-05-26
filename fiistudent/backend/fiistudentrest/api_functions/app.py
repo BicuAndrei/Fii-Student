@@ -10,6 +10,7 @@ from .free_rooms import free_rooms
 from .professors import professors
 from .quick_mail import quickmail
 from .schedule import schedule
+from .preferences import add_preference
 
 import hug
 
@@ -31,3 +32,4 @@ hug.get('/quickmail',api=app)(quickmail)
 hug.put('/register', api=app)(register)
 hug.put('/register_professor', api=app)(register_professor)
 hug.get('/schedule',api=app)(schedule)
+hug.put('/add_preference', api=app)(add_preference)
