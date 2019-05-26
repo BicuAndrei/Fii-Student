@@ -1,7 +1,8 @@
+from fiistudentrest.models import ScheduleClass, Course, Classroom
+
 import csv
 import sys
-
-from fiistudentrest.models import ScheduleClass, Course, Classroom
+import io
 
 
 def get_datastore_info(group):
@@ -85,7 +86,7 @@ def get_ordered_day_itmes(day, rows):
     return ordered_items
 
 
-def main():
+def export_csv():
     for i in range(1, len(sys.argv)):
         info = get_datastore_info(sys.argv[i])
         if info is False:
@@ -93,8 +94,8 @@ def main():
             continue
         days = ['Luni', 'Marti', 'Miercuri', 'Joi', 'Vineri', 'Sambata', 'Duminica']
         rows = get_printable_rows(info)
-        file = get_file(sys.argv[i])
-        writer = csv.writer(file)
+        output = io.StringIO()
+        writer = csv.writer(output, quoting=csv.QUOTE_NONNUMERIC)
         writer.writerow(['Ziua', 'De la', 'Pana la', 'Materie', 'Tip', 'Sala'])
         for day in days:
             classes = get_ordered_day_itmes(day, rows)
@@ -104,8 +105,8 @@ def main():
                 writer.writerow(
                     [day, myclass['start'], myclass['end'], myclass['curs'], myclass['tip'], myclass['sala']])
         print("[ CSV ] Schedule for [{0}] has been exported.".format(sys.argv[i]))
-        file.close()
+        print(output.getValue())
 
 
 if __name__ == "__main__":
-    main()
+    export_csv()
