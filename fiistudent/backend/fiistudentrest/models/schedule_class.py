@@ -15,5 +15,5 @@ class ScheduleClass(BaseModel):
     classType = ndb.StringProperty()
     classroom = ndb.KeyProperty(kind=Classroom)
     course = ndb.KeyProperty(kind=Course)
-    professors = ndb.KeyProperty(kind=Professor)
+    professor = ndb.KeyProperty(kind=Professor)
 

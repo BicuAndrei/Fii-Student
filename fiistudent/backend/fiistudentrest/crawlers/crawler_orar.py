@@ -357,7 +357,7 @@ def create_class(day, group, course, hour, sala, tip, profs):
     scheduleclass.group = group
     scheduleclass.classType = tip
     if len(profs) != 0:
-        scheduleclass.professors = profs[0]
+        scheduleclass.professor = profs[0]
     scheduleclass.put()
 
 
