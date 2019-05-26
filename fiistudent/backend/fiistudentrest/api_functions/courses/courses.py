@@ -114,7 +114,7 @@ def courses_by_time(request, weekday: hug.types.text, start_hour: hug.types.numb
     scheduled_classes_list = []
     data_list = []
     for sch_course in sch_courses:
-        if sch_course.startHour == start_hour and sch_course.endHour == end_hour and sch_course.group == student.group:
+        if sch_course.startHour == start_hour and sch_course.endHour == end_hour and sch_course.group[:2] == student.group[:2]:
             scheduled_classes_list.append(sch_course)
             
             try:
@@ -127,6 +127,7 @@ def courses_by_time(request, weekday: hug.types.text, start_hour: hug.types.numb
                 classroom = Classroom.get(sch_course.classroom)
                 classroom_name = classroom.identifier
             except:
+                print('A crapat classroom dupa cheie')
                 classroom_name = ''
 
             try:
@@ -141,11 +142,11 @@ def courses_by_time(request, weekday: hug.types.text, start_hour: hug.types.numb
             except:
                 professor_name = ''
 
-            data = {'id': sch_course.urlsafe, 'type': sch_course.classType, 'title': course_title, 'professor': professor_name, 'classroom': classroom_name}
-            data_list.append(data)
+            if course_title != '':
+                data = {'id': sch_course.urlsafe, 'type': sch_course.classType, 'title': course_title, 'classroom': classroom_name}
+                data_list.append(data)
 
-    json_data = json.dumps(data_list)
-    return json_data
+    return data_list
 
 
 @hug.local()

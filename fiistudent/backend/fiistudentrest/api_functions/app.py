@@ -11,7 +11,7 @@ from .feedback import submit_feedback, get_feedback_by_professor
 from .free_rooms import free_rooms
 from .professors import professors
 from .quick_mail import quickmail
-from .schedule import schedule
+from .schedule import schedule,export
 from .preferences import add_preference
 
 import hug
@@ -29,6 +29,7 @@ hug.get('/course',api=app)(course)
 hug.get('/courses',api=app)(courses)
 hug.get('/courses_by_time',api=app)(courses_by_time)
 hug.put('/custom_class', api=app)(add_custom_class)
+hug.get('/export',api=app)(export)
 hug.get('/feedback',api=app)(get_feedback_by_professor)
 hug.post('/feedback', api=app)(submit_feedback)
 hug.post('/forgot_password',api=app)(confirm_forgot_password_token)

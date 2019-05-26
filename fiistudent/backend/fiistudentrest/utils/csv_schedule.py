@@ -1,8 +1,9 @@
+from fiistudentrest.models import ScheduleClass, Course, Classroom
+
 import csv
 import datetime
 import sys
-
-from fiistudentrest.models import ScheduleClass, Course, Classroom
+import io
 
 
 def get_datastore_info(group):
@@ -28,8 +29,7 @@ def next_weekday(d, weekday):
 def get_course(key):
     if key is None:
         return False
-    course = Course()
-    course = course.get(key)
+    course = Course.get(key)
     return course.title
 
 
@@ -104,30 +104,29 @@ def get_date(dayIndex):
     return next_day[1] + "/" + next_day[2] + "/" + next_day[0]
 
 
-def main():
-    for i in range(1, len(sys.argv)):
-        info = get_datastore_info(sys.argv[i])
-        if info is False:
-            print("[ ERROR ] No info found for [{0}]".format(sys.argv[i]))
+def export_csv(group):
+    info = get_datastore_info(group)
+    if info is False:
+        print("[ ERROR ] No info found for [{0}]".format(group))
+        return ""
+    days = ['Luni', 'Marti', 'Miercuri', 'Joi', 'Vineri', 'Sambata', 'Duminica']
+    rows = get_printable_rows(info)
+    output = io.StringIO()
+    writer = csv.writer(output)
+    writer.writerow(
+        ['Subject', 'Start Date', 'Start Time', 'End Date', 'End Time', 'All Day Event', 'Description', 'Location',
+        'Private'])
+    for i, day in enumerate(days):
+        classes = get_ordered_day_itmes(day, rows)
+        if classes is False:
             continue
-        days = ['Luni', 'Marti', 'Miercuri', 'Joi', 'Vineri', 'Sambata', 'Duminica']
-        rows = get_printable_rows(info)
-        file = get_file(sys.argv[i])
-        writer = csv.writer(file)
-        writer.writerow(
-            ['Subject', 'Start Date', 'Start Time', 'End Date', 'End Time', 'All Day Event', 'Description', 'Location',
-             'Private'])
-        for i, day in enumerate(days):
-            classes = get_ordered_day_itmes(day, rows)
-            if classes is False:
-                continue
-            for myclass in classes:
+        for myclass in classes:
+            if myclass['curs'] != '-':
                 writer.writerow(
                     [myclass['curs'], get_date(i), str(myclass['start']) + ":00", get_date(i),
-                     str(myclass['end']) + ":00", 'False', myclass['tip'], myclass['sala'], 'True'])
-        print("[ CSV ] Schedule for [{0}] has been exported.".format(sys.argv[i]))
-        file.close()
+                    str(myclass['end']) + ":00", 'False', myclass['tip'], myclass['sala'], 'True'])
+    return output.getvalue()
 
 
 if __name__ == "__main__":
-    main()
+    print(export_csv('I2B3'))
