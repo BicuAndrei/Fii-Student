@@ -1,4 +1,4 @@
-from fiistudentrest.models import Student
+from fiistudentrest.models import Professor, Student
 from fiistudentrest.api_functions.auth import verify_token
 
 import hug
@@ -17,6 +17,30 @@ def check_password(hashed_password, user_password):
     """Decode a password """
     password, salt = hashed_password.split(':')
     return password == hashlib.sha256(salt.encode() + user_password.encode()).hexdigest()
+
+
+@hug.get()
+def identity(request):
+    """Returns whether the current user is professor or student"""
+    authorization = request.get_header('Authorization')
+    if not authorization:
+        return {'status': 'error',
+                'errors': [
+                    {'for': 'request_header', 'message': 'No Authorization field exists in request header'}]}
+
+    user_urlsafe = verify_token(authorization)
+    if not user_urlsafe:
+        return {'status': 'error',
+                'errors': [
+                    {'for': 'request_header', 'message': 'Header contains token, but it is not a valid one.'}]}
+    
+    student = Student.get(user_urlsafe)
+    if hasattr(student, 'group'):
+        return {'status':'ok', 'data': { 'type':'student', 'name': student.firstName + ' ' + student.lastName} }
+
+    professor = Professor.get(user_urlsafe)
+    if professor:
+        return {'status':'ok', 'data': { 'type':'professor', 'name': professor.firstName + ' ' + professor.lastName} }
 
 
 @hug.local()

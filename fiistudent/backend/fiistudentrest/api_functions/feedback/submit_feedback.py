@@ -1,4 +1,4 @@
-from fiistudentrest.models import Student, Professor, Course, Feedback
+from fiistudentrest.models import Student, ScheduleClass, Professor, Course, Feedback
 from fiistudentrest.api_functions.auth import verify_token
 
 import hug
@@ -9,8 +9,7 @@ from datetime import datetime
 @hug.local()
 @hug.post()
 @hug.cli()
-def submit_feedback(request, professor: hug.types.text, course: hug.types.text, date: hug.types.text,
-                    stars: hug.types.number, feedback: hug.types.text):
+def submit_feedback(request, schedule_class_id: hug.types.text, stars: hug.types.number, feedback: hug.types.text):
     """Adds new feedback for the given professor and course"""
     authorization = request.get_header('Authorization')
     if not authorization:
@@ -25,32 +24,36 @@ def submit_feedback(request, professor: hug.types.text, course: hug.types.text, 
                     {'for': 'request_header', 'message': 'Header contains token, but it is not a valid one.'}]}
     student = Student.get(user_urlsafe)
 
-    data_list = []
+    professor_key = ScheduleClass.get(schedule_class_id).professor
+    course_key = ScheduleClass.get(schedule_class_id).course
+    if professor_key is None:
+        return {'status':'ok'}
+    if course_key is None:
+        return {'status':'ok'}
+
     data = {}
+    date = datetime.now()
+
     # check if feedback already exists
-    entity_feedback = feedback_exists(professor, student, date, course)
+    entity_feedback = feedback_exists(professor_key, student, date, course_key)
     if entity_feedback is not None:
         data["alreadySubmitted"] = True
-        data["course"] = course
-        data["stars"] = entity_feedback.stars
-        data["feedback"] = entity_feedback.text
     else:
         data["alreadySubmitted"] = False
-        data["profId"] = professor
-        data["course"] = course
-        data["stars"] = stars
-        data["feedback"] = feedback
+        
         # add feedback to db
         feedback_db = Feedback(
             student=student.key,
-            professor=professor,
-            course=course,
+            professor=professor_key,
+            course=course_key,
             text=feedback,
             stars=stars,
         )
         feedback_db.put()
 
-    return data_list
+    data["status"]="ok"
+
+    return data
 
 
 def feedback_exists(professor, student, date, course):

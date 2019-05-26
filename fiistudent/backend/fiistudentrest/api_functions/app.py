@@ -5,7 +5,7 @@ from .auth import register
 from .auth import confirm_forgot_password_token
 from .auth import register_professor
 from .courses import courses, course, courses_by_time
-from .change_details import change_group, change_password
+from .change_details import identity, change_group, change_password
 from .custom_schedule import add_custom_class
 from .feedback import submit_feedback, get_feedback_by_professor
 from .free_rooms import free_rooms
@@ -34,6 +34,7 @@ hug.get('/feedback',api=app)(get_feedback_by_professor)
 hug.post('/feedback', api=app)(submit_feedback)
 hug.post('/forgot_password',api=app)(confirm_forgot_password_token)
 hug.get('/free_rooms',api=app)(free_rooms)
+hug.get('/identity',api=app)(identity)
 hug.get('/login', api=app)(login)
 hug.get('/professors',api=app)(professors)
 hug.get('/quickmail',api=app)(quickmail)
