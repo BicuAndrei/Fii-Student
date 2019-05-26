@@ -21,13 +21,47 @@
 <body>
 	<div class="container-fluid min-vh-100 ml-0 pl-0">
 		<div class="row no-gutters ml-0 pl-0">
-			<div class="col-2 ml-0 pl-0 mr-0 ">
+			<div class="col-2 ml-0 pl-0 mr-0 sidebarJS">
 				${require('./partials/shared/sidebar.html')}
 			</div>
+			<script>
+				if (localStorage.getItem("sidebarColor") !== null) {
+					var color = localStorage.getItem("sidebarColor");
+					var list = document.getElementsByTagName("A");
+					for (var i = 0; i < list.length; i++) {
+						if (list[i].className.indexOf('ch') > 0)
+							list[i].style.backgroundColor = color;
+					}
+					document.getElementsByClassName("sidebarJS")[0].style.backgroundColor = color;
+				}
+				if (localStorage.getItem("sidebarColorText") !== null) {
+				var color = localStorage.getItem("sidebarColorText");
+				var list = document.getElementsByTagName("A");
+				for (var i = 0; i < list.length; i++) {
+					if (list[i].className.indexOf('ch') > 0)
+						list[i].style.color = color;
+				}
+			}
+
+			</script>
 			<div class="col-10">
-				<div class="row no-gutters">
+				<div class="row no-gutters bg">
 					<div class="col-12">
 						${require('./partials/shared/page-header.html')}
+						<script>
+							if (localStorage.getItem("headerColor") !== null) {
+								var color = localStorage.getItem("headerColor");
+								var header = document.getElementsByClassName("page-header")[0];
+								header.style.backgroundColor = color;
+							}
+							if (localStorage.getItem("headerColorText") !== null) {
+								var color = localStorage.getItem("headerColorText");
+								var header = document.getElementsByClassName("page-header")[0];
+								header.style.color = color;
+								document.querySelector(".page-header .subtitle").style.color = color;
+								localStorage.setItem("headerColorText", color);
+							}
+						</script>
 					</div>
 					<div class="w-100"></div>
 					<div class="col-4 mt-2">
@@ -136,6 +170,17 @@
 				});
 			});
 		});
+	</script>
+	<script>
+		if (localStorage.getItem("backgroundColor") !== null) {
+			var color = localStorage.getItem("backgroundColor");
+			document.getElementsByClassName("bg")[0].style.backgroundColor=color;
+		}
+		if (localStorage.getItem("fontSize") !== null) {
+			var size = localStorage.getItem("fontSize");
+			var body = document.getElementsByTagName("body")[0];
+			body.style.fontSize = size + "px";
+		}
 	</script>
 </body>
 

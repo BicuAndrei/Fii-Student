@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	${require('./partials/shared/_head.html')}
+
+	<title>Trimite anunturi</title>
+
+	<script>
+		const title = 'Trimite anunturi';
+		const shouldBeLoggedIn = true;
+	</script>
+
+</head>
+<body>
+	<div class="d-flex" id="wrapper">
+		${require('./partials/shared/sidebar.html')}
+		
+		<div id="page-content-wrapper" class="bg-light">
+			${require('./partials/shared/page-header.html')}
+
+			<div class="sendAnnounces" style="margin-left: 10vw;">
+				<div class="form-group ml-5 mt-5 mb-5 border w-75 p-3" style="background: #ffffff;">
+					<form action=" " method="GET" class="p-2">
+						<h5>Trimitere anunt</h5>
+						<div class="row">
+							<div class="col-md-6">
+								<label for="category">Categorie </label>
+								<select name="category" id="category" class="form-control" required>
+									<option value="" selected="selected"></option>
+									<option value="exams">Examene</option>
+									<option value="license">Licenta</option>
+								</select>
+							</div>
+							<div class="col-md-6">
+								<label for="group">Grupa </label>
+								<select name="group" id="group" class="form-control required">
+									<option value="" selected="selected"></option> 
+									<option value="A1">A1</option>
+									<option value="A2">A2</option>
+									<option value="A3">A3</option>
+									<option value="A4">A4</option>
+									<option value="A5">A5</option>
+									<option value="A6">A6</option>
+									<option value="A7">A7</option>
+									<option value="B1">B1</option>
+									<option value="B2">B2</option>
+									<option value="B3">B3</option>
+									<option value="B4">B4</option>
+									<option value="B5">B5</option>
+									<option value="B6">B6</option>
+									<option value="B7">B7</option>
+									<option value="E1">E1</option>
+									<option value="E2">E2</option>
+									<option value="X1">X1</option>
+									<option value="X2">X2</option>
+									<option value="X3">X3</option>
+									<option value="X4">X4</option>
+								</select>
+							</div>
+						</div>
+						<div class="row" style="margin-top: 0.5em;">
+							<div class="col-md-12">
+								<label for="subject">Subiect</label>
+								<textarea type="text" id="SUBJECT" name="message" rows="1" class="form-control md-textarea" ></textarea>
+							</div>
+						</div>
+						<div class="row" style="margin-top: 0.5em;">
+							<div class="col-md-12">
+								<label for="message">Mesaj</label>
+								<textarea type="text" id="message" name="message" rows="4" class="form-control md-textarea" ></textarea>
+							</div>
+						</div>
+						<br>
+						<button class="btn btn-primary" type="submit">Trimite</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

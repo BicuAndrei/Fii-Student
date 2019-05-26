@@ -1,0 +1,14 @@
+.newFeedback {
+    position: absolute;
+    top: 30px;
+    left: 70px;
+    background-color: rgb(207, 206, 206);
+    font-weight: bold;
+    border-radius: 20px;
+    display: block;
+    cursor: pointer;
+}
+
+.card {
+    cursor: context-menu;
+}

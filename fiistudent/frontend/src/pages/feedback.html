@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    ${require('./partials/shared/_head.html')}
+
+    <title>FII Student - Vizualizare Feedback</title>
+
+    <script>
+        const title = 'Vizualizare Feedback';
+        const subtitle = 'Află ce părere au studenții despre tine';
+        const shouldBeLoggedIn = true;
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+    ${require('./partials/modals/quick-email.modal.html')}
+
+    <div class="d-flex" id="wrapper">
+        ${require('./partials/shared/sidebar.html')}
+
+        <div id="page-content-wrapper" class="bg-light">
+            ${require('./partials/shared/page-header.html')}
+
+            <div class="container d-flex flex-wrap justify-content-center">
+
+                <div class="card text-center col-md-5 mx-4">
+                    <div class="newFeedback px-3" title="Marchează ca citit">
+                        Nou
+                    </div>
+
+                    <div class="card-body">
+                        <section id="stars">
+                            <div class="rating-stars text-center">
+                                <ul>
+                                    <li class="star d-inline">
+                                        <i class="fa fa-star fa-fw text-warning"></i>
+                                    </li>
+                                    <li class="star d-inline">
+                                        <i class="fa fa-star fa-fw text-warning"></i>
+                                    </li>
+                                    <li class="star d-inline">
+                                        <i class="fa fa-star fa-fw text-warning"></i>
+                                    </li>
+                                    <li class="star d-inline">
+                                        <i class="fa fa-star fa-fw text-warning"></i>
+                                    </li>
+                                    <li class="star d-inline">
+                                        <i class="fa fa-star fa-fw text-warning"></i>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+
+                        <p class="card-text">„Excelent cursul și excelent trainerul. Nu pot decât să laud abilitățile domnului profesor. A reușit să ne scoată din starea zilnică cu stres, probleme, etc, și ne-a introdus în lumea minunată a comunicării. A reușit să ne facă
+                            să conștientizăm importanța comunicării și ne-a ajutat să identificăm punctele tari și punctele slabe. Mulțumesc și Felicitări!”
+                        </p>
+                    </div>
+
+                    <div class="card-footer text-muted">
+                        14-Ianuarie-2019
+                    </div>
+                </div>
+
+                <div class="card text-center col-md-5 mx-4">
+                    <div class="newFeedback px-3" title="Marchează ca citit">
+                        Nou
+                    </div>
+
+                    <div class="card-body">
+                        <section id="stars">
+                            <div class="rating-stars text-center">
+                                <ul>
+                                    <li class="star d-inline">
+                                        <i class="fa fa-star fa-fw text-warning"></i>
+                                    </li>
+                                    <li class="star d-inline">
+                                        <i class="fa fa-star fa-fw text-warning"></i>
+                                    </li>
+                                    <li class="star d-inline">
+                                        <i class="fa fa-star fa-fw text-warning"></i>
+                                    </li>
+                                    <li class="star d-inline">
+                                        <i class="fa fa-star fa-fw text-warning"></i>
+                                    </li>
+                                    <li class="star d-inline">
+                                        <i class="fa fa-star fa-fw text-warning"></i>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+
+                        <p class="card-text">„Excelent cursul și excelent trainerul. Nu pot decât să laud abilitățile domnului profesor. A reușit să ne scoată din starea zilnică cu stres, probleme, etc, și ne-a introdus în lumea minunată a comunicării. A reușit să ne facă
+                            să conștientizăm importanța comunicării și ne-a ajutat să identificăm punctele tari și punctele slabe. Mulțumesc și Felicitări!”
+                        </p>
+                    </div>
+
+                    <div class="card-footer text-muted">
+                        14-Ianuarie-2019
+                    </div>
+                </div>
+
+                <div class="card text-center col-md-5 mx-4">
+                    <div class="newFeedback px-3" title="Marchează ca citit">
+                        Nou
+                    </div>
+
+                    <div class="card-body">
+                        <section id="stars">
+                            <div class="rating-stars text-center">
+                                <ul>
+                                    <li class="star d-inline">
+                                        <i class="fa fa-star fa-fw text-warning"></i>
+                                    </li>
+                                    <li class="star d-inline">
+                                        <i class="fa fa-star fa-fw text-warning"></i>
+                                    </li>
+                                    <li class="star d-inline">
+                                        <i class="fa fa-star fa-fw text-warning"></i>
+                                    </li>
+                                    <li class="star d-inline">
+                                        <i class="fa fa-star fa-fw text-warning"></i>
+                                    </li>
+                                    <li class="star d-inline">
+                                        <i class="fa fa-star fa-fw text-warning"></i>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+
+                        <p class="card-text">„Excelent cursul și excelent trainerul. Nu pot decât să laud abilitățile domnului profesor. A reușit să ne scoată din starea zilnică cu stres, probleme, etc, și ne-a introdus în lumea minunată a comunicării. A reușit să ne facă
+                            să conștientizăm importanța comunicării și ne-a ajutat să identificăm punctele tari și punctele slabe. Mulțumesc și Felicitări!”
+                        </p>
+                    </div>
+
+                    <div class="card-footer text-muted">
+                        14-Ianuarie-2019
+                    </div>
+                </div>
+
+                <div class="card text-center col-md-5 mx-4">
+                    <div class="newFeedback px-3" title="Marchează ca citit">
+                        Nou
+                    </div>
+
+                    <div class="card-body">
+                        <section id="stars">
+                            <div class="rating-stars text-center">
+                                <ul>
+                                    <li class="star d-inline">
+                                        <i class="fa fa-star fa-fw text-warning"></i>
+                                    </li>
+                                    <li class="star d-inline">
+                                        <i class="fa fa-star fa-fw text-warning"></i>
+                                    </li>
+                                    <li class="star d-inline">
+                                        <i class="fa fa-star fa-fw text-warning"></i>
+                                    </li>
+                                    <li class="star d-inline">
+                                        <i class="fa fa-star fa-fw text-warning"></i>
+                                    </li>
+                                    <li class="star d-inline">
+                                        <i class="fa fa-star fa-fw text-warning"></i>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+
+                        <p class="card-text">„Excelent cursul și excelent trainerul. Nu pot decât să laud abilitățile domnului profesor. A reușit să ne scoată din starea zilnică cu stres, probleme, etc, și ne-a introdus în lumea minunată a comunicării. A reușit să ne facă
+                            să conștientizăm importanța comunicării și ne-a ajutat să identificăm punctele tari și punctele slabe. Mulțumesc și Felicitări!”
+                        </p>
+                    </div>
+
+                    <div class="card-footer text-muted">
+                        14-Ianuarie-2019
+                    </div>
+                </div>
+
+                <div class="card text-center col-md-5 mx-4">
+                    <div class="newFeedback px-3" title="Marchează ca citit">
+                        Nou
+                    </div>
+
+                    <div class="card-body">
+                        <section id="stars">
+                            <div class="rating-stars text-center">
+                                <ul>
+                                    <li class="star d-inline">
+                                        <i class="fa fa-star fa-fw text-warning"></i>
+                                    </li>
+                                    <li class="star d-inline">
+                                        <i class="fa fa-star fa-fw text-warning"></i>
+                                    </li>
+                                    <li class="star d-inline">
+                                        <i class="fa fa-star fa-fw text-warning"></i>
+                                    </li>
+                                    <li class="star d-inline">
+                                        <i class="fa fa-star fa-fw text-warning"></i>
+                                    </li>
+                                    <li class="star d-inline">
+                                        <i class="fa fa-star fa-fw text-warning"></i>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+
+                        <p class="card-text">„Excelent cursul și excelent trainerul. Nu pot decât să laud abilitățile domnului profesor. A reușit să ne scoată din starea zilnică cu stres, probleme, etc, și ne-a introdus în lumea minunată a comunicării. A reușit să ne facă
+                            să conștientizăm importanța comunicării și ne-a ajutat să identificăm punctele tari și punctele slabe. Mulțumesc și Felicitări!”
+                        </p>
+                    </div>
+
+                    <div class="card-footer text-muted">
+                        14-Ianuarie-2019
+                    </div>
+                </div>
+
+                <div class="card text-center col-md-5 mx-4">
+                    <div class="newFeedback px-3" title="Marchează ca citit">
+                        Nou
+                    </div>
+
+                    <div class="card-body">
+                        <section id="stars">
+                            <div class="rating-stars text-center">
+                                <ul>
+                                    <li class="star d-inline">
+                                        <i class="fa fa-star fa-fw text-warning"></i>
+                                    </li>
+                                    <li class="star d-inline">
+                                        <i class="fa fa-star fa-fw text-warning"></i>
+                                    </li>
+                                    <li class="star d-inline">
+                                        <i class="fa fa-star fa-fw text-warning"></i>
+                                    </li>
+                                    <li class="star d-inline">
+                                        <i class="fa fa-star fa-fw text-warning"></i>
+                                    </li>
+                                    <li class="star d-inline">
+                                        <i class="fa fa-star fa-fw text-warning"></i>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+
+                        <p class="card-text">„Excelent cursul și excelent trainerul. Nu pot decât să laud abilitățile domnului profesor. A reușit să ne scoată din starea zilnică cu stres, probleme, etc, și ne-a introdus în lumea minunată a comunicării. A reușit să ne facă
+                            să conștientizăm importanța comunicării și ne-a ajutat să identificăm punctele tari și punctele slabe. Mulțumesc și Felicitări!”
+                        </p>
+                    </div>
+
+                    <div class="card-footer text-muted">
+                        14-Ianuarie-2019
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    $(document).ready(function() {
+        var allNew = document.querySelectorAll(".newFeedback");
+
+        for (var i = 0; i < allNew.length; i++) {
+            allNew[i].onclick = function() {
+                this.style.display = 'none';
+            }
+        };
+    });
+</script>
