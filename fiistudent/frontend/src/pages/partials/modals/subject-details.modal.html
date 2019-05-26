@@ -18,16 +18,16 @@
 							<label for="profs-contact">Contact Profesor</label>
 							<h5 class="text-primary text-left border-bottom" id="profs-contact"></h5>
 						</div>
-						<div class="form-group">
+						<div class="form-group" id="course-site-div">
 							<label for="course-site">Site Curs</label>
 							<h5 class="text-primary text-left border-bottom" id="course-site"></h5>
 						</div>
-						<div class="form-group">
-							<label for="course-site">Număr credite</label>
-							<h5 class="text-primary text-left border-bottom">6</h5>
+						<div class="form-group" id="course-credits-div">
+							<label for="course-credits">Număr credite</label>
+							<h5 class="text-primary text-left border-bottom" id="course-credits"></h5>
 						</div>
-						<div class="form-group">
-							<label for="course-site">Link-uri Utile</label>
+						<div class="form-group" id="course-link-div">
+							<label for="util-link">Link-uri Utile</label>
 							<h5 class="text-primary text-left border-bottom" id="util-link"></h5>
 						</div>
 
@@ -134,32 +134,75 @@
 <script>
 	$(document).ready(function () {
 		$.ajax({
-			url: endpoint + "courses",
+			url: endpoint + "professors",
 			beforeSend: function (xhr) {
 				xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
 			},
 		}).then(function (response) {
-			let doc = JSON.parse(response);
-			let anul2 = doc[1]['subjects'];
+			let profs = JSON.parse(response);
+			
 
 			$.ajax({
-				url: endpoint + "professors",
+				url: endpoint + 'course',
+				type: "GET",
+				contentType: "application/json, charset=utf-8",
+				dataType: "json",
+				data:{
+					course_id:'agtmaWktc3R1ZGVudHITCxIGQ291cnNlGICAgPjinbAIDKIBC2RldmVsb3BtZW50'
+				},
 				beforeSend: function (xhr) {
 					xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
 				},
 			}).then(function (data) {
 
-				let profs = JSON.parse(data);
-
 				$("#detailsModal").mouseenter(function () {
-					//console.log("enter modal");
-					$("h2.title").text(anul2[0].name);
-					$("#course-site").html("<a href=\"" + anul2[0].link + "\"  style='text-decoration: none;'>Click aici!</a>");
-					$("#util-link").html("<a href=\"" + anul2[0].fisa + "\" style='text-decoration: none;'>Click aici!</a>");
+					$("h2.title").text(result.course_info.title);
+					$("#course-credits").text(result.course_info.credits);
+					$("#course-site").html("<a href=\"" + result.course_info.link + "\"  style='text-decoration: none;'>Click aici!</a>");
+					$("#util-link").html("<a href=\"" + result.course_info.fisa + "\" style='text-decoration: none;'>Click aici!</a>");
 					$("#profs-name").text(profs[1].name);
 					$("#profs-contact").html("<a href=\"" + profs[1].link + "\" style='text-decoration: none;'>Click aici!</a>")
 
+					if(result.course_info.credits)
+						$("#course-credits").text(result.course_info.credits);
+					else
+						$("course-credits-div").attr("style", "display:none;");
+					if(result.course_info.link)
+						$("#course-site").html("<a href=\"" + result.course_info.link + "\"  style='text-decoration: none;'>Click aici!</a>");
+					else
+						$("course-site-div").attr("style", "display:none;");
+					if(result.course_info.fisa)
+						$("#util-link").html("<a href=\"" + result.course_info.fisa + "\" style='text-decoration: none;'>Click aici!</a>");	
+					else
+						$("course-link-div").attr("style", "display:none;");
 				});
+
+				/* $.ajax({
+				url: endpoint + 'course',
+				type: "GET",
+				contentType: "application/json, charset=utf-8",
+				dataType: "json",
+				data:{
+					course_id:'agtmaWktc3R1ZGVudHITCxIGQ291cnNlGICAgPjinbAIDKIBC2RldmVsb3BtZW50'
+				},
+				beforeSend: function (xhr) {
+					xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
+				},
+				success: function (result) {
+					if(result.status == 'ok')
+					{
+						console.log(result.course_info.credits);
+						console.log(result.course_info.fisa);
+						console.log(result.course_info.link);
+						console.log(result.course_info.optional);
+						console.log(result.course_info.studies);
+						console.log(result.course_info.title);
+					}
+				},
+				error: function () {
+					alert('Oh-oh! Ceva nu a mers bine!')
+				}
+			}) */
 			});
 		});
 	});
