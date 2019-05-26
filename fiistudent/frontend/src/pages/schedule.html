@@ -201,7 +201,7 @@
 
 		function getObjectHtml(object) {
 			return "" +
-				"<div class=\"object\" data-toggle=\"modal\" data-target=\"#detailsModal\">" +
+				"<div class=\"object\" id=\"" + object.course_id + object.startTime + object.day + "\" data-toggle=\"modal\" data-target=\"#detailsModal\">" +
 				"<p class=\"name\">" + object.name + "</p>" +
 				"<p class=\"object-teacher\">" + object.professor + "</p>" +
 				"<div class=\"badges\">" +
@@ -227,6 +227,9 @@
 						objects.filter(x => x.startTime === h.toString()).forEach(element => {
 							element.room = "C201";
 							$('#h' + h.toString() + " ." + element.day).append(getObjectHtml(element));
+							$('#'+ element.course_id+ element.startTime + element.day).on('click', function () {
+    							resolveModal(element.course_id,element.professor);
+								});
 						});;
 					}
 				},
