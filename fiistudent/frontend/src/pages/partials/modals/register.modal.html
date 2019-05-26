@@ -207,6 +207,7 @@
 
 		$.ajax({
 			url: endpoint + "register",
+			type: 'PUT',
 			data: {
 				registrationNumber: $(this).find('#matricol').val(),
 				firstName: $(this).find('#nameStud').val(),
@@ -228,4 +229,34 @@
 			}
 		});
 	});
+
+	$('#profs-registerForm').submit(function (event) {
+		event.preventDefault();
+
+		if (!this.checkValidity()) {
+			return;
+		}
+
+		$.ajax({
+			url: endpoint + "register_professor",
+			type: 'PUT',
+			data: {
+				first_name: $(this).find('#nameProf').val(),
+				last_name: $(this).find('#name2Prof').val(),
+				professor_type: $(this).find('#didactic-degree').val(),
+				email: $(this).find('#emailProf').val(),
+				password: $(this).find('#passwordProf').val(),
+				confirm_password: $(this).find('#password2Prof').val()
+			}
+		}).then(function (data) {
+			if (data.status === "error") {
+				alert(data.errors[0].message);
+			}
+
+			if (data.status === "ok") {
+				$("#registerModal").modal('toggle');
+			}
+		});
+	});
+
 </script>
