@@ -114,7 +114,7 @@ def courses_by_time(request, weekday: hug.types.text, start_hour: hug.types.numb
     scheduled_classes_list = []
     data_list = []
     for sch_course in sch_courses:
-        if sch_course.startHour == start_hour and sch_course.endHour == end_hour and sch_course.group == student.group:
+        if sch_course.startHour == start_hour and sch_course.endHour == end_hour and sch_course.group[:2] == student.group[:2]:
             scheduled_classes_list.append(sch_course)
             
             try:
