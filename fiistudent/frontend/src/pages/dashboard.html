@@ -25,7 +25,7 @@
 				<div class="content d-flex flex-row">
 					<div class="changePass ml-5 mt-3 mb-5 border w-50 p-3" style="background: #ffffff">
 						<h5 class="sec-title ml-2">Schimba parola</h5>
-						<form action="changePassForm" method="GET" class="p-2">
+						<form id="changePassForm" method="GET" class="p-2">
 							<div class="form-group">
 								<label for="exampleInputPassword1">Parola actuala</label>
 								<input type="password" class="form-control " id="exampleInputPassword1" required>
@@ -42,7 +42,7 @@
 						</form>
 					</div>
 					<div class="group ml-5 mt-3 mb-5 border w-25 p-3" style="background: #ffffff">
-						<form action="changeGroupForm" method="GET" class="p-2">
+						<form id="changeGroupForm" method="GET" class="p-2">
 							<h5>Schimba grupa</h5>
 							<label for="semian">Semianul </label>
 							<select name="semian" id="semian" class="form-control" required>
@@ -257,6 +257,7 @@
 
 <script>
 	$('#changePassForm').submit(function (event) {
+		event.preventDefault();
 
 		if (!this.checkValidity()) {
 			return;
@@ -265,7 +266,6 @@
 		let oldPass = $(this).find('#exampleInputPassword1').val();
 		let firsPass = $(this).find('#Password2').val();
 		let secondPass = $(this).find('#Password3').val();
-		
 
 		$.ajax({
 			url: endpoint + "change_password",
@@ -290,6 +290,7 @@
 	});
 
 	$('#changeGroupForm').submit(function (event) {
+		event.preventDefault();
 
 		if (!this.checkValidity()) {
 			return;
