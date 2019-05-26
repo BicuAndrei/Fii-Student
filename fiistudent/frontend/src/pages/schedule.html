@@ -83,7 +83,6 @@
 									<th scope="col" class="head-col">Miercuri</th>
 									<th scope="col" class="head-col">Joi</th>
 									<th scope="col" class="head-col">Vineri</th>
-									<th scope="col" class="head-col">Sâmbătă</th>
 								</tr>
 								</tr>
 							</thead>
@@ -96,7 +95,6 @@
 									<td class="Miercuri"></td>
 									<td class="Joi"></td>
 									<td class="Vineri"></td>
-									<td class="Sambata"></td>
 								</tr>
 								<tr id="h10">
 									<th scope="row">10:00</th>
@@ -105,7 +103,6 @@
 									<td class="Miercuri"></td>
 									<td class="Joi"></td>
 									<td class="Vineri"></td>
-									<td class="Sambata"></td>
 								</tr>
 								<tr id="h12">
 									<th scope="row">12:00</th>
@@ -114,7 +111,6 @@
 									<td class="Miercuri"></td>
 									<td class="Joi"></td>
 									<td class="Vineri"></td>
-									<td class="Sambata"></td>
 								</tr>
 								<tr id="h14">
 									<th scope="row">14:00</th>
@@ -123,7 +119,6 @@
 									<td class="Miercuri"></td>
 									<td class="Joi"></td>
 									<td class="Vineri"></td>
-									<td class="Sambata"></td>
 								</tr>
 								<tr id="h16">
 									<th scope="row">16:00</th>
@@ -132,7 +127,6 @@
 									<td class="Miercuri"></td>
 									<td class="Joi"></td>
 									<td class="Vineri"></td>
-									<td class="Sambata"></td>
 								</tr>
 								<tr id="h18">
 									<th scope="row">18:00</th>
@@ -141,7 +135,6 @@
 									<td class="Miercuri"></td>
 									<td class="Joi"></td>
 									<td class="Vineri"></td>
-									<td class="Sambata"></td>
 								</tr>
 							</tbody>
 						</table>
@@ -210,10 +203,10 @@
 			return "" +
 				"<div class=\"object\" data-toggle=\"modal\" data-target=\"#detailsModal\">" +
 				"<p class=\"name\">" + object.name + "</p>" +
-				"<p class=\"object-teacher\">" + object.teacher + "</p>" +
+				"<p class=\"object-teacher\">" + object.professor + "</p>" +
 				"<div class=\"badges\">" +
-				"<span class=\"badge " + object.type + "\">" + object.type + "</span>" +
-				"<span class=\"badge room\">" + object.room + "</p>" +
+				"<span class=\"badge " + object.type.toLowerCase() + "\">" + object.type + "</span>" +
+				"<span class=\"badge room\">" + object.classroom + "</p>" +
 				"</div>" +
 				"</div>";
 		}
@@ -232,7 +225,6 @@
 				   
 					for (h = 8; h <= 18; h += 2) {
 						objects.filter(x => x.startTime === h.toString()).forEach(element => {
-							element.type = "laborator";
 							element.room = "C201";
 							$('#h' + h.toString() + " ." + element.day).append(getObjectHtml(element));
 						});;
