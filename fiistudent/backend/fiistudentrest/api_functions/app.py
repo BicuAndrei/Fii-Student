@@ -1,8 +1,9 @@
-from .announcement import add_new_announcement
+from .announcement import add_new_announcement, get_announs
 from .auth import login
 from .auth import register
 from .auth import confirm_forgot_password_token
 from .auth import register_professor
+from .categories import get_announcements_by_categ, get_categories
 from .courses import courses, course
 from .change_details import change_group, change_password
 from .feedback import submit_feedback, get_feedback_by_professor
@@ -18,6 +19,9 @@ app = hug.API(__name__)
 app.http.add_middleware(hug.middleware.CORSMiddleware(app))
 
 hug.put('/announcement',api=app)(add_new_announcement)
+hug.get('/announcements',api=app)(get_announs)
+hug.get('/announcement_categories',api=app)(get_categories)
+hug.get('/announcements_by_categ',api=app)(get_announcements_by_categ)
 hug.post('/change_group',api=app)(change_group)
 hug.post('/change_password',api=app)(change_password)
 hug.get('/course',api=app)(course)

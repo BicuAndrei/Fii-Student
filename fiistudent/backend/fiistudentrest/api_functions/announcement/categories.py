@@ -1,14 +1,15 @@
-from fiistudentrest.api_functions.auth import verify_token
-from fiistudentrest.models import Professor, Announcement
-
 import hug
+import json
+
+from fiistudentrest.models import Student, Announcement, Professor
+from fiistudentrest.auth import verify_token
 
 
 @hug.local()
 @hug.get()
 @hug.cli()
-def get_announs(request):
-    """Retrieve all announcements by current student's group"""
+def get_announcements_by_categ(request, category: hug.types.text):
+    """Retrieve all announcements given a category"""
     authorization = request.get_header('Authorization')
     if not authorization:
         return {'status': 'error',
@@ -24,39 +25,39 @@ def get_announs(request):
 
     data_list = []
 
-    announcements = Announcement.query().add_filter('group','=',student.group).fetch()
+    announcements = Announcement.query().add_filter('group', '=', student.group).add_filter('category','=',category).fetch()
+
     for ann in announcements:
-        data = {'sender': ann.sender, 'subject':ann.subject,'text':ann.text, 'category':ann.category}
+        data = {'sender': ann.sender, 'subject':ann.subject, 'text': ann.text, 'category': ann.category}
         data_list.append(data)
 
     json_data = json.dumps(data_list)
     return json_data
 
 
-@hug.local()
-@hug.put()
-@hug.cli()
-def add_new_announcement(request, group: hug.types.text, text: hug.types.text, category: hug.types.text):
-    """Add new announcement"""
+@hug.get()
+def get_categories(request):
+    """Retrieves all categories for announcements"""
+    
     authorization = request.get_header('Authorization')
     if not authorization:
         return {'status': 'error',
                 'errors': [
                     {'for': 'request_header', 'message': 'No Authorization field exists in request header'}]}
 
-    professor_key_urlsafe = verify_token(authorization)
-    if not professor_key_urlsafe:
+    user_urlsafe = verify_token(authorization)
+    if not user_urlsafe:
         return {'status': 'error',
                 'errors': [
                     {'for': 'request_header', 'message': 'Header contains token, but it is not a valid one.'}]}
-    
-    professor = Professor.get(professor_key_urlsafe)
+    student = Student.get(user_urlsafe)
 
-    announcement = Announcement(
-        sender=professor.key,
-        receiver=group,
-        text=text,
-        category=category
-    )
+    categories = []
+    announcements = Announcement.query().add_filter('group', '=', student.group).add_filter('category','=',category).fetch()
 
-    announcement.put()
+    for ann in announcements:
+        if ann.category:
+            categories.append(ann.category)
+
+    categories = list(dict.fromkeys(categories))
+    return {'status':'ok','categories':categories}
