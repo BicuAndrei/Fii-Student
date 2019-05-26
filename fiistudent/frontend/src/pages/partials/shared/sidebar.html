@@ -1,9 +1,10 @@
 <div class="border-right" id="sidebar-wrapper">
 	<div class="sidebar-heading">
 		<img src="../../../assets/img/navedit4.png" class="profile-picture" alt="profile-pic" />
+		<p class="name" id="userName">Ursaciuc Adrian</p>
 	</div>
 	<div class="list-group list-group-flush">
-		<a href="dashboard.html" class="list-group-item list-group-item-action ch"><i class="fas fa-columns"></i>Panou principal</a>
+		<a href="dashboard.html" class="list-group-item list-group-item-action ch for-student"><i class="fas fa-columns"></i>Panou principal</a>
 		<a href="#ads_category" class="list-group-item list-group-item-action dropdown-toggle ch" data-toggle="collapse" aria-expanded="false"><i class="fas fa-rss"></i>Anunțuri</a>
 		<ul class="collapse list-unstyled pl-3" id="ads_category">
 			<li>
@@ -19,14 +20,41 @@
 
 
 		<a href="free-rooms.html" class="list-group-item list-group-item-action"><i class="fas fa-door-closed"></i>Săli libere</a>
-		<a href="schedule.html" class="list-group-item list-group-item-action"><i class="fas fa-calendar"></i>Orar</a>
+		<a href="schedule.html" class="list-group-item list-group-item-action for-student"><i class="fas fa-calendar"></i>Orar</a>
 		<a href="subjects.html" class="list-group-item list-group-item-action"><i class="fas fa-book"></i>Materii</a>
 		<a href="teachers.html" class="list-group-item list-group-item-action"><i class="fas fa-user-graduate"></i>Profesori</a>
-		<a href="notifications.html" class="list-group-item list-group-item-action"><i class="fas fa-bell"></i>Notificari</a>
-		<a href="customschedule.html" class="list-group-item list-group-item-action"><i class=" fas fa-calendar"></i>Orar personalizat</a>
+		<a href="notifications.html" class="list-group-item list-group-item-action for-student"><i class="fas fa-bell"></i>Notificari</a>
+		<a href="customschedule.html" class="list-group-item list-group-item-action for-student"><i class=" fas fa-calendar"></i>Orar personalizat</a>
+		<a href="feedback.html" class="list-group-item list-group-item-action for-teacher"><i class="fas fa-bell"></i>Feedback</a>
+		<a href="sendAnnounces.html" class="list-group-item list-group-item-action for-teacher"><i class="fas fa-bell"></i>Trimite anunt</a>
+
+
 
 		
 
 		<a href="javascript:void(0)" class="list-group-item list-group-item-action" onclick="logOut()"><i class="fas fa-sign-out-alt"></i>Deconectează-te</a>		
 	</div>
 </div>
+
+<script>
+	$(document).ready(function() {
+		$.ajax({
+			url: endpoint + "identity",
+			method: 'GET',
+			beforeSend: function (xhr) {
+				xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
+			}
+		}).then(function (result) {
+			if(result.data.type === 'student') {
+				$('.for-teacher').remove();
+				isStudent = true;
+			}
+			if(result.data.type === 'professor') {
+				$('.for-student').remove();
+				isTeacher = true;
+			}
+
+			$('#userName').val(result.data.name);
+		});
+	});
+</script>
