@@ -1,8 +1,17 @@
+from fiistudentrest.models import Student, Course, ScheduleClass, ScheduleClassProfessor, Professor
+from fiistudentrest.api_functions.auth import verify_token
+
 import hug
 import json
+import datetime
 
-from fiistudentrest.models.course import Course
-from fiistudentrest.api_functions.auth import verify_token
+
+def get_classes(day_of_the_week):
+    """ Returneaza toate orele dintr-o anumita zi """
+    query = ScheduleClass.query()
+    query.add_filter('dayOfTheWeek', '=', day_of_the_week)
+    query_it = query.fetch()
+    return list(query_it)
 
 
 @hug.local()
@@ -98,17 +107,44 @@ def courses_by_time(request, weekday: hug.types.text, start_hour: hug.types.numb
                 'errors': [
                     {'for': 'request_header', 'message': 'Header contains token, but it is not a valid one.'}]}
 
+    student = Student.get(user_urlsafe)
+    # iau toate clasele (cursuri/lab)
+    sch_courses = get_classes(weekday)
+
     scheduled_classes_list = []
-    course1["id"] = "8ejwkfh84yrfwieh43";
-    course1["title"] = "PSGBD";
-    course1["professor"] = "Simona Virlan"; 
-    course1["classroom"] = "C309";
+    data_list = []
+    for sch_course in sch_courses:
+        if sch_course.startHour == start_hour and sch_course.endHour == end_hour and sch_course.group == student.group:
+            scheduled_classes_list.append(sch_course)
+            
+            try:
+                course = Course.get(sch_course.course)
+                course_title = course.title
+            except:
+                course_title = ''
 
-    scheduled_classes_list.append(course1);
-    scheduled_classes_list.append(course1);
-    scheduled_classes_list.append(course1);
+            try:
+                classroom = Classroom.get(sch_course.classroom)
+                classroom_name = classroom.identifier
+            except:
+                classroom_name = ''
 
-    json_data = json.dumps(scheduled_classes_list)
+            try:
+                sch_class_professor_query = ScheduleClassProfessor.query()
+                sch_class_professor_query.add_filter(schedule_class,'=', sch_course.key)
+                sch_class_professor_it = sch_class_professor_query.fetch()
+
+                for sch_class_professor in sch_class_professor_it:
+                    professor_key = sch_class_professor.professor
+                    professor = Professor.get(professor_key)
+                    professor_name = professor.firstName + ' ' + professor.lastName
+            except:
+                professor_name = ''
+
+            data = {'id': sch_course.urlsafe, 'type': sch_course.classType, 'title': course_title, 'professor': professor_name, 'classroom': classroom_name}
+            data_list.append(data)
+
+    json_data = json.dumps(data_list)
     return json_data
 
 
@@ -130,7 +166,7 @@ def course(request, course_id: hug.types.text):
                     {'for': 'request_header', 'message': 'Header contains token, but it is not a valid one.'}]}
 
     course = Course.get(course_id)
-    
+
     response = {}
     response["status"] = "ok"
 
