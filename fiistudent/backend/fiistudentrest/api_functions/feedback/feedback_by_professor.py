@@ -1,7 +1,7 @@
 import hug
 import json
 
-from fiistudentrest.models import Professor, Feedback
+from fiistudentrest.models import Course, Professor, Feedback
 from fiistudentrest.api_functions.auth import verify_token
 
 
@@ -23,15 +23,16 @@ def get_feedback_by_professor(request):
                     {'for': 'request_header', 'message': 'Header contains token, but it is not a valid one.'}]}
     professor = Professor.get(user_urlsafe)
     # filter feedback by professor
+    print(professor)
     query = Feedback.query()
-    query.add_filter('professor', '=', 'aaa')
+    query.add_filter('professor', '=', professor.key)
     query_it = query.fetch()
     data_list = []
     for ent in query_it:
 
-       # course_title = Course.get(ent.course).title
+        course_title = Course.get(ent.course).title
         
-        data = {'stars': ent.stars, 'feedback': ent.text, 'date': ent.created_at, 'course': 'Programare POO'}
+        data = {'stars': ent.stars, 'feedback': ent.text, 'date': ent.created_at, 'course': course_title}
         data_list.append(data)
 
     return data_list
