@@ -132,43 +132,71 @@
 </script>
 
 <script>
-	function resolveModal(cid, professor) {
+	function resolveModal(cid, professor, id) {
+
+		$.ajax({
+			url: endpoint + 'course',
+			type: "GET",
+			contentType: "application/json, charset=utf-8",
+			dataType: "json",
+			data: {
+				course_id: cid
+			},
+			beforeSend: function (xhr) {
+				xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
+			},
+		}).then(function (data) {
+
+
+			//console.log("enter modal");
+			$("#nume-materie").text(data.course_info.title);
+			$("#course-credits").text(data.course_info.credits);
+			$("#course-site").html("<a href=\"" + data.course_info.link + "\"  style='text-decoration: none;'>Click aici!</a>");
+			$("#util-link").html("<a href=\"" + data.course_info.fisa + "\" style='text-decoration: none;'>Click aici!</a>");
+			$("#profs-name").text(professor);
+			/* $("#profs-contact").html("<a href=\"" + profs[1].link + "\" style='text-decoration: none;'>Click aici!</a>") */
+			if (data.course_info.credits)
+				$("#course-credits").text(data.course_info.credits);
+			else
+				$("#course-credits-div").attr("style", "display:none;");
+			if (data.course_info.link)
+				$("#course-site").html("<a href=\"" + data.course_info.link + "\"  style='text-decoration: none;'>Click aici!</a>");
+			else
+				$("#course-site-div").attr("style", "display:none;");
+			if (data.course_info.fisa)
+				$("#util-link").html("<a href=\"" + data.course_info.fisa + "\" style='text-decoration: none;'>Click aici!</a>");
+			else
+				$("#course-link-div").attr("style", "display:none;");
+
+		});
+
+
+		$('#detailsModal').submit(function (event) {
+			event.preventDefault();
+
+			let ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
 
 			$.ajax({
-				url: endpoint + 'course',
-				type: "GET",
-				contentType: "application/json, charset=utf-8",
-				dataType: "json",
-				data:{
-					course_id:cid
-				},
+				url: endpoint + "feedback",
+				method: 'POST',
 				beforeSend: function (xhr) {
 					xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
 				},
+				data: {
+					schedule_class_id: id,
+					stars: ratingValue,
+					feedback: $(this).find('#feedback').val()
+				}
 			}).then(function (data) {
-
-			
-					//console.log("enter modal");
-					$("#nume-materie").text(data.course_info.title);
-					$("#course-credits").text(data.course_info.credits);
-					$("#course-site").html("<a href=\"" + data.course_info.link + "\"  style='text-decoration: none;'>Click aici!</a>");
-					$("#util-link").html("<a href=\"" + data.course_info.fisa + "\" style='text-decoration: none;'>Click aici!</a>");
-					$("#profs-name").text(professor);
-					/* $("#profs-contact").html("<a href=\"" + profs[1].link + "\" style='text-decoration: none;'>Click aici!</a>") */
-					if(data.course_info.credits)
-						$("#course-credits").text(data.course_info.credits);
-					else
-						$("#course-credits-div").attr("style", "display:none;");
-					if(data.course_info.link)
-						$("#course-site").html("<a href=\"" + data.course_info.link + "\"  style='text-decoration: none;'>Click aici!</a>");
-					else
-						$("#course-site-div").attr("style", "display:none;");
-					if(data.course_info.fisa)
-						$("#util-link").html("<a href=\"" + data.course_info.fisa + "\" style='text-decoration: none;'>Click aici!</a>");	
-					else
-						$("#course-link-div").attr("style", "display:none;");
-				
+				if (data.status === "error") {
+					alert(data.errors[0].message);
+				}
+				else
+					if (data.status == 'ok') {
+						alert('Feedback trimis! :)');
+					}
 			});
+		});
 	};
 </script>
 
