@@ -1,8 +1,8 @@
+from fiistudentrest.utils.auth import verify_token
+from fiistudentrest.models import Student, Announcement, Professor
+
 import hug
 import json
-
-from fiistudentrest.models import Student, Announcement, Professor
-from fiistudentrest.auth import verify_token
 
 
 @hug.local()
