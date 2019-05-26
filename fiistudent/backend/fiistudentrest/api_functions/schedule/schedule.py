@@ -77,3 +77,27 @@ def schedule(request):
 
     json_data = json.dumps(schedule_list)
     return json_data
+
+
+@hug.get()
+def export(request):
+    """Returns the data to be exported as csv"""
+    authorization = request.get_header('Authorization')
+    if not authorization:
+        return {'status': 'error',
+                'errors': [
+                    {'for': 'request_header', 'message': 'No Authorization field exists in request header'}]}
+
+    student_key_urlsafe = verify_token(authorization)
+    if not student_key_urlsafe:
+        return {'status': 'error',
+                'errors': [
+                    {'for': 'request_header', 'message': 'Header contains token, but it is not a valid one.'}]}
+
+
+    student = Student.get(student_key_urlsafe)
+    
+    year_and_group = student.group
+    csv_content = ''
+
+    return {'status':'ok', 'data':csv_content}   
