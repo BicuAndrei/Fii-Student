@@ -8,4 +8,4 @@ class CustomClass(BaseModel):
     """ A custom class item """
 
     student = ndb.KeyProperty(kind=Student)
-    scheduleClass = ndb.KeyProperty(kind=ScheduleClass)
+    schedule_class = ndb.KeyProperty(kind=ScheduleClass)

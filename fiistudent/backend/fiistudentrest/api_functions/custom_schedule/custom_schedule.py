@@ -25,11 +25,12 @@ def add_custom_class(request, schedule_class_id: hug.types.text):
 
     # getting the Student entity
     student = Student.get(user_urlsafe)
+    schedule_class = ScheduleClass.get(schedule_class_id)
 
     # create the custom-class item
     custom_class = CustomClass(
         student = student.key,
-        schedule_class = schedule_class_id
+        schedule_class = schedule_class.key
     )
 
     # store in db
