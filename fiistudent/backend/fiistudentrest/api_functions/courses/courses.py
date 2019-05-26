@@ -84,9 +84,9 @@ def courses(request):
 @hug.local()
 @hug.get()
 @hug.cli()
-def course(request, course_id: hug.types.text):
-    """Retrieves course info"""
-    """authorization = request.get_header('Authorization')
+def courses_by_time(request, weekday: hug.types.text, start_hour: hug.types.number, end_hour: hug.types.number):
+    """Retrieves all courses"""
+    authorization = request.get_header('Authorization')
     if not authorization:
         return {'status': 'error',
                 'errors': [
@@ -97,7 +97,38 @@ def course(request, course_id: hug.types.text):
         return {'status': 'error',
                 'errors': [
                     {'for': 'request_header', 'message': 'Header contains token, but it is not a valid one.'}]}
-"""
+
+    scheduled_classes_list = []
+    course1["id"] = "8ejwkfh84yrfwieh43";
+    course1["title"] = "PSGBD";
+    course1["professor"] = "Simona Virlan"; 
+    course1["classroom"] = "C309";
+
+    scheduled_classes_list.append(course1);
+    scheduled_classes_list.append(course1);
+    scheduled_classes_list.append(course1);
+
+    json_data = json.dumps(scheduled_classes_list)
+    return json_data
+
+
+@hug.local()
+@hug.get()
+@hug.cli()
+def course(request, course_id: hug.types.text):
+    """Retrieves course info"""
+    authorization = request.get_header('Authorization')
+    if not authorization:
+        return {'status': 'error',
+                'errors': [
+                    {'for': 'request_header', 'message': 'No Authorization field exists in request header'}]}
+
+    user_urlsafe = verify_token(authorization)
+    if not user_urlsafe:
+        return {'status': 'error',
+                'errors': [
+                    {'for': 'request_header', 'message': 'Header contains token, but it is not a valid one.'}]}
+
     course = Course.get(course_id)
     
     response = {}
