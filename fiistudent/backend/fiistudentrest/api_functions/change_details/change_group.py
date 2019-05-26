@@ -23,7 +23,7 @@ def change_group(request, semian: hug.types.text, group: hug.types.text):
 
     student = Student.get(user_urlsafe)
     new_group = semian + group
-    print("The new group for the student " + student.key + " is " + new_group)
+    print("The new group for the student " + student.urlsafe + " is " + new_group)
     student.group = new_group
     Student.put(student)
     print("The modification is done!")

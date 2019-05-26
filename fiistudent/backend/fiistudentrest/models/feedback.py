@@ -9,7 +9,7 @@ class Feedback(BaseModel):
     """ Feedback from a student to a professor for a certain class"""
 
     student = ndb.KeyProperty(kind=Student, required=True)
-    professor = ndb.KeyProperty(kind=Professor, required=True)
-    course = ndb.KeyProperty(kind=Course, required=True)
+    professor = ndb.StringProperty(required=True)
+    course = ndb.StringProperty(required=True)
     text = ndb.StringProperty()
     stars = ndb.IntegerProperty()

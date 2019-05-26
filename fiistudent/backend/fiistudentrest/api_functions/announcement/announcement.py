@@ -32,8 +32,8 @@ def get_announs(request):
         data = {'sender': ann.sender, 'subject':ann.subject,'text':ann.text, 'category':ann.category}
         data_list.append(data)
 
-    json_data = json.dumps(data_list)
-    return json_data
+
+    return data_list
 
 
 @hug.local()
@@ -64,3 +64,5 @@ def add_new_announcement(request, subject:hug.types.text, group: hug.types.text,
     )
 
     announcement.put()
+
+    return {'status': 'ok'}

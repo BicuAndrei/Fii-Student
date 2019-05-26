@@ -143,7 +143,7 @@ def courses_by_time(request, weekday: hug.types.text, start_hour: hug.types.numb
                 professor_name = ''
 
             if course_title != '':
-                data = {'id': sch_course.urlsafe, 'type': sch_course.classType, 'title': course_title}
+                data = {'id': sch_course.urlsafe, 'type': sch_course.classType, 'title': course_title, 'classroom': classroom_name}
                 data_list.append(data)
 
     return data_list

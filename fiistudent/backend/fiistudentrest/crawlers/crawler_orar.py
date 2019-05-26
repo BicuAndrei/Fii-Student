@@ -387,7 +387,7 @@ def get_room_key(room):
     query.add_filter('identifier', '=', room)
     querys = query.fetch()
     for found in querys:
-        return found.key
+        return found.urlsafe
     return False
 
 
@@ -405,14 +405,14 @@ def get_prof_key(name):
     querys = query.fetch()
     possible_profs = []
     for found in querys:
-        possible_profs.append(found.key)
+        possible_profs.append(found.urlsafe)
     if len(possible_profs) == 0:
         return False
     if len(possible_profs) > 1:
         query.add_filter('firstName','=',first_name)
         querys = query.fetch()
         for found in querys:
-            return found.key
+            return found.urlsafe
         return False
     return possible_profs[0]
 
