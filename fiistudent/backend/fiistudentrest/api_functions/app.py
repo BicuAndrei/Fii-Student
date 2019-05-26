@@ -1,9 +1,9 @@
 from .announcement import add_new_announcement, get_announs
+from .announcement import get_announcements_by_categ, get_categories
 from .auth import login
 from .auth import register
 from .auth import confirm_forgot_password_token
 from .auth import register_professor
-from .categories import get_announcements_by_categ, get_categories
 from .courses import courses, course, courses_by_time
 from .change_details import change_group, change_password
 from .custom_schedule import add_custom_class

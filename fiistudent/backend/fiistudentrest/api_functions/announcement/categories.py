@@ -1,4 +1,4 @@
-from fiistudentrest.utils.auth import verify_token
+from fiistudentrest.api_functions.auth import verify_token
 from fiistudentrest.models import Student, Announcement, Professor
 
 import hug
@@ -25,7 +25,10 @@ def get_announcements_by_categ(request, category: hug.types.text):
 
     data_list = []
 
-    announcements = Announcement.query().add_filter('group', '=', student.group).add_filter('category','=',category).fetch()
+    announcements_query = Announcement.query()
+    announcements_query.add_filter('group','=',student.group)
+    announcements_query.add_filter('category','=', category)
+    announcements  = announcements_query.fetch()
 
     for ann in announcements:
         data = {'sender': ann.sender, 'subject':ann.subject, 'text': ann.text, 'category': ann.category}
@@ -53,7 +56,9 @@ def get_categories(request):
     student = Student.get(user_urlsafe)
 
     categories = []
-    announcements = Announcement.query().add_filter('group', '=', student.group).add_filter('category','=',category).fetch()
+    announcements_query = Announcement.query()
+    announcements_query.add_filter('group','=',student.group)
+    announcements  = announcements_query.fetch()
 
     for ann in announcements:
         if ann.category:

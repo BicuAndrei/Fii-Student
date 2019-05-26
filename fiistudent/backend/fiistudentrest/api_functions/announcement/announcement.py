@@ -1,7 +1,8 @@
 from fiistudentrest.api_functions.auth import verify_token
-from fiistudentrest.models import Professor, Announcement
+from fiistudentrest.models import Student, Professor, Announcement
 
 import hug
+import json
 
 
 @hug.local()
@@ -24,7 +25,9 @@ def get_announs(request):
 
     data_list = []
 
-    announcements = Announcement.query().add_filter('group','=',student.group).fetch()
+    announcements_query = Announcement.query()
+    announcements_query.add_filter('group','=',student.group)
+    announcements  = announcements_query.fetch()
     for ann in announcements:
         data = {'sender': ann.sender, 'subject':ann.subject,'text':ann.text, 'category':ann.category}
         data_list.append(data)
