@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" crossorigin="anonymous" />
+<script src="https://code.jquery.com/jquery-3.4.0.min.js"
+    integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+
+<script>
+    const endpoint = "https://develop-dot-fii-student.appspot.com/";
+    const isTeacher = false;
+    const isStudent = false;
+</script>
+
+<script>
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            var forms = document.getElementsByClassName('needs-validation');
+
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    
+                    form.classList.add('was-validated');
+
+                }, false);
+            });
+        }, false);
+    })();
+
+    function logOut() {
+        sessionStorage.removeItem("accessToken");
+        window.location.reload();
+    }
+</script>
+
+    <title>FII Student - Panou principal</title>
+
+    <script>
+        const title = 'Orar personalizat';
+        const subtitle = 'Ce vei face astazi ?';
+        const shouldBeLoggedIn = true;
+    </script>
+
+</head>
+
+<body>
+    <div class="d-flex" id="wrapper">
+        <div class="border-right" id="sidebar-wrapper">
+    <div class="sidebar-heading">
+        <img src="src/assets/img/navedit4.png" class="profile-picture" alt="profile-pic" />
+        <p class="name" id="userName">Ursaciuc Adrian</p>
+    </div>
+    <div class="list-group list-group-flush">
+        <a href="dashboard.html" class="list-group-item list-group-item-action ch for-student"><i class="fas fa-columns"></i>Panou principal</a>
+        <a href="#ads_category" class="list-group-item list-group-item-action dropdown-toggle ch for-student" data-toggle="collapse" aria-expanded="false"><i class="fas fa-rss"></i>Anunțuri</a>
+        <ul class="collapse list-unstyled pl-3" id="ads_category">
+            <li>
+                <a href="anounces.html" class="list-group-item list-group-item-action item-secondary ch">Anunțuri noi</a>
+            </li>
+            <li>
+                <a href="license-exams.html" class="list-group-item list-group-item-action item-secondary ch">Examene de licență</a>
+            </li>
+            <li>
+                <a href="dissertation-exams.html" class="list-group-item list-group-item-action item-secondary ch">Examene de disertație</a>
+            </li>
+        </ul>
+
+
+        <a href="free-rooms.html" class="list-group-item list-group-item-action"><i class="fas fa-door-closed"></i>Săli libere</a>
+        <a href="schedule.html" class="list-group-item list-group-item-action for-student"><i class="fas fa-calendar"></i>Orar</a>
+        <a href="subjects.html" class="list-group-item list-group-item-action"><i class="fas fa-book"></i>Materii</a>
+        <a href="teachers.html" class="list-group-item list-group-item-action"><i class="fas fa-user-graduate"></i>Profesori</a>
+        <a href="notifications.html" class="list-group-item list-group-item-action for-student"><i class="fas fa-bell"></i>Notificari</a>
+        <a href="customschedule.html" class="list-group-item list-group-item-action for-student"><i class=" fas fa-calendar"></i>Orar personalizat</a>
+        <a href="feedback.html" class="list-group-item list-group-item-action for-teacher"><i class="fas fa-bell"></i>Feedback</a>
+        <a href="sendAnnounces.html" class="list-group-item list-group-item-action for-teacher"><i class="fas fa-bell"></i>Trimite anunt</a>
+        <a href="javascript:void(0)" class="list-group-item list-group-item-action" onclick="logOut()"><i class="fas fa-sign-out-alt"></i>Deconectează-te</a>
+
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $.ajax({
+            url: endpoint + "identity",
+            method: 'GET',
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
+            }
+        }).then(function (result) {
+            if(result.data.type === 'student') {
+                $('.for-teacher').remove();
+                isStudent = true;
+            }
+            if(result.data.type === 'professor') {
+                $('.for-student').remove();
+                isTeacher = true;
+            }
+
+            $('#userName').val(result.data.name);
+        });
+    });
+</script>
+
+        <div id="page-content-wrapper" class="bg-light">
+            <script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('header-title').innerText = title;
+        document.getElementById('header-subtitle').innerText = subtitle;
+    }, false);
+
+</script>
+
+<div class="container-fluid page-header">
+    <h2 class="title" id="header-title"></h2>
+    <h4 class="subtitle" id="header-subtitle"></h4>
+</div>
+            <div class="container overflow-auto">
+                <div class="section">
+                    <div class="content">
+                        <table class="table schedule">
+                            <thead>
+                                <tr>
+                                <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col" class="head-col">Luni</th>
+                                    <th scope="col" class="head-col">Marți</th>
+                                    <th scope="col" class="head-col">Miercuri</th>
+                                    <th scope="col" class="head-col">Joi</th>
+                                    <th scope="col" class="head-col">Vineri</th>
+                                    <th scope="col" class="head-col">Sâmbătă</th>
+                                </tr>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr id="h8">
+                                    <th scope="row">8:00</th>
+                                    <td class="Luni">
+                                    </td>
+                                    <td class="Marti"></td>
+                                    <td class="Miercuri"></td>
+                                    <td class="Joi"></td>
+                                    <td class="Vineri"></td>
+                                    <td class="Sambata"></td>
+                                </tr>
+                                <tr id="h10">
+                                    <th scope="row">10:00</th>
+                                    <td class="Luni"></td>
+                                    <td class="Marti"></td>
+                                    <td class="Miercuri"></td>
+                                    <td class="Joi"></td>
+                                    <td class="Vineri"></td>
+                                    <td class="Sambata"></td>
+                                </tr>
+                                <tr id="h12">
+                                    <th scope="row">12:00</th>
+                                    <td class="Luni"></td>
+                                    <td class="Marti"></td>
+                                    <td class="Miercuri"></td>
+                                    <td class="Joi"></td>
+                                    <td class="Vineri"></td>
+                                    <td class="Sambata"></td>
+                                </tr>
+                                <tr id="h14">
+                                    <th scope="row">14:00</th>
+                                    <td class="Luni"></td>
+                                    <td class="Marti"></td>
+                                    <td class="Miercuri"></td>
+                                    <td class="Joi"></td>
+                                    <td class="Vineri"></td>
+                                    <td class="Sambata"></td>
+                                </tr>
+                                <tr id="h16">
+                                    <th scope="row">16:00</th>
+                                    <td class="Luni"></td>
+                                    <td class="Marti"></td>
+                                    <td class="Miercuri"></td>
+                                    <td class="Joi"></td>
+                                    <td class="Vineri"></td>
+                                    <td class="Sambata"></td>
+                                </tr>
+                                <tr id="h18">
+                                    <th scope="row">18:00</th>
+                                    <td class="Luni"></td>
+                                    <td class="Marti"></td>
+                                    <td class="Miercuri"></td>
+                                    <td class="Joi"></td>
+                                    <td class="Vineri"></td>
+                                    <td class="Sambata"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row" style="justify-content: center">
+                    <button type="button" class="btn btn-primary" href="javascript:void(0)" id="btnm"
+                        data-target="#addObj" data-toggle="modal">Adauga in orar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal sign-modal fade scroll-modal" id="addObj" role="dialog">
+        <div class="modal-dialog  modal-dialog-centered" style="width:600px;">
+            <div class="modal-content">
+                <div class="modal-body" style="justify-content: center">
+                    <div class="header">
+                        <h4 class="over-title">Adauga un obiect in orar</h4>
+
+                    </div>
+
+
+                    <div class="content">
+
+
+                        <form>
+
+                            <div class="form-group ">
+                                <label for="usr">Detalii materie:</label>
+                                <input type="text" class="form-control" id="usr" name="details" required>
+                            </div>
+
+
+                            <div class="form-group ">
+                                <label for="sala">Sala:</label>
+                                <input type="text" class="form-control" id="class" name="classdetail" required>
+                            </div>
+
+
+                            <div class="form-group ">
+                                <label for="day">Ziua</label>
+                                <select name="day" id="day" class="form-control" required>
+                                    <option value="" selected="selected">Alege o opțiune...</option>
+                                    <option value="Luni">Luni</option>
+                                    <option value="Marti">Marti</option>
+                                    <option value="Miercuri">Miercuri</option>
+                                    <option value="Joi">Joi</option>
+                                    <option value="Vineri">Vineri</option>
+                                    <option value="Sambata">Sambata</option>
+                                </select>
+                            </div>
+
+
+                            <div class="form-group ">
+                                <label for="starthour">Oră de start</label>
+                                <select name="start" id="starthour" class="form-control" required>
+                                    <option value="" selected="selected">Alege o opțiune...</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                    <option value="21">21</option>
+                                    <option value="22">22</option>
+                                    <option value="23">23</option>
+                                    <option value="24">24</option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="form-group ">
+                                <label for="finish">Oră de sfarsit</label>
+                                <select name="finish" id="finish" class="form-control" required>
+                                    <option value="" selected="selected">Alege o opțiune...</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                    <option value="21">21</option>
+                                    <option value="22">22</option>
+                                    <option value="23">23</option>
+                                    <option value="24">24</option>
+
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary align-center">Adauga</button>
+                            <button type="button" class=" btn btn-primary" data-dissmiss="modal">Renunta</button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+
+                $('#btnm').click(function () {
+                    $('#addObj').modal('show');
+                });
+
+                $('form').submit(function (event) {
+                    var obj = $(this).serializeArray();
+
+                    event.preventDefault();
+                })
+
+            </script>
+
+<script type="text/javascript" src="main.aba0b23d1cfdda03dac8.js"></script></body>
+
+</html>

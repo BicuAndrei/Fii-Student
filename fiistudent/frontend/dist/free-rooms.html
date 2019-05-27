@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" crossorigin="anonymous" />
+<script src="https://code.jquery.com/jquery-3.4.0.min.js"
+    integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+
+<script>
+    const endpoint = "https://develop-dot-fii-student.appspot.com/";
+    const isTeacher = false;
+    const isStudent = false;
+</script>
+
+<script>
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            var forms = document.getElementsByClassName('needs-validation');
+
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    
+                    form.classList.add('was-validated');
+
+                }, false);
+            });
+        }, false);
+    })();
+
+    function logOut() {
+        sessionStorage.removeItem("accessToken");
+        window.location.reload();
+    }
+</script>
+
+    <title>FII Student - Săli libere</title>
+
+    <script>
+        const title = 'Săli libere';
+        const subtitle = 'Caută o sală liberă';
+        const shouldBeLoggedIn = true;
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+    <!--Modal Quick Email-->
+<div class="modal sign-modal fade" id="quickEmailModal" tabindex="-1" role="dialog"
+    aria-labelledby="qucikEmailModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+
+                <div class="header">
+                    <h6 class="over-title">Trimite email</h6>
+                </div>
+                <div class="content">
+                    <form id="quick-emailFrom" class="needs-validation" novalidate>
+                        <div class="form-group">
+                            <input type="hidden" id="id-teacher" value="" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subiect</label>
+                            <input type="text" class="form-control" id="subject" placeholder="Introduceți subiectul" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mesaj</label>
+                            <textarea type="text" id="message" name="message" rows="4" class="form-control"
+                                placeholder="Indroduceți mesajul..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Trimite</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#quick-emailFrom').submit(function (event) {
+        event.preventDefault();
+
+        if (!this.checkValidity()) {
+            return;
+        }
+
+        $.ajax({
+            url: endpoint + "quickmail",
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
+            },
+            data: {
+                urlsafe: $(this).find('#id-teacher').val(),
+                subject: $(this).find('#subject').val(),
+                content: $(this).find('#message').val()
+            }
+        }).then(function (data) {
+            if (data.status === "error") {
+                alert(data.errors[0].message);
+            }
+
+            if (data.status === "ok") {
+                $('#quickEmailModal').modal('toggle');
+            }
+
+            $('#id-teacher').val('');
+            $('#subject').val('');
+            $('#message').val('');
+        });
+    });
+
+    function sendEmail(teacherId) {
+        $('#id-teacher').val(teacherId);
+    }
+</script>
+
+    <div class="d-flex" id="wrapper">
+        <div class="border-right" id="sidebar-wrapper">
+    <div class="sidebar-heading">
+        <img src="src/assets/img/navedit4.png" class="profile-picture" alt="profile-pic" />
+        <p class="name" id="userName">Ursaciuc Adrian</p>
+    </div>
+    <div class="list-group list-group-flush">
+        <a href="dashboard.html" class="list-group-item list-group-item-action ch for-student"><i class="fas fa-columns"></i>Panou principal</a>
+        <a href="#ads_category" class="list-group-item list-group-item-action dropdown-toggle ch for-student" data-toggle="collapse" aria-expanded="false"><i class="fas fa-rss"></i>Anunțuri</a>
+        <ul class="collapse list-unstyled pl-3" id="ads_category">
+            <li>
+                <a href="anounces.html" class="list-group-item list-group-item-action item-secondary ch">Anunțuri noi</a>
+            </li>
+            <li>
+                <a href="license-exams.html" class="list-group-item list-group-item-action item-secondary ch">Examene de licență</a>
+            </li>
+            <li>
+                <a href="dissertation-exams.html" class="list-group-item list-group-item-action item-secondary ch">Examene de disertație</a>
+            </li>
+        </ul>
+
+
+        <a href="free-rooms.html" class="list-group-item list-group-item-action"><i class="fas fa-door-closed"></i>Săli libere</a>
+        <a href="schedule.html" class="list-group-item list-group-item-action for-student"><i class="fas fa-calendar"></i>Orar</a>
+        <a href="subjects.html" class="list-group-item list-group-item-action"><i class="fas fa-book"></i>Materii</a>
+        <a href="teachers.html" class="list-group-item list-group-item-action"><i class="fas fa-user-graduate"></i>Profesori</a>
+        <a href="notifications.html" class="list-group-item list-group-item-action for-student"><i class="fas fa-bell"></i>Notificari</a>
+        <a href="customschedule.html" class="list-group-item list-group-item-action for-student"><i class=" fas fa-calendar"></i>Orar personalizat</a>
+        <a href="feedback.html" class="list-group-item list-group-item-action for-teacher"><i class="fas fa-bell"></i>Feedback</a>
+        <a href="sendAnnounces.html" class="list-group-item list-group-item-action for-teacher"><i class="fas fa-bell"></i>Trimite anunt</a>
+        <a href="javascript:void(0)" class="list-group-item list-group-item-action" onclick="logOut()"><i class="fas fa-sign-out-alt"></i>Deconectează-te</a>
+
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $.ajax({
+            url: endpoint + "identity",
+            method: 'GET',
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
+            }
+        }).then(function (result) {
+            if(result.data.type === 'student') {
+                $('.for-teacher').remove();
+                isStudent = true;
+            }
+            if(result.data.type === 'professor') {
+                $('.for-student').remove();
+                isTeacher = true;
+            }
+
+            $('#userName').val(result.data.name);
+        });
+    });
+</script>
+        <script>
+            if (localStorage.getItem("sidebarColor") !== null) {
+                var color = localStorage.getItem("sidebarColor");
+                var sidebar = document.getElementsByClassName("d-flex")[0];
+                sidebar.style.backgroundColor = color;
+                document.getElementsByClassName("list-group-flush")[0].style.backgroundColor = color;
+                var list = document.getElementsByTagName("A");
+                for (var i = 0; i < list.length; i++) {
+                    if (list[i].className.indexOf('ch') > 0)
+                        list[i].style.backgroundColor = color;
+                }
+            }
+            if (localStorage.getItem("sidebarColorText") !== null) {
+                var color = localStorage.getItem("sidebarColorText");
+                var list = document.getElementsByTagName("A");
+                for (var i = 0; i < list.length; i++) {
+                    if (list[i].className.indexOf('ch') > 0)
+                        list[i].style.color = color;
+                }
+            }
+        </script>
+
+        <div id="page-content-wrapper" class="bg-light">
+            <script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('header-title').innerText = title;
+        document.getElementById('header-subtitle').innerText = subtitle;
+    }, false);
+
+</script>
+
+<div class="container-fluid page-header">
+    <h2 class="title" id="header-title"></h2>
+    <h4 class="subtitle" id="header-subtitle"></h4>
+</div>
+            <script>
+                if (localStorage.getItem("headerColor") !== null) {
+                    var color = localStorage.getItem("headerColor");
+                    var header = document.getElementsByClassName("page-header")[0];
+                    header.style.backgroundColor = color;
+                }
+                if (localStorage.getItem("headerColorText") !== null) {
+                    var color = localStorage.getItem("headerColorText");
+                    var header = document.getElementsByClassName("page-header")[0];
+                    header.style.color = color;
+                    document.querySelector(".page-header .subtitle").style.color = color;
+                    localStorage.setItem("headerColorText", color);
+                }
+            </script>
+            <div class="container">
+                <div class="search-box m-4">
+                    <form class="w-100 needs-validation" id="search-room-form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="datepicker">Dată</label>
+                                <input id="datepicker" name="datepicker" required />
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="starthour">Oră de start</label>
+                                <select name="start-hour" id="starthour" class="form-control" required>
+                                    <option value="" selected="selected">Alege o opțiune...</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                    <option value="21">21</option>
+                                    <option value="22">22</option>
+                                    <option value="23">23</option>
+                                    <option value="24">24</option>
+
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="duration">Durată</label>
+                                <select name="duration" id="duration" class="form-control" required>
+                                    <option value="" selected="selected">Alege o opțiune...</option>
+                                    <option value="1">1</option>
+                                    <option value="2" selected>2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value=11>11</option>
+                                    <option value="12">12</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Caută</button>
+                    </form>
+
+
+                </div>
+
+                <div class="m-4">
+                    <div class="row" id="free-rooms-list">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $('#datepicker').datepicker({
+            uiLibrary: 'bootstrap4'
+        });
+
+        $('#search-room-form').submit(function (event) {
+            event.preventDefault();
+
+            if (!this.checkValidity()) {
+                return;
+            }
+
+            var datetime = window.document.getElementById("datepicker").value;
+            var startHour = $('#starthour option:selected').val();
+            var duration = $('#duration option:selected').val();
+
+            $('#free-rooms-list').html('');
+
+            $.ajax({
+                url: endpoint + "free_rooms",
+                type: "GET",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
+                },
+                data: {
+                    date: datetime,
+                    start_hour: startHour,
+                    duration: duration
+                },
+                success: function (result) {
+                    var resultat = "";
+                    var json = result;
+                    obj = JSON.parse(json);
+
+                    if (obj.length == 0) {
+                        alert('Nu s-a gasit nici o sala libera');
+                    }
+                    else {
+                        for (i = 0; i < obj.length; i++) {
+                            $('#free-rooms-list').append(
+                                "<div class=\"col-md-3\">" +
+                                "	<div class=\"free-room\">" +
+                                "		<h3 class=\"room\">" + obj[i].room + "</h3>" +
+                                "		<p class=\"availability\">" + obj[i].disponibility + "</p>" +
+                                "	</div>" +
+                                "</div>");
+                        }
+                    }
+                },
+                error: function () {
+                    alert('Oh-oh! Ceva nu a mers bine!')
+                }
+            })
+        });
+    </script>
+    <script>
+        if (localStorage.getItem("backgroundColor") !== null) {
+            var color = localStorage.getItem("backgroundColor");
+            var background = document.getElementById("page-content-wrapper");
+            background.style.backgroundColor = color;
+            background.classList.remove("bg-light");
+        }
+        if (localStorage.getItem("fontSize") !== null) {
+            var size = localStorage.getItem("fontSize");
+            var body = document.getElementsByTagName("body")[0];
+            body.style.fontSize = size + "px";
+        }
+    </script>
+<script type="text/javascript" src="main.aba0b23d1cfdda03dac8.js"></script></body>
+
+</html>

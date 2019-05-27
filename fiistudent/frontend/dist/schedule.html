@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" crossorigin="anonymous" />
+<script src="https://code.jquery.com/jquery-3.4.0.min.js"
+    integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+
+<script>
+    const endpoint = "https://develop-dot-fii-student.appspot.com/";
+    const isTeacher = false;
+    const isStudent = false;
+</script>
+
+<script>
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            var forms = document.getElementsByClassName('needs-validation');
+
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    
+                    form.classList.add('was-validated');
+
+                }, false);
+            });
+        }, false);
+    })();
+
+    function logOut() {
+        sessionStorage.removeItem("accessToken");
+        window.location.reload();
+    }
+</script>
+
+    <title>FII Student - Orar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script>
+        const title = 'Orar';
+        const subtitle = 'Ce vei face astăzi?';
+        const shouldBeLoggedIn = true;
+    </script>
+<style>
+.button {
+  background-color: DodgerBlue;
+  border: none;
+  color: white;
+  padding: 12px 30px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/* Darker background on mouse-over */
+.button:hover {
+  background-color: RoyalBlue;
+}
+</style>
+</head>
+
+<body>
+
+    <div class="d-flex" id="wrapper">
+        <div class="border-right" id="sidebar-wrapper">
+    <div class="sidebar-heading">
+        <img src="src/assets/img/navedit4.png" class="profile-picture" alt="profile-pic" />
+        <p class="name" id="userName">Ursaciuc Adrian</p>
+    </div>
+    <div class="list-group list-group-flush">
+        <a href="dashboard.html" class="list-group-item list-group-item-action ch for-student"><i class="fas fa-columns"></i>Panou principal</a>
+        <a href="#ads_category" class="list-group-item list-group-item-action dropdown-toggle ch for-student" data-toggle="collapse" aria-expanded="false"><i class="fas fa-rss"></i>Anunțuri</a>
+        <ul class="collapse list-unstyled pl-3" id="ads_category">
+            <li>
+                <a href="anounces.html" class="list-group-item list-group-item-action item-secondary ch">Anunțuri noi</a>
+            </li>
+            <li>
+                <a href="license-exams.html" class="list-group-item list-group-item-action item-secondary ch">Examene de licență</a>
+            </li>
+            <li>
+                <a href="dissertation-exams.html" class="list-group-item list-group-item-action item-secondary ch">Examene de disertație</a>
+            </li>
+        </ul>
+
+
+        <a href="free-rooms.html" class="list-group-item list-group-item-action"><i class="fas fa-door-closed"></i>Săli libere</a>
+        <a href="schedule.html" class="list-group-item list-group-item-action for-student"><i class="fas fa-calendar"></i>Orar</a>
+        <a href="subjects.html" class="list-group-item list-group-item-action"><i class="fas fa-book"></i>Materii</a>
+        <a href="teachers.html" class="list-group-item list-group-item-action"><i class="fas fa-user-graduate"></i>Profesori</a>
+        <a href="notifications.html" class="list-group-item list-group-item-action for-student"><i class="fas fa-bell"></i>Notificari</a>
+        <a href="customschedule.html" class="list-group-item list-group-item-action for-student"><i class=" fas fa-calendar"></i>Orar personalizat</a>
+        <a href="feedback.html" class="list-group-item list-group-item-action for-teacher"><i class="fas fa-bell"></i>Feedback</a>
+        <a href="sendAnnounces.html" class="list-group-item list-group-item-action for-teacher"><i class="fas fa-bell"></i>Trimite anunt</a>
+        <a href="javascript:void(0)" class="list-group-item list-group-item-action" onclick="logOut()"><i class="fas fa-sign-out-alt"></i>Deconectează-te</a>
+
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $.ajax({
+            url: endpoint + "identity",
+            method: 'GET',
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
+            }
+        }).then(function (result) {
+            if(result.data.type === 'student') {
+                $('.for-teacher').remove();
+                isStudent = true;
+            }
+            if(result.data.type === 'professor') {
+                $('.for-student').remove();
+                isTeacher = true;
+            }
+
+            $('#userName').val(result.data.name);
+        });
+    });
+</script>
+        <script>
+            if (localStorage.getItem("sidebarColor") !== null) {
+                var color = localStorage.getItem("sidebarColor");
+                var sidebar = document.getElementsByClassName("d-flex")[0];
+                sidebar.style.backgroundColor = color;
+                document.getElementsByClassName("list-group-flush")[0].style.backgroundColor = color;
+                var list = document.getElementsByTagName("A");
+                for (var i = 0; i < list.length; i++) {
+                    if (list[i].className.indexOf('ch') > 0)
+                        list[i].style.backgroundColor = color;
+                }
+            }
+            if (localStorage.getItem("sidebarColorText") !== null) {
+                var color = localStorage.getItem("sidebarColorText");
+                var list = document.getElementsByTagName("A");
+                for (var i = 0; i < list.length; i++) {
+                    if (list[i].className.indexOf('ch') > 0)
+                        list[i].style.color = color;
+                }
+            }
+        </script>
+
+        <div id="page-content-wrapper" class="bg-white">
+            <script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('header-title').innerText = title;
+        document.getElementById('header-subtitle').innerText = subtitle;
+    }, false);
+
+</script>
+
+<div class="container-fluid page-header">
+    <h2 class="title" id="header-title"></h2>
+    <h4 class="subtitle" id="header-subtitle"></h4>
+</div>
+            <script>
+                if (localStorage.getItem("headerColor") !== null) {
+                    var color = localStorage.getItem("headerColor");
+                    var header = document.getElementsByClassName("page-header")[0];
+                    header.style.backgroundColor = color;
+                }
+                if (localStorage.getItem("headerColorText") !== null) {
+                    var color = localStorage.getItem("headerColorText");
+                    var header = document.getElementsByClassName("page-header")[0];
+                    header.style.color = color;
+                    document.querySelector(".page-header .subtitle").style.color = color;
+                    localStorage.setItem("headerColorText", color);
+                }
+            </script>
+            <div class="container overflow-auto">
+                <div class="section">
+                    <div class="content">
+                        <table class="table schedule">
+                            <thead>
+                                <tr>
+                                <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col" class="head-col">Luni</th>
+                                    <th scope="col" class="head-col">Marți</th>
+                                    <th scope="col" class="head-col">Miercuri</th>
+                                    <th scope="col" class="head-col">Joi</th>
+                                    <th scope="col" class="head-col">Vineri</th>
+                                </tr>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr id="h8">
+                                    <th scope="row">08:00</th>
+                                    <td class="Luni">
+                                    </td>
+                                    <td class="Marti"></td>
+                                    <td class="Miercuri"></td>
+                                    <td class="Joi"></td>
+                                    <td class="Vineri"></td>
+                                </tr>
+                                <tr id="h10">
+                                    <th scope="row">10:00</th>
+                                    <td class="Luni"></td>
+                                    <td class="Marti"></td>
+                                    <td class="Miercuri"></td>
+                                    <td class="Joi"></td>
+                                    <td class="Vineri"></td>
+                                </tr>
+                                <tr id="h12">
+                                    <th scope="row">12:00</th>
+                                    <td class="Luni"></td>
+                                    <td class="Marti"></td>
+                                    <td class="Miercuri"></td>
+                                    <td class="Joi"></td>
+                                    <td class="Vineri"></td>
+                                </tr>
+                                <tr id="h14">
+                                    <th scope="row">14:00</th>
+                                    <td class="Luni"></td>
+                                    <td class="Marti"></td>
+                                    <td class="Miercuri"></td>
+                                    <td class="Joi"></td>
+                                    <td class="Vineri"></td>
+                                </tr>
+                                <tr id="h16">
+                                    <th scope="row">16:00</th>
+                                    <td class="Luni"></td>
+                                    <td class="Marti"></td>
+                                    <td class="Miercuri"></td>
+                                    <td class="Joi"></td>
+                                    <td class="Vineri"></td>
+                                </tr>
+                                <tr id="h18">
+                                    <th scope="row">18:00</th>
+                                    <td class="Luni"></td>
+                                    <td class="Marti"></td>
+                                    <td class="Miercuri"></td>
+                                    <td class="Joi"></td>
+                                    <td class="Vineri"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="content">
+                        <button class="button" id="downlaodBtn"><i class="fa fa-download"></i> Download</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal sign-modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="detailsModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+
+                <div class="header">
+                    <h6 class="over-title">Detalii despre</h6>
+                    <h2 class="title" id="nume-materie"></h2>
+                </div>
+                <div class="content">
+                    <form id="feedbackForm" novalidate>
+                        <div class="form-group">
+                            <label for="prof-name">Nume Profesor</label>
+                            <h5 class="text-primary text-left border-bottom" id="profs-name"></h5>
+                        </div>
+                        <!-- <div class="form-group">
+                            <label for="profs-contact">Contact Profesor</label>
+                            <h5 class="text-primary text-left border-bottom" id="profs-contact"></h5>
+                        </div> -->
+                        <div class="form-group" id="course-site-div">
+                            <label for="course-site">Site Curs</label>
+                            <h5 class="text-primary text-left border-bottom" id="course-site"></h5>
+                        </div>
+                        <div class="form-group" id="course-credits-div">
+                            <label for="course-credits">Număr credite</label>
+                            <h5 class="text-primary text-left border-bottom" id="course-credits"></h5>
+                        </div>
+                        <div class="form-group" id="course-link-div">
+                            <label for="util-link">Link-uri Utile</label>
+                            <h5 class="text-primary text-left border-bottom" id="util-link"></h5>
+                        </div>
+
+                        <div class="form-inline">
+                            <label for="stars">Dă-i o notă acestui profesor: </label>
+                            <section class="ml-0 pt-3" id="stars" name="stars">
+                                <div class="rating-stars text-center">
+                                    <ul id="stars">
+                                        <li class="star d-inline" title="Nu-mi place" data-value="1">
+                                            <i class="fa fa-star fa-fw"></i>
+                                        </li>
+                                        <li class="star d-inline" title="Acceptabil" data-value="2">
+                                            <i class="fa fa-star fa-fw"></i>
+                                        </li>
+                                        <li class="star d-inline" title="Destul de bun" data-value="3">
+                                            <i class="fa fa-star fa-fw"></i>
+                                        </li>
+                                        <li class="star d-inline" title="Bun" data-value="4">
+                                            <i class="fa fa-star fa-fw"></i>
+                                        </li>
+                                        <li class="star d-inline" title="Foarte bun!" data-value="5">
+                                            <i class="fa fa-star fa-fw"></i>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </section>
+
+                            <div class="success-box">
+                                <div class="text-message text-primary"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="feedback">Mesaj de Feedback</label>
+                            <textarea type="text" rows="4" class="form-control" id="feedback" name="feedback"
+                                placeholder="Introduceți feedback..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Trimite</button>
+                        <span class="m-2 color-text-secondary"> sau </span>
+                        <a href="#" class="color-primary" data-toggle="modal" data-dismiss="modal"
+                            data-target="#quickEmailModal">Email</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        $('#stars li').on('mouseover', function () {
+            var onStar = parseInt($(this).data('value'), 10);
+
+            $(this).parent().children('li.star').each(function (e) {
+                if (e < onStar) {
+                    $(this).addClass('hover');
+                }
+                else {
+                    $(this).removeClass('hover');
+                }
+            });
+
+        }).on('mouseout', function () {
+            $(this).parent().children('li.star').each(function (e) {
+                $(this).removeClass('hover');
+            });
+        });
+
+        $('#stars li').on('click', function () {
+
+            var onStar = parseInt($(this).data('value'), 10);
+            var stars = $(this).parent().children('li.star');
+
+            for (i = 0; i < stars.length; i++) {
+                $(stars[i]).removeClass('selected');
+            }
+
+            for (i = 0; i < onStar; i++) {
+                $(stars[i]).addClass('selected');
+            }
+
+            var ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
+            var msg = "";
+            if (ratingValue == 1) {
+                msg = "Mulțumim! Ai notat acest profesor o stea.";
+            }
+            else {
+                msg = "Mulțumim! Ai notat acest profesor cu " + ratingValue + " stele.";
+            }
+
+            $(".success-box").show();
+            responseMessage(msg);
+        });
+    });
+
+    function responseMessage(msg) {
+        $('.success-box').fadeIn(150);
+        $('.success-box div.text-message').html("<span class='text-primary'>" + "<i class='fa fa-check-circle' aria-hidden='true'></i> " + msg + "</span>");
+    }
+</script>
+
+<script>
+    function resolveModal(cid, professor, id) {
+
+        $.ajax({
+            url: endpoint + 'course',
+            type: "GET",
+            contentType: "application/json, charset=utf-8",
+            dataType: "json",
+            data: {
+                course_id: cid
+            },
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
+            },
+        }).then(function (data) {
+
+
+            //console.log("enter modal");
+            $("#nume-materie").text(data.course_info.title);
+            $("#course-credits").text(data.course_info.credits);
+            $("#course-site").html("<a href=\"" + data.course_info.link + "\"  style='text-decoration: none;'>Click aici!</a>");
+            $("#util-link").html("<a href=\"" + data.course_info.fisa + "\" style='text-decoration: none;'>Click aici!</a>");
+            $("#profs-name").text(professor);
+            /* $("#profs-contact").html("<a href=\"" + profs[1].link + "\" style='text-decoration: none;'>Click aici!</a>") */
+            if (data.course_info.credits)
+                $("#course-credits").text(data.course_info.credits);
+            else
+                $("#course-credits-div").attr("style", "display:none;");
+            if (data.course_info.link)
+                $("#course-site").html("<a href=\"" + data.course_info.link + "\"  style='text-decoration: none;'>Click aici!</a>");
+            else
+                $("#course-site-div").attr("style", "display:none;");
+            if (data.course_info.fisa)
+                $("#util-link").html("<a href=\"" + data.course_info.fisa + "\" style='text-decoration: none;'>Click aici!</a>");
+            else
+                $("#course-link-div").attr("style", "display:none;");
+
+        });
+
+
+        $('#detailsModal').submit(function (event) {
+            event.preventDefault();
+
+            let ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
+
+            $.ajax({
+                url: endpoint + "feedback",
+                method: 'POST',
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
+                },
+                data: {
+                    schedule_class_id: id,
+                    stars: ratingValue,
+                    feedback: $(this).find('#feedback').val()
+                }
+            }).then(function (data) {
+                if (data.status === "error") {
+                    alert(data.errors[0].message);
+                }
+                else
+                    if (data.status == 'ok') {
+                        alert('Feedback trimis! :)');
+                    }
+            });
+        });
+    };
+</script>
+
+<!--Modal Quick Email-->
+<div class="modal sign-modal fade" id="quickEmailModal" tabindex="-1" role="dialog"
+    aria-labelledby="qucikEmailModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+
+                <div class="header">
+                    <h6 class="over-title">Trimite email</h6>
+                </div>
+                <div class="content">
+                    <form id="quick-emailFrom" class="needs-validation" novalidate>
+                        <div class="form-group">
+                            <input type="hidden" id="id-teacher" value="" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subiect</label>
+                            <input type="text" class="form-control" id="subject" placeholder="Introduceți subiectul" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mesaj</label>
+                            <textarea type="text" id="message" name="message" rows="4" class="form-control"
+                                placeholder="Indroduceți mesajul..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Trimite</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#quick-emailFrom').submit(function (event) {
+        event.preventDefault();
+
+        if (!this.checkValidity()) {
+            return;
+        }
+
+        $.ajax({
+            url: endpoint + "quickmail",
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
+            },
+            data: {
+                urlsafe: $(this).find('#id-teacher').val(),
+                subject: $(this).find('#subject').val(),
+                content: $(this).find('#message').val()
+            }
+        }).then(function (data) {
+            if (data.status === "error") {
+                alert(data.errors[0].message);
+            }
+
+            if (data.status === "ok") {
+                $('#quickEmailModal').modal('toggle');
+            }
+
+            $('#id-teacher').val('');
+            $('#subject').val('');
+            $('#message').val('');
+        });
+    });
+
+    function sendEmail(teacherId) {
+        $('#id-teacher').val(teacherId);
+    }
+</script>
+
+    <script>
+        if (localStorage.getItem("backgroundColor") !== null) {
+            var color = localStorage.getItem("backgroundColor");
+            var background = document.getElementById("page-content-wrapper");
+            background.style.backgroundColor = color;
+            background.classList.remove("bg-light");
+        }
+        if (localStorage.getItem("fontSize") !== null) {
+            var size = localStorage.getItem("fontSize");
+            var body = document.getElementsByTagName("body")[0];
+            body.style.fontSize = size + "px";
+        }
+    </script>
+
+
+<script>
+
+        $('#downlaodBtn').click(function () {
+            $.ajax({
+                url: endpoint + "export",
+                type: "GET",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
+                },
+                success: function (result) {
+                    var data, filename, link;
+                    var csv = result.data;
+
+                    if (csv == null) 
+                        return;
+
+                    filename = 'export.csv';
+
+                    csv = 'data:text/csv;charset=utf-8,' + csv;
+                    
+                    data = encodeURI(csv);
+
+                    link = document.createElement('a');
+                    link.setAttribute('href', data);
+                    link.setAttribute('download', filename);
+                    link.click();
+                },
+                error: function () {
+                    alert('Oh-oh! Ceva nu a mers bine!')
+                }
+            });
+        });
+
+        function getObjectHtml(object) {
+            return "" +
+                "<div class=\"object\" id=\"" + object.course_id + object.startTime + object.day + "\" data-toggle=\"modal\" data-target=\"#detailsModal\">" +
+                "<p class=\"name\">" + object.name + "</p>" +
+                "<p class=\"object-teacher\">" + object.professor + "</p>" +
+                "<div class=\"badges\">" +
+                "<span class=\"badge " + object.type.toLowerCase() + "\">" + object.type + "</span>" +
+                "<span class=\"badge room\">" + object.classroom + "</p>" +
+                "</div>" +
+                "</div>";
+        }
+    
+        $(document).ready(function () {
+            $.ajax({
+                url: endpoint + "schedule",
+                type: "GET",
+                contentType: "application/json, charset=utf-8",
+                dataType: "json",
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
+                },
+                success: function (result) {
+                    var objects = JSON.parse(result);
+                   
+                    for (h = 8; h <= 18; h += 2) {
+                        objects.filter(x => x.startTime === h.toString()).forEach(element => {
+                            element.room = "C201";
+                            $('#h' + h.toString() + " ." + element.day).append(getObjectHtml(element));
+                            $('#'+ element.course_id+ element.startTime + element.day).on('click', function () {
+                                resolveModal(element.course_id,element.professor,element.id);
+                                });
+                        });;
+                    }
+                },
+                error: function () {
+                    alert('Oh-oh! Ceva nu a mers bine!')
+                }
+            })
+        })
+    </script>
+  <script type="text/javascript" src="main.aba0b23d1cfdda03dac8.js"></script></body>
+</html>

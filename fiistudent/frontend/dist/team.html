@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" crossorigin="anonymous" />
+<script src="https://code.jquery.com/jquery-3.4.0.min.js"
+    integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+
+<script>
+    const endpoint = "https://develop-dot-fii-student.appspot.com/";
+    const isTeacher = false;
+    const isStudent = false;
+</script>
+
+<script>
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            var forms = document.getElementsByClassName('needs-validation');
+
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    
+                    form.classList.add('was-validated');
+
+                }, false);
+            });
+        }, false);
+    })();
+
+    function logOut() {
+        sessionStorage.removeItem("accessToken");
+        window.location.reload();
+    }
+</script>
+
+    <title>FII Student - Echipă</title>
+
+    <script>
+        const title = 'Echipă';
+        const subtitle = 'Oamenii care au contribuit la realizarea acestui proiect';
+    </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <img src="src/assets/img/navedit4.png">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Acasă</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">Despre</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"  href="team.html">Echipă</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"  href="services.html">Servicii</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contactează-ne</a>
+                </li>
+                <li class="nav-item">
+                    <a id="nav-loginBtn" class="btn btn-outline-primary rounded d-none" href="javascript:void(0);" data-toggle="modal" data-target="#loginModal">Autentificare</a>
+                    <a id="nav-logoutBtn" class="btn btn-outline-primary rounded d-none" href="javascript:void(0);">Delogheaza-te</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="modal sign-modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+
+                <div class="header">
+                    <h6 class="over-title">Bine ați revenit!</h6>
+                    <h2 class="title">Logare</h2>
+                </div>
+                <div class="content">
+                    <form id="loginForm" class="needs-validation" novalidate>
+                        <div class="form-group">
+                            <label for="email">Adresă email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Introduceți email-ul" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Parolă</label>
+                            <input type="password" class="form-control" id="password" placeholder="Introduceți parola" required>
+                        </div>
+                         <div class="text-left">
+                            <a href="#forgotpassModal" id="fgpsd" class="color-primary" data-dismiss="modal"
+                                data-toggle="modal">Mi-am uitat parola</a> 
+                        </div> 
+                        <button type="submit" class="btn btn-primary">Loghează-te</button>
+                        <span class="m-2 color-text-secondary"> sau </span>
+                        <a href="#" class="color-primary" data-toggle="modal" data-dismiss="modal"
+                            data-target="#registerModal">Înregistrează-te</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#loginForm').submit(function (event) {
+        event.preventDefault();
+
+        if (!this.checkValidity()) {
+            return;
+        }
+
+        $.ajax({
+            url: endpoint + "login",
+            data: {
+                email: $(this).find('#email').val(),
+                password: $(this).find('#password').val()
+            }
+        }).then(function (data) {
+            if (data.status === "error") {
+                alert(data.errors[0].message);
+            } else {
+                sessionStorage.setItem("accessToken", data.token);
+                window.location.href = "/dashboard.html";
+            }
+        });
+    });
+</script>
+<div class="modal sign-modal fade scroll-modal" id="registerModal" tabindex="-1" role="dialog"
+    aria-labelledby="registerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+
+                <div class="header">
+                    <h6 class="over-title">Bun venit pe FiiStudent!</h6>
+                    <h2 class="title">Înregistrează-te</h2>
+                </div>
+
+                <div class="content" id="myTab">
+                    <ul class="nav nav-tabs justify-content-center mb-3">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="studs-register-tab" data-toggle="tab" href="#studs-register"
+                                aria-controls="home" aria-selected="true">Ca Student</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profs-register-tab" data-toggle="tab" href="#profs-register"
+                                role="tab" aria-controls="profile" aria-selected="false">Ca Profesor</a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="studs-register" aria-labelledby="studs-register-tab">
+                            <form id="studs-registerForm" class="needs-validation" novalidate>
+                                <div class="form-group">
+                                    <label for="nameStud">Nume</label>
+                                    <input type="text" class="form-control" id="nameStud"
+                                        placeholder="Introduceți numele" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name2Stud">Prenume</label>
+                                    <input type="text" class="form-control" id="name2Stud"
+                                        placeholder="Introduceți prenumele" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="matricol">Număr Matricol</label>
+                                    <input type="text" class="form-control" id="matricol"
+                                        placeholder="Introduceți numărul matricol" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="stud-group">An/Grupă</label>
+                                    <select id="stud-group" class="form-control" required>
+                                        <option value="MOC1">MOC1</option>
+                                        <option value="MOC2">MOC2</option>
+                                        <option value="MIS2">MIS2</option>
+                                        <option value="MSD2">MSD2</option>
+                                        <option value="MLC1">MLC1</option>
+                                        <option value="MLC2">MLC2</option>
+                                        <option value="MSI1">MSI1</option>
+                                        <option value="MSI2">MSI2</option>
+
+                                        <option value="I1A1">I1A1</option>
+                                        <option value="I1A2">I1A2</option>
+                                        <option value="I1A3">I1A3</option>
+                                        <option value="I1A4">I1A4</option>
+                                        <option value="I1A5">I1A5</option>
+                                        <option value="I1A6">I1A6</option>
+                                        <option value="I1A7">I1A7</option>
+                                        <option value="I1B1">I1B1</option>
+                                        <option value="I1B2">I1B2</option>
+                                        <option value="I1B3">I1B3</option>
+                                        <option value="I1B4">I1B4</option>
+                                        <option value="I1B5">I1B5</option>
+                                        <option value="I1B6">I1B6</option>
+                                        <option value="I1B7">I1B7</option>
+                                        <option value="I1E1">I1E1</option>
+                                        <option value="I1E2">I2E2</option>
+                                        <option value="I2A1">I2A1</option>
+                                        <option value="I2A2">I2A2</option>
+                                        <option value="I2A3">I2A3</option>
+                                        <option value="I2A4">I2A4</option>
+                                        <option value="I2A5">I2A5</option>
+                                        <option value="I2A6">I2A6</option>
+                                        <option value="I2A7">I2A7</option>
+                                        <option value="I2B1">I2B1</option>
+                                        <option value="I2B2">I2B2</option>
+                                        <option value="I2B3">I2B3</option>
+                                        <option value="I2B4">I2B4</option>
+                                        <option value="I2B5">I2B5</option>
+                                        <option value="I2B6">I2B6</option>
+                                        <option value="I2B7">I2B7</option>
+                                        <option value="I2E1">I2E1</option>
+                                        <option value="I2E2">I2E2</option>
+                                        <option value="I3A1">I3A1</option>
+                                        <option value="I3A2">I3A2</option>
+                                        <option value="I3A3">I3A3</option>
+                                        <option value="I3A4">I3A4</option>
+                                        <option value="I3A5">I3A5</option>
+                                        <option value="I3A6">I3A6</option>
+                                        <option value="I3A7">I3A7</option>
+                                        <option value="I3B1">I3B1</option>
+                                        <option value="I3B2">I3B2</option>
+                                        <option value="I3B3">I3B3</option>
+                                        <option value="I3B4">I3B4</option>
+                                        <option value="I3B5">I3B5</option>
+                                        <option value="I3B6">I3B6</option>
+                                        <option value="I3B7">I3B7</option>
+                                        <option value="I3E1">I3E1</option>
+                                        <option value="I3E2">I3E2</option>
+                                        <option value="I2X1">I2X1</option>
+                                        <option value="I2X2">I2X2</option>
+                                        <option value="I1X1">I1X1</option>
+                                        <option value="I1X2">I1X2</option>
+                                        <option value="I1X3">I1X3</option>
+                                        <option value="I1X4">I1X4</option>
+                                    </select>
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="emailStud">Adresă Email</label>
+                                    <input type="email" class="form-control" id="emailStud"
+                                        placeholder="Introduceți email-ul" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone_number">Număr de telefon</label>
+                                    <input type="tel" class="form-control" id="phone_number"
+                                        placeholder="Introduceți numărul de telefon" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="passwordStud">Parolă</label>
+                                    <input type="password" class="form-control" id="passwordStud"
+                                        placeholder="Introduceți parola" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password2Stud">Confirmă Parola</label>
+                                    <input type="password" class="form-control" id="password2Stud"
+                                        placeholder="Confirmați parola" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Înregistrează-te</button>
+                                <span class="m-2 color-text-secondary"> sau </span>
+                                <a href="#" class="color-primary" data-toggle="modal" data-dismiss="modal"
+                                    data-target="#loginModal">Loghează-te</a>
+                            </form>
+                        </div>
+
+                        <div class="tab-pane" id="profs-register" aria-labelledby="profs-register-tab">
+                            <form id="profs-registerForm" class="needs-validation" novalidate>
+                                <div class="form-group">
+                                    <label for="nameProf">Nume</label>
+                                    <input type="text" class="form-control" id="nameProf"
+                                        placeholder="Introduceți numele" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name2Prof">Prenume</label>
+                                    <input type="text" class="form-control" id="name2Prof"
+                                        placeholder="Introduceți prenumele" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="didactic-degree">Grad Didactic</label>
+                                    <select id="didactic-degree" class="form-control" required>
+                                        <option value="Conferențiar universitar">Conferențiar universitar</option>
+                                        <option value="Lector universitar">Lector universitar</option>
+                                        <option value="Profesor universitar">Profesor universitar</option>
+                                        <option value="Asistent universitar">Asistent universitar</option>
+                                        <option value="Colaborator">Colaborator</option>
+                                    </select>
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="emailProf">Adresă Email</label>
+                                    <input type="email" class="form-control" id="emailProf"
+                                        placeholder="Introduceți email-ul" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="passwordProf">Parolă</label>
+                                    <input type="password" class="form-control" id="passwordProf"
+                                        placeholder="Introduceți parola" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password2Prof">Confirmă Parola</label>
+                                    <input type="password" class="form-control" id="password2Prof"
+                                        placeholder="Confirmați parola" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Înregistrează-te</button>
+                                <span class="m-2 color-text-secondary"> sau </span>
+                                <a href="#" class="color-primary" data-toggle="modal" data-dismiss="modal"
+                                    data-target="#loginModal">Loghează-te</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#studs-registerForm').submit(function (event) {
+        event.preventDefault();
+
+        if (!this.checkValidity()) {
+            return;
+        }
+
+        let auxGroup = $(this).find('#stud-group').val();
+        let studyYear = null, group = null;
+        if (auxGroup[0] == "I") {
+            studyYear = parseInt(auxGroup[1], 10);
+            group = auxGroup.substring(2, 4);
+        }
+        else if (auxGroup[0] == "M") {
+            studyYear = parseInt(auxGroup[3], 10);
+            group = auxGroup.substring(1, 3);
+        }
+
+        $.ajax({
+            url: endpoint + "register",
+            type: 'PUT',
+            data: {
+                registrationNumber: $(this).find('#matricol').val(),
+                firstName: $(this).find('#nameStud').val(),
+                lastName: $(this).find('#name2Stud').val(),
+                email: $(this).find('#emailStud').val(),
+                phone_number: $(this).find('#phone_number').val(),
+                password: $(this).find('#passwordStud').val(),
+                confirm_password: $(this).find('#password2Stud').val(),
+                year: studyYear,
+                group: group
+            }
+        }).then(function (data) {
+            if (data.status === "error") {
+                alert(data.errors[0].message);
+            }
+
+            if (data.status === "ok") {
+                $('#registerModal').modal('toggle');
+            }
+        });
+    });
+
+    $('#profs-registerForm').submit(function (event) {
+        event.preventDefault();
+
+        if (!this.checkValidity()) {
+            return;
+        }
+
+        $.ajax({
+            url: endpoint + "register_professor",
+            type: 'PUT',
+            data: {
+                first_name: $(this).find('#nameProf').val(),
+                last_name: $(this).find('#name2Prof').val(),
+                professor_type: $(this).find('#didactic-degree').val(),
+                email: $(this).find('#emailProf').val(),
+                password: $(this).find('#passwordProf').val(),
+                confirm_password: $(this).find('#password2Prof').val()
+            }
+        }).then(function (data) {
+            if (data.status === "error") {
+                alert(data.errors[0].message);
+            }
+
+            if (data.status === "ok") {
+                $("#registerModal").modal('toggle');
+            }
+        });
+    });
+
+</script>
+<div class="modal sign-modal fade" id="forgotpassModal" tabindex="-1" role="dialog" aria-labelledby="forpassModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="header">
+                    <h5 class="over-title">Mi-am uitat parola</h5>
+                    <h3 class="title">Resetează parola</h3>
+                </div>
+                <div class="content">
+                    <div class="sub-title">
+                        <h4>Introdu adresa de email și vei primi toate detaliile de resetare a parolei.</h4>
+                    </div>
+                    <form>
+                        <div class="form-group">
+
+                            <label for="email">Adresă email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Introduceți email-ul">
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary btn-block btn-lg" value="Trimite">
+                        </div>
+                        <div class="form-group">
+                            <p>Ai deja cont? <a href="#loginModal" data-toggle="modal" data-dismiss="modal"
+                                    class="color-primary">Loghează-te</a></p>
+                            <p>Utilizator nou? <a href="#registerModal" data-toggle="modal" data-dismiss="modal"
+                                    class="color-primary">Înregistrează-te</a></p>
+                            <p><a href="#resetpassModal" class="color-primary" data-dismiss="modal"
+                                    data-toggle="modal">Parolă Nouă</a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal sign-modal fade" id="resetpassModal" tabindex="-1" role="dialog" aria-labelledby="resetpassModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="header">
+                    <h5 class="over-title">Resetare parolă</h5>
+                </div>
+                <div class="content">
+                    <div class="sub-title">
+                        <h4>Alege o combinație de litere, cifre și alte caractere pentru o siguranță mai mare a
+                            datelor.</h4>
+                    </div>
+                    <form>
+                        <div class="form-group">
+                            <label for="password">Parolă</label>
+                            <input type="password" class="form-control" id="password" placeholder="Introduceți parola">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Confirmă parola</label>
+                            <input type="password" class="form-control" id="password" placeholder="Confirmați parola">
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary btn-block btn-lg" value="Schimbă parola">
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        if(sessionStorage.getItem("accessToken") == null) {
+            $('#nav-loginBtn').removeClass('d-none');
+        } else {
+            $('#nav-logoutBtn').removeClass('d-none');			
+        }
+    });
+
+    $('#nav-logoutBtn').click(function() {
+        logOut();
+    });
+</script>
+
+    <script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('header-title').innerText = title;
+        document.getElementById('header-subtitle').innerText = subtitle;
+    }, false);
+
+</script>
+
+<div class="container-fluid page-header">
+    <h2 class="title" id="header-title"></h2>
+    <h4 class="subtitle" id="header-subtitle"></h4>
+</div>
+
+    <div class="container-fluid background-fade" id="team">
+    <div class="container">
+        <div class="section">
+            <h6 class="over-title">Cine suntem noi?</h6>
+            <h2 class="title">Întreaga noastră echipă</h2>
+            <div class="content">
+                <div class="team">
+                    <div class="row">
+                        <span class="team-title">Administrare</span>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="member">
+                                <div class="member-img">
+                                    <img src="src/assets/img/team-photos/Administrare/Andrei.jpg" alt="Member" />
+                                </div>
+                                <h3 class="member-name">Bîcu Andrei-Ionel</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="member">
+                                <div class="member-img">
+                                    <img src="src/assets/img/team-photos/Administrare/Marius.jpg" alt="Member" />
+                                </div>
+                                <h3 class="member-name">Roman Marius-George</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="team">
+                    <div class="row">
+                        <span class="team-title">Frontend</span>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="member">
+                                <div class="member-img">
+                                    <img src="src/assets/img/team-photos/Frontend/Anghel Cristi.jpg" alt="Member" />
+                                </div>
+                                <h3 class="member-name">Anghel Marius-Cristi</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="member">
+                                <div class="member-img">
+                                    <img src="src/assets/img/team-photos/Frontend/Botez MIhai.jpg" alt="Member" />
+                                </div>
+                                <h3 class="member-name">Botez Mihai</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="member">
+                                <div class="member-img">
+                                    <img src="src/assets/img/team-photos/Frontend/Razvan Ciomaga.jpg" alt="Member" />
+                                </div>
+                                <h3 class="member-name">Ciomaga Nicolae-Răzvan</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="member">
+                                <div class="member-img">
+                                    <img src="src/assets/img/team-photos/Frontend/Bianca.jpg" alt="Member" />
+                                </div>
+                                <h3 class="member-name">Ciuraru Bianca</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="member">
+                                <div class="member-img">
+                                    <img src="src/assets/img/team-photos/Frontend/AlexandruIchim.jpg" alt="Member" />
+                                </div>
+                                <h3 class="member-name">Ichim Alexandru</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="member">
+                                <div class="member-img">
+                                    <img src="src/assets/img/team-photos/Frontend/Nechita Ramona.jpg" alt="Member" />
+                                </div>
+                                <h3 class="member-name">Nechita Ramona-Maria</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="member">
+                                <div class="member-img">
+                                    <img src="src/assets/img/team-photos/Frontend/RuginaRares.jpg" alt="Member" />
+                                </div>
+                                <h3 class="member-name">Rugină Rareș-Teodor</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="member">
+                                <div class="member-img">
+                                    <img src="src/assets/img/team-photos/Frontend/Ana.jpg" alt="Member" />
+                                </div>
+                                <h3 class="member-name">Țigănescu Ana</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="member">
+                                <div class="member-img">
+                                    <img src="src/assets/img/team-photos/Frontend/Ursaciuc Adrian.jpg" alt="Member" />
+                                </div>
+                                <h3 class="member-name">Ursaciuc Adrian</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="member">
+                                <div class="member-img">
+                                    <img src="src/assets/img/team-photos/Frontend/AlexandruVulpe.jpg" alt="Member" />
+                                </div>
+                                <h3 class="member-name">Vulpe Alexandru-Cătălin</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="team">
+                    <div class="row">
+                        <span class="team-title">Backend</span>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="member">
+                                <div class="member-img">
+                                    <img src="src/assets/img/team-photos/Backend/Irina.jpg" alt="Member" />
+                                </div>
+                                <h3 class="member-name">Bejan Irina-Mădălina</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="member">
+                                <div class="member-img">
+                                    <img src="src/assets/img/team-photos/Backend/Cristian Dragomir.jpg"
+                                        alt="Member" />
+                                </div>
+                                <h3 class="member-name">Dragomir Cristian</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="member">
+                                <div class="member-img">
+                                    <img src="src/assets/img/team-photos/Backend/Costi.jpg" alt="Member" />
+                                </div>
+                                <h3 class="member-name">Listar Constantin</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="member">
+                                <div class="member-img">
+                                    <img src="src/assets/img/team-photos/Backend/Dana.png" alt="Member" />
+                                </div>
+                                <h3 class="member-name">Păduraru Dana</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="member">
+                                <div class="member-img">
+                                    <img src="src/assets/img/team-photos/Backend/Valentin.jpg" alt="Member" />
+                                </div>
+                                <h3 class="member-name">Pînzaru Valentin</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="member">
+                                <div class="member-img">
+                                    <img src="src/assets/img/team-photos/Backend/Alexandru.jpg" alt="Member" />
+                                </div>
+                                <h3 class="member-name">Ştefan Alexandru</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="member">
+                                <div class="member-img">
+                                    <img src="src/assets/img/team-photos/Backend/Andreea Vatamanelu.jpg"
+                                        alt="Member" />
+                                </div>
+                                <h3 class="member-name">Vătămănelu Andreea</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="team">
+                    <div class="row">
+                        <span class="team-title">QA</span>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="member">
+                                <div class="member-img">
+                                    <img src="src/assets/img/team-photos/QA/Cosmin.jpg" alt="Member" />
+                                </div>
+                                <h3 class="member-name">Bărbăscu Cosmin-George</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="member">
+                                <div class="member-img">
+                                    <img src="src/assets/img/team-photos/QA/Lucian.jpg" alt="Member" />
+                                </div>
+                                <h3 class="member-name">Cuberschi Lucian-Alexandru</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="member">
+                                <div class="member-img">
+                                    <img src="src/assets/img/team-photos/QA/Andrada.jpg" alt="Member" />
+                                </div>
+                                <h3 class="member-name">Popovici Andrada-Iuliana</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="member">
+                                <div class="member-img">
+                                    <img src="src/assets/img/team-photos/QA/Sidorencu Mihnea-Ștefan.png"
+                                        alt="Member" />
+                                </div>
+                                <h3 class="member-name">Sidorencu Mihnea-Ștefan</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="member">
+                                <div class="member-img">
+                                    <img src="src/assets/img/team-photos/QA/Rares Trufin.jpg" alt="Member" />
+                                </div>
+                                <h3 class="member-name">Trufin Rareș-Octavian</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="container-fluid  background-dark align-content-sm-center pageFooter">
+    <div
+        class="d-flex justify-content-center align-content-center align-content-md-center align-items-start flex-md-column flex-xs-column flex-lg-row flex-sm-column justify-content-md-center flex-wrap m-auto">
+        <div class="p-1 m-2 ml-lg-5 pl-lg-5 flex-fill flex-lg-fill flex-xl-fill  justify-content-sm-start ml-sm-0 pl-sm-0">
+            <img src="src/assets/img/logoEditat2.png" alt="logo">
+            <p class="ml-2"> Făcut de studenți pentru studenți </p>
+        </div>
+        <div class="p-1 m-2 mt-4 flex-fill flex-lg-fill flex-xl-fill" >
+            <h5 class="text-left "><strong>Link-uri utile</strong></h5>
+            <ul>
+                <li class="text-left"><a href="#"> Despre noi </a></li>
+                <li class="text-left"><a href="#"> Contactează-ne </a></li>
+            </ul>
+        </div>
+        <div class="p-1 m-2 mt-4 flex-fill flex-lg-fill flex-xl-fill" >
+            <h5 class="text-left"><strong> fiistudent.ro </strong></h5>
+            <ul>
+                <li class="text-left"><a href="#"> Termeni și condiții</a></li>
+                <li class="text-left"><a href="#"> Prelucrarea datelor cu caracter personal </a></li>
+                <li class="text-left"><a href="#"> Politică de utilizare Cookie-uri </a></li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class=" p-4 d-flex flex-wrap  justify-content-between footer2">
+        <div class="media mr-2 pr-2">
+            <div class="media-left mr-3 mt-1">
+                 <i class="fas fa-map-marker-alt"> </i>
+            </div>
+            <div class="media-body">
+                <h5>Iași, România</h5>
+                <p>Online Support</p>
+            </div>
+        </div>
+
+        <div class="media mr-2 pr-2">
+            <div class="media-left mr-3 mt-1">
+                <i class="fas fa-mobile-alt"></i>
+            </div>
+            <div class="media-body">
+                <h5>0722 222 222</h5>
+                <p>Administrator</p>
+            </div>
+        </div>
+
+        <div class="media">
+            <div class="media-left mr-3 mt-1">
+                <i class="fas fa-envelope-open-text"></i>
+            </div>
+            <div class="media-body">
+                <h5>fiistudent@info.uaic.ro</h5>
+                <p>Online Support</p>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="footer_bottom_two">
+        <div class="container">
+            <div class="d-flex justify-content-between">
+                <div class="p-2 m-2">
+                    <p>© 2019 All Rights Reserved FiiStudent B3</p>
+                </div>
+
+
+                <div class="social_footer">
+                    <ul class="d-flex flex-lg-row  flex-wrap">
+                        <li class="follow_text p-2 m-2">Urmărește-ne</li>
+                        <li class="p-2 m-2 "><a target="_blank" href="#"><i class="fab fa-facebook"></i></a></li>
+                        <li class="p-2 m-2 "><a target="_blank" href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li class="p-2 m-2 "><a target="_blank" href="#"><i class="fab fa-instagram"></i></a></li>
+                        <li class="p-2 m-2 "><a target="_blank" href="#"><i class="fab fa-git"></i></a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="main.aba0b23d1cfdda03dac8.js"></script></body>
+
+</html>
