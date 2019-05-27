@@ -228,7 +228,7 @@
 							element.room = "C201";
 							$('#h' + h.toString() + " ." + element.day).append(getObjectHtml(element));
 							$('#'+ element.course_id+ element.startTime + element.day).on('click', function () {
-    							resolveModal(element.course_id,element.professor);
+    							resolveModal(element.course_id,element.professor,element.id);
 								});
 						});;
 					}
