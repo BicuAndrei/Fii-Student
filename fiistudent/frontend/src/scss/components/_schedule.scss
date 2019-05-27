@@ -34,11 +34,11 @@
     margin: 10px;
     font-weight: bold;
     letter-spacing: 1px;
-	height: 100%;
-	min-height: 105px;
-    width: 400px;
-	text-align: left;
-	background-color: #fff;
+    height: 100%;
+    min-height: 105px;
+    width: 200px;
+    text-align: left;
+    background-color: #fff;
 
     cursor: pointer;
     @include material-box-shadow(1, false);
@@ -75,7 +75,7 @@
             background-color: $color-primary;
         }
 
-        &.consultations {
+        &.consultatii {
             color: #fff;
             background-color: #76DDD6;
         }
@@ -87,14 +87,17 @@
 
     .object-teacher {
         color: #C0C0C0;
-        font-size: 16px;
+        font-size: 14px;
     }
 
     .name {
         color: $color-primary;
+        line-height: 1;
+        margin-bottom: 5px;
+        font-size: 18px;
     }
 
     .room {
-        font-size: 14px;
+        font-size: 12px;
     }
 }

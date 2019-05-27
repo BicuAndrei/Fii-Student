@@ -31,18 +31,18 @@ def submit_feedback(request, professor: hug.types.text, course: hug.types.text, 
     entity_feedback = feedback_exists(professor, student, date, course)
     if entity_feedback is not None:
         data["alreadySubmitted"] = True
-        data["course"] = Course.get(course).urlsafe
+        data["course"] = course
         data["stars"] = entity_feedback.stars
         data["feedback"] = entity_feedback.text
     else:
         data["alreadySubmitted"] = False
-        data["profId"] = Professor.get(professor).urlsafe
-        data["course"] = Course.get(course).urlsafe
+        data["profId"] = professor
+        data["course"] = course
         data["stars"] = stars
         data["feedback"] = feedback
         # add feedback to db
         feedback_db = Feedback(
-            student=student,
+            student=student.key,
             professor=professor,
             course=course,
             text=feedback,
@@ -50,16 +50,14 @@ def submit_feedback(request, professor: hug.types.text, course: hug.types.text, 
         )
         feedback_db.put()
 
-    data_list.append(data)
-    json_data = json.dumps(data_list)
-    return json_data
+    return data_list
 
 
 def feedback_exists(professor, student, date, course):
     # checks if feedback exists from a user to a professor
     query = Feedback.query()
     query.add_filter('professor', '=', professor)
-    query.add_filter('student', '=', student)
+    query.add_filter('student', '=', student.key)
     query.add_filter('course', '=', course)
     feedback_week = get_week(date)
     query_it = query.fetch()

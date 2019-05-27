@@ -83,20 +83,18 @@
 									<th scope="col" class="head-col">Miercuri</th>
 									<th scope="col" class="head-col">Joi</th>
 									<th scope="col" class="head-col">Vineri</th>
-									<th scope="col" class="head-col">Sâmbătă</th>
 								</tr>
 								</tr>
 							</thead>
 							<tbody>
 								<tr id="h8">
-									<th scope="row">8:00</th>
+									<th scope="row">08:00</th>
 									<td class="Luni">
 									</td>
 									<td class="Marti"></td>
 									<td class="Miercuri"></td>
 									<td class="Joi"></td>
 									<td class="Vineri"></td>
-									<td class="Sambata"></td>
 								</tr>
 								<tr id="h10">
 									<th scope="row">10:00</th>
@@ -105,7 +103,6 @@
 									<td class="Miercuri"></td>
 									<td class="Joi"></td>
 									<td class="Vineri"></td>
-									<td class="Sambata"></td>
 								</tr>
 								<tr id="h12">
 									<th scope="row">12:00</th>
@@ -114,7 +111,6 @@
 									<td class="Miercuri"></td>
 									<td class="Joi"></td>
 									<td class="Vineri"></td>
-									<td class="Sambata"></td>
 								</tr>
 								<tr id="h14">
 									<th scope="row">14:00</th>
@@ -123,7 +119,6 @@
 									<td class="Miercuri"></td>
 									<td class="Joi"></td>
 									<td class="Vineri"></td>
-									<td class="Sambata"></td>
 								</tr>
 								<tr id="h16">
 									<th scope="row">16:00</th>
@@ -132,7 +127,6 @@
 									<td class="Miercuri"></td>
 									<td class="Joi"></td>
 									<td class="Vineri"></td>
-									<td class="Sambata"></td>
 								</tr>
 								<tr id="h18">
 									<th scope="row">18:00</th>
@@ -141,13 +135,12 @@
 									<td class="Miercuri"></td>
 									<td class="Joi"></td>
 									<td class="Vineri"></td>
-									<td class="Sambata"></td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
 					<div class="content">
-						<button class="button"><i class="fa fa-download"></i> Download</button>
+						<button class="button" id="downlaodBtn"><i class="fa fa-download"></i> Download</button>
 					</div>
 				</div>
 			</div>
@@ -155,6 +148,7 @@
 	</div>
 
 	${require('./partials/modals/subject-details.modal.html')}
+
 	<script>
 		if (localStorage.getItem("backgroundColor") !== null) {
 			var color = localStorage.getItem("backgroundColor");
@@ -168,45 +162,82 @@
 			body.style.fontSize = size + "px";
 		}
 	</script>
-</body>
+
+
 <script>
-	function getObjectHtml(object) {
-		return "" +
-			"<div class=\"object\" data-toggle=\"modal\" data-target=\"#detailsModal\">" +
-			"<p class=\"name\">" + object.name + "</p>" +
-			"<p class=\"object-teacher\">" + object.teacher + "</p>" +
-			"<div class=\"badges\">" +
-			"<span class=\"badge " + object.type + "\">" + object.type + "</span>" +
-			"<span class=\"badge room\">" + object.room + "</p>" +
-			"</div>" +
-			"</div>";
-	}
 
-	$(document).ready(function () {
-		$.ajax({
-			url: endpoint + "schedule",
-			type: "GET",
-			contentType: "application/json; charset=utf-8",
-			dataType: "json",
-			beforeSend: function (xhr) {
-				xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
-			},
-			success: function (result) {
-				var objects = JSON.parse(result);
-				console.log(objects.type);
-				for (h = 8; h <= 18; h += 2) {
-					objects.filter(x => x.startTime === h.toString()).forEach(element => {
-						element.type = "laborator";
-						element.room = "C201";
-						$('#h' + h.toString() + " ." + element.day).append(getObjectHtml(element));
-					});;
+		$('#downlaodBtn').click(function () {
+			$.ajax({
+				url: endpoint + "export",
+				type: "GET",
+				contentType: "application/json; charset=utf-8",
+				dataType: "json",
+				beforeSend: function (xhr) {
+					xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
+				},
+				success: function (result) {
+					var data, filename, link;
+					var csv = result.data;
+
+					if (csv == null) 
+						return;
+
+					filename = 'export.csv';
+
+					csv = 'data:text/csv;charset=utf-8,' + csv;
+					
+					data = encodeURI(csv);
+
+					link = document.createElement('a');
+					link.setAttribute('href', data);
+					link.setAttribute('download', filename);
+					link.click();
+				},
+				error: function () {
+					alert('Oh-oh! Ceva nu a mers bine!')
 				}
-			},
-			error: function () {
-				alert('Oh-oh! Ceva nu a mers bine!')
-			}
-		})
-	})
-</script>
+			});
+		});
 
+		function getObjectHtml(object) {
+			return "" +
+				"<div class=\"object\" id=\"" + object.course_id + object.startTime + object.day + "\" data-toggle=\"modal\" data-target=\"#detailsModal\">" +
+				"<p class=\"name\">" + object.name + "</p>" +
+				"<p class=\"object-teacher\">" + object.professor + "</p>" +
+				"<div class=\"badges\">" +
+				"<span class=\"badge " + object.type.toLowerCase() + "\">" + object.type + "</span>" +
+				"<span class=\"badge room\">" + object.classroom + "</p>" +
+				"</div>" +
+				"</div>";
+		}
+	
+		$(document).ready(function () {
+			$.ajax({
+				url: endpoint + "schedule",
+				type: "GET",
+				contentType: "application/json, charset=utf-8",
+				dataType: "json",
+				beforeSend: function (xhr) {
+					xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
+				},
+				success: function (result) {
+					var objects = JSON.parse(result);
+				   
+					for (h = 8; h <= 18; h += 2) {
+						objects.filter(x => x.startTime === h.toString()).forEach(element => {
+							element.room = "C201";
+							$('#h' + h.toString() + " ." + element.day).append(getObjectHtml(element));
+							$('#'+ element.course_id+ element.startTime + element.day).on('click', function () {
+    							resolveModal(element.course_id,element.professor,element.id);
+								});
+						});;
+					}
+				},
+				error: function () {
+					alert('Oh-oh! Ceva nu a mers bine!')
+				}
+			})
+		})
+	</script>
+  </body>
 </html>

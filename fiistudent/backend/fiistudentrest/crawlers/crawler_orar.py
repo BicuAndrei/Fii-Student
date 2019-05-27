@@ -329,7 +329,7 @@ def empty_entity():
     print('remove done')
 
 
-def create_class(day, group, course, hour, sala, tip):
+def create_class(day, group, course, hour, sala, tip, profs):
     scheduleclass = ScheduleClass()
 
     ccourse = Course()
@@ -341,9 +341,6 @@ def create_class(day, group, course, hour, sala, tip):
     for result in querys:
         scheduleclass.course = result.key
         break
-
-    print('Cursurile sunt')
-    print(course)
 
     if len(sala) > 0:
         classroom = Classroom()
@@ -359,8 +356,9 @@ def create_class(day, group, course, hour, sala, tip):
     scheduleclass.endHour = int(hour.split('-')[1].split(':')[0])
     scheduleclass.group = group
     scheduleclass.classType = tip
+    if len(profs) != 0:
+        scheduleclass.professor = profs[0]
     scheduleclass.put()
-    print('Schedule class added')
 
 
 def add_classes_to_datastore():
@@ -369,7 +367,20 @@ def add_classes_to_datastore():
     for group in groups_schedule:
         for day in groups_schedule[group]:
             for course in groups_schedule[group][day]:
-                create_class(day, group, course['materie'], course['ora'], course['sala'], course['tip'])
+                prof_keys = []
+                for prof in course['profesori']:
+                    pieces = prof.split(" ")
+                    name = []
+                    for piece in pieces:
+                        if "." in piece:
+                            continue
+                        name.append(piece)
+                    curr_key = get_prof_key(name)
+                    if curr_key is False:
+                        print("[ ERROR - CLASS ] Professor not found: " + str(name))
+                        break
+                    prof_keys.append(curr_key)
+                create_class(day, group, course['materie'], course['ora'], course['sala'], course['tip'], prof_keys)
                 # print(course['materie'])
 
 
@@ -387,12 +398,12 @@ def get_room_key(room):
     query.add_filter('identifier', '=', room)
     querys = query.fetch()
     for found in querys:
-        return found.key
+        return found.urlsafe
     return False
 
 
 def get_prof_key(name):
-    if "Tiplea" in name:
+    if "Tiplea" in name or "Buraga" in name:
         last_name = name[0]
         first_name = " ".join(x for x in name[1:])
     else:
@@ -405,14 +416,18 @@ def get_prof_key(name):
     querys = query.fetch()
     possible_profs = []
     for found in querys:
-        possible_profs.append(found.key)
+        possible_profs.append(found.urlsafe)
     if len(possible_profs) == 0:
         return False
     if len(possible_profs) > 1:
-        query.add_filter('firstName','=',first_name)
+        if first_name == "Cosmin" and last_name == "Varlan":
+            first_name = "Nicolae Cosmin"
+        elif first_name == "Simona-Elena" and last_name == "Varlan":
+            first_name = "Simona Elena"
+        query.add_filter('firstName', '=', first_name)
         querys = query.fetch()
         for found in querys:
-            return found.key
+            return found.urlsafe
         return False
     return possible_profs[0]
 
@@ -490,6 +505,7 @@ def add_exams_to_datastore():
         new_exam.groups = groups_string
         new_exam.put()
 
+
 def get_other_info(other_date):
     for group in others:
         for other in others[group]:
@@ -554,6 +570,7 @@ def add_sch_announcements_to_datastore():
             continue
         new_other.put()
 
+
 def clear_exams_and_announcements():
     all_exams = Exam.all()
     all_ann = SchAnnouncement.all()
@@ -561,6 +578,7 @@ def clear_exams_and_announcements():
         exam.remove()
     for ann in all_ann:
         ann.remove()
+
 
 def main():
     get_schedule_pages()

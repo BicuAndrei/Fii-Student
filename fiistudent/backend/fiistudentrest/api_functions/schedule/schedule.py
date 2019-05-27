@@ -1,6 +1,7 @@
 from fiistudentrest.models import ScheduleClass, Student
-from fiistudentrest.models import Course
+from fiistudentrest.models import Course, Professor, Classroom
 from fiistudentrest.api_functions.auth import verify_token
+from fiistudentrest.utils import export_csv
 
 import hug
 import json
@@ -62,12 +63,22 @@ def schedule(request):
     for ent in schedule_query_it:
         dictionary = {}
         course_key = ent.course
+        professor_key = ent.professor
+        classroom_key = ent.classroom
 
-        if course_key is not None:
-            course = Course.get(course_key)
+        if course_key is not None and professor_key is not None and classroom_key is not None:
+            course = Course.get(course_key)    
+            dictionary["name"] = course.title
+            
+            professor = Professor.get(professor_key)
+            dictionary["professor"] = professor.firstName + ' ' + professor.lastName
+            
+            classroom = Classroom.get(classroom_key)
+            dictionary['classroom'] = classroom.identifier
+
             dictionary["id"] = ent.urlsafe
             dictionary["course_id"] = course.urlsafe
-            dictionary["name"] = course.title
+            dictionary["type"] = ent.classType
             dictionary["abv"] = get_abbreviation(course.title)
             dictionary["startTime"] = str(ent.startHour)
             dictionary["endTime"] = str(ent.endHour)
@@ -77,3 +88,27 @@ def schedule(request):
 
     json_data = json.dumps(schedule_list)
     return json_data
+
+
+@hug.get()
+def export(request):
+    """Returns the data to be exported as csv"""
+    authorization = request.get_header('Authorization')
+    if not authorization:
+        return {'status': 'error',
+                'errors': [
+                    {'for': 'request_header', 'message': 'No Authorization field exists in request header'}]}
+
+    student_key_urlsafe = verify_token(authorization)
+    if not student_key_urlsafe:
+        return {'status': 'error',
+                'errors': [
+                    {'for': 'request_header', 'message': 'Header contains token, but it is not a valid one.'}]}
+
+
+    student = Student.get(student_key_urlsafe)
+    
+    year_and_group = student.group
+    csv_content = export_csv(year_and_group)
+
+    return {'status':'ok', 'data':csv_content}   

@@ -8,5 +8,6 @@ class Announcement(BaseModel):
 
     sender = ndb.KeyProperty(kind=Professor)
     receiver = ndb.StringProperty()
+    subject = ndb.StringProperty()
     text = ndb.StringProperty()
     category = ndb.StringProperty()

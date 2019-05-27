@@ -1,14 +1,16 @@
-from fiistudentrest.models import Student
+from fiistudentrest.models import Classroom, ScheduleClass, Student, CustomClass
 from fiistudentrest.api_functions.auth import verify_token
 
 import hug
+import datetime
+import json
 
 
 @hug.local()
-@hug.post()
+@hug.put()
 @hug.cli()
-def change_group(request, semian: hug.types.text, group: hug.types.text):
-    """Changes the group for a student and returns a json response for every case"""
+def add_custom_class(request, schedule_class_id: hug.types.text):
+    """Adds custom schedule class for given user"""
     authorization = request.get_header('Authorization')
     if not authorization:
         return {'status': 'error',
@@ -21,16 +23,17 @@ def change_group(request, semian: hug.types.text, group: hug.types.text):
                 'errors': [
                     {'for': 'request_header', 'message': 'Header contains token, but it is not a valid one.'}]}
 
+    # getting the Student entity
     student = Student.get(user_urlsafe)
-    new_group = semian + group
-    print("The new group for the student " + student.urlsafe + " is " + new_group)
-    student.group = new_group
-    Student.put(student)
-    print("The modification is done!")
+    schedule_class = ScheduleClass.get(schedule_class_id)
 
-    return {'status': 'ok',
-            'errors': []}
+    # create the custom-class item
+    custom_class = CustomClass(
+        student = student.key,
+        schedule_class = schedule_class.key
+    )
 
+    # store in db
+    custom_class.put()
 
-if __name__ == '__main__':
-    change_group.interface.cli()
+    return {'status':'ok'}
