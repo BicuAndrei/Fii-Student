@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" crossorigin="anonymous" />
+<script src="https://code.jquery.com/jquery-3.4.0.min.js"
+    integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+
+<script>
+    const endpoint = "https://develop-dot-fii-student.appspot.com/";
+    const isTeacher = false;
+    const isStudent = false;
+</script>
+
+<script>
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            var forms = document.getElementsByClassName('needs-validation');
+
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    
+                    form.classList.add('was-validated');
+
+                }, false);
+            });
+        }, false);
+    })();
+
+    function logOut() {
+        sessionStorage.removeItem("accessToken");
+        window.location.reload();
+    }
+</script>
+
+    <title>FII Student - Panou principal</title>
+
+    <script>
+        const title = 'Panou principal';
+        const subtitle = 'Detalii despre contul tău';
+        const shouldBeLoggedIn = true;
+    </script>
+
+</head>
+
+<body>
+    <div class="d-flex" id="wrapper">
+        <div class="border-right" id="sidebar-wrapper">
+    <div class="sidebar-heading">
+        <img src="src/assets/img/navedit4.png" class="profile-picture" alt="profile-pic" />
+        <p class="name" id="userName">Ursaciuc Adrian</p>
+    </div>
+    <div class="list-group list-group-flush">
+        <a href="dashboard.html" class="list-group-item list-group-item-action ch for-student"><i class="fas fa-columns"></i>Panou principal</a>
+        <a href="#ads_category" class="list-group-item list-group-item-action dropdown-toggle ch" data-toggle="collapse" aria-expanded="false"><i class="fas fa-rss"></i>Anunțuri</a>
+        <ul class="collapse list-unstyled pl-3" id="ads_category">
+            <li>
+                <a href="anounces.html" class="list-group-item list-group-item-action ch">Anunțuri noi</a>
+            </li>
+            <li>
+                <a href="license-exams.html" class="list-group-item list-group-item-action ch">Examene de licență</a>
+            </li>
+            <li>
+                <a href="dissertation-exams.html" class="list-group-item list-group-item-action ch">Examene de disertație</a>
+            </li>
+        </ul>
+
+
+        <a href="free-rooms.html" class="list-group-item list-group-item-action"><i class="fas fa-door-closed"></i>Săli libere</a>
+        <a href="schedule.html" class="list-group-item list-group-item-action for-student"><i class="fas fa-calendar"></i>Orar</a>
+        <a href="subjects.html" class="list-group-item list-group-item-action"><i class="fas fa-book"></i>Materii</a>
+        <a href="teachers.html" class="list-group-item list-group-item-action"><i class="fas fa-user-graduate"></i>Profesori</a>
+        <a href="notifications.html" class="list-group-item list-group-item-action for-student"><i class="fas fa-bell"></i>Notificari</a>
+        <a href="customschedule.html" class="list-group-item list-group-item-action for-student"><i class=" fas fa-calendar"></i>Orar personalizat</a>
+        <a href="feedback.html" class="list-group-item list-group-item-action for-teacher"><i class="fas fa-bell"></i>Feedback</a>
+        <a href="sendAnnounces.html" class="list-group-item list-group-item-action for-teacher"><i class="fas fa-bell"></i>Trimite anunt</a>
+
+
+
+        
+
+        <a href="javascript:void(0)" class="list-group-item list-group-item-action" onclick="logOut()"><i class="fas fa-sign-out-alt"></i>Deconectează-te</a>		
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $.ajax({
+            url: endpoint + "identity",
+            method: 'GET',
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
+            }
+        }).then(function (result) {
+            if(result.data.type === 'student') {
+                $('.for-teacher').remove();
+                isStudent = true;
+            }
+            if(result.data.type === 'professor') {
+                $('.for-student').remove();
+                isTeacher = true;
+            }
+
+            $('#userName').val(result.data.name);
+        });
+    });
+</script>
+
+        <div id="page-content-wrapper" class="bg-light">
+            <script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('header-title').innerText = title;
+        document.getElementById('header-subtitle').innerText = subtitle;
+    }, false);
+
+</script>
+
+<div class="container-fluid page-header">
+    <h2 class="title" id="header-title"></h2>
+    <h4 class="subtitle" id="header-subtitle"></h4>
+</div>
+
+            <div class="page ml-4 mt-4 mb-3 flex-column flex-grow-1">
+                <div class="content d-flex flex-row">
+                    <div class="changePass ml-5 mt-3 mb-5 border w-50 p-3" style="background: #ffffff">
+                        <h5 class="sec-title ml-2">Schimba parola</h5>
+                        <form id="changePassForm" method="GET" class="p-2">
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Parola actuala</label>
+                                <input type="password" class="form-control " id="exampleInputPassword1" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="Password2">Parola noua</label>
+                                <input type="password" class="form-control " id="Password2" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="Password2">Repeta parola</label>
+                                <input type="password" class="form-control " id="Password3" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Trimite</button>
+                        </form>
+                    </div>
+                    <div class="group ml-5 mt-3 mb-5 border w-25 p-3" style="background: #ffffff">
+                        <form id="changeGroupForm" method="GET" class="p-2">
+                            <h5>Schimba grupa</h5>
+                            <label for="semian">Semianul </label>
+                            <select name="semian" id="semian" class="form-control" required>
+                                <option value="" selected="selected"></option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="E">E</option>
+                            </select>
+                            <br>
+                            <label for="group">Grupa </label>
+                            <select name="group" id="group" class="form-control required">
+                                <option value="" selected="selected"></option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                            </select>
+                            <br>
+                            <button class="btn btn-primary" type="submit">Trimite</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="ml-5 mt-3 mb-5 border w-75 p-3" style="background: #ffffff">
+                    <h2>Personalizeaza interfata asa cum vrea sufletelul tau</h2>
+                    <br>
+                    <form>
+                        Selecteaza culoarea pentru sidebar: <input type="color" name="favcolor" id="sidebarColor"
+                            value="#ff0000"><br><br>
+                        <input type="submit" value="Fa schimbarea" name="sidebarButton" id="sidebarChangeColor">
+                    </form>
+                    <form>
+
+                        Selecteaza culoarea pentru sidebar text: <input type="color" name="favcolor"
+                            id="sidebarColorText" value="#ff0000"><br><br>
+                        <input type="submit" value="Fa schimbarea" name="sidebarButtonText" id="sidebarChangeColorText">
+                    </form>
+                    <hr>
+                    <form>
+                        Selecteaza culoarea pentru header: <input type="color" name="favcolor" id="headerColor"
+                            value="#ff0000"><br><br>
+                        <input type="submit" value="Fa schimbarea" name="headerButton" id="headerChangeColor">
+                    </form>
+                    <form>
+                        Selecteaza culoarea pentru header text: <input type="color" name="favcolor" id="headerColorText"
+                            value="#ff0000"><br><br>
+                        <input type="submit" value="Fa schimbarea" name="headerButtonText" id="headerChangeColorText">
+                    </form>
+                    <hr>
+                    <form>
+
+                        Schimba culoarea background-ului principal: <input type="color" name="favcolor"
+                            id="backgroundColor" value="#ff0000"><br><br>
+                        <input type="submit" value="Fa schimbarea" name="backgroundButton" id="backgroundButton">
+                    </form>
+                    <hr>
+                    <form>
+                        <input type="number" id="fontSize">
+                        <input type="submit" value="Fa schimbarea" name="sizeButton" id="sizeButton">
+                    </form>
+                    <hr>
+                    <form>
+                        <input type="submit" value="Reseteaza totul" name="resetButton" id="resetButton">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        if (localStorage.getItem("sidebarColor") !== null) {
+            var color = localStorage.getItem("sidebarColor");
+
+            var sidebar = document.getElementsByClassName("d-flex")[0];
+            sidebar.style.backgroundColor = color;
+            document.getElementsByClassName("list-group-flush")[0].style.backgroundColor = color;
+            var list = document.getElementsByTagName("A");
+            for (var i = 0; i < list.length; i++) {
+                if (list[i].className.indexOf('ch') > 0)
+                    list[i].style.backgroundColor = color;
+            }
+        }
+
+        if (localStorage.getItem("headerColor") !== null) {
+            var color = localStorage.getItem("headerColor");
+            var header = document.getElementsByClassName("page-header")[0];
+            header.style.backgroundColor = color;
+        }
+        if (localStorage.getItem("headerColorText") !== null) {
+            var color = localStorage.getItem("headerColorText");
+            var header = document.getElementsByClassName("page-header")[0];
+            header.style.color = color;
+            document.querySelector(".page-header .subtitle").style.color = color;
+            localStorage.setItem("headerColorText", color);
+        }
+        if (localStorage.getItem("backgroundColor") !== null) {
+            var color = localStorage.getItem("backgroundColor");
+            var background = document.getElementById("page-content-wrapper");
+            background.style.backgroundColor = color;
+            background.classList.remove("bg-light");
+
+        }
+        if (localStorage.getItem("sidebarColorText") !== null) {
+            var color = localStorage.getItem("sidebarColorText");
+            var list = document.getElementsByTagName("A");
+            for (var i = 0; i < list.length; i++) {
+                if (list[i].className.indexOf('ch') > 0)
+                    list[i].style.color = color;
+
+            }
+        }
+        if(localStorage.getItem("fontSize")!==null)
+        {
+            var size=localStorage.getItem("fontSize");
+            var body = document.getElementsByTagName("body")[0];
+            body.style.fontSize = size + "px";
+        }
+
+
+
+
+    </script>
+    <script>
+        document.getElementById("sidebarChangeColor").addEventListener("click", function () {
+            event.preventDefault();
+            var color = document.getElementById("sidebarColor").value;
+            var sidebar = document.getElementsByClassName("d-flex")[0];
+            sidebar.style.backgroundColor = color;
+            localStorage.setItem("sidebarColor", color);
+            document.getElementsByClassName("list-group-flush")[0].style.backgroundColor = color;
+            var list = document.getElementsByTagName("A");
+            for (var i = 0; i < list.length; i++) {
+                if (list[i].className.indexOf('ch') > 0)
+                    list[i].style.backgroundColor = color;
+
+            }
+
+
+        });
+
+        document.getElementById("headerChangeColor").addEventListener("click", function () {
+            event.preventDefault();
+            var color = document.getElementById("headerColor").value;
+            var header = document.getElementsByClassName("page-header")[0];
+            header.style.backgroundColor = color;
+            localStorage.setItem("headerColor", color);
+
+        });
+        document.getElementById("headerChangeColorText").addEventListener("click", function () {
+            event.preventDefault();
+            var color = document.getElementById("headerColorText").value;
+            var header = document.getElementsByClassName("page-header")[0];
+            header.style.color = color;
+            document.querySelector(".page-header .subtitle").style.color = color;
+            localStorage.setItem("headerColorText", color);
+
+        });
+        document.getElementById("backgroundButton").addEventListener("click", function () {
+            event.preventDefault();
+            var color = document.getElementById("backgroundColor").value;
+            localStorage.setItem("backgroundColor", color);
+            var background = document.getElementById("page-content-wrapper");
+            background.style.backgroundColor = color;
+            background.classList.remove("bg-light");
+        });
+        document.getElementById("sidebarChangeColorText").addEventListener("click", function () {
+            event.preventDefault();
+            var color = document.getElementById("sidebarColorText").value;
+            localStorage.setItem("sidebarColorText", color);
+            var name = document.getElementsByClassName("name")[0];
+            name.style.color = color;
+            var list = document.getElementsByTagName("A");
+            for (var i = 0; i < list.length; i++) {
+                if (list[i].className.indexOf('ch') > 0)
+                    list[i].style.color = color;
+
+            }
+        });
+        document.getElementById("resetButton").addEventListener("click", function () {
+
+            localStorage.removeItem("sidebarColorText");
+            localStorage.removeItem("backgroundColor");
+            localStorage.removeItem("headerColorText");
+            localStorage.removeItem("headerColor");
+            localStorage.removeItem("sidebarColor");
+            var initialSize=localStorage.getItem("initialSize");
+            localStorage.setItem("fontSize",initialSize);
+
+
+        });
+        document.getElementById("sizeButton").addEventListener("click", function () {
+            event.preventDefault();
+            var body = document.getElementsByTagName("body")[0];
+            var el = document.getElementsByTagName('body')[0];
+            var style = window.getComputedStyle(el, null).getPropertyValue('font-size');
+            var fontSize = parseFloat(style);
+            localStorage.setItem("initialSize", fontSize);
+            var nrSize = document.getElementById("fontSize").value;
+            body.style.fontSize = nrSize + "px";
+            const sleep = (milliseconds) => {
+                return new Promise(resolve => setTimeout(resolve, milliseconds));
+            }
+            sleep(500).then(() => {
+                if (confirm("Esti sigur ca doresti aceasta modificare?") == false)
+                    body.style.fontSize = fontSize + "px";
+                else
+                    localStorage.setItem("fontSize", nrSize);
+            });
+        });
+    </script>
+
+<script>
+    $('#changePassForm').submit(function (event) {
+        event.preventDefault();
+
+        if (!this.checkValidity()) {
+            return;
+        }
+
+        let oldPass = $(this).find('#exampleInputPassword1').val();
+        let firsPass = $(this).find('#Password2').val();
+        let secondPass = $(this).find('#Password3').val();
+
+        $.ajax({
+            url: endpoint + "change_password",
+            method: 'POST',
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
+            },
+            data: {
+                old_password: oldPass,
+                new_password: firsPass,
+                confirm_password: secondPass
+            }
+        }).then(function (data) {
+            if (data.status === "error") {
+                alert(data.errors[0].message);
+            }
+            else
+            if (data.status == 'ok') {
+                alert('Parola schimbata!!');
+            }
+        });
+    });
+
+    $('#changeGroupForm').submit(function (event) {
+        event.preventDefault();
+
+        if (!this.checkValidity()) {
+            return;
+        }
+
+        let group = $(this).find('#group').val();
+        let semian = $(this).find('#semian').val();
+
+
+        $.ajax({
+            url: endpoint + "change_group",
+            method: 'POST',
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
+            },
+            data: {
+                semian: semian,
+                group: group
+            }
+        }).then(function (data) {
+            if (data.status === "error") {
+                alert(data.errors[0].message);
+            }
+            else
+            if (data.status == 'ok') {
+                alert('Grupa schimbata!!');
+            }
+        });
+    });
+</script>
+
+<script type="text/javascript" src="main.b316e1b4c083978f07a5.js"></script></body>
+
+</html>

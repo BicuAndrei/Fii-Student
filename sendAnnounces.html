@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" crossorigin="anonymous" />
+<script src="https://code.jquery.com/jquery-3.4.0.min.js"
+    integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+
+<script>
+    const endpoint = "https://develop-dot-fii-student.appspot.com/";
+    const isTeacher = false;
+    const isStudent = false;
+</script>
+
+<script>
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            var forms = document.getElementsByClassName('needs-validation');
+
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    
+                    form.classList.add('was-validated');
+
+                }, false);
+            });
+        }, false);
+    })();
+
+    function logOut() {
+        sessionStorage.removeItem("accessToken");
+        window.location.reload();
+    }
+</script>
+
+    <title>Trimite anunturi</title>
+
+    <script>
+        const title = 'Trimite anunturi';
+        const shouldBeLoggedIn = true;
+    </script>
+
+</head>
+<body>
+    <div class="d-flex" id="wrapper">
+        <div class="border-right" id="sidebar-wrapper">
+    <div class="sidebar-heading">
+        <img src="src/assets/img/navedit4.png" class="profile-picture" alt="profile-pic" />
+        <p class="name" id="userName">Ursaciuc Adrian</p>
+    </div>
+    <div class="list-group list-group-flush">
+        <a href="dashboard.html" class="list-group-item list-group-item-action ch for-student"><i class="fas fa-columns"></i>Panou principal</a>
+        <a href="#ads_category" class="list-group-item list-group-item-action dropdown-toggle ch" data-toggle="collapse" aria-expanded="false"><i class="fas fa-rss"></i>Anunțuri</a>
+        <ul class="collapse list-unstyled pl-3" id="ads_category">
+            <li>
+                <a href="anounces.html" class="list-group-item list-group-item-action ch">Anunțuri noi</a>
+            </li>
+            <li>
+                <a href="license-exams.html" class="list-group-item list-group-item-action ch">Examene de licență</a>
+            </li>
+            <li>
+                <a href="dissertation-exams.html" class="list-group-item list-group-item-action ch">Examene de disertație</a>
+            </li>
+        </ul>
+
+
+        <a href="free-rooms.html" class="list-group-item list-group-item-action"><i class="fas fa-door-closed"></i>Săli libere</a>
+        <a href="schedule.html" class="list-group-item list-group-item-action for-student"><i class="fas fa-calendar"></i>Orar</a>
+        <a href="subjects.html" class="list-group-item list-group-item-action"><i class="fas fa-book"></i>Materii</a>
+        <a href="teachers.html" class="list-group-item list-group-item-action"><i class="fas fa-user-graduate"></i>Profesori</a>
+        <a href="notifications.html" class="list-group-item list-group-item-action for-student"><i class="fas fa-bell"></i>Notificari</a>
+        <a href="customschedule.html" class="list-group-item list-group-item-action for-student"><i class=" fas fa-calendar"></i>Orar personalizat</a>
+        <a href="feedback.html" class="list-group-item list-group-item-action for-teacher"><i class="fas fa-bell"></i>Feedback</a>
+        <a href="sendAnnounces.html" class="list-group-item list-group-item-action for-teacher"><i class="fas fa-bell"></i>Trimite anunt</a>
+
+
+
+        
+
+        <a href="javascript:void(0)" class="list-group-item list-group-item-action" onclick="logOut()"><i class="fas fa-sign-out-alt"></i>Deconectează-te</a>		
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $.ajax({
+            url: endpoint + "identity",
+            method: 'GET',
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
+            }
+        }).then(function (result) {
+            if(result.data.type === 'student') {
+                $('.for-teacher').remove();
+                isStudent = true;
+            }
+            if(result.data.type === 'professor') {
+                $('.for-student').remove();
+                isTeacher = true;
+            }
+
+            $('#userName').val(result.data.name);
+        });
+    });
+</script>
+        
+        <div id="page-content-wrapper" class="bg-light">
+            <script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('header-title').innerText = title;
+        document.getElementById('header-subtitle').innerText = subtitle;
+    }, false);
+
+</script>
+
+<div class="container-fluid page-header">
+    <h2 class="title" id="header-title"></h2>
+    <h4 class="subtitle" id="header-subtitle"></h4>
+</div>
+
+            <div class="sendAnnounces" style="margin-left: 10vw;">
+                <div class="form-group ml-5 mt-5 mb-5 border w-75 p-3" style="background: #ffffff;">
+                    <form action=" " method="GET" class="p-2">
+                        <h5>Trimitere anunt</h5>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="category">Categorie </label>
+                                <select name="category" id="category" class="form-control" required>
+                                    <option value="" selected="selected"></option>
+                                    <option value="exams">Examene</option>
+                                    <option value="license">Licenta</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="group">Grupa </label>
+                                <select name="group" id="group" class="form-control required">
+                                    <option value="" selected="selected"></option> 
+                                    <option value="A1">A1</option>
+                                    <option value="A2">A2</option>
+                                    <option value="A3">A3</option>
+                                    <option value="A4">A4</option>
+                                    <option value="A5">A5</option>
+                                    <option value="A6">A6</option>
+                                    <option value="A7">A7</option>
+                                    <option value="B1">B1</option>
+                                    <option value="B2">B2</option>
+                                    <option value="B3">B3</option>
+                                    <option value="B4">B4</option>
+                                    <option value="B5">B5</option>
+                                    <option value="B6">B6</option>
+                                    <option value="B7">B7</option>
+                                    <option value="E1">E1</option>
+                                    <option value="E2">E2</option>
+                                    <option value="X1">X1</option>
+                                    <option value="X2">X2</option>
+                                    <option value="X3">X3</option>
+                                    <option value="X4">X4</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 0.5em;">
+                            <div class="col-md-12">
+                                <label for="subject">Subiect</label>
+                                <textarea type="text" id="SUBJECT" name="message" rows="1" class="form-control md-textarea" ></textarea>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 0.5em;">
+                            <div class="col-md-12">
+                                <label for="message">Mesaj</label>
+                                <textarea type="text" id="message" name="message" rows="4" class="form-control md-textarea" ></textarea>
+                            </div>
+                        </div>
+                        <br>
+                        <button class="btn btn-primary" type="submit">Trimite</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript" src="main.b316e1b4c083978f07a5.js"></script></body>
+</html>

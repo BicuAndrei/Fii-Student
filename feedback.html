@@ -42,16 +42,22 @@
     }
 </script>
 
-    <title>FII Student - Profesori</title>
+    <title>FII Student - Vizualizare Feedback</title>
 
     <script>
-        const title = 'Profesori';
-        const subtitle = 'Află informații despre profesorii tăi preferați';
+        const title = 'Vizualizare Feedback';
+        const subtitle = 'Află ce părere au studenții despre tine';
         const shouldBeLoggedIn = true;
     </script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+
 </head>
 
 <body>
+
     <!--Modal Quick Email-->
 <div class="modal sign-modal fade" id="quickEmailModal" tabindex="-1" role="dialog"
     aria-labelledby="qucikEmailModalLabel" aria-hidden="true">
@@ -183,27 +189,6 @@
         });
     });
 </script>
-        <script>
-            if (localStorage.getItem("sidebarColor") !== null) {
-                var color = localStorage.getItem("sidebarColor");
-                var sidebar = document.getElementsByClassName("d-flex")[0];
-                sidebar.style.backgroundColor = color;
-                document.getElementsByClassName("list-group-flush")[0].style.backgroundColor = color;
-                var list = document.getElementsByTagName("A");
-                for (var i = 0; i < list.length; i++) {
-                    if (list[i].className.indexOf('ch') > 0)
-                        list[i].style.backgroundColor = color;
-                }
-            }
-            if (localStorage.getItem("sidebarColorText") !== null) {
-                var color = localStorage.getItem("sidebarColorText");
-                var list = document.getElementsByTagName("A");
-                for (var i = 0; i < list.length; i++) {
-                    if (list[i].className.indexOf('ch') > 0)
-                        list[i].style.color = color;
-                }
-            }			
-        </script>
 
         <div id="page-content-wrapper" class="bg-light">
             <script>
@@ -219,93 +204,90 @@
     <h2 class="title" id="header-title"></h2>
     <h4 class="subtitle" id="header-subtitle"></h4>
 </div>
-            <script>
-                if (localStorage.getItem("headerColor") !== null) {
-                    var color = localStorage.getItem("headerColor");
-                    var header = document.getElementsByClassName("page-header")[0];
-                    header.style.backgroundColor = color;
-                }
-                if (localStorage.getItem("headerColorText") !== null) {
-                    var color = localStorage.getItem("headerColorText");
-                    var header = document.getElementsByClassName("page-header")[0];
-                    header.style.color = color;
-                    document.querySelector(".page-header .subtitle").style.color = color;
-                    localStorage.setItem("headerColorText", color);
-                }
-            </script>
-            <div class="container">
-                <div class="m-4">
-                    <div class="row" id="teachers-list">
 
-                    </div>
-                </div>
+            <div class="container d-flex flex-wrap justify-content-center" id="containerFeedback">
             </div>
         </div>
     </div>
-
-
-    <script>
-        $(document).ready(function () {
-            $.ajax({
-                url: endpoint + "professors",
-                type: "GET",
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                beforeSend: function (xhr) {
-                    xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
-                },
-                success: function (result) {
-                    var list = JSON.parse(result);
-
-                    $('#teachers-list').html('');
-
-                    list.forEach(teacher => {
-                        var title = "";
-                        if (teacher.title) {
-                            title = ", " + teacher.title;
-                        }
-
-                        $('#teachers-list').append(
-                            "	<div class='col-md-6 teacher'>" +
-                            "		<h4 class='secondary-title'>" +
-                            "			" + teacher.name + title +
-                            "		</h4>" +
-                            "		<p>" +
-                            "			<strong>Birou: </strong>" + teacher.office +
-                            "		</p>" +
-                            "		<p>" +
-                            "			<strong>Adresă Web: </strong>" +
-                            "			<a href='" + teacher.link + "' class='external' target='_blank'>" + teacher.link + "</a>" +
-                            "		</p>" +
-                            "		<p>" +
-                            "			<strong>" +
-                            "				Materie predată:" +
-                            "			</strong>" +
-                            "			Rețele de calculatoare" +
-                            "		</p>" +
-                            "		<a href='javascript:void(0)' class='btn btn-primary' onclick='sendEmail(\"" + teacher.id + "\")' role='button' data-toggle='modal' data-target='#quickEmailModal'>Email</a>" +
-                            "	</div>");
-                    });
-                },
-                error: function () {
-                    alert('Oh-oh! Ceva nu a mers bine!')
-                }
-            })
-        })
-    </script>
-    <script>
-        if (localStorage.getItem("backgroundColor") !== null) {
-            var color = localStorage.getItem("backgroundColor");
-            var background = document.getElementById("page-content-wrapper");
-            background.style.backgroundColor = color;
-            background.classList.remove("bg-light");
-        }
-        if (localStorage.getItem("fontSize") !== null) {
-            var size = localStorage.getItem("fontSize");
-            var body = document.getElementsByTagName("body")[0];
-            body.style.fontSize = size + "px";
-        }
-    </script>
 <script type="text/javascript" src="main.b316e1b4c083978f07a5.js"></script></body>
+<script>
+
+    $(document).ready(function () {
+        $.ajax({
+            url: endpoint + "feedback",
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
+
+            },
+        }).then(function (data) {
+
+            // Botez a trecut pe aici
+            for (var indice = 0; indice < data.length; indice++) {
+                var div = document.createElement("div");
+                div.className += "card";
+                div.className += " text-center";
+                div.className += " col-md-5";
+                div.className += " mx-4";
+                var parent = document.getElementById("containerFeedback");
+                parent.appendChild(div);
+                //am terminat div ul principal
+                var div2 = document.createElement("div");
+                div2.className += " newFeedback";
+                div2.className += " px-3";
+                div2.innerHTML = "Nou";
+                parent.appendChild(div);
+                div.appendChild(div2);
+                //am terminat al doilea div
+                var divCard = document.createElement("div");
+                divCard.className += " card-body";
+                div.appendChild(divCard);
+                var section = document.createElement("section");
+                section.id = "stars";
+                divCard.appendChild(section);
+                var divRating = document.createElement("div");
+                divRating.className += " rating-stars";
+                divRating.className += " text-center";
+                section.appendChild(divRating);
+                var ul = document.createElement("ul");
+                divRating.appendChild(ul);
+                for (var i = 0; i < data[indice].stars; i++) {
+                    let li = document.createElement("li");
+                    li.className += " star";
+                    li.className += " d-inline";
+                    let i = document.createElement("i");
+                    i.className += " fa";
+                    i.className += " fa-star";
+                    i.className += " fa-fw";
+                    i.className += " text-warning";
+                    li.appendChild(i);
+                    ul.appendChild(li);
+
+                }
+                let p = document.createElement('p');
+                p.className += "card-text";
+                p.innerHTML = data[indice].feedback;
+                divCard.appendChild(p);
+                let divFooter = document.createElement("div");
+                divFooter.className += " card-footer";
+                divFooter.className += " text-muted";
+                divFooter.innerHTML += data[indice].date;
+                div.appendChild(divFooter);
+            }
+        });
+    });
+
+</script>
 
 </html>
+
+<script>
+    $(document).ready(function () {
+        var allNew = document.querySelectorAll(".newFeedback");
+
+        for (var i = 0; i < allNew.length; i++) {
+            allNew[i].onclick = function () {
+                this.style.display = 'none';
+            }
+        };
+    });
+</script>

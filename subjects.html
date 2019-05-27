@@ -12,6 +12,8 @@
 
 <script>
     const endpoint = "https://develop-dot-fii-student.appspot.com/";
+    const isTeacher = false;
+    const isStudent = false;
 </script>
 
 <script>
@@ -33,6 +35,11 @@
             });
         }, false);
     })();
+
+    function logOut() {
+        sessionStorage.removeItem("accessToken");
+        window.location.reload();
+    }
 </script>
 
     <title>FII Student - Materii</title>
@@ -42,353 +49,102 @@
         const subtitle = 'Află informații despre materiile tale preferate';
         const shouldBeLoggedIn = true;
     </script>
+    <style>
+        .list-group-flush a {
+            width: 222px;
+        }
+    </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container">
-        <img src="src/assets/img/navedit4.png">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="index.html">Acasă</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="about.html">Despre</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link"  href="team.html">Echipă</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link"  href="services.html">Servicii</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contact.html">Contactează-ne</a>
-                </li>
-                <li class="nav-item">
-                    <a id="nav-loginBtn" class="btn btn-outline-primary rounded d-none" href="javascript:void(0);" data-toggle="modal" data-target="#loginModal">Autentificare</a>
-                    <a id="nav-logoutBtn" class="btn btn-outline-primary rounded d-none" href="javascript:void(0);">Delogheaza-te</a>
-                </li>
-            </ul>
-        </div>
+    <div class="container-fluid min-vh-100 ml-0 pl-0">
+        <div class="row no-gutters ml-0 pl-0">
+            <div class="col-2 ml-0 pl-0 mr-0 sidebarJS">
+                <div class="border-right" id="sidebar-wrapper">
+    <div class="sidebar-heading">
+        <img src="src/assets/img/navedit4.png" class="profile-picture" alt="profile-pic" />
+        <p class="name" id="userName">Ursaciuc Adrian</p>
     </div>
-</nav>
+    <div class="list-group list-group-flush">
+        <a href="dashboard.html" class="list-group-item list-group-item-action ch for-student"><i class="fas fa-columns"></i>Panou principal</a>
+        <a href="#ads_category" class="list-group-item list-group-item-action dropdown-toggle ch" data-toggle="collapse" aria-expanded="false"><i class="fas fa-rss"></i>Anunțuri</a>
+        <ul class="collapse list-unstyled pl-3" id="ads_category">
+            <li>
+                <a href="anounces.html" class="list-group-item list-group-item-action ch">Anunțuri noi</a>
+            </li>
+            <li>
+                <a href="license-exams.html" class="list-group-item list-group-item-action ch">Examene de licență</a>
+            </li>
+            <li>
+                <a href="dissertation-exams.html" class="list-group-item list-group-item-action ch">Examene de disertație</a>
+            </li>
+        </ul>
 
-<div class="modal sign-modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
 
-                <div class="header">
-                    <h6 class="over-title">Bine ați revenit!</h6>
-                    <h2 class="title">Logare</h2>
-                </div>
-                <div class="content">
-                    <form id="loginForm" class="needs-validation" novalidate>
-                        <div class="form-group">
-                            <label for="email">Adresă email</label>
-                            <input type="email" class="form-control" id="email" placeholder="Introduceți email-ul" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Parolă</label>
-                            <input type="password" class="form-control" id="password" placeholder="Introduceți parola" required>
-                        </div>
-                        <!-- <div class="text-left">
-                            <a href="#forgotpassModal" id="fgpsd" class="color-primary" data-dismiss="modal"
-                                data-toggle="modal">Mi-am uitat parola</a> 
-                        </div> -->
-                        <button type="submit" class="btn btn-primary">Loghează-te</button>
-                        <span class="m-2 color-text-secondary"> sau </span>
-                        <a href="#" class="color-primary" data-toggle="modal" data-dismiss="modal"
-                            data-target="#registerModal">Înregistrează-te</a>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+        <a href="free-rooms.html" class="list-group-item list-group-item-action"><i class="fas fa-door-closed"></i>Săli libere</a>
+        <a href="schedule.html" class="list-group-item list-group-item-action for-student"><i class="fas fa-calendar"></i>Orar</a>
+        <a href="subjects.html" class="list-group-item list-group-item-action"><i class="fas fa-book"></i>Materii</a>
+        <a href="teachers.html" class="list-group-item list-group-item-action"><i class="fas fa-user-graduate"></i>Profesori</a>
+        <a href="notifications.html" class="list-group-item list-group-item-action for-student"><i class="fas fa-bell"></i>Notificari</a>
+        <a href="customschedule.html" class="list-group-item list-group-item-action for-student"><i class=" fas fa-calendar"></i>Orar personalizat</a>
+        <a href="feedback.html" class="list-group-item list-group-item-action for-teacher"><i class="fas fa-bell"></i>Feedback</a>
+        <a href="sendAnnounces.html" class="list-group-item list-group-item-action for-teacher"><i class="fas fa-bell"></i>Trimite anunt</a>
 
-<script>
-    $('#loginForm').submit(function(event) {
-        event.preventDefault();
 
-        if(!this.checkValidity()) {
-            return;
-        }
 
-        $.ajax({
-            url: endpoint + "login",
-            data: {
-                email: $(this).find('#email').val(),
-                password: $(this).find('#password').val()
-            }
-        }).then(function (data) {
-            if(data.status === "error") {
-                alert(data.errors[0].message);
-            } else {
-                sessionStorage.setItem("accessToken", data.token);
-                window.location.reload();
-            }
-        });
-    });
-</script>
-<div class="modal sign-modal fade scroll-modal" id="registerModal" tabindex="-1" role="dialog"
-    aria-labelledby="registerModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
+        
 
-                <div class="header">
-                    <h6 class="over-title">Bun venit pe FiiStudent!</h6>
-                    <h2 class="title">Înregistrează-te</h2>
-                </div>
-                <div class="content">
-                    <form id="registerForm" class="needs-validation" novalidate>
-                        <div class="form-group">
-                            <label for="name">Nume</label>
-                            <input type="text" class="form-control" id="name" placeholder="Introduceți numele" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="name2">Prenume</label>
-                            <input type="text" class="form-control" id="name2" placeholder="Introduceți prenumele" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="matricol">Număr Matricol</label>
-                            <input type="text" class="form-control" id="matricol"
-                                placeholder="Introduceți numărul matricol" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="stud-group">An/Grupă</label>
-                            <select id="stud-group" class="form-control" required>
-                                <option value="MOC1">MOC1</option>
-                                <option value="MOC2">MOC2</option>
-                                <option value="MIS2">MIS2</option>
-                                <option value="MSD2">MSD2</option>
-                                <option value="MLC1">MLC1</option>
-                                <option value="MLC2">MLC2</option>
-                                <option value="MSI1">MSI1</option>
-                                <option value="MSI2">MSI2</option>
-
-                                <option value="I1A1">I1A1</option>
-                                <option value="I1A2">I1A2</option>
-                                <option value="I1A3">I1A3</option>
-                                <option value="I1A4">I1A4</option>
-                                <option value="I1A5">I1A5</option>
-                                <option value="I1A6">I1A6</option>
-                                <option value="I1A7">I1A7</option>
-                                <option value="I1B1">I1B1</option>
-                                <option value="I1B2">I1B2</option>
-                                <option value="I1B3">I1B3</option>
-                                <option value="I1B4">I1B4</option>
-                                <option value="I1B5">I1B5</option>
-                                <option value="I1B6">I1B6</option>
-                                <option value="I1B7">I1B7</option>
-                                <option value="I1E1">I1E1</option>
-                                <option value="I1E2">I2E2</option>
-                                <option value="I2A1">I2A1</option>
-                                <option value="I2A2">I2A2</option>
-                                <option value="I2A3">I2A3</option>
-                                <option value="I2A4">I2A4</option>
-                                <option value="I2A5">I2A5</option>
-                                <option value="I2A6">I2A6</option>
-                                <option value="I2A7">I2A7</option>
-                                <option value="I2B1">I2B1</option>
-                                <option value="I2B2">I2B2</option>
-                                <option value="I2B3">I2B3</option>
-                                <option value="I2B4">I2B4</option>
-                                <option value="I2B5">I2B5</option>
-                                <option value="I2B6">I2B6</option>
-                                <option value="I2B7">I2B7</option>
-                                <option value="I2E1">I2E1</option>
-                                <option value="I2E2">I2E2</option>
-                                <option value="I3A1">I3A1</option>
-                                <option value="I3A2">I3A2</option>
-                                <option value="I3A3">I3A3</option>
-                                <option value="I3A4">I3A4</option>
-                                <option value="I3A5">I3A5</option>
-                                <option value="I3A6">I3A6</option>
-                                <option value="I3A7">I3A7</option>
-                                <option value="I3B1">I3B1</option>
-                                <option value="I3B2">I3B2</option>
-                                <option value="I3B3">I3B3</option>
-                                <option value="I3B4">I3B4</option>
-                                <option value="I3B5">I3B5</option>
-                                <option value="I3B6">I3B6</option>
-                                <option value="I3B7">I3B7</option>
-                                <option value="I3E1">I3E1</option>
-                                <option value="I3E2">I3E2</option>
-                                <option value="I2X1">I2X1</option>
-                                <option value="I2X2">I2X2</option>
-                                <option value="I1X1">I1X1</option>
-                                <option value="I1X2">I1X2</option>
-                                <option value="I1X3">I1X3</option>
-                                <option value="I1X4">I1X4</option>
-                            </select>
-                            
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Adresă Email</label>
-                            <input type="email" class="form-control" id="email" placeholder="Introduceți email-ul" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="username">Nume de utilizator</label>
-                            <input type="text" class="form-control" id="username" placeholder="Introduceți numele de utilizator" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Parolă</label>
-                            <input type="password" class="form-control" id="password" placeholder="Introduceți parola" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Confirmă Parola</label>
-                            <input type="password" class="form-control" id="password2" placeholder="Confirmați parola" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Înregistrează-te</button>
-                        <span class="m-2 color-text-secondary"> sau </span>
-                        <a href="#" class="color-primary" data-toggle="modal" data-dismiss="modal"
-                            data-target="#loginModal">Loghează-te</a>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-    $('#registerForm').submit(function(event) {
-        event.preventDefault();
-
-        if(!this.checkValidity()) {
-            return;
-        }
-
-        let auxGroup = $(this).find('#stud-group').val();
-        let studyYear = null, group = null;
-        if(auxGroup[0]=="I"){
-            studyYear = parseInt(auxGroup[1],10);
-            group = auxGroup.substring(2,3);
-        }
-        else if(auxGroup[0]=="M"){
-            studyYear = parseInt(auxGroup[3],10);
-            group = auxGroup.substring(1,2);
-        }
-
-        $.ajax({
-            url: endpoint + "register",
-            data: {
-                registrationNumber: $(this).find('#matricol').val(),
-                firstName: $(this).find('#name').val(),
-                lastName: $(this).find('#name2').val(),
-                email: $(this).find('#email').val(),
-                password: $(this).find('#password').val(),
-                username: $(this).find('#username').val(),
-                confirm_password: $(this).find('#password2').val(),
-                year: studyYear,
-                group: group
-            }
-        }).then(function (data) {
-            if(data.status === "error") {
-                alert(data.errors[0].message);
-            }
-
-            if(data.status === "ok") {
-                $('#registerModal').modal('toggle'); 
-            }
-        });
-    });
-</script>
-<div class="modal sign-modal fade" id="forgotpassModal" tabindex="-1" role="dialog" aria-labelledby="forpassModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                <div class="header">
-                    <h5 class="over-title">Mi-am uitat parola</h5>
-                    <h3 class="title">Resetează parola</h3>
-                </div>
-                <div class="content">
-                    <div class="sub-title">
-                        <h4>Introdu adresa de email și vei primi toate detaliile de resetare a parolei.</h4>
-                    </div>
-                    <form>
-                        <div class="form-group">
-
-                            <label for="email">Adresă email</label>
-                            <input type="email" class="form-control" id="email" placeholder="Introduceți email-ul">
-                        </div>
-                        <div class="form-group">
-                            <input type="submit" class="btn btn-primary btn-block btn-lg" value="Trimite">
-                        </div>
-                        <div class="form-group">
-                            <p>Ai deja cont? <a href="#loginModal" data-toggle="modal" data-dismiss="modal"
-                                    class="color-primary">Loghează-te</a></p>
-                            <p>Utilizator nou? <a href="#registerModal" data-toggle="modal" data-dismiss="modal"
-                                    class="color-primary">Înregistrează-te</a></p>
-                            <p><a href="#resetpassModal" class="color-primary" data-dismiss="modal"
-                                    data-toggle="modal">Parolă Nouă</a>
-                            </p>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal sign-modal fade" id="resetpassModal" tabindex="-1" role="dialog" aria-labelledby="resetpassModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                <div class="header">
-                    <h5 class="over-title">Resetare parolă</h5>
-                </div>
-                <div class="content">
-                    <div class="sub-title">
-                        <h4>Alege o combinație de litere, cifre și alte caractere pentru o siguranță mai mare a
-                            datelor.</h4>
-                    </div>
-                    <form>
-                        <div class="form-group">
-                            <label for="password">Parolă</label>
-                            <input type="password" class="form-control" id="password" placeholder="Introduceți parola">
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Confirmă parola</label>
-                            <input type="password" class="form-control" id="password" placeholder="Confirmați parola">
-                        </div>
-                        <div class="form-group">
-                            <input type="submit" class="btn btn-primary btn-block btn-lg" value="Schimbă parola">
-                        </div>
-
-                    </form>
-
-                </div>
-            </div>
-        </div>
+        <a href="javascript:void(0)" class="list-group-item list-group-item-action" onclick="logOut()"><i class="fas fa-sign-out-alt"></i>Deconectează-te</a>		
     </div>
 </div>
 
 <script>
     $(document).ready(function() {
-        if(sessionStorage.getItem("accessToken") == null) {
-            $('#nav-loginBtn').removeClass('d-none');
-        } else {
-            $('#nav-logoutBtn').removeClass('d-none');			
-        }
-    });
+        $.ajax({
+            url: endpoint + "identity",
+            method: 'GET',
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
+            }
+        }).then(function (result) {
+            if(result.data.type === 'student') {
+                $('.for-teacher').remove();
+                isStudent = true;
+            }
+            if(result.data.type === 'professor') {
+                $('.for-student').remove();
+                isTeacher = true;
+            }
 
-    $('#nav-logoutBtn').click(function() {
-        sessionStorage.removeItem("accessToken");
-        window.location.reload();
+            $('#userName').val(result.data.name);
+        });
     });
 </script>
+            </div>
+            <script>
+                if (localStorage.getItem("sidebarColor") !== null) {
+                    var color = localStorage.getItem("sidebarColor");
+                    var list = document.getElementsByTagName("A");
+                    for (var i = 0; i < list.length; i++) {
+                        if (list[i].className.indexOf('ch') > 0)
+                            list[i].style.backgroundColor = color;
+                    }
+                    document.getElementsByClassName("sidebarJS")[0].style.backgroundColor = color;
+                }
+                if (localStorage.getItem("sidebarColorText") !== null) {
+                var color = localStorage.getItem("sidebarColorText");
+                var list = document.getElementsByTagName("A");
+                for (var i = 0; i < list.length; i++) {
+                    if (list[i].className.indexOf('ch') > 0)
+                        list[i].style.color = color;
+                }
+            }
 
-    <script>
+            </script>
+            <div class="col-10">
+                <div class="row no-gutters bg">
+                    <div class="col-12">
+                        <script>
 
     document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('header-title').innerText = title;
@@ -397,49 +153,59 @@
 
 </script>
 
-<div class="container-fluid page-header h-50 d-flex background-light-grey">
+<div class="container-fluid page-header">
     <h2 class="title" id="header-title"></h2>
     <h4 class="subtitle" id="header-subtitle"></h4>
 </div>
-
-    <div class="container-fluid min-vw-100">
-        <br>
-        <br>
-        <br>
-        <br>
-        <h3 class="text-center mt-3 pt-3"> Listă materii/Informatii</h3>
-        <div class="row">
-            <div class="col-4">
-                <div class="list-group" id="list-tab" role="tablist">
-                    <a class="list-group-item list-group-item-action active" id="list-an1-list" data-toggle="list"
-                        href="#list-an1" role="tab" aria-controls="an1">Anul I</a>
-                </div>
-            </div>
-            <div class="col-8">
-                <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="list-an1" role="tabpanel"
-                        aria-labelledby="list-an1-list">
-                        <ul class="list-group" id="ul-list-an1">
-                        </ul>
+                        <script>
+                            if (localStorage.getItem("headerColor") !== null) {
+                                var color = localStorage.getItem("headerColor");
+                                var header = document.getElementsByClassName("page-header")[0];
+                                header.style.backgroundColor = color;
+                            }
+                            if (localStorage.getItem("headerColorText") !== null) {
+                                var color = localStorage.getItem("headerColorText");
+                                var header = document.getElementsByClassName("page-header")[0];
+                                header.style.color = color;
+                                document.querySelector(".page-header .subtitle").style.color = color;
+                                localStorage.setItem("headerColorText", color);
+                            }
+                        </script>
                     </div>
-                    
-                    <div class="tab-pane fade" id="list-an2" role="tabpanel" aria-labelledby="list-an2-list">
-                        <ul class="list-group" id="ul-list-an2">
-                        </ul>
+                    <div class="w-100"></div>
+                    <div class="col-4 mt-2">
+                        <div class="list-group" id="list-tab" role="tablist">
+                            <a class="list-group-item list-group-item-action active" id="list-an1-list"
+                                data-toggle="list" href="#list-an1" role="tab" aria-controls="an1">Anul I</a>
+                        </div>
                     </div>
-                    <div class="tab-pane fade" id="list-an3" role="tabpanel" aria-labelledby="list-an3-list">
-                            <ul class="list-group" id="ul-list-an3">
-                            </ul>
+                    <div class="col-8 mt-2">
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="list-an1" role="tabpanel"
+                                aria-labelledby="list-an1-list">
+                                <ul class="list-group" id="ul-list-an1">
+                                </ul>
+                            </div>
+                            <div class="tab-pane fade" id="list-an2" role="tabpanel" aria-labelledby="list-an2-list">
+                                <ul class="list-group" id="ul-list-an2">
+                                </ul>
+                            </div>
+                            <div class="tab-pane fade" id="list-an3" role="tabpanel" aria-labelledby="list-an3-list">
+                                <ul class="list-group" id="ul-list-an3">
+                                </ul>
+                            </div>
+                            <div class="tab-pane fade" id="list-master1" role="tabpanel"
+                                aria-labelledby="list-master1-list">
+                                <ul class="list-group" id="ul-list-master1">
+                                </ul>
+                            </div>
+                            <div class="tab-pane fade" id="list-master2" role="tabpanel"
+                                aria-labelledby="list-master2-list">
+                                <ul class="list-group" id="ul-list-master2">
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <div class="tab-pane fade" id="list-master1" role="tabpanel" aria-labelledby="list-master1-list">
-                            <ul class="list-group" id="ul-list-master1">
-                            </ul>
-                    </div>
-                    <div class="tab-pane fade" id="list-master2" role="tabpanel" aria-labelledby="list-master2-list">
-                            <ul class="list-group" id="ul-list-master2">
-                            </ul>
-                    </div>
-
                 </div>
             </div>
         </div>
@@ -526,7 +292,6 @@
         </div>
     </div>
 </div>
-
     <script>
 
         var doc;
@@ -553,65 +318,58 @@
                 master2 = doc[4]['subjects'];
 
                 $.each(anul1, function (index, val) {
-                    
-                    $("<a class=\"list-group-item list-group-item-action \" id=\"list-an1-" + index + "-list\" data-toggle=\"list\" href=\"#list-an1-" + index + "\" role=\"tab\" aria-controls=\"an1-" + index + "\">" + val['name'] + "</a>").appendTo("#list-tab");
-                    
-                    $("<li class=\"list-group-item d-flex justify-content-between align-items-center\">" + val['name'] + "</li>").appendTo("#ul-list-an1");
-                    
-                    $("<div class=\"tab-pane fade\" id=\"list-an1-" + index + "\" role=\"tabpanel\" aria-labelledby=\"list-an1-" + index + "-list\"> <div class=\"embed-responsive embed-responsive-21by9\"><iframe class=\"embed-responsive-item\" src=\"" + val['fisa'] + "\"></iframe></div></div>").appendTo("#nav-tabContent");
+
+                    $("<a class=\"list-group-item list-group-item-action\" data-target=\"#list-an1-" + index + "-list\" data-toggle=\"collapse\" href=\"#list-an1-" + index + "-list\" role=\"button\" aria-expanded=\"false\" aria-controls=\" list-an1-" + index + "-list\" >" + val['name'] + "</a>").appendTo("#ul-list-an1");
+                    $("#ul-list-an1").append("<div class=\"collapse\" id=\"list-an1-" + index + "-list\"> </div>");
+                    $(".collapse#list-an1-" + index + "-list").append("<div class=\"embed-responsive embed-responsive-21by9\"><iframe class=\"embed-responsive-item\" src=\"" + val['fisa'] + "\"></iframe></div>");
+
                 });
 
                 $("<a class=\"list-group-item list-group-item-action \" id=\"list-an2-list\" data-toggle=\"list\" href=\"#list-an2\" role=\"tab\" aria-controls=\"an2\">Anul II</a>").appendTo("#list-tab");
 
                 $.each(anul2, function (index, val) {
-                    
-                    $("<a class=\"list-group-item list-group-item-action \" id=\"list-an2-" + index + "-list\" data-toggle=\"list\" href=\"#list-an2-" + index + "\" role=\"tab\" aria-controls=\"an2-" + index + "\">" + val['name'] + "</a>").appendTo("#list-tab");
-                    
-                    $("<li class=\"list-group-item d-flex justify-content-between align-items-center\">" + val['name'] + "</li>").appendTo("#ul-list-an2");
-                
-                    $("<div class=\"tab-pane fade\" id=\"list-an2-" + index + "\" role=\"tabpanel\" aria-labelledby=\"list-an2-" + index + "-list\"> <div class=\"embed-responsive embed-responsive-21by9\"><iframe class=\"embed-responsive-item\" src=\"" + val['fisa'] + "\"></iframe></div></div>").appendTo("#nav-tabContent");
-                
+                    $("<a class=\"list-group-item list-group-item-action\" data-target=\"#list-an2-" + index + "-list\" data-toggle=\"collapse\" href=\"#list-an2-" + index + "-list\" role=\"button\" aria-expanded=\"false\" aria-controls=\" list-an2-" + index + "-list\" >" + val['name'] + "</a>").appendTo("#ul-list-an2");
+                    $("#ul-list-an2").append("<div class=\"collapse\" id=\"list-an2-" + index + "-list\"> </div>");
+                    $(".collapse#list-an2-" + index + "-list").append("<div class=\"embed-responsive embed-responsive-21by9\"><iframe class=\"embed-responsive-item\" src=\"" + val['fisa'] + "\"></iframe></div>");
                 });
 
                 $("<a class=\"list-group-item list-group-item-action \" id=\"list-an3-list\" data-toggle=\"list\" href=\"#list-an3\" role=\"tab\" aria-controls=\"an3\">Anul III</a>").appendTo("#list-tab");
 
                 $.each(anul3, function (index, val) {
-                    
-                    $("<a class=\"list-group-item list-group-item-action \" id=\"list-an3-" + index + "-list\" data-toggle=\"list\" href=\"#list-an3-" + index + "\" role=\"tab\" aria-controls=\"an3-" + index + "\">" + val['name'] + "</a>").appendTo("#list-tab");
-                    
-                    $("<li class=\"list-group-item d-flex justify-content-between align-items-center\">" + val['name'] + "</li>").appendTo("#ul-list-an3");
-                
-                    $("<div class=\"tab-pane fade\" id=\"list-an3-" + index + "\" role=\"tabpanel\" aria-labelledby=\"list-an3-" + index + "-list\"> <div class=\"embed-responsive embed-responsive-21by9\"><iframe class=\"embed-responsive-item\" src=\"" + val['fisa'] + "\"></iframe></div></div>").appendTo("#nav-tabContent");
-                
+                    $("<a class=\"list-group-item list-group-item-action\" data-target=\"#list-an3-" + index + "-list\" data-toggle=\"collapse\" href=\"#list-an3-" + index + "-list\" role=\"button\" aria-expanded=\"false\" aria-controls=\" list-an3-" + index + "-list\" >" + val['name'] + "</a>").appendTo("#ul-list-an3");
+                    $("#ul-list-an3").append("<div class=\"collapse\" id=\"list-an3-" + index + "-list\"> </div>");
+                    $(".collapse#list-an3-" + index + "-list").append("<div class=\"embed-responsive embed-responsive-21by9\"><iframe class=\"embed-responsive-item\" src=\"" + val['fisa'] + "\"></iframe></div>");
                 });
 
                 $("<a class=\"list-group-item list-group-item-action \" id=\"list-master1-list\" data-toggle=\"list\" href=\"#list-master1\" role=\"tab\" aria-controls=\"master1\">Master I</a>").appendTo("#list-tab");
 
-                
                 $.each(master1, function (index, val) {
-                    
-                    $("<a class=\"list-group-item list-group-item-action \" id=\"list-master1-" + index + "-list\" data-toggle=\"list\" href=\"#list-master1-" + index + "\" role=\"tab\" aria-controls=\"master1-" + index + "\">" + val['name'] + "</a>").appendTo("#list-tab");
-                    
-                    $("<li class=\"list-group-item d-flex justify-content-between align-items-center\">" + val['name'] + "</li>").appendTo("#ul-list-master1");
-                
-                    $("<div class=\"tab-pane fade\" id=\"list-master1-" + index + "\" role=\"tabpanel\" aria-labelledby=\"list-master1-" + index + "-list\"> <div class=\"embed-responsive embed-responsive-21by9\"><iframe class=\"embed-responsive-item\" src=\"" + val['fisa'] + "\"></iframe></div></div>").appendTo("#nav-tabContent");
-                
+                    $("<a class=\"list-group-item list-group-item-action\" data-target=\"#list-master1-" + index + "-list\" data-toggle=\"collapse\" href=\"#list-master1-" + index + "-list\" role=\"button\" aria-expanded=\"false\" aria-controls=\" list-master1-" + index + "-list\" >" + val['name'] + "</a>").appendTo("#ul-list-master1");
+                    $("#ul-list-master1").append("<div class=\"collapse\" id=\"list-master1-" + index + "-list\"> </div>");
+                    $(".collapse#list-master1-" + index + "-list").append("<div class=\"embed-responsive embed-responsive-21by9\"><iframe class=\"embed-responsive-item\" src=\"" + val['fisa'] + "\"></iframe></div>");
                 });
 
                 $("<a class=\"list-group-item list-group-item-action \" id=\"list-master2-list\" data-toggle=\"list\" href=\"#list-master2\" role=\"tab\" aria-controls=\"master2\">Master II</a>").appendTo("#list-tab");
 
                 $.each(master2, function (index, val) {
-                    
-                    $("<a class=\"list-group-item list-group-item-action \" id=\"list-master2-" + index + "-list\" data-toggle=\"list\" href=\"#list-master2-" + index + "\" role=\"tab\" aria-controls=\"master2-" + index + "\">" + val['name'] + "</a>").appendTo("#list-tab");
-                    
-                    $("<li class=\"list-group-item d-flex justify-content-between align-items-center\">" + val['name'] + "</li>").appendTo("#ul-list-master2");
-                
-                    $("<div class=\"tab-pane fade\" id=\"list-master2-" + index + "\" role=\"tabpanel\" aria-labelledby=\"list-master2-" + index + "-list\"> <div class=\"embed-responsive embed-responsive-21by9\"><iframe class=\"embed-responsive-item\" src=\"" + val['fisa'] + "\"></iframe></div></div>").appendTo("#nav-tabContent");
-                
+                    $("<a class=\"list-group-item list-group-item-action\" data-target=\"#list-master2-" + index + "-list\" data-toggle=\"collapse\" href=\"#list-master2-" + index + "-list\" role=\"button\" aria-expanded=\"false\" aria-controls=\" list-master2-" + index + "-list\" >" + val['name'] + "</a>").appendTo("#ul-list-master2");
+                    $("#ul-list-master2").append("<div class=\"collapse\" id=\"list-master2-" + index + "-list\"> </div>");
+                    $(".collapse#list-master2-" + index + "-list").append("<div class=\"embed-responsive embed-responsive-21by9\"><iframe class=\"embed-responsive-item\" src=\"" + val['fisa'] + "\"></iframe></div>");
                 });
             });
         });
     </script>
-<script type="text/javascript" src="main.53c85edf66d4ec8b0432.js"></script></body>
+    <script>
+        if (localStorage.getItem("backgroundColor") !== null) {
+            var color = localStorage.getItem("backgroundColor");
+            document.getElementsByClassName("bg")[0].style.backgroundColor=color;
+        }
+        if (localStorage.getItem("fontSize") !== null) {
+            var size = localStorage.getItem("fontSize");
+            var body = document.getElementsByTagName("body")[0];
+            body.style.fontSize = size + "px";
+        }
+    </script>
+<script type="text/javascript" src="main.b316e1b4c083978f07a5.js"></script></body>
 
 </html>
