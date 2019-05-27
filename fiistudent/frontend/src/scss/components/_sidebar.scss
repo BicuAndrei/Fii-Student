@@ -1,3 +1,5 @@
+
+
 #sidebar-wrapper {
     min-height: 100vh;
     margin-left: -15rem;
@@ -75,4 +77,8 @@
     #wrapper.toggled #sidebar-wrapper {
         margin-left: -15rem;
     }
+}
+
+.item-secondary {
+	color: #bdbdbd !important;
 }
