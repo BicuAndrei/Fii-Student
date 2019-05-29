@@ -32,14 +32,14 @@ def get_announs(request):
         data = {'sender': ann.sender, 'subject':ann.subject,'text':ann.text, 'category':ann.category}
         data_list.append(data)
 
-    json_data = json.dumps(data_list)
-    return json_data
+
+    return data_list
 
 
 @hug.local()
 @hug.put()
 @hug.cli()
-def add_new_announcement(request, group: hug.types.text, text: hug.types.text, category: hug.types.text):
+def add_new_announcement(request, subject:hug.types.text, group: hug.types.text, text: hug.types.text, category: hug.types.text):
     """Add new announcement"""
     authorization = request.get_header('Authorization')
     if not authorization:
@@ -58,8 +58,11 @@ def add_new_announcement(request, group: hug.types.text, text: hug.types.text, c
     announcement = Announcement(
         sender=professor.key,
         receiver=group,
+        subject=subject,
         text=text,
         category=category
     )
 
     announcement.put()
+
+    return {"status" :"ok"}

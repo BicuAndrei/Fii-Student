@@ -53,7 +53,7 @@ def change_password(request, old_password: hug.types.text, new_password: hug.typ
                     {'for': 'confirm_password', 'message': "The new password and the confirm password don't match."}]}
 
     student.password = hash_password(new_password)
-    print("The new password for the student " + student.key + " is " + hash_password(new_password))
+    print("The new password for the student " + str(student.urlsafe) + " is " + hash_password(new_password))
     Student.put(student)
     print("The modification is done!")
 

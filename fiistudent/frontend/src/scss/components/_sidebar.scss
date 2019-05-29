@@ -1,5 +1,4 @@
-body {
-}
+
 
 #sidebar-wrapper {
     min-height: 100vh;
@@ -43,8 +42,6 @@ body {
 	padding: 20px;
 
 	.profile-picture {
-		border-radius: 50%;
-		width: 100px;
 		height: 100px;
 	}
 
@@ -80,4 +77,8 @@ body {
     #wrapper.toggled #sidebar-wrapper {
         margin-left: -15rem;
     }
+}
+
+.item-secondary {
+	color: #bdbdbd !important;
 }
