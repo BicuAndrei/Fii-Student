@@ -12,13 +12,14 @@
 		const subtitle = 'Selecteaza tipul de notificari pe care ai vrea sa le primesti';
 		const shouldBeLoggedIn = true;
 	</script>
+	<script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
 	<style>
 		.switch {
 			position: relative;
 			display: inline-block;
 			width: 60px;
 			height: 34px;
-			float: right;
+			float:right;
 			margin-left: 20px;
 			margin-top: -5.2px;
 		}
@@ -94,28 +95,28 @@
 							<ul class="list-group list-group-flush">
 								<li class="list-group-item" style="padding-bottom:3px;">Examene de licenta
 									<label class="switch ">
-										<input type="checkbox" class="primary">
+										<input type="checkbox" class="primary" id="licenta">
 										<span class="slider round"></span>
 									</label>
 								</li>
 								<li class="list-group-item" style="padding-bottom:3px;padding-top: 14px"> Examene de
 									disertatie
 									<label class="switch ">
-										<input type="checkbox" class="primary">
+										<input type="checkbox" class="primary" id="disertatie">
 										<span class="slider round"></span>
 									</label>
 								</li>
 								<li class="list-group-item" style="padding-bottom:3px;padding-top: 14px"> Modificari
 									orare
 									<label class="switch ">
-										<input type="checkbox" class="primary">
+										<input type="checkbox" class="primary" id="modificari">
 										<span class="slider round"></span>
 									</label>
 								</li>
 								<li class="list-group-item" style="padding-bottom:3px;padding-top: 14px">Mesaje
 									profesori
 									<label class="switch ">
-										<input type="checkbox" class="primary">
+										<input type="checkbox" class="primary" id="messages">
 										<span class="slider round"></span>
 									</label>
 								</li>
@@ -127,28 +128,28 @@
 							<ul class="list-group list-group-flush">
 								<li class="list-group-item" style="padding-bottom:3px;">Burse
 									<label class="switch ">
-										<input type="checkbox" class="primary">
+										<input type="checkbox" class="primary" id="burse">
 										<span class="slider round"></span>
 									</label>
 								</li>
 								<li class="list-group-item" style="padding-bottom:3px; padding-top: 14px">Admitere
 									master
 									<label class="switch ">
-										<input type="checkbox" class="primary">
+										<input type="checkbox" class="primary" id="master">
 										<span class="slider round"></span>
 									</label>
 								</li>
 								<li class="list-group-item" style="padding-bottom:3px; padding-top: 14px">Admitere
 									doctorat
 									<label class="switch ">
-										<input type="checkbox" class="primary">
+										<input type="checkbox" class="primary" id="doctorat">
 										<span class="slider round"></span>
 									</label>
 								</li>
 								<li class="list-group-item" style="padding-bottom:3px;padding-top: 14px">Admitere
 									licenta
 									<label class="switch ">
-										<input type="checkbox" class="primary">
+										<input type="checkbox" class="primary" id="admlicenta">
 										<span class="slider round"></span>
 									</label>
 								</li>
@@ -157,12 +158,18 @@
 					</div>
 				</div>
 				<div class="row " style="justify-content: space-evenly">
-					<button type="button" class="btn btn-primary ">Salveaza</button>
+					<button type="submit" class="btn btn-primary " id="save">Salveaza</button>
+					<button type="submit" class="btn btn-primary "  id="load">Load</button>
 				</div>
 			</div>
 		</div>
 	</div>
 	</div>
+	
+	<script>
+		
+	</script>
+	</script>
 </body>
 
 </html>
