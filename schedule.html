@@ -12,8 +12,6 @@
 
 <script>
     const endpoint = "https://develop-dot-fii-student.appspot.com/";
-    const isTeacher = false;
-    const isStudent = false;
 </script>
 
 <script>
@@ -69,39 +67,57 @@
 <body>
 
     <div class="d-flex" id="wrapper">
-        <div class="border-right" id="sidebar-wrapper">
+        <div class="d-flex justify-content-center" id="loader">
+    <div class="spinner-border text-light" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+
+<div class="border-right" id="sidebar-wrapper">
     <div class="sidebar-heading">
-        <img src="src/assets/img/navedit4.png" class="profile-picture" alt="profile-pic" />
-        <p class="name" id="userName">Ursaciuc Adrian</p>
+        <img src="src/assets/img/logo.png" class="profile-picture" alt="profile-pic" />
+        <p class="name" id="userName"></p>
     </div>
     <div class="list-group list-group-flush">
-        <a href="dashboard.html" class="list-group-item list-group-item-action ch for-student"><i class="fas fa-columns"></i>Panou principal</a>
-        <a href="#ads_category" class="list-group-item list-group-item-action dropdown-toggle ch for-student" data-toggle="collapse" aria-expanded="false"><i class="fas fa-rss"></i>Anunțuri</a>
+        <a href="dashboard.html" class="list-group-item list-group-item-action ch for-student"><i
+                class="fas fa-columns"></i>Panou principal</a>
+        <a href="#ads_category" class="list-group-item list-group-item-action dropdown-toggle ch for-student"
+            data-toggle="collapse" aria-expanded="false"><i class="fas fa-rss"></i>Anunțuri</a>
         <ul class="collapse list-unstyled pl-3" id="ads_category">
             <li>
                 <a href="anounces.html" class="list-group-item list-group-item-action item-secondary ch">Examene</a>
             </li>
             <li>
-                <a href="general-info.html" class="list-group-item list-group-item-action item-secondary ch">Informatii Generale</a>
+                <a href="general-info.html" class="list-group-item list-group-item-action item-secondary ch">Informatii
+                    Generale</a>
             </li>
         </ul>
 
 
-        <a href="free-rooms.html" class="list-group-item list-group-item-action"><i class="fas fa-door-closed"></i>Săli libere</a>
-        <a href="schedule.html" class="list-group-item list-group-item-action for-student"><i class="fas fa-calendar"></i>Orar</a>
+        <a href="free-rooms.html" class="list-group-item list-group-item-action"><i class="fas fa-door-closed"></i>Săli
+            libere</a>
+        <a href="schedule.html" class="list-group-item list-group-item-action for-student"><i
+                class="fas fa-calendar"></i>Orar</a>
+        <a href="customschedule.html" class="list-group-item list-group-item-action for-student"><i
+                class=" fas fa-calendar"></i>Orar personalizat</a>
         <a href="subjects.html" class="list-group-item list-group-item-action"><i class="fas fa-book"></i>Materii</a>
-        <a href="teachers.html" class="list-group-item list-group-item-action"><i class="fas fa-user-graduate"></i>Profesori</a>
-        <a href="notifications.html" class="list-group-item list-group-item-action for-student"><i class="fas fa-bell"></i>Notificari</a>
-        <a href="customschedule.html" class="list-group-item list-group-item-action for-student"><i class=" fas fa-calendar"></i>Orar personalizat</a>
-        <a href="feedback.html" class="list-group-item list-group-item-action for-teacher"><i class="fas fa-bell"></i>Feedback</a>
-        <a href="sendAnnounces.html" class="list-group-item list-group-item-action for-teacher"><i class="fas fa-bell"></i>Trimite anunt</a>
-        <a href="javascript:void(0)" class="list-group-item list-group-item-action" onclick="logOut()"><i class="fas fa-sign-out-alt"></i>Deconectează-te</a>
+        <a href="teachers.html" class="list-group-item list-group-item-action"><i
+                class="fas fa-user-graduate"></i>Profesori</a>
+        <a href="notifications.html" class="list-group-item list-group-item-action for-student"><i
+                class="fas fa-bell"></i>Notificari</a>
+
+        <a href="feedback.html" class="list-group-item list-group-item-action for-teacher"><i
+                class="fas fa-bell"></i>Feedback</a>
+        <a href="sendAnnounces.html" class="list-group-item list-group-item-action for-teacher"><i
+                class="fas fa-bell"></i>Trimite anunt</a>
+        <a href="javascript:void(0)" class="list-group-item list-group-item-action" onclick="logOut()"><i
+                class="fas fa-sign-out-alt"></i>Deconectează-te</a>
 
     </div>
 </div>
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         $.ajax({
             url: endpoint + "identity",
             method: 'GET',
@@ -109,16 +125,16 @@
                 xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
             }
         }).then(function (result) {
-            if(result.data.type === 'student') {
+            if (result.data.type === 'student') {
                 $('.for-teacher').remove();
-                isStudent = true;
             }
-            if(result.data.type === 'professor') {
+            if (result.data.type === 'professor') {
                 $('.for-student').remove();
-                isTeacher = true;
             }
 
-            $('#userName').val(result.data.name);
+            $('#userName').text(result.data.name);
+
+            $('#loader').remove();
         });
     });
 </script>
@@ -611,5 +627,5 @@
             })
         })
     </script>
-  <script type="text/javascript" src="main.aba0b23d1cfdda03dac8.js"></script></body>
+  <script type="text/javascript" src="main.e571cf454320c484807b.js"></script></body>
 </html>

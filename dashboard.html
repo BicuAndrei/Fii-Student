@@ -12,8 +12,6 @@
 
 <script>
     const endpoint = "https://develop-dot-fii-student.appspot.com/";
-    const isTeacher = false;
-    const isStudent = false;
 </script>
 
 <script>
@@ -49,44 +47,62 @@
         const subtitle = 'Detalii despre contul tău';
         const shouldBeLoggedIn = true;
     </script>
-
+    
 </head>
 
 <body>
     <div class="d-flex" id="wrapper">
-        <div class="border-right" id="sidebar-wrapper">
+        <div class="d-flex justify-content-center" id="loader">
+    <div class="spinner-border text-light" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+
+<div class="border-right" id="sidebar-wrapper">
     <div class="sidebar-heading">
-        <img src="src/assets/img/navedit4.png" class="profile-picture" alt="profile-pic" />
-        <p class="name" id="userName">Ursaciuc Adrian</p>
+        <img src="src/assets/img/logo.png" class="profile-picture" alt="profile-pic" />
+        <p class="name" id="userName"></p>
     </div>
     <div class="list-group list-group-flush">
-        <a href="dashboard.html" class="list-group-item list-group-item-action ch for-student"><i class="fas fa-columns"></i>Panou principal</a>
-        <a href="#ads_category" class="list-group-item list-group-item-action dropdown-toggle ch for-student" data-toggle="collapse" aria-expanded="false"><i class="fas fa-rss"></i>Anunțuri</a>
+        <a href="dashboard.html" class="list-group-item list-group-item-action ch for-student"><i
+                class="fas fa-columns"></i>Panou principal</a>
+        <a href="#ads_category" class="list-group-item list-group-item-action dropdown-toggle ch for-student"
+            data-toggle="collapse" aria-expanded="false"><i class="fas fa-rss"></i>Anunțuri</a>
         <ul class="collapse list-unstyled pl-3" id="ads_category">
             <li>
                 <a href="anounces.html" class="list-group-item list-group-item-action item-secondary ch">Examene</a>
             </li>
             <li>
-                <a href="general-info.html" class="list-group-item list-group-item-action item-secondary ch">Informatii Generale</a>
+                <a href="general-info.html" class="list-group-item list-group-item-action item-secondary ch">Informatii
+                    Generale</a>
             </li>
         </ul>
 
 
-        <a href="free-rooms.html" class="list-group-item list-group-item-action"><i class="fas fa-door-closed"></i>Săli libere</a>
-        <a href="schedule.html" class="list-group-item list-group-item-action for-student"><i class="fas fa-calendar"></i>Orar</a>
+        <a href="free-rooms.html" class="list-group-item list-group-item-action"><i class="fas fa-door-closed"></i>Săli
+            libere</a>
+        <a href="schedule.html" class="list-group-item list-group-item-action for-student"><i
+                class="fas fa-calendar"></i>Orar</a>
+        <a href="customschedule.html" class="list-group-item list-group-item-action for-student"><i
+                class=" fas fa-calendar"></i>Orar personalizat</a>
         <a href="subjects.html" class="list-group-item list-group-item-action"><i class="fas fa-book"></i>Materii</a>
-        <a href="teachers.html" class="list-group-item list-group-item-action"><i class="fas fa-user-graduate"></i>Profesori</a>
-        <a href="notifications.html" class="list-group-item list-group-item-action for-student"><i class="fas fa-bell"></i>Notificari</a>
-        <a href="customschedule.html" class="list-group-item list-group-item-action for-student"><i class=" fas fa-calendar"></i>Orar personalizat</a>
-        <a href="feedback.html" class="list-group-item list-group-item-action for-teacher"><i class="fas fa-bell"></i>Feedback</a>
-        <a href="sendAnnounces.html" class="list-group-item list-group-item-action for-teacher"><i class="fas fa-bell"></i>Trimite anunt</a>
-        <a href="javascript:void(0)" class="list-group-item list-group-item-action" onclick="logOut()"><i class="fas fa-sign-out-alt"></i>Deconectează-te</a>
+        <a href="teachers.html" class="list-group-item list-group-item-action"><i
+                class="fas fa-user-graduate"></i>Profesori</a>
+        <a href="notifications.html" class="list-group-item list-group-item-action for-student"><i
+                class="fas fa-bell"></i>Notificari</a>
+
+        <a href="feedback.html" class="list-group-item list-group-item-action for-teacher"><i
+                class="fas fa-bell"></i>Feedback</a>
+        <a href="sendAnnounces.html" class="list-group-item list-group-item-action for-teacher"><i
+                class="fas fa-bell"></i>Trimite anunt</a>
+        <a href="javascript:void(0)" class="list-group-item list-group-item-action" onclick="logOut()"><i
+                class="fas fa-sign-out-alt"></i>Deconectează-te</a>
 
     </div>
 </div>
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         $.ajax({
             url: endpoint + "identity",
             method: 'GET',
@@ -94,16 +110,16 @@
                 xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
             }
         }).then(function (result) {
-            if(result.data.type === 'student') {
+            if (result.data.type === 'student') {
                 $('.for-teacher').remove();
-                isStudent = true;
             }
-            if(result.data.type === 'professor') {
+            if (result.data.type === 'professor') {
                 $('.for-student').remove();
-                isTeacher = true;
             }
 
-            $('#userName').val(result.data.name);
+            $('#userName').text(result.data.name);
+
+            $('#loader').remove();
         });
     });
 </script>
@@ -170,51 +186,59 @@
                         </form>
                     </div>
                 </div>
-                <div class="ml-5 mt-3 mb-5 border w-75 p-3" style="background: #ffffff">
-                    <h2>Personalizeaza interfata asa cum vrea sufletelul tau</h2>
+                <div class="ml-5 mt-3 mb-5 border w-75 p-3 picker" style="background: #ffffff">
+                    <h2>Personalizeaza interfata</h2>
                     <br>
                     <form>
-                        Selecteaza culoarea pentru sidebar: <input type="color" name="favcolor" id="sidebarColor"
-                            value="#ff0000"><br><br>
-                        <input type="submit" value="Fa schimbarea" name="sidebarButton" id="sidebarChangeColor">
+                        Selecteaza culoarea pentru sidebar: 
+                        <input type="color" name="favcolor" id="sidebarColor"
+                            value="#ff0000"><br>
+                        <input type="submit" class="btn btn-primary" value="Schimba" name="sidebarButton" id="sidebarChangeColor">
                     </form>
                     <form>
 
                         Selecteaza culoarea pentru sidebar text: <input type="color" name="favcolor"
-                            id="sidebarColorText" value="#ff0000"><br><br>
-                        <input type="submit" value="Fa schimbarea" name="sidebarButtonText" id="sidebarChangeColorText">
+                            id="sidebarColorText" value="#ff0000"><br>
+                        <input type="submit" class="btn btn-primary" value="Schimba" name="sidebarButtonText" id="sidebarChangeColorText">
                     </form>
                     <hr>
                     <form>
                         Selecteaza culoarea pentru header: <input type="color" name="favcolor" id="headerColor"
-                            value="#ff0000"><br><br>
-                        <input type="submit" value="Fa schimbarea" name="headerButton" id="headerChangeColor">
+                            value="#ff0000"><br>
+                        <input type="submit" class="btn btn-primary" value="Schimba" name="headerButton" id="headerChangeColor">
                     </form>
                     <form>
                         Selecteaza culoarea pentru header text: <input type="color" name="favcolor" id="headerColorText"
-                            value="#ff0000"><br><br>
-                        <input type="submit" value="Fa schimbarea" name="headerButtonText" id="headerChangeColorText">
+                            value="#ff0000"><br>
+                        <input type="submit" class="btn btn-primary" value="Schimba" name="headerButtonText" id="headerChangeColorText">
                     </form>
                     <hr>
                     <form>
 
                         Schimba culoarea background-ului principal: <input type="color" name="favcolor"
-                            id="backgroundColor" value="#ff0000"><br><br>
-                        <input type="submit" value="Fa schimbarea" name="backgroundButton" id="backgroundButton">
+                            id="backgroundColor" value="#ff0000" class="color-picker"><br>
+                        <input type="submit" class="btn btn-primary" value="Schimba" name="backgroundButton" id="backgroundButton">
                     </form>
                     <hr>
                     <form>
-                        <input type="number" id="fontSize">
-                        <input type="submit" value="Fa schimbarea" name="sizeButton" id="sizeButton">
+                            Schimba marimea fontului:
+                        <input type="number" class="form-control" id="fontSize">
+                        <input type="submit" class="btn btn-primary" value="Schimba" name="sizeButton" id="sizeButton">
                     </form>
                     <hr>
                     <form>
-                        <input type="submit" value="Reseteaza totul" name="resetButton" id="resetButton">
+                        <input type="submit" class="btn btn-primary" value="Reseteaza" name="resetButton" id="resetButton">
                     </form>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            $('.color-picker').colorpicker();
+        })
+    </script>
     <script>
         if (localStorage.getItem("sidebarColor") !== null) {
             var color = localStorage.getItem("sidebarColor");
@@ -424,6 +448,6 @@
     });
 </script>
 
-<script type="text/javascript" src="main.aba0b23d1cfdda03dac8.js"></script></body>
+<script type="text/javascript" src="main.e571cf454320c484807b.js"></script></body>
 
 </html>

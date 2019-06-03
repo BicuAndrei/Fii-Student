@@ -12,8 +12,6 @@
 
 <script>
     const endpoint = "https://develop-dot-fii-student.appspot.com/";
-    const isTeacher = false;
-    const isStudent = false;
 </script>
 
 <script>
@@ -43,50 +41,73 @@
 </script>
 
     <title>FII Student - Panou principal</title>
-
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
     <script>
         const title = 'Orar personalizat';
         const subtitle = 'Ce vei face astazi ?';
         const shouldBeLoggedIn = true;
     </script>
-
+    <style>
+        td {
+            width: 15%;
+        }
+    </style>
 </head>
 
 <body>
     <div class="d-flex" id="wrapper">
-        <div class="border-right" id="sidebar-wrapper">
+        <div class="d-flex justify-content-center" id="loader">
+    <div class="spinner-border text-light" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+
+<div class="border-right" id="sidebar-wrapper">
     <div class="sidebar-heading">
-        <img src="src/assets/img/navedit4.png" class="profile-picture" alt="profile-pic" />
-        <p class="name" id="userName">Ursaciuc Adrian</p>
+        <img src="src/assets/img/logo.png" class="profile-picture" alt="profile-pic" />
+        <p class="name" id="userName"></p>
     </div>
     <div class="list-group list-group-flush">
-        <a href="dashboard.html" class="list-group-item list-group-item-action ch for-student"><i class="fas fa-columns"></i>Panou principal</a>
-        <a href="#ads_category" class="list-group-item list-group-item-action dropdown-toggle ch for-student" data-toggle="collapse" aria-expanded="false"><i class="fas fa-rss"></i>Anunțuri</a>
+        <a href="dashboard.html" class="list-group-item list-group-item-action ch for-student"><i
+                class="fas fa-columns"></i>Panou principal</a>
+        <a href="#ads_category" class="list-group-item list-group-item-action dropdown-toggle ch for-student"
+            data-toggle="collapse" aria-expanded="false"><i class="fas fa-rss"></i>Anunțuri</a>
         <ul class="collapse list-unstyled pl-3" id="ads_category">
             <li>
                 <a href="anounces.html" class="list-group-item list-group-item-action item-secondary ch">Examene</a>
             </li>
             <li>
-                <a href="general-info.html" class="list-group-item list-group-item-action item-secondary ch">Informatii Generale</a>
+                <a href="general-info.html" class="list-group-item list-group-item-action item-secondary ch">Informatii
+                    Generale</a>
             </li>
         </ul>
 
 
-        <a href="free-rooms.html" class="list-group-item list-group-item-action"><i class="fas fa-door-closed"></i>Săli libere</a>
-        <a href="schedule.html" class="list-group-item list-group-item-action for-student"><i class="fas fa-calendar"></i>Orar</a>
+        <a href="free-rooms.html" class="list-group-item list-group-item-action"><i class="fas fa-door-closed"></i>Săli
+            libere</a>
+        <a href="schedule.html" class="list-group-item list-group-item-action for-student"><i
+                class="fas fa-calendar"></i>Orar</a>
+        <a href="customschedule.html" class="list-group-item list-group-item-action for-student"><i
+                class=" fas fa-calendar"></i>Orar personalizat</a>
         <a href="subjects.html" class="list-group-item list-group-item-action"><i class="fas fa-book"></i>Materii</a>
-        <a href="teachers.html" class="list-group-item list-group-item-action"><i class="fas fa-user-graduate"></i>Profesori</a>
-        <a href="notifications.html" class="list-group-item list-group-item-action for-student"><i class="fas fa-bell"></i>Notificari</a>
-        <a href="customschedule.html" class="list-group-item list-group-item-action for-student"><i class=" fas fa-calendar"></i>Orar personalizat</a>
-        <a href="feedback.html" class="list-group-item list-group-item-action for-teacher"><i class="fas fa-bell"></i>Feedback</a>
-        <a href="sendAnnounces.html" class="list-group-item list-group-item-action for-teacher"><i class="fas fa-bell"></i>Trimite anunt</a>
-        <a href="javascript:void(0)" class="list-group-item list-group-item-action" onclick="logOut()"><i class="fas fa-sign-out-alt"></i>Deconectează-te</a>
+        <a href="teachers.html" class="list-group-item list-group-item-action"><i
+                class="fas fa-user-graduate"></i>Profesori</a>
+        <a href="notifications.html" class="list-group-item list-group-item-action for-student"><i
+                class="fas fa-bell"></i>Notificari</a>
+
+        <a href="feedback.html" class="list-group-item list-group-item-action for-teacher"><i
+                class="fas fa-bell"></i>Feedback</a>
+        <a href="sendAnnounces.html" class="list-group-item list-group-item-action for-teacher"><i
+                class="fas fa-bell"></i>Trimite anunt</a>
+        <a href="javascript:void(0)" class="list-group-item list-group-item-action" onclick="logOut()"><i
+                class="fas fa-sign-out-alt"></i>Deconectează-te</a>
 
     </div>
 </div>
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         $.ajax({
             url: endpoint + "identity",
             method: 'GET',
@@ -94,16 +115,16 @@
                 xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
             }
         }).then(function (result) {
-            if(result.data.type === 'student') {
+            if (result.data.type === 'student') {
                 $('.for-teacher').remove();
-                isStudent = true;
             }
-            if(result.data.type === 'professor') {
+            if (result.data.type === 'professor') {
                 $('.for-student').remove();
-                isTeacher = true;
             }
 
-            $('#userName').val(result.data.name);
+            $('#userName').text(result.data.name);
+
+            $('#loader').remove();
         });
     });
 </script>
@@ -125,7 +146,7 @@
             <div class="container overflow-auto">
                 <div class="section">
                     <div class="content">
-                        <table class="table schedule">
+                        <table class="table table-bordered schedule" id="tabel">
                             <thead>
                                 <tr>
                                 <tr>
@@ -133,9 +154,9 @@
                                     <th scope="col" class="head-col">Luni</th>
                                     <th scope="col" class="head-col">Marți</th>
                                     <th scope="col" class="head-col">Miercuri</th>
-                                    <th scope="col" class="head-col">Joi</th>
-                                    <th scope="col" class="head-col">Vineri</th>
-                                    <th scope="col" class="head-col">Sâmbătă</th>
+                                    <th scope="col" class="head-col" id="joi">Joi</th>
+                                    <th scope="col" class="head-col" id="vineri">Vineri</th>
+                                    <th scope="col" class="head-col" id="sambata">Sâmbătă</th>
                                 </tr>
                                 </tr>
                             </thead>
@@ -179,7 +200,7 @@
                                 </tr>
                                 <tr id="h16">
                                     <th scope="row">16:00</th>
-                                    <td class="Luni"></td>
+                                    <td class="Luni" id="td16"></td>
                                     <td class="Marti"></td>
                                     <td class="Miercuri"></td>
                                     <td class="Joi"></td>
@@ -199,9 +220,14 @@
                         </table>
                     </div>
                 </div>
-                <div class="row" style="justify-content: center">
-                    <button type="button" class="btn btn-primary" href="javascript:void(0)" id="btnm"
-                        data-target="#addObj" data-toggle="modal">Adauga in orar</button>
+                <div class="row">
+                    <div class="col-lg-6 ">
+                        <button type="button" class="btn btn-primary float-right" href="javascript:void(0)" id="btnm"
+                            data-target="#addObj" data-toggle="modal">Adauga in orar</button></div>
+                    <div class="col-lg-6 text-left">
+                        <button type="button" class="btn btn-primary float-left" href="javascript:void(0)"
+                            id="save">Salveaza</button></div>
+
                 </div>
             </div>
         </div>
@@ -219,18 +245,8 @@
                     <div class="content">
 
 
-                        <form>
+                        <form id="form1">
 
-                            <div class="form-group ">
-                                <label for="usr">Detalii materie:</label>
-                                <input type="text" class="form-control" id="usr" name="details" required>
-                            </div>
-
-
-                            <div class="form-group ">
-                                <label for="sala">Sala:</label>
-                                <input type="text" class="form-control" id="class" name="classdetail" required>
-                            </div>
 
 
                             <div class="form-group ">
@@ -249,25 +265,22 @@
 
                             <div class="form-group ">
                                 <label for="starthour">Oră de start</label>
-                                <select name="start" id="starthour" class="form-control" required>
+                                <select name="starthour" id="starthour" class="form-control" required>
                                     <option value="" selected="selected">Alege o opțiune...</option>
                                     <option value="8">8</option>
-                                    <option value="9">9</option>
+
                                     <option value="10">10</option>
-                                    <option value="11">11</option>
+
                                     <option value="12">12</option>
-                                    <option value="13">13</option>
+
                                     <option value="14">14</option>
-                                    <option value="15">15</option>
+
                                     <option value="16">16</option>
-                                    <option value="17">17</option>
+
                                     <option value="18">18</option>
-                                    <option value="19">19</option>
-                                    <option value="20">20</option>
-                                    <option value="21">21</option>
-                                    <option value="22">22</option>
-                                    <option value="23">23</option>
-                                    <option value="24">24</option>
+
+
+
 
                                 </select>
 
@@ -278,47 +291,286 @@
                                 <select name="finish" id="finish" class="form-control" required>
                                     <option value="" selected="selected">Alege o opțiune...</option>
                                     <option value="8">8</option>
-                                    <option value="9">9</option>
+
                                     <option value="10">10</option>
-                                    <option value="11">11</option>
+
                                     <option value="12">12</option>
-                                    <option value="13">13</option>
+
                                     <option value="14">14</option>
-                                    <option value="15">15</option>
+
                                     <option value="16">16</option>
-                                    <option value="17">17</option>
+
                                     <option value="18">18</option>
-                                    <option value="19">19</option>
+
                                     <option value="20">20</option>
-                                    <option value="21">21</option>
-                                    <option value="22">22</option>
-                                    <option value="23">23</option>
-                                    <option value="24">24</option>
+
 
                                 </select>
                             </div>
-                            <button type="submit" class="btn btn-primary align-center">Adauga</button>
-                            <button type="button" class=" btn btn-primary" data-dissmiss="modal">Renunta</button>
+                            <button type="submit" class="btn btn-primary float-right" href="javascript:void(0)" id="btn"
+                                data-toggle="modal" data-target="#addObj2">Cauta discipline</button>
+                            <button type="button" class=" btn btn-primary" data-toggle='modal'
+                                data-dismiss="modal">Renunta</button>
 
                         </form>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="modal sign-modal fade scroll-modal" id="addObj2" role="dialog">
+        <div class="modal-dialog  modal-dialog-centered" style="width:600px;">
+            <div class="modal-content">
+                <div class="modal-body" style="justify-content: center">
+                    <div class="header">
+                        <h4 class="over-title">Adauga un obiect in orar</h4>
 
-            <script>
+                    </div>
 
-                $('#btnm').click(function () {
-                    $('#addObj').modal('show');
-                });
 
-                $('form').submit(function (event) {
-                    var obj = $(this).serializeArray();
+                    <div class="content">
 
-                    event.preventDefault();
-                })
 
-            </script>
+                        <form>
+                            <div class="form-group ">
+                                <label for="materie">Disciplina</label>
+                                <select name="materie" id="materie" class="form-control" required>
+                                    <option value="" selected="selected">Alege o opțiune...</option>
 
-<script type="text/javascript" src="main.aba0b23d1cfdda03dac8.js"></script></body>
+                                </select>
+                            </div>
+
+
+                            <div class="form-group ">
+                                <label for="tip">Tip activitate</label>
+                                <select name="tip" id="tip" class="form-control" required>
+                                    <option value="" selected="selected">Alege o opțiune...</option>
+
+                                </select>
+
+                            </div>
+
+                            <button type="button" class="btn btn-primary align-center" id="add">Adauga</button>
+                            <button type="button" class=" btn btn-primary" data-toggle='modal'
+                                data-dismiss="modal">Renunta</button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+
+
+
+        var id;
+        var zi;
+        var start;
+        var end;
+        var rezultat;
+        $('#form1').submit(function (event) {
+            event.preventDefault();
+            if (!this.checkValidity()) {
+                return;
+            }
+            zi = $('#day option:selected').val();
+            start = $('#starthour option:selected').val();
+            end = $('#finish option:selected').val();
+
+
+            $('#materie').html('');
+            $('#tip').html('');
+            $.ajax({
+
+                crossDomain: true,
+                url: endpoint + 'courses_by_time',
+                type: "GET",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
+                },
+                data: {
+                    weekday: zi,
+                    start_hour: start,
+                    end_hour: end
+                },
+                success: function (result) {
+                    rezultat = result;
+                    console.log(result);
+                    console.log(rezultat);
+                    for (let i = 0; i < result.length; i++) {
+                        $('#materie').append("<option id='" + result[i].id + "' value='" + result[i].title + " " + result[i].professor + " " + result[i].classroom + "'>" + result[i].title + " " + result[i].professor + " " + result[i].classroom + '</option>');
+                        $('#tip').append('<option value="' + result[i].type + '">' + result[i].type + '</option>');
+
+                    }
+
+
+
+                }
+            })
+        })
+        $('#add').click(function () {
+            let materie = $('#materie option:selected ').val();
+            let tip = $('#tip option:selected').val();
+            id = $('#materie option:selected').attr('id');
+            let rezult = $('#materie option:selected classroom').val();
+            console.log(rezult)
+            $.ajax({
+                crossDomain: true,
+                url: endpoint + 'custom_class',
+                type: "PUT",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
+                },
+                data: JSON.stringify({
+                    "schedule_class_id": id,
+
+                }),
+
+                success: function (result) {
+                    console.log(zi);
+
+                    switch (zi) {
+                        case 'Luni':
+
+
+
+                            for (h = 8; h <= 18; h += 2) {
+                                if (start === h.toString()) {
+
+                                    $('#h' + h.toString() + " ." + 'Luni').append('<div class=\"object\" id=\"' + id + start + zi + "\" data-toggle=\"modal\" data-target=\"#detailsModal\">" +
+                                        "<p class=\"name\">" + materie + "</p>" +
+                                        "<div class=\"badges\">" +
+                                        "<span class=\"badge " + tip.toLowerCase() + "\">" + tip + "</span>" +
+                                        "</div>" +
+                                        "</div>");
+
+                                }
+                                zi = undefined;
+                            }
+                            break;
+                        case 'Marti':
+                            for (h = 8; h <= 18; h += 2) {
+                                if (start === h.toString()) {
+                                    $('#h' + h.toString() + " ." + 'Marti').append('<div class=\"object\" id=\"' + id + start + zi + "\" data-toggle=\"modal\" data-target=\"#detailsModal\">" +
+                                        "<p class=\"name\">" + materie + "</p>" +
+                                        "<div class=\"badges\">" +
+                                        "<span class=\"badge " + tip.toLowerCase() + "\">" + tip + "</span>" +
+                                        "</div>" +
+                                        "</div>");
+                                }
+                                zi = undefined;
+                            }
+                            break;
+                        case 'Miercuri':
+                            for (h = 8; h <= 18; h += 2) {
+                                if (start === h.toString()) {
+                                    $('#h' + h.toString() + " ." + 'Miercuri').append('<div class=\"object\" id=\"' + id + start + zi + "\" data-toggle=\"modal\" data-target=\"#detailsModal\">" +
+                                        "<p class=\"name\">" + materie + "</p>" +
+                                        "<div class=\"badges\">" +
+                                        "<span class=\"badge " + tip.toLowerCase() + "\">" + tip + "</span>" +
+                                        "</div>" +
+                                        "</div>");
+                                }
+                                zi = undefined;
+                            }
+                            break;
+                        case 'Joi':
+                            for (h = 8; h <= 18; h += 2) {
+                                if (start === h.toString()) {
+                                    $('#h' + h.toString() + " ." + 'Joi').append('<div class=\"object\" id=\"' + id + start + zi + "\" data-toggle=\"modal\" data-target=\"#detailsModal\">" +
+                                        "<p class=\"name\">" + materie + "</p>" +
+                                        "<div class=\"badges\">" +
+                                        "<span class=\"badge " + tip.toLowerCase() + "\">" + tip + "</span>" +
+                                        "</div>" +
+                                        "</div>");
+                                }
+                                zi = undefined;
+                            }
+                            break;
+                        case 'Vineri':
+                            for (h = 8; h <= 18; h += 2) {
+                                if (start === h.toString()) {
+                                    $('#h' + h.toString() + " ." + 'Vineri').append('<div class=\"object\" id=\"' + id + start + zi + "\" data-toggle=\"modal\" data-target=\"#detailsModal\">" +
+                                        "<p class=\"name\">" + materie + "</p>" +
+                                        "<div class=\"badges\">" +
+                                        "<span class=\"badge " + tip.toLowerCase() + "\">" + tip + "</span>" +
+                                        "</div>" +
+                                        "</div>");
+                                }
+                                zi = undefined;
+                            }
+                            break;
+                        case 'Sambata':
+                            for (h = 8; h <= 18; h += 2) {
+                                if (start === h.toString()) {
+                                    $('#h' + h.toString() + " ." + 'Sambata').append('<div class=\"object\" id=\"' + id + start + zi + "\" data-toggle=\"modal\" data-target=\"#detailsModal\">" +
+                                        "<p class=\"name\">" + materie + "</p>" +
+                                        "<div class=\"badges\">" +
+                                        "<span class=\"badge " + tip.toLowerCase() + "\">" + tip + "</span>" +
+                                        "</div>" +
+                                        "</div>");
+                                }
+                                zi = undefined;
+                            }
+                            break;
+                    }
+                }
+            })
+        })
+
+        $('#save').click(function () {
+            load();
+
+        })
+        function getObjectHtml(object) {
+            return "" +
+                "<div class=\"object\" id=\"" + object.course_id + object.startTime + object.day + "\" data-toggle=\"modal\" data-target=\"#detailsModal\">" +
+                "<p class=\"name\">" + object.name + "</p>" +
+                "<p class=\"object-teacher\">" + object.professor + "</p>" +
+                "<div class=\"badges\">" +
+                "<span class=\"badge " + object.type.toLowerCase() + "\">" + object.type + "</span>" +
+                "<span class=\"badge room\">" + object.classroom + "</p>" +
+                "</div>" +
+                "</div>";
+        }
+        $(document).ready(function load() {
+            $.ajax({
+
+                crossDomain: true,
+                url: endpoint + 'custom_schedule',
+                type: "GET",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("accessToken"));
+                },
+                success: function (result) {
+                    var objects = JSON.parse(result);
+
+                    for (h = 8; h <= 18; h += 2) {
+                        objects.filter(x => x.startTime === h.toString()).forEach(element => {
+                            element.room = "C201";
+                            $('#h' + h.toString() + " ." + element.day).append(getObjectHtml(element));
+                            $('#' + element.course_id + element.startTime + element.day).on('click', function () {
+                                resolveModal(element.course_id, element.professor, element.id);
+                            });
+                        });;
+                    }
+                },
+
+            })
+        })
+
+
+    </script>
+
+<script type="text/javascript" src="main.e571cf454320c484807b.js"></script></body>
 
 </html>
